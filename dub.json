@@ -1,9 +1,14 @@
 {
-	"authors": [
-		"uiman"
-	],
-	"copyright": "Copyright © 2019, uiman",
-	"description": "A minimal D application.",
-	"license": "proprietary",
-	"name": "uim-html"
+	"name": "uim-html",
+	"authors": [ "UI Manufaktur Team" ],
+	"description": "D Library for HTML5",
+	"copyright": "Copyright © 2019, UI Manufaktur UG",
+	"license": "Apache 2.0",
+	"targetType": "library",
+	"dependencies": {
+		"vibe-d:data": "~>0.8.5"
+		"uim-core": "~>master",
+		"uim-oop": "~>master",
+		"uim-web": "~>master"
+	}
 }
