@@ -2,6 +2,9 @@
 	"fileVersion": 1,
 	"versions": {
 		"stdx-allocator": "2.77.5",
-		"vibe-d": "0.8.4"
+		"uim-core": "0.19.5",
+		"uim-oop": "0.19.5",
+		"uim-web": "0.19.5",
+		"vibe-d": "0.8.5"
 	}
 }
