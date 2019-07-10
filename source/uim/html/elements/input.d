@@ -4,8 +4,15 @@ import uim.html;
 
 class DH5INPUT : DH5Obj {
 	mixin(H5This!("INPUT", null, null, true));
+	unittest {
+		assert(H5INPUT == "<input>");
+	}
 
 	mixin(MyAttribute!("type"))	;
+	unittest {
+		assert(H5INPUT.type("text") == `<input type="text">`);
+	}
+
 	mixin(MyAttribute!("accept"));
 	mixin(MyAttribute!("autoComplete"));
 	mixin(MyAttribute!("autofocus"));
@@ -43,7 +50,4 @@ class DH5INPUT : DH5Obj {
 mixin(FuncH5!("INPUT"));
 
 unittest {
-	writeln("Testing ", __MODULE__);
-	
-	assert(H5INPUT == "<input>");
 }

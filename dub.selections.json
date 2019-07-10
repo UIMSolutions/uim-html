@@ -3,7 +3,7 @@
 	"versions": {
 		"stdx-allocator": "2.77.5",
 		"uim-core": "0.19.51",
-		"uim-oop": "0.19.6",
+		"uim-oop": "0.19.7",
 		"uim-web": "0.19.6",
 		"vibe-d": "0.8.5"
 	}
