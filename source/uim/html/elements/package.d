@@ -126,7 +126,7 @@ enum HEAD = "HEAD";
 enum BODY = "BODY";
 enum LINK = "LINK";
 enum SCRIPT = "SCRIPT";
-enum DIV = "DIV";
+enum Div = "Div";
 enum A = "A";
 enum BIG = "BIG";
 enum TITLE = "TITLE";
@@ -217,7 +217,7 @@ enum LEGEND = "LEGEND";
 enum LABEL = "LABEL";
 enum DATALIST = "DATALIST";
 enum INPUT = "INPUT";
-enum BUTTON = "BUTTON";
+enum Button = "Button";
 enum SELECT = "SELECT";
 enum OPTGROUP = "OPTGROUP";
 enum OPTION = "OPTION";
@@ -281,7 +281,7 @@ class DH5 {
 	static auto DT() { return new DH5DT(); }
 	static auto DD() { return new DH5DD(); }
 	static auto HR() { return new DH5HR(); }
-	static auto DIV() { return new DH5DIV(); }
+	static auto Div() { return new DH5Div(); }
 	
 	// Textauszeichnung			
 	static auto B() { return new DH5B(); }
@@ -353,7 +353,7 @@ class DH5 {
 	static auto LABEL() { return new DH5LABEL(); }
 	static auto DATALIST() { return new DH5DATALIST(); }
 	static auto INPUT() { return new DH5INPUT(); }
-	static auto BUTTON() { return new DH5BUTTON(); }
+	static auto Button() { return new DH5Button(); }
 	static auto SELECT() { return new DH5SELECT(); }
 	static auto OPTGROUP() { return new DH5OPTGROUP(); }
 	static auto OPTION() { return new DH5OPTION(); }
@@ -417,7 +417,7 @@ class DH5 {
 	//		case "DT": return new DH5DT();
 	//		case "DD": return new DH5DD();
 	//		case "HR": return new DH5HR();
-	//		case "DIV": return new DH5DIV();
+	//		case "Div": return new DH5Div();
 	//		case "B": return new DH5B();
 	//		case "EM": return new DH5EM();
 	//		case "I": return new DH5I();
@@ -479,7 +479,7 @@ class DH5 {
 	//		case "LABEL": return new DH5LABEL();
 	//		case "DATALIST": return new DH5DATALIST();
 	//		case "INPUT": return new DH5INPUT();
-	//		case "BUTTON": return new DH5BUTTON();
+	//		case "Button": return new DH5Button();
 	//		case "SELECT": return new DH5SELECT();
 	//		case "OPTGROUP": return new DH5OPTGROUP();
 	//		case "OPTION": return new DH5OPTION();
@@ -1697,5 +1697,5 @@ class DH5CENTER : DH5Obj {
 mixin(FuncH5!"CENTER");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

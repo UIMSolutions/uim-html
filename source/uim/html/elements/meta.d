@@ -8,7 +8,7 @@ class DH5META : DH5Obj {
 mixin(FuncH5!("META"));
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5META == "<meta>");
 }

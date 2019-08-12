@@ -8,7 +8,7 @@ class DH5FIELDSET : DH5Obj {
 mixin(FuncH5!"FIELDSET");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5FIELDSET == "<fieldset></fieldset>");
 }

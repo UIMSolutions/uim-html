@@ -9,7 +9,7 @@ class DH5THEAD : DH5Obj {
 mixin(FuncH5!"THEAD");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5THEAD == "<thead></thead>");
 }

@@ -14,7 +14,7 @@ class DH5TIME : DH5Obj {
 mixin(FuncH5!"TIME");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5TIME == "<time></time>");
 }

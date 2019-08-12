@@ -9,7 +9,7 @@ class DH5DD : DH5Obj {
 mixin(FuncH5!"DD");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5DD == "<dd></dd>");
 }

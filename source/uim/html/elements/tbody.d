@@ -9,7 +9,7 @@ class DH5TBODY : DH5Obj {
 mixin(H5Short!"H5TBODY");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5TBODY == "<tbody></tbody>");
 }

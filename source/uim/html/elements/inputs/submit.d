@@ -8,5 +8,5 @@ class DH5INPUTSUBMIT : DH5INPUT {
 mixin(FuncH5!"INPUTSUBMIT"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

@@ -8,7 +8,7 @@ class DH5HEADER : DH5Obj {
 mixin(FuncH5!"HEADER");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5HEADER == "<header></header>");
 }

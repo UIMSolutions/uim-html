@@ -33,6 +33,6 @@ class DH5H6 : DH5Obj {
 mixin(FuncH5!"H6");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 }

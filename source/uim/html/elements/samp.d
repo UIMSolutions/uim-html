@@ -8,7 +8,7 @@ class DH5SAMP : DH5Obj {
 mixin(FuncH5!"SAMP");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5SAMP == "<samp></samp>");
 }

@@ -8,7 +8,7 @@ class DH5BIG : DH5Obj {
 mixin(FuncH5!"BIG");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5BIG == "<big></big>");
 }

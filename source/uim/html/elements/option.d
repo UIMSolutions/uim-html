@@ -15,7 +15,7 @@ enum option_modes : string {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5OPTION == "<option></option>");
 }

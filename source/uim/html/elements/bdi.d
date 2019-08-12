@@ -8,7 +8,7 @@ class DH5BDI : DH5Obj {
 mixin(FuncH5!"BDI");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	mixin(H5Test!("H5BDI", "bdi"));
 }

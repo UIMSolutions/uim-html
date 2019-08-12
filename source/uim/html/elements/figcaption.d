@@ -12,7 +12,7 @@ class DH5FIGCAPTION : DH5Obj {
 mixin(FuncH5!"FIGCAPTION");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5FIGCAPTION == "<figcaption></figcaption>");
 }

@@ -15,7 +15,7 @@ class DH5ADDRESS : DH5Obj {
 mixin(FuncH5!"ADDRESS");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	mixin(H5Test!("H5ADDRESS", "address"));
 }

@@ -23,7 +23,7 @@ class DH5LIST : DH5Obj {
 mixin(FuncH5!"LIST");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5LIST == "<list></list>");
 }

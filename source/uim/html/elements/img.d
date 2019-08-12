@@ -8,7 +8,7 @@ class DH5IMG : DH5Obj {
 mixin(FuncH5!("IMG"));
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5IMG == "<img>");
 }

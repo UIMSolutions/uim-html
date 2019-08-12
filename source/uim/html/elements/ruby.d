@@ -8,7 +8,7 @@ class DH5RUBY : DH5Obj {
 mixin(FuncH5!"RUBY");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5RUBY == "<ruby></ruby>");
 }

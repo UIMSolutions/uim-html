@@ -7,5 +7,5 @@ class DH5INPUTDATETIME : DH5INPUT {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

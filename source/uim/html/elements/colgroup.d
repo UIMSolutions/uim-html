@@ -8,7 +8,7 @@ class DH5COLGROUP : DH5Obj {
 mixin(FuncH5!"COLGROUP");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5COLGROUP == "<colgroup></colgroup>");
 }

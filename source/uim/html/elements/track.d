@@ -13,7 +13,7 @@ class DH5TRACK : DH5Obj {
 mixin(FuncH5!"TRACK");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	mixin(H5Test!("H5TRACK", "track"));
 

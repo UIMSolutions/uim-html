@@ -12,7 +12,7 @@ class DH5NAV : DH5Obj {
 mixin(FuncH5!"NAV");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5MAP == "<map></map>");
 }

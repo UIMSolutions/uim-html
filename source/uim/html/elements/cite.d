@@ -8,7 +8,7 @@ class DH5CITE : DH5Obj {
 mixin(FuncH5!"CITE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5CITE == "<cite></cite>");
 }

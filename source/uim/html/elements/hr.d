@@ -9,7 +9,7 @@ mixin(FuncH5!"HR");
 alias HR = H5HR;
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5HR == "<hr></hr>");
 }

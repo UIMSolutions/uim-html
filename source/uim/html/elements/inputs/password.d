@@ -8,5 +8,5 @@ class DH5INPUTPASSWORD : DH5INPUT {
 mixin(FuncH5!"INPUTPASSWORD"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

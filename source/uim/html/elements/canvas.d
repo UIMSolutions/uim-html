@@ -299,7 +299,7 @@ DH5CANVAS H5CANVAS(string id, int width, int height, string style = "") {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5CANVAS == "<canvas></canvas>");
 }

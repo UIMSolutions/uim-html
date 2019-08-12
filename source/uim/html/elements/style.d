@@ -8,7 +8,7 @@ class DH5STYLE : DH5Obj {
 mixin(FuncH5!"STYLE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	writeln(H5STYLE);
 	assert(H5STYLE == "<style></style>");

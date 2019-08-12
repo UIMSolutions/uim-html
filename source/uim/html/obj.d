@@ -40,14 +40,14 @@ class DH5Obj {
 	 public void init() {
 		_classes = null;
 		_attributes = new DMapString;
-		_html = "";
+		_html = [];
 	}
 	
 	mixin(TProperty!("bool", "single", "false"));
 	mixin(TProperty!("string", "tag"));
 	mixin(TProperty!("string", "id"));
 	mixin(TProperty!("string", "css"));
-	mixin(TProperty!("string", "html"));
+	mixin(TProperty!("DH5Obj[]", "html"));
 	mixin(TProperty!("string", "js"));
 
 	string[] _classes;
@@ -88,20 +88,12 @@ class DH5Obj {
 		return toString == value.toString;
 	}
 
-	void opIndexAssign(T)(T value, string key) {
-		_attributes[key] = "%s".format(value);
-	}
-	 void opIndexAssign(bool value, string key) {
-		_attributes[key] = "%s".format((value) ? "true" : "false");
-	}
-	 void opIndexAssign(T)(T value, string key, T notValue) {
-		if (value != notValue) _attributes[key] = "%s".format(value);
-	}
-	 void opIndexAssign(bool value, string key, bool notValue) {
-		if (value != notValue) _attributes[key] = "%s".format((value) ? "true" : "false");
-	}
+	void opIndexAssign(T)(T value, string key) { _attributes[key] = "%s".format(value); }
+	void opIndexAssign(bool value, string key) { _attributes[key] = "%s".format((value) ? "true" : "false"); }
+	void opIndexAssign(T)(T value, string key, T notValue) { if (value != notValue) _attributes[key] = "%s".format(value); }
+	void opIndexAssign(bool value, string key, bool notValue) { if (value != notValue) _attributes[key] = "%s".format((value) ? "true" : "false");  }
 
-	 string opBinary(string op)(string rhs) {
+	string opBinary(string op)(string rhs) {
 		static if (op == "~") return toString ~ rhs;
 		else return null;
 	}
@@ -110,8 +102,8 @@ class DH5Obj {
 		else return null;
 	}
 
-	 O content(this O)(string addContent) { _html ~= addContent; return cast(O)this; }
-	 O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c.toString; return cast(O)this; }
+	 O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
+	 O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c; return cast(O)this; }
 	
 	 O opCall(this O)(string[] someClasses) { add(someClasses); return cast(O)this; }
 	 O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
@@ -121,14 +113,14 @@ class DH5Obj {
 
 	 O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
 	 O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
-	 O add(this O)(string someContent) { _html ~= someContent; return cast(O)this; }
-	 O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c.toString; return cast(O)this; }
-	 O add(this O)(DH5Obj[] someContent) { foreach(c; someContent) _html ~= c.toString; return cast(O)this; }
+	 O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
+	 O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
+	 O add(this O)(DH5Obj[] someContent) { foreach(c; someContent) _html ~= c; return cast(O)this; }
 
 
 	 O clear(this O)() { 
 		_css = "";
-		_html = "";
+		_html = [];
 		_js = "";
 		return cast(O)this;
 	}
@@ -137,11 +129,11 @@ class DH5Obj {
 		return cast(O)this;
 	}
 	 O clearContent(this O)() { 
-		_html = "";
+		_html = [];
 		return cast(O)this;
 	}
 	 O clearHtml(this O)() { 
-		_html = "";
+		_html = [];
 		return cast(O)this;
 	}
 	 O clearJs(this O)() { 
@@ -255,7 +247,11 @@ class DH5Obj {
 		result ~= ">";
 
 		// secondTag
-		if (!_single) result ~= _html~endTag(_tag);
+		if (!_single){
+			string inner;
+			foreach(h5; _html) inner ~= h5.toString;
+			result ~= inner~endTag(_tag);
+		}
 		return result;
 	}
 	 string toJS() {
@@ -297,17 +293,13 @@ class DH5Obj {
  auto H5Obj(string[string] attributes, string content) { return new DH5Obj(attributes, content); }
  auto H5Obj(string[string] attributes, DH5Obj content...) { return new DH5Obj(attributes, content); }
 
-//auto H5Obj(DH5Obj content...) { return new DH5Obj(content); }
-
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	auto h5 = H5Obj;
 	assert(h5.id("newID").id == "newID");
 
 	h5 = H5Obj("content");
-	assert(h5.html == "content");
-	
 	assert(H5Obj.id == null);
 	assert(H5Obj(["classA", "classB"]).id == null);
 	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);

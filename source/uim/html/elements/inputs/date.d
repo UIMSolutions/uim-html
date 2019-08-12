@@ -7,7 +7,7 @@ class DH5INPUTDATE : DH5INPUT {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert((new DH5INPUTDATE).toString == "<input type=\"date\">");
 }

@@ -16,7 +16,7 @@ class DH5COMMENT : DH5Obj {
 mixin(FuncH5!"COMMENT");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5COMMENT == "<comment></comment>");
 }

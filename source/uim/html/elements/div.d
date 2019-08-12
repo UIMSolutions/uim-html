@@ -2,14 +2,12 @@
 
 import uim.html;
 
-class DH5DIV : DH5Obj {
-	mixin(H5This!"DIV");
+class DH5Div : DH5Obj {
+	mixin(H5This!"Div");
 }
-mixin(FuncH5!"DIV");
+mixin(FuncH5!"Div");
 
 unittest {
-	writeln("Testing ", __MODULE__);
-
-	assert(H5DIV == "<div></div>");
-	assert(H5DIV("content") == `<div>content</div>`);
+	assert(H5Div == "<div></div>");
+	assert(H5Div("content") == `<div>content</div>`);
 }

@@ -8,7 +8,7 @@ class DH5DATALIST : DH5Obj {
 mixin(FuncH5!"DATALIST");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5DATALIST == "<datalist></datalist>");
 }

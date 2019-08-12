@@ -29,7 +29,7 @@ public:
 //DH5HEAD H5HEAD(string[string] attributes, string[] texts...) { return new DH5HEAD(attributes, texts); }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5HEAD == "<head></head>");
 }

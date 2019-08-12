@@ -8,7 +8,7 @@ class DH5SHADOW : DH5Obj {
 mixin(FuncH5!"SHADOW");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5SHADOW == "<shadow></shadow>");
 }

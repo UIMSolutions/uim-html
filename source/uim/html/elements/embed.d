@@ -8,7 +8,7 @@ class DH5EMBED : DH5Obj {
 mixin(FuncH5!"EMBED");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5EMBED == "<embed></embed>");
 }

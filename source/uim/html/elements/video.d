@@ -25,7 +25,7 @@ class DH5VIDEO : DH5Obj {
 mixin(FuncH5!"VIDEO");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	mixin(H5Test!("H5VIDEO", "video"));
 	

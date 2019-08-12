@@ -54,13 +54,13 @@ class DH5HTML : DH5Obj {
 	 O script(this O, T...)(T values) { _body.script(values);  return cast(O)this; }
 
 	 override string toString() { 
-		_html = _head.toString ~ _body.toString; 
+		_html = [_head, _body]; 
 		return h5Doctype~super.toString; }
 }
 mixin(FuncH5!"HTML");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5HTML == "<!doctype html><html><head></head><body></body></html>");
 	assert(H5HTML(["lang":"en"]) == "<!doctype html><html lang=\"en\"><head></head><body></body></html>");

@@ -25,7 +25,7 @@ class DH5AUDIO : DH5Obj {
 mixin(FuncH5!"AUDIO");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	mixin(H5Test!("H5AUDIO", "audio"));
 	assert(H5AUDIO.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 

@@ -10,7 +10,7 @@ class DH5PRE : DH5Obj {
 mixin(FuncH5!"PRE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5PRE == "<pre></pre>");
 }

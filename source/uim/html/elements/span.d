@@ -8,7 +8,7 @@ class DH5SPAN : DH5Obj {
 mixin(FuncH5!"SPAN");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5SPAN == "<span></span>");
 }

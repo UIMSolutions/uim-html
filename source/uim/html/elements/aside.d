@@ -9,7 +9,7 @@ class DH5ASIDE : DH5Obj {
 mixin(FuncH5!"ASIDE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5ASIDE == "<aside></aside>");
 }

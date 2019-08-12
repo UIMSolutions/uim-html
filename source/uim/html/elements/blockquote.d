@@ -11,7 +11,7 @@ class DH5BLOCKQUOTE : DH5Obj {
 mixin(FuncH5!"BLOCKQUOTE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5BLOCKQUOTE == "<blockquote></blockquote>");
 }

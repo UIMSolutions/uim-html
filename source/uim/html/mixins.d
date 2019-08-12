@@ -39,7 +39,7 @@ template H5This(string tag, string classes = null, string attributes = null, boo
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }
 //	O Add(this O, T...)(T values) { 
 //		switch (values.length) {

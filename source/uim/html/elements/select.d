@@ -15,7 +15,7 @@ class DH5SELECT : DH5Obj {
 mixin(FuncH5!"SELECT");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	mixin(H5Test!("H5SELECT", "select"));
 	

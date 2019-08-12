@@ -18,7 +18,7 @@ class DH5DL : DH5Obj {
 mixin(FuncH5!"DL");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5DL.toString == "<dl></dl>");
 }

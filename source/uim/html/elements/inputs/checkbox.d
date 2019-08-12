@@ -13,5 +13,5 @@ class DH5INPUTCHECKBOX : DH5INPUT {
 mixin(FuncH5!"INPUTCHECKBOX");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

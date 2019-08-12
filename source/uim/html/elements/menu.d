@@ -8,7 +8,7 @@ class DH5MENU : DH5Obj {
 mixin(FuncH5!"MENU");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5MENU == "<menu></menu>");
 }

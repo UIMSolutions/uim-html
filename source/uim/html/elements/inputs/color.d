@@ -12,5 +12,5 @@ class DH5INPUTCOLOR : DH5INPUT {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

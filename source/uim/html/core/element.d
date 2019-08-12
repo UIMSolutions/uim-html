@@ -298,5 +298,5 @@ enum ShowMode { standard, onlyHTML, onlyJS, onlyCSS }
 ////
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

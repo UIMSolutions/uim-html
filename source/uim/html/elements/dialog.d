@@ -8,7 +8,7 @@ class DH5DIALOG : DH5Obj {
 mixin(FuncH5!"DIALOG");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5DIALOG == "<dialog></dialog>");
 }

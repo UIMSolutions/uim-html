@@ -8,5 +8,5 @@ class DH5INPUTTIME : DH5INPUT {
 mixin(FuncH5!"INPUTTIME"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

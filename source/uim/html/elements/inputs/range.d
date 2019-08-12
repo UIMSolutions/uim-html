@@ -8,5 +8,5 @@ class DH5INPUTRANGE : DH5INPUT {
 mixin(FuncH5!"INPUTRANGE"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

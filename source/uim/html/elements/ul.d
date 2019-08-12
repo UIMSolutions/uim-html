@@ -15,7 +15,7 @@ class DH5UL : DH5Obj {
 mixin(FuncH5!"UL");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5UL == "<ul></ul>");
 }

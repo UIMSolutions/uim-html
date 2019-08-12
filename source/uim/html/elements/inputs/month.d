@@ -8,5 +8,5 @@ class DH5INPUTMONTH : DH5INPUT {
 mixin(FuncH5!"INPUTMONTH"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

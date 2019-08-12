@@ -8,7 +8,7 @@ class DH5DEL : DH5Obj {
 mixin(FuncH5!"DEL");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5DEL == "<del></del>");
 }

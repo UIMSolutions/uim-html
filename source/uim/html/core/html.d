@@ -144,5 +144,5 @@ template DTag(string fName, string tName) {
 //
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

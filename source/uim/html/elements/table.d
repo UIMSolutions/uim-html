@@ -14,7 +14,7 @@ class DH5TABLE : DH5Obj {
 mixin(FuncH5!"TABLE");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5TABLE == "<table></table>");
 }

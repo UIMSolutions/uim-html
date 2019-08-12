@@ -8,7 +8,7 @@ class DH5LINK : DH5Obj {
 mixin(FuncH5!("LINK"));
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5LINK == "<link>");
 }

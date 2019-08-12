@@ -8,7 +8,7 @@ class DH5Q : DH5Obj {
 mixin(FuncH5!"Q");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5Q == "<q></q>");
 }

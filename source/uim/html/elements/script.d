@@ -16,7 +16,7 @@ class DH5SCRIPT : DH5Obj {
 mixin(FuncH5!"SCRIPT");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5SCRIPT == "<script type=\"text/javascript\"></script>");
 }

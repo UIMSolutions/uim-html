@@ -168,5 +168,5 @@ import uim.html;
 //mixin(Shortcut!("DJSCanvas", "JSCanvas", "name", "string name"));
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

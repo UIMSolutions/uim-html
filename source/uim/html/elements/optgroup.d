@@ -12,7 +12,7 @@ class DH5OPTGROUP : DH5Obj {
 mixin(FuncH5!"OPTGROUP");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5OPTGROUP == "<optgroup></optgroup>");
 }

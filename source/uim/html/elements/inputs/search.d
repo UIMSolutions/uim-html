@@ -8,5 +8,5 @@ class DH5INPUTSEARCH : DH5INPUT {
 mixin(FuncH5!"INPUTSEARCH"); 
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

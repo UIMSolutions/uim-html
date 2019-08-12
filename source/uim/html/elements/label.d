@@ -11,7 +11,7 @@ class DH5LABEL : DH5Obj {
 mixin(FuncH5!"LABEL");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	mixin(H5Test!("H5LABEL", "label"));
 	assert(H5LABEL.forId("anID") == `<label for="anID"></label>`);

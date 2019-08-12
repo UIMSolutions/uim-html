@@ -73,7 +73,7 @@ enum Methods : string {
 string toString(Methods value) { return cast(string)value; }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5FORM == "<form></form>");
 }

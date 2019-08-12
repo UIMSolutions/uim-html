@@ -11,7 +11,7 @@ class DH5BODY : DH5Obj {
 mixin(FuncH5!"BODY");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
 	assert(H5BODY == "<body></body>");
 }

@@ -7,5 +7,5 @@ class DH5Template : DH5Obj {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 }

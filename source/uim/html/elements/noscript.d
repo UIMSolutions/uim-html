@@ -8,7 +8,7 @@ class DH5NOSCRIPT : DH5Obj {
 mixin(FuncH5!"NOSCRIPT");
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 	
 	assert(H5NOSCRIPT == "<noscript></noscript>");
 }

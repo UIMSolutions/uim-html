@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5BUTTON : DH5Obj {
-	mixin(H5This!"BUTTON");
+class DH5Button : DH5Obj {
+	mixin(H5This!"Button");
 
 	/* type */
 //	ButtonTypes _type = ButtonTypes.Button;
@@ -13,7 +13,7 @@ class DH5BUTTON : DH5Obj {
 //		attributes["type"] = to!string(value);
 //		return cast(O)this; }
 }
-mixin(FuncH5!"BUTTON");
+mixin(FuncH5!"Button");
 
 enum ButtonTypes : string {
 	Button = "button",
@@ -22,11 +22,11 @@ enum ButtonTypes : string {
 }
 
 unittest {
-	writeln("Testing ", __MODULE__);
+	
 
-	assert(H5BUTTON == "<button></button>");
+	assert(H5Button == "<button></button>");
 
-//	assert(H5BUTTON.type(ButtonTypes.Button).attributes["type"] == "button");
-//	assert(H5BUTTON.type(ButtonTypes.Reset).attributes["type"] == "submit");
-//	assert(H5BUTTON.type(ButtonTypes.Submit).attributes["type"] == "reset");
+//	assert(H5Button.type(ButtonTypes.Button).attributes["type"] == "button");
+//	assert(H5Button.type(ButtonTypes.Reset).attributes["type"] == "submit");
+//	assert(H5Button.type(ButtonTypes.Submit).attributes["type"] == "reset");
 }
