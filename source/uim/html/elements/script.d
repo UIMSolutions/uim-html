@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5SCRIPT : DH5Obj {
-	mixin(H5This!"SCRIPT");
+class DH5Script : DH5Obj {
+	mixin(H5This!"Script");
 
 	string type = "text/javascript";
 
@@ -13,10 +13,10 @@ class DH5SCRIPT : DH5Obj {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"SCRIPT");
+mixin(FuncH5!"Script");
 
 unittest {
 	
 	
-	assert(H5SCRIPT == "<script type=\"text/javascript\"></script>");
+	assert(H5Script == "<script type=\"text/javascript\"></script>");
 }

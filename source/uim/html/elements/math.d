@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5MATH : DH5Obj {
-	mixin(H5This!"MATH");
+class DH5Math : DH5Obj {
+	mixin(H5This!"math");
 }
-mixin(FuncH5!"MATH");
+mixin(FuncH5!"Math");
 
 unittest {
 	
 	
-	assert(H5MATH == "<math></math>");
+	assert(H5Math == "<math></math>");
 }

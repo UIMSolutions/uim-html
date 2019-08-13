@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5IFRAME : DH5Obj {
-	mixin(H5This!"IFRAME");
+class DH5Iframe : DH5Obj {
+	mixin(H5This!"iframe");
 }
-mixin(FuncH5!"IFRAME");
+mixin(FuncH5!"Iframe");
 
 unittest {
 	
 	
-	assert(H5IFRAME == "<iframe></iframe>");
+	assert(H5Iframe == "<iframe></iframe>");
 }

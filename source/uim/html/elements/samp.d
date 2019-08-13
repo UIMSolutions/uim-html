@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5SAMP : DH5Obj {
-	mixin(H5This!"SAMP");
+class DH5Samp : DH5Obj {
+	mixin(H5This!"samp");
 }
-mixin(FuncH5!"SAMP");
+mixin(FuncH5!"Samp");
 
 unittest {
-	
-	
-	assert(H5SAMP == "<samp></samp>");
+	assert(H5Samp == "<samp></samp>");
 }

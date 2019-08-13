@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5VIDEO : DH5Obj {
-	mixin(H5This!"VIDEO");
+class DH5Video : DH5Obj {
+	mixin(H5This!"video");
 
 	mixin(MyAttribute!"autoplay");
     mixin(MyAttribute!"buffered");
@@ -19,15 +19,13 @@ class DH5VIDEO : DH5Obj {
     mixin(MyAttribute!"width");
     mixin(MyAttribute!"playsinline");	
 	
-	mixin(MyContent!("source", "H5SOURCE"));
-	mixin(MyContent!("track", "H5TRACK"));
+	mixin(MyContent!("source", "H5Source"));
+	mixin(MyContent!("track", "H5Track"));
 }
-mixin(FuncH5!"VIDEO");
+mixin(FuncH5!"Video");
 
 unittest {
-	
-	
-	mixin(H5Test!("H5VIDEO", "video"));
+	mixin(H5Test!("H5Video", "video"));
 	
 	assert(H5VIDEO.autoplay("true") == `<video autoplay></video>`);
 	assert(H5VIDEO.buffered("aValue") == `<video buffered="aValue"></video>`);

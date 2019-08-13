@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTEMAIL : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"email"]`, true)); 
+class DH5InputEMAIL : DH5Input {
+	mixin(H5This!("Input", null, `["type":"email"]`, true)); 
 }
-mixin(FuncH5!"INPUTEMAIL");
+mixin(FuncH5!"InputEMAIL");
 
 unittest {
 	

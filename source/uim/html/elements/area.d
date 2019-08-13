@@ -9,8 +9,8 @@ The <area> element is always nested inside a <map> tag.
 
 Note: The usemap attribute in the <img> tag is associated with the <map> element's name attribute, and creates a relationship between the image and the map.
 */
-class DH5AREA : DH5Obj {
-	mixin(H5This!"AREA");
+class DH5Area : DH5Obj {
+	mixin(H5This!"area");
 
 	/**
 	 * Attribute 	Value 	Description
@@ -46,12 +46,12 @@ framename 	Specifies where to open the target URL
 type 	media_type 	Specifies the media type of the target URL
 */
 }
-mixin(FuncH5!"AREA");
+mixin(FuncH5!"Area");
 
 unittest {
 	
 
-	mixin(H5Test!("H5AREA", "area"));
+	mixin(H5Test!("H5Area", "area"));
 }
 
 /**

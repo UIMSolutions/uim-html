@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5INPUTDATETIMELOCAL : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"datetime-local"]`)); 
+class DH5InputDATETIMELOCAL : DH5Input {
+	mixin(H5This!("Input", null, `["type":"datetime-local"]`)); 
 }
-mixin(FuncH5!"INPUTDATETIMELOCAL");
+mixin(FuncH5!"InputDATETIMELOCAL");
 

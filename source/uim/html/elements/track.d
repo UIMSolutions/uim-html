@@ -2,23 +2,21 @@
 
 import uim.html;
 
-class DH5TRACK : DH5Obj {
-	mixin(H5This!"TRACK");
+class DH5Track : DH5Obj {
+	mixin(H5This!"tack");
 	
 	mixin(MyAttribute!("isDefault", "default"));
     mixin(MyAttribute!"label");
     mixin(MyAttribute!"src");
     mixin(MyAttribute!"srclang");
 }
-mixin(FuncH5!"TRACK");
+mixin(FuncH5!"Track");
 
-unittest {
-	
-	
-	mixin(H5Test!("H5TRACK", "track"));
+unittestr {
+	mixin(H5Test!("H5Track", "track"));
 
-	assert(H5TRACK.isDefault("true") == `<track default></track>`);
-	assert(H5TRACK.label("aValue") == `<track label="aValue"></track>`);
-	assert(H5TRACK.src("aValue") == `<track src="aValue"></track>`);
-	assert(H5TRACK.srclang("aValue") == `<track srclang="aValue"></track>`);
+	assert(H5Track.isDefault("true") == `<track default></track>`);
+	assert(H5Track.label("aValue") == `<track label="aValue"></track>`);
+	assert(H5Track.src("aValue") == `<track src="aValue"></track>`);
+	assert(H5Track.srclang("aValue") == `<track srclang="aValue"></track>`);
 }

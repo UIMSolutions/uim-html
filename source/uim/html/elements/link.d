@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5LINK : DH5Obj {
-	mixin(H5This!("LINK", null, null, true));
+class DH5Link : DH5Obj {
+mixin(H5This!("link", null, null, true));
 }
-mixin(FuncH5!("LINK"));
+mixin(FuncH5!("Link"));
 
 unittest {
 	
 	
-	assert(H5LINK == "<link>");
+	assert(H5Link == "<link>");
 }

@@ -2,13 +2,13 @@
 
 import uim.html; 
 
-class DH5RUBY : DH5Obj {
-	mixin(H5This!"RUBY");
+class DH5Ruby : DH5Obj {
+	mixin(H5This!"ruby");
 }
-mixin(FuncH5!"RUBY");
+mixin(FuncH5!"Ruby");
 
 unittest {
 	
 	
-	assert(H5RUBY == "<ruby></ruby>");
+	assert(H5Ruby == "<ruby></ruby>");
 }

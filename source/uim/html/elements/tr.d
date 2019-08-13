@@ -2,16 +2,16 @@
 
 import uim.html;
 
-class DH5TR : DH5Obj {
-	mixin(H5This!"TR");
+class DH5Tr : DH5Obj {
+	mixin(H5This!"tr");
 
 //	mixin(H5ShortCut!"TH");
 //	mixin(H5ShortCut!"TD");
 }
-mixin(FuncH5!"TR");
+mixin(FuncH5!"Tr");
 
 unittest {
 	
 	
-	assert(H5TR == "<tr></tr>");
+	assert(H5Tr == "<tr></tr>");
 }

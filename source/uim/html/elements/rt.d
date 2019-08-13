@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5RT : DH5Obj {
-	mixin(H5This!"RT");
+class DH5Rt : DH5Obj {
+	mixin(H5This!"rt");
 }
-mixin(FuncH5!"RT");
+mixin(FuncH5!"Rt");
 
 unittest {
 	
 	
-	assert(H5RT == "<rt></rt>");
+	assert(H5Rt == "<rt></rt>");
 }

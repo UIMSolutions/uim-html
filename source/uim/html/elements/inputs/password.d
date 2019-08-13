@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTPASSWORD : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"password"]`, true)); 
+class DH5InputPASSWORD : DH5Input {
+	mixin(H5This!("Input", null, `["type":"password"]`, true)); 
 }
-mixin(FuncH5!"INPUTPASSWORD"); 
+mixin(FuncH5!"InputPASSWORD"); 
 
 unittest {
 	

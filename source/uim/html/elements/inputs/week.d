@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTWEEK : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"week"]`, true)); 
+class DH5InputWEEK : DH5Input {
+	mixin(H5This!("Input", null, `["type":"week"]`, true)); 
 }
-mixin(FuncH5!"INPUTWEEK"); 
+mixin(FuncH5!"InputWEEK"); 
 
 unittest {
 	

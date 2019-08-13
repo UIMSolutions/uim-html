@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5TABLE : DH5Obj {
-	mixin(H5This!"TABLE");
+class DH5Table : DH5Obj {
+	mixin(H5This!"table");
 
 //	mixin(H5ShortCut!"TBODY");
 //	mixin(H5ShortCut!"THEAD");
@@ -11,10 +11,8 @@ class DH5TABLE : DH5Obj {
 //	mixin(H5ShortCut!"TFOOT");
 //	mixin(H5ShortCut!"CAPTION");
 }
-mixin(FuncH5!"TABLE");
+mixin(FuncH5!"Table");
 
 unittest {
-	
-	
-	assert(H5TABLE == "<table></table>");
+	assert(H5Table == "<table></table>");
 }

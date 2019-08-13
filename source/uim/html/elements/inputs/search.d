@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTSEARCH : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"search"]`, true)); 
+class DH5InputSEARCH : DH5Input {
+	mixin(H5This!("Input", null, `["type":"search"]`, true)); 
 }
-mixin(FuncH5!"INPUTSEARCH"); 
+mixin(FuncH5!"InputSEARCH"); 
 
 unittest {
 	

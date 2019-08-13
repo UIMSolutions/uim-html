@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5FORM : DH5Obj {
-	mixin(H5This!"FORM");
+class DH5Form : DH5Obj {
+mixin(H5This!"form");
 	string _targetIFrame;
 
 	/* noValidate - If present, it specifies that the form-data (input) should not be validated when submitted. */
@@ -47,7 +47,7 @@ class DH5FORM : DH5Obj {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"FORM");
+mixin(FuncH5!"Form");
 
 enum FormTargets : string {
 	None = "",
@@ -75,5 +75,5 @@ string toString(Methods value) { return cast(string)value; }
 unittest {
 	
 	
-	assert(H5FORM == "<form></form>");
+	assert(H5Form == "<form></form>");
 }

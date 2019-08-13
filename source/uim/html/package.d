@@ -211,8 +211,6 @@ auto HTML(string tag)(string content) { return "<"~tag~">"~content~"</"~tag~">";
 auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class=\""~classes.unique.join(" ")~"\">"~content~"</"~tag~">"; }
 
 unittest {
-	
-
 	assert(HTML!"div" == "<div />");
 	assert(HTML!("input", true) == "<input>");
 	assert(HTML!"div"(["aClass"]) == "<div class=\"aClass\" />");
@@ -221,43 +219,4 @@ unittest {
 	assert(HTML!("input", true)(["aClass"]) == "<input class=\"aClass\">");
 	assert(HTML!"div"("someContent") == "<div>someContent</div>");
 	assert(HTML!"div"(["aClass"], "someContent") == "<div class=\"aClass\">someContent</div>");
-
-	writeln("Test in uim.html...");
-	
-	writeln("H5Div => \t", H5Div);
-	writeln("H5Div(txt) => \t", H5Div("txt"));
-	writeln("H5Div([cls]) => \t", H5Div(["cls"]));
-	writeln("H5Div([cls, cas]) => \t", H5Div(["cls", "cas"]));
-	writeln("H5Div([a:b]) => \t", H5Div(["a":"b"]));
-	writeln("H5Div([a:b, c:d]) => \t", H5Div(["a":"b", "c":"d"]));
-	writeln("H5Div(txt, [cls]) => \t", H5Div("txt", ["cls"]));
-	writeln("H5Div(txt, [cls, cas]) => \t", H5Div("txt", ["cls", "cas"]));
-	writeln("H5Div(txt, [a:b]) => \t", H5Div("txt", ["a":"b"]));
-	writeln("H5Div(txt, [a:b, c:d]) => \t", H5Div("txt", ["a":"b", "c":"d"]));
-	writeln("H5Div([cls, cas], [a:b]) => \t", H5Div(["cls", "cas"], ["a":"b"]));
-	writeln("H5Div([cls, cas], [a:b, c:d]) => \t", H5Div(["cls", "cas"], ["a":"b", "c":"d"]));
-	writeln("H5Div(txt, [cls, cas], [a:b]) => \t", H5Div("txt", ["cls", "cas"], ["a":"b"]));
-	writeln("H5Div(txt, [cls, cas], [a:b, c:d]) => \t", H5Div("txt", ["cls", "cas"], ["a":"b", "c":"d"]));
-	//		writeln("H5Div(H5Div) => \t", H5Div(H5Div));
-	//	writeln("H5Div(H5Div, H5Div) => \t", H5Div(
-	//			CSSRule("#tt", ["background-color": "lightgreen"]),
-	//			H5Div, H5Div));
-	
-	//	writeln("H5Div([cls], txt) => \t", H5Div(["cls"], "txt"));
-	//	writeln("H5Div([cls], txt, tex) => \t", H5Div(["cls"], "txt", "tex"));
-	//	writeln("H5Div([cls], [a:b]) => \t", H5Div(["cls"], ["a":"b"]));
-	//	writeln("H5Div([cls], [a:b, c:d]) => \t", H5Div(["cls"], ["a":"b", "c":"d"]));
-	//	writeln("H5Div([cls, cas], txt) => \t", H5Div(["cls", "cas"], "txt"));
-	//	writeln("H5Div([cls, cas], txt, tex) => \t", H5Div(["cls", "cas"], "txt", "tex"));
-	//	writeln("H5Div([cls, cas], [a:b]) => \t", H5Div(["cls", "cas"], ["a":"b"]));
-	//	writeln("H5Div([cls, cas], [a:b, c:d]) => \t", H5Div(["cls", "cas"], ["a":"b", "c":"d"]));
-	//	
-	//	writeln("H5Div([cls], txt,H5Div, H5Div) => \t", H5Div(["cls"], "txt", H5Div, H5Div));
-	//	writeln("H5Div([cls], txt, tex,H5Div, H5Div) => \t", H5Div(["cls"], "txt", "tex", H5Div, H5Div));
-	//	writeln("H5Div([cls], [a:b],H5Div, H5Div) => \t", H5Div(["cls"], ["a":"b"], H5Div, H5Div));
-	//	writeln("H5Div([cls], [a:b, c:d],H5Div, H5Div) => \t", H5Div(["cls"], ["a":"b", "c":"d"], H5Div, H5Div));
-	//	writeln("H5Div([cls, cas], txt,H5Div, H5Div) => \t", H5Div(["cls", "cas"], "txt", H5Div, H5Div));
-	//	writeln("H5Div([cls, cas], txt, tex,H5Div, H5Div) => \t", H5Div(["cls", "cas"], "txt", "tex", H5Div, H5Div));
-	//	writeln("H5Div([cls, cas], [a:b],H5Div, H5Div) => \t", H5Div(["cls", "cas"], ["a":"b"], H5Div, H5Div));
-	//	writeln("H5Div([cls, cas], [a:b, c:d], H5Div, H5Div) => \t", H5Div(["cls", "cas"], ["a":"b", "c":"d"], H5Div, H5Div));
 }

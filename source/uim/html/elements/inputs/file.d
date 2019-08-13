@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTFILE : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"file"]`, true)); 
+class DH5InputFILE : DH5Input {
+	mixin(H5This!("Input", null, `["type":"file"]`, true)); 
 }
-mixin(FuncH5!"INPUTFILE"); 
+mixin(FuncH5!"InputFILE"); 
 
 unittest {
 	

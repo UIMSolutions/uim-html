@@ -2,15 +2,15 @@
 
 import uim.html;
 
-class DH5LI : DH5Obj {
-	mixin(H5This!"LI");
+class DH5Li : DH5Obj {
+	mixin(H5This!"li");
 
 //	mixin(H5ShortCut!"A");
 }
-mixin(FuncH5!"LI");
+mixin(FuncH5!"Li");
 
 unittest {
 	
 	
-	assert(H5LI == "<li></li>");
+	assert(H5Li == "<li></li>");
 }

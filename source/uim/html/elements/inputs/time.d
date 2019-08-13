@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTTIME : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"time"]`, true)); 
+class DH5InputTIME : DH5Input {
+	mixin(H5This!("Input", null, `["type":"time"]`, true)); 
 }
-mixin(FuncH5!"INPUTTIME"); 
+mixin(FuncH5!"InputTIME"); 
 
 unittest {
 	

@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5SHADOW : DH5Obj {
-	mixin(H5This!("SHADOW"));
+class DH5Shadow : DH5Obj {
+	mixin(H5This!"shadow");
 }
-mixin(FuncH5!"SHADOW");
+mixin(FuncH5!"Shadow");
 
 unittest {
 	
 	
-	assert(H5SHADOW == "<shadow></shadow>");
+	assert(H5Shadow == "<shadow></shadow>");
 }

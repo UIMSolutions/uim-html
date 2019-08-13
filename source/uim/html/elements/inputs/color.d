@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5INPUTCOLOR : DH5INPUT {
+class DH5InputCOLOR : DH5Input {
 	mixin(H5This!""); 
 
 	override string toString() {

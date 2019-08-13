@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5MENUITEM : DH5Obj {
-	mixin(H5This!"MENUITEM");
+class DH5Menuitem : DH5Obj {
+	mixin(H5This!"menuitem");
 }
-mixin(FuncH5!"MENUITEM");
+mixin(FuncH5!"Menuitem");
 
 unittest {
 	
 	
-	assert(H5MENUITEM == "<menuitem></menuitem>");
+	assert(H5Menuitem == "<menuitem></menuitem>");
 }

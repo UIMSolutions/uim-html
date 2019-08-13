@@ -2,15 +2,15 @@
 
 import uim.html;
 
-class DH5INPUT : DH5Obj {
-	mixin(H5This!("INPUT", null, null, true));
+class DH5Input : DH5Obj {
+	mixin(H5This!("input", null, null, true));
 	unittest {
-		assert(H5INPUT == "<input>");
+		assert(H5Input == "<input>");
 	}
 
 	mixin(MyAttribute!("type"))	;
 	unittest {
-		assert(H5INPUT.type("text") == `<input type="text">`);
+		assert(H5Input.type("text") == `<input type="text">`);
 	}
 
 	mixin(MyAttribute!("accept"));
@@ -47,7 +47,7 @@ class DH5INPUT : DH5Obj {
 	mixin(MyAttribute!("value"));
 	mixin(MyAttribute!("width"));
 }
-mixin(FuncH5!("INPUT"));
+mixin(FuncH5!("Input"));
 
 unittest {
 }

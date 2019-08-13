@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5OL : DH5Obj {
-	mixin(H5This!"OL");
+class DH5Ol : DH5Obj {
+	mixin(H5This!"ol");
 
 //	mixin(H5ShortCut!"LI");
 //	DH5A LIA(T...)(T values) {
@@ -12,10 +12,10 @@ class DH5OL : DH5Obj {
 //		return a;
 //	}
 }
-mixin(FuncH5!"OL");
+mixin(FuncH5!"Ol");
 
 unittest {
 	
 	
-	assert(H5OL == "<ol></ol>");
+	assert(H5Ol == "<ol></ol>");
 }

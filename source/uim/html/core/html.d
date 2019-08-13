@@ -119,7 +119,7 @@ template DTag(string fName, string tName) {
 ////	auto style(T)(STRINGAA values, T content) { return addD("STYLE", values, content.toString); }
 ////	auto style(T:DCSS)(T content) { return addD("STYLE", content.toString); }
 //
-////	mixin(DTag!("script", "SCRIPT"));
+////	mixin(DTag!("script", "Script"));
 ////	mixin(DTag!("bdy", "BODY"));
 //
 //	//	mixin(dTag!("div"));

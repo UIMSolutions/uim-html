@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5SECTION : DH5Obj {
-	mixin(H5This!("SECTION"));
+class DH5Section : DH5Obj {
+	mixin(H5This!("section"));
 }
-mixin(FuncH5!"SECTION");
+mixin(FuncH5!"Section");
 
 unittest {
-	
-	
-	assert(H5SECTION == "<section></section>");
+	assert(H5Section == "<section></section>");
 }

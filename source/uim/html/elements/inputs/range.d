@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTRANGE : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"range"]`, true)); 
+class DH5InputRANGE : DH5Input {
+	mixin(H5This!("Input", null, `["type":"range"]`, true)); 
 }
-mixin(FuncH5!"INPUTRANGE"); 
+mixin(FuncH5!"InputRANGE"); 
 
 unittest {
 	

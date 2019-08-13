@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5KEYGEN : DH5Obj {
-	mixin(H5This!"KEYGEN");
+class DH5Keygen : DH5Obj {
+	mixin(H5This!"keygen");
 }
-mixin(FuncH5!"KEYGEN");
+mixin(FuncH5!"Keygen");
 
 unittest {
 	
 	
-	assert(H5KEYGEN == "<keygen></keygen>");
+	assert(H5Keygen == "<keygen></keygen>");
 }

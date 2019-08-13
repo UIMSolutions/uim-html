@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5LIST : DH5Obj {
-	mixin(H5This!("LIST"));
+class DH5List : DH5Obj {
+	mixin(H5This!("list"));
 
 //	this(string tag, string[] texts...) { this(tag); Add(texts); }
 //	this(string tag, DOPObject[] elems...) { this(tag); Add(elems); }
@@ -20,10 +20,10 @@ class DH5LIST : DH5Obj {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"LIST");
+mixin(FuncH5!"List");
 
 unittest {
 	
 	
-	assert(H5LIST == "<list></list>");
+	assert(H5List == "<list></list>");
 }

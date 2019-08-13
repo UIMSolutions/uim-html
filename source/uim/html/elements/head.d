@@ -17,8 +17,8 @@ public:
 	}
 	 DH5HEAD TITLE(string content = null) { this.add(H5TITLE(content)); return this; }
 
-	 O scripts(this O)(string[] links) { foreach(l; links) add(H5SCRIPT(["src":l])); return cast(O)this; }
-	 O script(this O, T...)(T values) { add(H5SCRIPT(values)); return cast(O)this; }
+	 O scripts(this O)(string[] links) { foreach(l; links) add(H5Script(["src":l])); return cast(O)this; }
+	 O script(this O, T...)(T values) { add(H5Script(values)); return cast(O)this; }
 
 }
  DH5HEAD H5HEAD() { return new DH5HEAD; }

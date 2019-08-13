@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5ARTICLE : DH5Obj {
-	mixin(H5This!"ARTICLE");
+class DH5Article : DH5Obj {
+	mixin(H5This!"article");
 }
-mixin(FuncH5!"ARTICLE");
+mixin(FuncH5!"Article");
 
 unittest {
-	
-
-	mixin(H5Test!("H5ARTICLE", "article"));
+	mixin(H5Test!("H5Article", "article"));
 }

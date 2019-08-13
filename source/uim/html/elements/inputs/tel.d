@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTTEL: DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"tel"]`, true)); 
+class DH5InputTEL: DH5Input {
+	mixin(H5This!("Input", null, `["type":"tel"]`, true)); 
 }
-mixin(FuncH5!"INPUTTEL"); 
+mixin(FuncH5!"InputTEL"); 
 
 unittest {
 	

@@ -64,7 +64,7 @@ unittest {
 	
 	assert(H5HTML == "<!doctype html><html><head></head><body></body></html>");
 	assert(H5HTML(["lang":"en"]) == "<!doctype html><html lang=\"en\"><head></head><body></body></html>");
-//	writeln(H5HTML.HEAD(H5META, H5SCRIPT, H5STYLE));
-//	writeln(H5HTML.BODY(H5DIV, H5SCRIPT, H5STYLE));
-//	writeln(H5HTML.HEAD(H5META, H5SCRIPT, H5STYLE).BODY(H5DIV, H5SCRIPT, H5STYLE));
+//	writeln(H5HTML.HEAD(H5META, H5Script, H5STYLE));
+//	writeln(H5HTML.BODY(H5DIV, H5Script, H5STYLE));
+//	writeln(H5HTML.HEAD(H5META, H5Script, H5STYLE).BODY(H5DIV, H5Script, H5STYLE));
 }

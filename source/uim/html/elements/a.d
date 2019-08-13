@@ -17,7 +17,7 @@ Hint: By default, links will appear as follows in all browsers:
  * weil ein anderes Dokument durch einen Link verankert wird.  
  */
 class DH5A : DH5Obj {
-	mixin(H5This!"A");
+	mixin(H5This!"a");
 
 	/* download specifies that the target (a file) will be downloaded when a user clicks on the link (attribute href) instead of navigating to the file). */
 	/* if value not empty ("") => new filename for the downloaded file. */

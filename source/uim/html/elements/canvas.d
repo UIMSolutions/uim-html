@@ -7,9 +7,9 @@ import uim.html;
 
 alias STRINGAA = string[string];
 
-class DH5CANVAS : DH5Obj {
+class DH5Canvas : DH5Obj {
 	string pre = "context.";
-	mixin(H5This!"CANVAS");
+	mixin(H5This!"canvas");
 
 	this(string id, int width, int height, string style = "") { 
 		super("CANVAS"); 
@@ -293,13 +293,11 @@ class DH5CANVAS : DH5Obj {
 //	// Restore() 	Returns previously saved path state and attributes
 //	@Register DOPObject Restore() { add(pre~"restore();"); return this;  }
 }
-mixin(FuncH5!"CANVAS");
-DH5CANVAS H5CANVAS(string id, int width, int height, string style = "") { 
-	return new DH5CANVAS(id, width, height, style); 
+mixin(FuncH5!"Canvas");
+auto H5Canvas(string id, int width, int height, string style = "") { 
+	return new DH5Canvas(id, width, height, style); 
 }
 
 unittest {
-	
-
-	assert(H5CANVAS == "<canvas></canvas>");
+	assert(H5Canvas == "<canvas></canvas>");
 }

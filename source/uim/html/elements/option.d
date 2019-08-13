@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5OPTION : DH5Obj {
-	mixin(H5This!"OPTION");
+class DH5Option : DH5Obj {
+	mixin(H5This!"option");
 }
-mixin(FuncH5!"OPTION");
+mixin(FuncH5!"Option");
 
 
 enum option_modes : string {
@@ -17,6 +17,6 @@ enum option_modes : string {
 unittest {
 	
 	
-	assert(H5OPTION == "<option></option>");
+	assert(H5Option == "<option></option>");
 }
 

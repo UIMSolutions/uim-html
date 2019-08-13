@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5HEADER : DH5Obj {
-	mixin(H5This!("HEADER"));
+class DH5Header : DH5Obj {
+	mixin(H5This!("header"));
 }
-mixin(FuncH5!"HEADER");
+mixin(FuncH5!"Header");
 
 unittest {
 	
 	
-	assert(H5HEADER == "<header></header>");
+	assert(H5Header == "<header></header>");
 }

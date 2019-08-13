@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5INPUTDATETIME : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"datetime"]`, false)); 
+class DH5InputDATETIME : DH5Input {
+	mixin(H5This!("Input", null, `["type":"datetime"]`, false)); 
 }
 
 unittest {

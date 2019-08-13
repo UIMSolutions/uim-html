@@ -125,7 +125,7 @@ enum HTML = "HTML";
 enum HEAD = "HEAD";
 enum BODY = "BODY";
 enum LINK = "LINK";
-enum SCRIPT = "SCRIPT";
+enum Script = "Script";
 enum Div = "Div";
 enum A = "A";
 enum BIG = "BIG";
@@ -226,7 +226,7 @@ enum KEYGEN = "KEYGEN";
 enum OUTPUT = "OUTPUT";
 enum PROGRESS = "PROGRESS";
 enum METER = "METER";
-enum NOSCRIPT = "NOSCRIPT";
+enum NOScript = "NOScript";
 enum CONTENT = "CONTENT";
 enum DECORATOR = "DECORATOR";
 enum ELEMENT = "ELEMENT";
@@ -239,6 +239,7 @@ enum MENU = "MENU";
 enum MENUITEM = "MENUITEM";
 enum COMMAND = "COMMAND";
 
+/*
 class DH5 {
 	// Grundstruktur
 	static auto HTML() { return new DH5HTML(); }
@@ -364,8 +365,8 @@ class DH5 {
 	static auto METER() { return new DH5METER(); }
 
 	// Skripte
-	static auto SCRIPT() { return new DH5SCRIPT(); }
-	static auto NOSCRIPT() { return new DH5NOSCRIPT(); }
+	static auto Script() { return new DH5Script(); }
+	static auto NOScript() { return new DH5NOScript(); }
 	static auto CONTENT() { return new DH5CONTENT(); }
 	static auto DECORATOR() { return new DH5DECORATOR(); }
 	//	static auto ELEMENT() { return new DH5ELEMENT(); }
@@ -488,8 +489,8 @@ class DH5 {
 	//		case "OUTPUT": return new DH5OUTPUT();
 	//		case "PROGRESS": return new DH5PROGRESS();
 	//		case "METER": return new DH5METER();
-	//		case "SCRIPT": return new DH5SCRIPT();
-	//		case "NOSCRIPT": return new DH5NOSCRIPT();
+	//		case "Script": return new DH5Script();
+	//		case "NOScript": return new DH5NOScript();
 	//		case "CONTENT": return new DH5CONTENT();
 	//		case "DECORATOR": return new DH5DECORATOR();
 	//			//			case "ELEMENT": return new DH5ELEMENT();
@@ -547,7 +548,7 @@ class DH5 {
 //auto H5(string name)(string[] texts...) { return DH5(name).add(texts); }
 //auto H5(string name)(string[string] attributes, DObject[]  elements...) { return DH5(name).add(attributes).add(elements); }
 //auto H5(string name)(string[string] attributes, string[] texts...) { return DH5(name).add(attributes).add(texts); }
-
+*/
 
 /**
  * module uim.html;

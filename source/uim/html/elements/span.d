@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5SPAN : DH5Obj {
-	mixin(H5This!"SPAN");
+class DH5Span : DH5Obj {
+	mixin(H5This!"Span");
 }
-mixin(FuncH5!"SPAN");
+mixin(FuncH5!"Span");
 
-unittest {
-	
-	
-	assert(H5SPAN == "<span></span>");
+unittest {	
+	assert(H5Span == "<span></span>");
 }

@@ -2,10 +2,10 @@
 
 import uim.html;
 
-class DH5INPUTRADIO : DH5INPUT {
-	mixin(H5This!("INPUT", null, `["type":"radio"]`, true)); 
+class DH5InputRADIO : DH5Input {
+	mixin(H5This!("Input", null, `["type":"radio"]`, true)); 
 }
-mixin(FuncH5!"INPUTRADIO"); 
+mixin(FuncH5!"InputRADIO"); 
 
 unittest {
 	

@@ -5,8 +5,8 @@ import uim.html;
 /*
  * The <audio> tag defines sound, such as music or other audio streams.
  */
-class DH5AUDIO : DH5Obj {
-	mixin(H5This!"AUDIO");
+class DH5Audio : DH5Obj {
+	mixin(H5This!"Audio");
 
 	mixin(MyAttribute!"autoplay");
     mixin(MyAttribute!"buffered");
@@ -22,14 +22,14 @@ class DH5AUDIO : DH5Obj {
 	mixin(MyContent!("source", "H5SOURCE"));
 	mixin(MyContent!("track", "H5TRACK"));
 }
-mixin(FuncH5!"AUDIO");
+mixin(FuncH5!"Audio");
 
 unittest {
 	
 
-	mixin(H5Test!("H5AUDIO", "audio"));
-	assert(H5AUDIO.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
-	assert(H5AUDIO.source(["src":"horse.ogg", "type":"audio/ogg"]).content("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
+	mixin(H5Test!("H5Audio", "audio"));
+	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
+	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]).content("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
 }
 
 /**

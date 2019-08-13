@@ -2,20 +2,20 @@
 
 import uim.html;
 
-class DH5UL : DH5Obj {
-	mixin(H5This!"UL");
+class DH5Ul : DH5Obj {
+	mixin(H5This!"ul");
 
 	mixin(ObjValue!("DH5LI", "li", "Li"));
-	mixin(MyContent!("item", "H5LI"));
+	mixin(MyContent!("item", "H5Li"));
 	O link(this O)(string id, string[] linkClasses, string src, string title) {
 		this.item(id, linkClasses, ["src":src], title); 
 		return cast(O)this;
 	}
 }
-mixin(FuncH5!"UL");
+mixin(FuncH5!"Ul");
 
 unittest {
 	
 	
-	assert(H5UL == "<ul></ul>");
+	assert(H5Ul == "<ul></ul>");
 }
