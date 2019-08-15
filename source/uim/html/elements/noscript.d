@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5NOScript : DH5Obj {
-	mixin(H5This!("NOScript"));
+class DH5Noscript : DH5Obj {
+	mixin(H5This!("noscript"));
 }
-mixin(FuncH5!"NOScript");
+mixin(FuncH5!"Noscript");
 
 unittest {
 	
 	
-	assert(H5NOScript == "<noscript></noscript>");
+	assert(H5Noscript == "<noscript></noscript>");
 }

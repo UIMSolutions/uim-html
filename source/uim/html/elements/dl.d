@@ -12,13 +12,11 @@ import uim.html;
  * Die Abfolge von dt- und dd-Elementen innerhalb einer dl-Liste ist nicht streng geregelt. Es dürfen auch mehrere dt- oder dd-Elemente hintereinander folgen. Zum Beispiel könnten Begriffe mit einer Erklärung abgehandelt werden oder mehrere Bedeutungen für einen Begriff existieren.
  * Das Verschachteln von Definitionslisten ist ebenfalls möglich. Dadurch können Sie baumartige Strukturen im Text abbilden. „Innere“ Listen müssen dabei innerhalb des dd-Elements notiert werden. 
 */
-class DH5DL : DH5Obj {
-	mixin(H5This!"DL");
+class DH5Dl : DH5Obj {
+	mixin(H5This!"dl");
 }
-mixin(FuncH5!"DL");
+mixin(FuncH5!"Dl");
 
 unittest {
-	
-
-	assert(H5DL.toString == "<dl></dl>");
+	assert(H5Dl.toString == "<dl></dl>");
 }

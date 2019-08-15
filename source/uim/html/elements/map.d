@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5MAP : DH5Obj {
-	mixin(H5This!("MAP"));
+class DH5Map : DH5Obj {
+	mixin(H5This!("map"));
 }
-mixin(FuncH5!"MAP");
+mixin(FuncH5!"Map");
 
 unittest {
 	
 	
-	assert(H5MAP == "<map></map>");
+	assert(H5Map == "<map></map>");
 }

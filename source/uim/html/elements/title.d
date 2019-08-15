@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5TITLE : DH5Obj {
-	mixin(H5This!("TITLE"));
+class DH5Title : DH5Obj {
+	mixin(H5This!("title"));
 }
-mixin(FuncH5!"TITLE");
+mixin(FuncH5!"Title");
 
 unittest {
 	
 	
-	assert(H5TITLE == "<title></title>");
+	assert(H5Title == "<title></title>");
 }

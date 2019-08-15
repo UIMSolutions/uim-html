@@ -2,14 +2,14 @@
 
 import uim.html;
 
-class DH5SMALL : DH5Obj {
-	mixin(H5This!"SMALL");
+class DH5Small : DH5Obj {
+	mixin(H5This!"small");
 }
-mixin(FuncH5!"SMALL");
+mixin(FuncH5!"Small");
 
 unittest {
 	
 	
-	assert(H5SMALL == "<small></small>");
+	assert(H5Small == "<small></small>");
 }
 

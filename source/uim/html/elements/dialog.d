@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5DIALOG : DH5Obj {
-	mixin(H5This!"DIALOG");
+class DH5Dialog : DH5Obj {
+	mixin(H5This!"dialog");
 }
-mixin(FuncH5!"DIALOG");
+mixin(FuncH5!"Dialog");
 
 unittest {
 	
 
-	assert(H5DIALOG == "<dialog></dialog>");
+	assert(H5Dialog == "<dialog></dialog>");
 }

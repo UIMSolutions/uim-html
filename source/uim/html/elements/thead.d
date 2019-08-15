@@ -2,14 +2,12 @@
 
 import uim.html;
 
-class DH5THEAD : DH5Obj {
-	mixin(H5This!"THEAD");
-	mixin(MyContent!("row", "H5TR"));
+class DH5Thead : DH5Obj {
+	mixin(H5This!"thead");
+	mixin(MyContent!("row", "H5Tr"));
 }
-mixin(FuncH5!"THEAD");
+mixin(FuncH5!"Thead");
 
 unittest {
-	
-	
-	assert(H5THEAD == "<thead></thead>");
+	assert(H5Thead == "<thead></thead>");
 }

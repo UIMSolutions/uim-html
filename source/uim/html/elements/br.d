@@ -2,14 +2,14 @@
 
 import uim.html;
 
-class DH5BR : DH5Obj {
-	mixin(H5This!("BR", null, null, true));
+class DH5Br : DH5Obj {
+	mixin(H5This!("br", null, null, true));
 }
-mixin(FuncH5!("BR"));
-alias BR = H5BR;
+mixin(FuncH5!("Br"));
+alias Br = H5Br;
 
 unittest {
 	
 
-	assert(H5BR == "<br>");
+	assert(H5Br == "<br>");
 }

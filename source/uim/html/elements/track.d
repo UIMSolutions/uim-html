@@ -3,7 +3,7 @@
 import uim.html;
 
 class DH5Track : DH5Obj {
-	mixin(H5This!"tack");
+	mixin(H5This!"track");
 	
 	mixin(MyAttribute!("isDefault", "default"));
     mixin(MyAttribute!"label");
@@ -12,7 +12,7 @@ class DH5Track : DH5Obj {
 }
 mixin(FuncH5!"Track");
 
-unittestr {
+unittest {
 	mixin(H5Test!("H5Track", "track"));
 
 	assert(H5Track.isDefault("true") == `<track default></track>`);

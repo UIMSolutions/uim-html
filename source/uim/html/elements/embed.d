@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5EMBED : DH5Obj {
-	mixin(H5This!"EMBED");
+class DH5Embed : DH5Obj {
+	mixin(H5This!"embed");
 }
-mixin(FuncH5!"EMBED");
+mixin(FuncH5!"Embed");
 
 unittest {
 	
 	
-	assert(H5EMBED == "<embed></embed>");
+	assert(H5Embed == "<embed></embed>");
 }

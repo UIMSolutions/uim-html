@@ -3,17 +3,15 @@
 import uim.html;
 
 /**
- * NAV
+ * Nav
  * Das nav-Element umschließt Navigationsleisten und Menüs, wobei es neben einer unsortierten Liste mit den Verweisen auch eine Überschrift oder ähnliches enthalten kann. 
  */
-class DH5NAV : DH5Obj {
-	mixin(H5This!("NAV"));
+class DH5Nav : DH5Obj {
+	mixin(H5This!("nav"));
 }
-mixin(FuncH5!"NAV");
+mixin(FuncH5!"Nav");
 
 unittest {
-	
-	
-	assert(H5MAP == "<map></map>");
+	assert(H5Nav == "<nav></nav>");
 }
  

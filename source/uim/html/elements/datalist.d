@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5DATALIST : DH5Obj {
-	mixin(H5This!"DATALIST");
+class DH5Datalist : DH5Obj {
+	mixin(H5This!"datalist");
 }
-mixin(FuncH5!"DATALIST");
+mixin(FuncH5!"Datalist");
 
 unittest {
-	
-
-	assert(H5DATALIST == "<datalist></datalist>");
+	assert(H5Datalist == "<datalist></datalist>");
 }

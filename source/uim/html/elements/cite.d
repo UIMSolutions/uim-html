@@ -2,14 +2,14 @@
 
 import uim.html;
 
-class DH5CITE : DH5Obj {
-	mixin(H5This!"CITE");
+class DH5Cite : DH5Obj {
+	mixin(H5This!"cite");
 }
-mixin(FuncH5!"CITE");
+mixin(FuncH5!"Cite");
 
 unittest {
 	
 
-	assert(H5CITE == "<cite></cite>");
+	assert(H5Cite == "<cite></cite>");
 }
 

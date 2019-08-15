@@ -3,13 +3,13 @@
 import uim.html;
 
 /// HTML5 "mark" class
-class DH5MARK : DH5Obj {
-	mixin(H5This!"MARK");
+class DH5Mark : DH5Obj {
+	mixin(H5This!"Mark");
 }
-mixin(FuncH5!"MARK");
+mixin(FuncH5!"Mark");
 
 unittest {
 	
 	
-	assert(H5MARK == "<mark></mark>");
+	assert(H5Mark == "<mark></mark>");
 }

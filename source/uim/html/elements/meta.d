@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5META : DH5Obj {
-	mixin(H5This!("META", null, null, true));
+class DH5Meta : DH5Obj {
+	mixin(H5This!("meta", null, null, true));
 }
-mixin(FuncH5!("META"));
+mixin(FuncH5!("Meta"));
 
 unittest {
-	
-	
-	assert(H5META == "<meta>");
+	assert(H5Meta == "<meta>");
 }

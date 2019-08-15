@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5STRONG : DH5Obj {
-	mixin(H5This!"STRONG");
+class DH5Strong : DH5Obj {
+	mixin(H5This!"strong");
 }
-mixin(FuncH5!"STRONG");
+mixin(FuncH5!"Strong");
 
 unittest {
 	
 	
-	assert(H5STRONG == "<strong></strong>");
+	assert(H5Strong == "<strong></strong>");
 }

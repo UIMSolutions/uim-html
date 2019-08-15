@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5DFN : DH5Obj {
-	mixin(H5This!"DFN");
+class DH5Dfn : DH5Obj {
+	mixin(H5This!"dfn");
 }
-mixin(FuncH5!"DFN");
+mixin(FuncH5!"Dfn");
 
 unittest {
-	
-
-	assert(H5DFN == "<dfn></dfn>");
+	assert(H5Dfn == "<dfn></dfn>");
 }

@@ -2,14 +2,12 @@
 
 import uim.html;
 
-class DH5TBODY : DH5Obj {
-	mixin(H5This!"TBODY");
-	mixin(MyContent!("row", "H5TR"));
+class DH5Tbody : DH5Obj {
+	mixin(H5This!"tbody");
+	mixin(MyContent!("row", "H5Tr"));
 }
-mixin(H5Short!"H5TBODY");
+mixin(H5Short!"H5Tbody");
 
 unittest {
-	
-	
-	assert(H5TBODY == "<tbody></tbody>");
+	assert(H5Tbody == "<tbody></tbody>");
 }

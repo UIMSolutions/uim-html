@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5SVG : DH5Obj {
-	mixin(H5This!"SVG");
+class DH5Svg : DH5Obj {
+	mixin(H5This!"svg");
 }
-mixin(FuncH5!"SVG");
+mixin(FuncH5!"Svg");
 
 unittest {
-	
-	
-	assert(H5SVG == "<svg></svg>");
+	assert(H5Svg == "<svg></svg>");
 }

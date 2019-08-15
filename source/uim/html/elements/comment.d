@@ -2,8 +2,8 @@
 
 import uim.html;
 
-class DH5COMMENT : DH5Obj {
-	mixin(H5This!"COMMENT");
+class DH5Comment : DH5Obj {
+	mixin(H5This!"comment");
 
 	override string toString() {
 //		auto content = "";
@@ -12,11 +12,8 @@ class DH5COMMENT : DH5Obj {
 		return super.toString;
 	}
 }
-
-mixin(FuncH5!"COMMENT");
+mixin(FuncH5!"Comment");
 
 unittest {
-	
-
-	assert(H5COMMENT == "<comment></comment>");
+	assert(H5Comment == "<comment></comment>");
 }

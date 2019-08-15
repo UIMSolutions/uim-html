@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5SUP : DH5Obj {
-	mixin(H5This!"SUP");
+class DH5Sup : DH5Obj {
+	mixin(H5This!"sup");
 }
-mixin(FuncH5!"SUP");
+mixin(FuncH5!"Sup");
 
 unittest {
 	
 	
-	assert(H5SUP == "<sup></sup>");
+	assert(H5Sup == "<sup></sup>");
 }

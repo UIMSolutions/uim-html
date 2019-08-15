@@ -2,17 +2,17 @@
 
 import uim.html;
 
-class DH5OPTGROUP : DH5Obj {
-	mixin(H5This!"OPTGROUP");
+class DH5Optgroup : DH5Obj {
+	mixin(H5This!"optgroup");
 
 //	O option(this O)() {
 //
 //	}
 }
-mixin(FuncH5!"OPTGROUP");
+mixin(FuncH5!"Optgroup");
 
 unittest {
 	
 	
-	assert(H5OPTGROUP == "<optgroup></optgroup>");
+	assert(H5Optgroup == "<optgroup></optgroup>");
 }

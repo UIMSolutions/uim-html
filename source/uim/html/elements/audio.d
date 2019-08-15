@@ -19,8 +19,8 @@ class DH5Audio : DH5Obj {
     mixin(MyAttribute!"src");
     mixin(MyAttribute!"volume");
 
-	mixin(MyContent!("source", "H5SOURCE"));
-	mixin(MyContent!("track", "H5TRACK"));
+	mixin(MyContent!("source", "H5Source"));
+	mixin(MyContent!("track", "H5Track"));
 }
 mixin(FuncH5!"Audio");
 

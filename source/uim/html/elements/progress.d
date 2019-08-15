@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5PROGRESS : DH5Obj {
-	mixin(H5This!"PROGRESS");
+class DH5Progress : DH5Obj {
+	mixin(H5This!"progress");
 }
-mixin(FuncH5!"PROGRESS");
+mixin(FuncH5!"Progress");
 
 unittest {
-	
-	
-	assert(H5PROGRESS == "<progress></progress>");
+	assert(H5Progress == "<progress></progress>");
 }

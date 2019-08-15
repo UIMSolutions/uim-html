@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5PARAM : DH5Obj {
-	mixin(H5This!"PARAM");
+class DH5Param : DH5Obj {
+	mixin(H5This!"param");
 }
-mixin(FuncH5!"PARAM");
+mixin(FuncH5!"Param");
 
 unittest {
 	
 	
-	assert(H5PARAM.toString == "<param></param>");
+	assert(H5Param == "<param></param>");
 }

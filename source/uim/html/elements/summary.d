@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5SUMMARY : DH5Obj {
-	mixin(H5This!"SUMMARY");
+class DH5Summary : DH5Obj {
+	mixin(H5This!"summary");
 }
-mixin(FuncH5!"SUMMARY");
+mixin(FuncH5!"Summary");
 
 unittest {
-	
-	
-	assert(H5SUMMARY == "<summary></summary>");
+	assert(H5Summary == "<summary></summary>");
 }

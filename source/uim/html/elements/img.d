@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5IMG : DH5Obj {
-	mixin(H5This!("IMG", null, null, true));
+class DH5Img : DH5Obj {
+	mixin(H5This!("img", null, null, true));
 }
-mixin(FuncH5!("IMG"));
+mixin(FuncH5!("Img"));
 
 unittest {
 	
 	
-	assert(H5IMG == "<img>");
+	assert(H5Img == "<img>");
 }

@@ -4,13 +4,11 @@ import uim.html;
 
 /* Das Element pre erlaubt es, Text so darzustellen, wie er im Editor eingegeben wird, pre steht dabei für preformatted, also präformatiert, vorformatiert. 
  */
-class DH5PRE : DH5Obj {
-	mixin(H5This!("PRE"));
+class DH5Pre : DH5Obj {
+	mixin(H5This!("pre"));
 }
-mixin(FuncH5!"PRE");
+mixin(FuncH5!"Pre");
 
 unittest {
-	
-	
-	assert(H5PRE == "<pre></pre>");
+	assert(H5Pre == "<pre></pre>");
 }

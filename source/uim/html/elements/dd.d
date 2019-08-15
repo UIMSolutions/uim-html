@@ -2,14 +2,12 @@
 
 import uim.html;
 
-/* dd-Elemente enthalten eine Beschreibung eines zu beschreibenden Ausdrucks in einer Beschreibungsliste (dd = description list data) */
-class DH5DD : DH5Obj {
-	mixin(H5This!"DD");
+/* Dd-Elemente enthalten eine Beschreibung eines zu beschreibenden Ausdrucks in einer Beschreibungsliste (Dd = description list data) */
+class DH5Dd : DH5Obj {
+	mixin(H5This!"dd");
 }
-mixin(FuncH5!"DD");
+mixin(FuncH5!"Dd");
 
 unittest {
-	
-
-	assert(H5DD == "<dd></dd>");
+	assert(H5Dd == "<dd></dd>");
 }

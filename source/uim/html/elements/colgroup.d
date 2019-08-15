@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5COLGROUP : DH5Obj {
-	mixin(H5This!"COLGROUP");
+class DH5Colgroup : DH5Obj {
+	mixin(H5This!"Colgroup");
 }
-mixin(FuncH5!"COLGROUP");
+mixin(FuncH5!"Colgroup");
 
 unittest {
 	
 
-	assert(H5COLGROUP == "<colgroup></colgroup>");
+	assert(H5Colgroup == "<colgroup></colgroup>");
 }

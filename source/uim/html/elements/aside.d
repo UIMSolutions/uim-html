@@ -3,13 +3,11 @@
 import uim.html;
 
 class DH5Aside : DH5Obj {
-	mixin(H5This!"Aside");
+	mixin(H5This!"aside");
 }
 
-mixin(FuncH5!"aside");
+mixin(FuncH5!"Aside");
 
 unittest {
-	
-
 	assert(H5Aside == "<aside></aside>");
 }

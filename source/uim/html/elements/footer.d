@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5FOOTER : DH5Obj {
-	mixin(H5This!("FOOTER"));
+class DH5Footer : DH5Obj {
+	mixin(H5This!("Footer"));
 }
-mixin(FuncH5!"FOOTER");
+mixin(FuncH5!"Footer");
 
 unittest {
 	
 	
-	assert(H5FOOTER == "<footer></footer>");
+	assert(H5Footer == "<footer></footer>");
 }

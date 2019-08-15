@@ -8,7 +8,5 @@ class DH5Math : DH5Obj {
 mixin(FuncH5!"Math");
 
 unittest {
-	
-	
 	assert(H5Math == "<math></math>");
 }

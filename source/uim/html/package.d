@@ -7,8 +7,13 @@ public import std.conv;
 public import std.array;
 public import std.traits;
 
+public import vibe.d;
+
 public import uim.html.mixins;
+public import uim.html.h5;
 public import uim.html.obj;
+public import uim.html.app;
+public import uim.html.page;
 public import uim.html.templ;
 
 public import uim.core;

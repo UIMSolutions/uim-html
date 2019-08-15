@@ -2,13 +2,11 @@
 
 import uim.html;
 
-class DH5BDO : DH5Obj {
-	mixin(H5This!"BDO");
+class DH5Bdo : DH5Obj {
+	mixin(H5This!"bdo");
 }
-mixin(FuncH5!"BDO");
+mixin(FuncH5!"Bdo");
 
 unittest {
-	
-
-	assert(H5BDO == "<bdo></bdo>");
+	assert(H5Bdo == "<bdo></bdo>");
 }

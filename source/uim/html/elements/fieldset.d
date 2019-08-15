@@ -2,13 +2,13 @@
 
 import uim.html;
 
-class DH5FIELDSET : DH5Obj {
-	mixin(H5This!"FIELDSET");
+class DH5Fieldset : DH5Obj {
+	mixin(H5This!"fieldset");
 }
-mixin(FuncH5!"FIELDSET");
+mixin(FuncH5!"Fieldset");
 
 unittest {
 	
 	
-	assert(H5FIELDSET == "<fieldset></fieldset>");
+	assert(H5Fieldset == "<fieldset></fieldset>");
 }

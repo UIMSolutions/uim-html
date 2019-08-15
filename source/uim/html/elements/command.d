@@ -2,14 +2,14 @@
 
 import uim.html;
 
-class DH5COMMAND : DH5Obj {
-	mixin(H5This!("COMMAND"));
+class DH5Command : DH5Obj {
+	mixin(H5This!("command"));
 }
-mixin(FuncH5!"COMMAND");
+mixin(FuncH5!"Command");
 
 unittest {
 	
 
-	assert(H5COMMAND == "<command></command>");
+	assert(H5Command == "<command></command>");
 }
 

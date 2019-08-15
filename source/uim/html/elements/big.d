@@ -2,14 +2,12 @@
 
 import uim.html;
 
-class DH5BIG : DH5Obj {
-	mixin(H5This!"BIG");
+class DH5Big : DH5Obj {
+	mixin(H5This!"Big");
 }
-mixin(FuncH5!"BIG");
+mixin(FuncH5!"Big");
 
 unittest {
-	
-
-	assert(H5BIG == "<big></big>");
+	assert(H5Big == "<big></big>");
 }
 

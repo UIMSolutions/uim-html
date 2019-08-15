@@ -2,16 +2,16 @@
 
 import uim.html;
 
-class DH5TEXTAREA : DH5Obj {
-	mixin(H5This!"TEXTAREA");
+class DH5Textarea : DH5Obj {
+	mixin(H5This!"textarea");
 
 	O cols(this O)(int value) { if (value > 0) attributes["cols"] = to!string(value); return cast(O)this; }
 	O rows(this O)(int value) { if (value > 0) attributes["rows"] = to!string(value); return cast(O)this; }
 }
-mixin(FuncH5!"TEXTAREA");
+mixin(FuncH5!"Textarea");
 
 unittest {
 	
 	
-	assert(H5TEXTAREA == "<textarea></textarea>");
+	assert(H5Textarea == "<textarea></textarea>");
 }

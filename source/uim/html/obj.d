@@ -10,30 +10,37 @@ class DH5Obj {
 	 this() { init; }
 	 this(string content) { this(); this.content(content); }
 	 this(DH5Obj[] content...) { this(); this.content(content); }
+	 this(DH5 content) { this(); this.content(content); }
 	
 	 this(string id, string[] classes) { this(); this.id(id).classes(classes); }
 	 this(string id, string[] classes, string content) { this(id, classes); this.content(content); }
 	 this(string id, string[] classes, DH5Obj[] content...) { this(id, classes); this.content(content); }
+	 this(string id, string[] classes, DH5 content) { this(id, classes); this.content(content); }
 	
 	 this(string id, string[string] attributes) { this(); this.id(id); _attributes(attributes); }
 	 this(string id, string[string] attributes, string content) { this(id, attributes); this.content(content); }
 	 this(string id, string[string] attributes, DH5Obj[] content...) { this(id, attributes); this.content(content); }
+	 this(string id, string[string] attributes, DH5 content) { this(id, attributes); this.content(content); }
 	
-	 this(string id, string[] classes, string[string] attributes) { this(); this.id(id).classes(classes); _attributes(attributes); }
+	 this(string id, string[] classes, string[string] attributes) { this(id, classes); _attributes(attributes); }
 	 this(string id, string[] classes, string[string] attributes, string content) { this(id, classes); _attributes(attributes); this.content(content); }
 	 this(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { this(id, classes); _attributes(attributes); this.content(content); }
+	 this(string id, string[] classes, string[string] attributes, DH5 content) { this(id, classes); _attributes(attributes); this.content(content); }
 	
 	 this(string[] classes) { this(); this.classes(classes); }
 	 this(string[] classes, string content) { this(classes); this.content(content); }
 	 this(string[] classes, DH5Obj[] content...) { this(classes); this.content(content); }
+	 this(string[] classes, DH5 content) { this(classes); this.content(content); }
 	
 	 this(string[] classes, string[string] attributes) { this(classes); _attributes(attributes); }
 	 this(string[] classes, string[string] attributes, string content) { this(classes, attributes); this.content(content); }
 	 this(string[] classes, string[string] attributes, DH5Obj[] content...) { this(classes, attributes); this.content(content); }
+	 this(string[] classes, string[string] attributes, DH5 content) { this(classes, attributes); this.content(content); }
 	
 	 this(string[string] attributes) { this(); _attributes(attributes); }
 	 this(string[string] attributes, string content) { this(attributes); this.content(content); }
 	 this(string[string] attributes, DH5Obj[] content...) { this(attributes); this.content(content); }
+	 this(string[string] attributes, DH5 content) { this(attributes); this.content(content); }
 
 //	this(DH5Obj[] content...) { this(); this.content(content); }
 	
@@ -104,19 +111,21 @@ class DH5Obj {
 
 	 O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
 	 O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c; return cast(O)this; }
+	 O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
 	
 	 O opCall(this O)(string[] someClasses) { add(someClasses); return cast(O)this; }
 	 O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
 	 O opCall(this O)(string[] someContent...) { foreach(c; someContent) add(c); return cast(O)this; }
 	 O opCall(this O)(DH5Obj[] someContent...) { add(someContent); return cast(O)this; }
 	 O opCall(this O)(DH5Obj[] someContent) { add(someContent); return cast(O)this; }
+	 O opCall(this O)(DH5 someContent) { add(someContent.objs); return cast(O)this; }
 
 	 O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
 	 O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
 	 O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
 	 O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
 	 O add(this O)(DH5Obj[] someContent) { foreach(c; someContent) _html ~= c; return cast(O)this; }
-
+	 O add(this O)(DH5 someContent) { _html ~= someContent.objs; return cast(O)this; }
 
 	 O clear(this O)() { 
 		_css = "";
