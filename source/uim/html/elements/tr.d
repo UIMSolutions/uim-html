@@ -11,7 +11,5 @@ class DH5Tr : DH5Obj {
 mixin(FuncH5!"Tr");
 
 unittest {
-	
-	
 	assert(H5Tr == "<tr></tr>");
 }

@@ -49,8 +49,6 @@ type 	media_type 	Specifies the media type of the target URL
 mixin(FuncH5!"Area");
 
 unittest {
-	
-
 	mixin(H5Test!("H5Area", "area"));
 }
 
