@@ -86,6 +86,7 @@ public import uim.html.elements.picture;
 public import uim.html.elements.pre;
 public import uim.html.elements.progress;
 public import uim.html.elements.q;
+public import uim.html.elements.rbc;
 public import uim.html.elements.rp;
 public import uim.html.elements.rt;
 public import uim.html.elements.ruby;

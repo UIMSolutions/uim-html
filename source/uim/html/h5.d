@@ -339,6 +339,10 @@ auto main_(this O)(string content) { _objs ~=  H5Main(content); return cast(O)th
 auto main_(this O)(DH5Obj[] content...) { _objs ~=  H5Main(content); return cast(O)this; }
 auto main_(this O)(DH5 content) { _objs ~=  H5Main(content); return cast(O)this; }
 
+auto main_(this O)(string id, string content) { _objs ~=  H5Main(id, content); return cast(O)this; }
+auto main_(this O)(string id, DH5Obj[] content...) { _objs ~=  H5Main(id, content); return cast(O)this; }
+auto main_(this O)(string id, DH5 content) { _objs ~=  H5Main(id, content); return cast(O)this; }
+
 auto main_(this O)(string id, string[] classes) { _objs ~=  H5Main(id, classes); return cast(O)this; }
 auto main_(this O)(string id, string[] classes, string content) { _objs ~=  H5Main(id, classes, content); return cast(O)this; }
 auto main_(this O)(string id, string[] classes, DH5Obj[] content...) { _objs ~=  H5Main(id, classes, content); return cast(O)this; }
@@ -583,6 +587,10 @@ auto template_(this O)(string content) { _objs ~=  H5Template(content); return c
 auto template_(this O)(DH5Obj[] content...) { _objs ~=  H5Template(content); return cast(O)this; }
 auto template_(this O)(DH5 content) { _objs ~=  H5Template(content); return cast(O)this; }
 
+auto template_(this O)(string id, string content) { _objs ~=  H5Template(id, content); return cast(O)this; }
+auto template_(this O)(string id, DH5Obj[] content...) { _objs ~=  H5Template(id, content); return cast(O)this; }
+auto template_(this O)(string id, DH5 content) { _objs ~=  H5Template(id, content); return cast(O)this; }
+
 auto template_(this O)(string id, string[] classes) { _objs ~=  H5Template(id, classes); return cast(O)this; }
 auto template_(this O)(string id, string[] classes, string content) { _objs ~=  H5Template(id, classes, content); return cast(O)this; }
 auto template_(this O)(string id, string[] classes, DH5Obj[] content...) { _objs ~=  H5Template(id, classes, content); return cast(O)this; }
@@ -687,6 +695,10 @@ O "~name.toLower~"(this O)(string content) { _objs ~=  H5"~name.toLower.capitali
 O "~name.toLower~"(this O)(DH5Obj[] content...) { _objs ~=  H5"~name.toLower.capitalize~"(content); return cast(O)this; }
 O "~name.toLower~"(this O)(DH5 content) { _objs ~=  H5"~name.toLower.capitalize~"(content); return cast(O)this; }
 
+O "~name.toLower~"(this O)(string id, string content) { _objs ~=  H5"~name.toLower.capitalize~"(id, content); return cast(O)this; }
+O "~name.toLower~"(this O)(string id, DH5Obj[] content...) { _objs ~=  H5"~name.toLower.capitalize~"(id, content); return cast(O)this; }
+O "~name.toLower~"(this O)(string id, DH5 content) { _objs ~=  H5"~name.toLower.capitalize~"(id, content); return cast(O)this; }
+
 O "~name.toLower~"(this O)(string id, string[] classes) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes); return cast(O)this; }
 O "~name.toLower~"(this O)(string id, string[] classes, string content) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes, content); return cast(O)this; }
 O "~name.toLower~"(this O)(string id, string[] classes, DH5Obj[] content...) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes, content); return cast(O)this; }
@@ -711,5 +723,10 @@ O "~name.toLower~"(this O)(string id, string[] classes, string[string] attribute
 O "~name.toLower~"(this O)(string id, string[] classes, string[string] attributes, string content) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes, attributes, content); return cast(O)this; }
 O "~name.toLower~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes, attributes, content); return cast(O)this; }
 O "~name.toLower~"(this O)(string id, string[] classes, string[string] attributes, DH5 content) { _objs ~=  H5"~name.toLower.capitalize~"(id, classes, attributes, content); return cast(O)this; }
+
+O "~name.toLower~"(this O)(string[] classes, string[string] attributes) { _objs ~=  H5"~name.toLower.capitalize~"(classes, attributes); return cast(O)this; }
+O "~name.toLower~"(this O)(string[] classes, string[string] attributes, string content) { _objs ~=  H5"~name.toLower.capitalize~"(classes, attributes, content); return cast(O)this; }
+O "~name.toLower~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content...) { _objs ~=  H5"~name.toLower.capitalize~"(classes, attributes, content); return cast(O)this; }
+O "~name.toLower~"(this O)(string[] classes, string[string] attributes, DH5 content) { _objs ~=  H5"~name.toLower.capitalize~"(classes, attributes, content); return cast(O)this; }
  ";
 }

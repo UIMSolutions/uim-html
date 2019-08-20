@@ -3,7 +3,7 @@
 import uim.html;
 
 class DH5Button : DH5Obj {
-	mixin(H5This!"Button");
+	mixin(H5This!"button");
 
 	/* type */
 //	ButtonTypes _type = ButtonTypes.Button;

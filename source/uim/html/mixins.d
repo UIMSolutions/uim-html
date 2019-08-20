@@ -13,6 +13,10 @@ template H5This(string tag, string classes = null, string attributes = null, boo
 	this(DH5Obj[] someContent...) { super(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
 	this(DH5 someContent) { super(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
 
+	this(string id, string someContent) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, DH5Obj[] someContent...) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, DH5 someContent) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+
 	this(string id, string[] someClasses) { super(id, someClasses); `~strTag~strSingle~strClasses~strAttributes~`}
 	this(string id, string[] someClasses, string someContent) { super(id, someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
 	this(string id, string[] someClasses, DH5Obj[] someContent...) { super(id, someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
@@ -67,6 +71,10 @@ template FuncH5(string name) {
 auto H5"~name~"(string content) { return new DH5"~name~"(content); }
 auto H5"~name~"(DH5Obj[] content...) { return new DH5"~name~"(content); }
 auto H5"~name~"(DH5 content) { return new DH5"~name~"(content); }
+
+auto H5"~name~"(string id, string content) { return new DH5"~name~"(id, content); }
+auto H5"~name~"(string id, DH5Obj[] content...) { return new DH5"~name~"(id, content); }
+auto H5"~name~"(string id, DH5 content) { return new DH5"~name~"(id, content); }
 
 auto H5"~name~"(string id, string[] classes) { return new DH5"~name~"(id, classes); }
 auto H5"~name~"(string id, string[] classes, string content) { return new DH5"~name~"(id, classes, content); }

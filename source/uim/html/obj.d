@@ -12,6 +12,10 @@ class DH5Obj {
 	 this(DH5Obj[] content...) { this(); this.content(content); }
 	 this(DH5 content) { this(); this.content(content); }
 	
+	 this(string id, string content) { this(); this.id(id).content(content); }
+	 this(string id, DH5Obj[] content...) { this(); this.id(id).content(content); }
+	 this(string id, DH5 content) { this(); this.id(id).content(content); }
+
 	 this(string id, string[] classes) { this(); this.id(id).classes(classes); }
 	 this(string id, string[] classes, string content) { this(id, classes); this.content(content); }
 	 this(string id, string[] classes, DH5Obj[] content...) { this(id, classes); this.content(content); }
