@@ -472,6 +472,11 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
         assert(H5.q == "<q></q>");
     }
 
+    mixin(H5Def!"rbc");
+    unittest { 
+        assert(H5.rbc == "<rbc></rbc>");
+    }
+
     mixin(H5Def!"rp");
     unittest { 
         assert(H5.rp == "<rp></rp>");
@@ -480,6 +485,11 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
     mixin(H5Def!"rt");
     unittest { 
         assert(H5.rt == "<rt></rt>");
+    }
+
+   mixin(H5Def!"rtc");
+    unittest { 
+        assert(H5.rtc == "<rtc></rtc>");
     }
 
     mixin(H5Def!"ruby");

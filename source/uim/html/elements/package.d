@@ -89,6 +89,7 @@ public import uim.html.elements.q;
 public import uim.html.elements.rbc;
 public import uim.html.elements.rp;
 public import uim.html.elements.rt;
+public import uim.html.elements.rtc;
 public import uim.html.elements.ruby;
 public import uim.html.elements.s;
 public import uim.html.elements.samp;
