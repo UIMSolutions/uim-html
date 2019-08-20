@@ -134,6 +134,11 @@ class DH5 {
         assert(H5.content == "<content></content>");
     }
     
+    mixin(H5Def!"data");
+    unittest { 
+        assert(H5.data == "<data></data>");
+    }
+
     mixin(H5Def!"datalist");
     unittest { 
         assert(H5.datalist == "<datalist></datalist>");
