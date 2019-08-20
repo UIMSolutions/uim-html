@@ -1,2 +1,4 @@
 # uim-html
-Library to work with Html 5 in D
+Library to work with Html5 in D.
+
+[Documentation](https://ui-manufaktur.com/documentation/uim-html)
