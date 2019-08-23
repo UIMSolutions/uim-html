@@ -11,7 +11,5 @@ class DH5Textarea : DH5Obj {
 mixin(FuncH5!"Textarea");
 
 unittest {
-	
-	
 	assert(H5Textarea == "<textarea></textarea>");
 }

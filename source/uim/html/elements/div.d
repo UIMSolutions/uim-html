@@ -3,7 +3,7 @@
 import uim.html;
 
 class DH5Div : DH5Obj {
-	mixin(H5This!"Div");
+	mixin(H5This!"div");
 }
 mixin(FuncH5!"Div");
 

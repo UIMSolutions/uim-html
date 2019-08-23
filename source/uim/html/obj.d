@@ -1,10 +1,6 @@
 ﻿module uim.html.obj;
 
 import uim.html;
-import uim.web;
-import uim.web.css;
-import uim.web.js;
-import uim.html;
 
 class DH5Obj {
 	 this() { init; }

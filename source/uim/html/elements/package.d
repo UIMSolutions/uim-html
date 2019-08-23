@@ -29,6 +29,7 @@ public import uim.html.elements.colgroup;
 public import uim.html.elements.command;
 public import uim.html.elements.comment;
 public import uim.html.elements.content;
+public import uim.html.elements.data;
 public import uim.html.elements.datalist;
 public import uim.html.elements.dd;
 public import uim.html.elements.decorator;

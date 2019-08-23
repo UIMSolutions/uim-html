@@ -5,7 +5,7 @@ import uim.html;
 class DH5 {
     this() { _objs = []; }
 
-    private DH5Obj[] _objs;
+    protected DH5Obj[] _objs;
     auto objs(this O)() { return _objs; }
     O clear(this O)() {  _objs = []; return cast(O)this; }
 
@@ -79,9 +79,41 @@ class DH5 {
         assert(H5.blockquote == "<blockquote></blockquote>");
     }
     
-    mixin(H5Def!"body");
+    // mixin(H5Def!"body");
+    auto body_(this O)(string content) { _objs ~=  H5Body(content); return cast(O)this; }
+auto body_(this O)(DH5Obj[] content...) { _objs ~=  H5Body(content); return cast(O)this; }
+auto body_(this O)(DH5 content) { _objs ~=  H5Body(content); return cast(O)this; }
+
+auto body_(this O)(string id, string content) { _objs ~=  H5Body(id, content); return cast(O)this; }
+auto body_(this O)(string id, DH5Obj[] content...) { _objs ~=  H5Body(id, content); return cast(O)this; }
+auto body_(this O)(string id, DH5 content) { _objs ~=  H5Body(id, content); return cast(O)this; }
+
+auto body_(this O)(string id, string[] classes) { _objs ~=  H5Body(id, classes); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, string content) { _objs ~=  H5Body(id, classes, content); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, DH5Obj[] content...) { _objs ~=  H5Body(id, classes, content); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, DH5 content) { _objs ~=  H5Body(id, classes, content); return cast(O)this; }
+
+auto body_(this O)(string[] classes) { _objs ~=  H5Body(classes); return cast(O)this; }
+auto body_(this O)(string content) { _objs ~=  H5Body(classes, content); return cast(O)this; }
+auto body_(this O)(string[] classes,string[] classes,  DH5Obj[] content...) { _objs ~=  H5Body(classes, content); return cast(O)this; }
+auto body_(this O)(string[] classes, DH5 content) { _objs ~=  H5Body(classes, content); return cast(O)this; }
+
+auto body_(this O)(string[string] attributes) { _objs ~=  H5Body(attributes); return cast(O)this; }
+auto body_(this O)(string[string] attributes, string content) { _objs ~=  H5Body(attributes, content); return cast(O)this; }
+auto body_(this O)(string[string] attributes, DH5Obj[] content...) { _objs ~=  H5Body(attributes, content); return cast(O)this; }
+auto body_(this O)(string[string] attributes, DH5 content) { _objs ~=  H5Body(attributes, content); return cast(O)this; }
+
+auto body_(this O)(string id, string[string] attributes) { _objs ~=  H5Body(id, attributes); return cast(O)this; }
+auto body_(this O)(string id, string[string] attributes, string content) { _objs ~=  H5Body(id, attributes, content); return cast(O)this; }
+auto body_(this O)(string id, string[string] attributes, DH5Obj[] content...) { _objs ~=  H5Body(id, attributes, content); return cast(O)this; }
+auto body_(this O)(string id, string[string] attributes, DH5 content) { _objs ~=  H5Body(id, attributes, content); return cast(O)this; }
+
+auto body_(this O)(string id, string[] classes, string[string] attributes) { _objs ~=  H5Body(id, classes, attributes); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, string[string] attributes, string content) { _objs ~=  H5Body(id, classes, attributes, content); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { _objs ~=  H5Body(id, classes, attributes, content); return cast(O)this; }
+auto body_(this O)(string id, string[] classes, string[string] attributes, DH5 content) { _objs ~=  H5Body(id, classes, attributes, content); return cast(O)this; }
     unittest { 
-        assert(H5.body == "<body></body>");
+        assert(H5.body_ == "<body></body>");
     }
     
     mixin(H5Def!"br");
