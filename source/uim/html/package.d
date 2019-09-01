@@ -21,7 +21,7 @@ public import uim.oop;
 public import uim.web;
 // public import uim.css;
 //public import uim.js;
-//public import uim.javascript;
+public import uim.javascript;
 
 public import uim.html.core;
 public import uim.html.elements;
@@ -29,60 +29,6 @@ public import uim.html.elements.inputs;
 public import uim.html.extras;
 
 string h5Doctype = "<!doctype html>";
-
-//template ThisH5() {
-//	const char[] ThisH5 = "	
-//    this() { super(); }
-//	this(T...)(T values) { this(); Add(values); }
-//
-//	void Add(T...)(T values) { foreach(v; values) Add(v); }
-//	void Add(T:T[])(T values) { foreach(v; values) Add(v); }
-//	void Add(T)(T value) { 
-//		add(value); 
-//	}
-//	alias add = super.add;
-//	alias set = super.set;
-//	alias put = super.put;
-//";
-//	}
-//template ThisH5(string tag) {
-//			const char[] ThisH5 = "	
-// 	this() { super(\""~tag~"\"); }
-//	this(T...)(T values) { this(); Add(values); }
-//	alias add = super.add;
-//	alias set = super.set;
-//	alias put = super.put;
-//
-//	void Add(T...)(T values) { foreach(v; values) Add(v); }
-//	void Add(T:T[])(T values) { foreach(v; values) Add(v); }
-//	void Add(T)(T value) { 
-//		add(value); 
-//	}
-//	alias add = super.add;
-//	alias set = super.set;
-//	alias put = super.put;
-//";
-//		}
-//		else {
-//			const char[] ThisH5 = "	
-// 	this() { super(); registerMembers; }
-//	this(T...)(T values) { this(); Add(values);  }
-//	alias add = super.add;
-//	alias set = super.set;
-//	alias put = super.put;
-//	
-//void Add(T...)(T values) { foreach(v; values) Add(v); }
-//	void Add(T:T[])(T values) { foreach(v; values) Add(v); }
-//	void Add(T)(T value) { 
-//		// writeln(typeid(T));
-//		add(value); 
-//	}
-//	alias add = super.add;
-//	alias set = super.set;
-//	alias put = super.put;
-//";
-//		}
-//	}
 
 enum FormMethod : string { get = "get", put = "put" } 
 enum FormTarget	: string { blank = "_blank", self = "_self", parent = "_parent", top = "_top" }

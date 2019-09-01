@@ -5,7 +5,7 @@ import uim.html;
 class DH5Col : DH5Obj {
 	mixin(H5This!"col");
 }
-mixin(FuncH5!"Col");
+mixin(H5Short!"Col");
 
 unittest {
 	assert(H5Col == "<col></col>");

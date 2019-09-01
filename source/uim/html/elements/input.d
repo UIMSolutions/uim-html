@@ -47,7 +47,7 @@ class DH5Input : DH5Obj {
 	mixin(MyAttribute!("value"));
 	mixin(MyAttribute!("width"));
 }
-mixin(FuncH5!("Input"));
+mixin(H5Short!("Input"));
 
 unittest {
 }

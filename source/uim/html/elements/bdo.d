@@ -5,7 +5,7 @@ import uim.html;
 class DH5Bdo : DH5Obj {
 	mixin(H5This!"bdo");
 }
-mixin(FuncH5!"Bdo");
+mixin(H5Short!"Bdo");
 
 unittest {
 	assert(H5Bdo == "<bdo></bdo>");

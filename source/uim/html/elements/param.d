@@ -5,7 +5,7 @@ import uim.html;
 class DH5Param : DH5Obj {
 	mixin(H5This!"param");
 }
-mixin(FuncH5!"Param");
+mixin(H5Short!"Param");
 
 unittest {
 	

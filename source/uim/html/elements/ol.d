@@ -12,7 +12,7 @@ class DH5Ol : DH5Obj {
 //		return a;
 //	}
 }
-mixin(FuncH5!"Ol");
+mixin(H5Short!"Ol");
 
 unittest {
 	

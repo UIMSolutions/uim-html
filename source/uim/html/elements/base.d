@@ -8,7 +8,7 @@ import uim.html;
 class DH5Base : DH5Obj {
 	mixin(H5This!("base"));
 }
-mixin(FuncH5!"Base");
+mixin(H5Short!"Base");
 
 unittest {
 	assert(H5Base == "<base></base>");

@@ -5,7 +5,7 @@ import uim.html;
 class DH5Big : DH5Obj {
 	mixin(H5This!"Big");
 }
-mixin(FuncH5!"Big");
+mixin(H5Short!"Big");
 
 unittest {
 	assert(H5Big == "<big></big>");

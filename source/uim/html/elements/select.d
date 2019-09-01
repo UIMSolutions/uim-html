@@ -12,7 +12,7 @@ class DH5Select : DH5Obj {
 	mixin(MyContent!("option", "H5Option"));
 
 }
-mixin(FuncH5!"Select");
+mixin(H5Short!"Select");
 
 unittest {
 	mixin(H5Test!("H5Select", "select"));

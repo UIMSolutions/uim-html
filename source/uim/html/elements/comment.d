@@ -12,7 +12,7 @@ class DH5Comment : DH5Obj {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"Comment");
+mixin(H5Short!"Comment");
 
 unittest {
 	assert(H5Comment == "<comment></comment>");

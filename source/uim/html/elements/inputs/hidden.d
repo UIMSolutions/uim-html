@@ -5,7 +5,7 @@ import uim.html;
 class DH5InputHIDDEN : DH5Input {
 	mixin(H5This!("Input", null, `["type":"hidden"]`, true)); 
 }
-mixin(FuncH5!"InputHIDDEN"); 
+mixin(H5Short!"InputHIDDEN"); 
 
 unittest {
 	

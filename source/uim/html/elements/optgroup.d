@@ -9,7 +9,7 @@ class DH5Optgroup : DH5Obj {
 //
 //	}
 }
-mixin(FuncH5!"Optgroup");
+mixin(H5Short!"Optgroup");
 
 unittest {
 	

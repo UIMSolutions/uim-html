@@ -5,7 +5,7 @@ import uim.html;
 class DH5A : DH5Obj {
 	mixin(H5This!"a");
 }
-mixin(FuncH5!"A");
+mixin(H5Short!"A");
 
 unittest {
 	assert(H5A == "<a></a>");
@@ -73,7 +73,7 @@ class DH5A : DH5Obj {
 		assert(H5A.type("test") == `<a type="test"></a>`);
 	}
 }
-mixin(FuncH5!"A");
+mixin(H5Short!"A");
 
 unittest {
 	assert(H5A == "<a></a>");

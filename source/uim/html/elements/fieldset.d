@@ -5,7 +5,7 @@ import uim.html;
 class DH5Fieldset : DH5Obj {
 	mixin(H5This!"fieldset");
 }
-mixin(FuncH5!"Fieldset");
+mixin(H5Short!"Fieldset");
 
 unittest {
 	

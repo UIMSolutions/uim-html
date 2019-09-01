@@ -5,7 +5,7 @@ import uim.html;
 class DH5Legend : DH5Obj {
 	mixin(H5This!"legend");
 }
-mixin(FuncH5!"Legend");
+mixin(H5Short!"Legend");
 
 unittest {
 	

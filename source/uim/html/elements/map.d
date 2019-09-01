@@ -5,7 +5,7 @@ import uim.html;
 class DH5Map : DH5Obj {
 	mixin(H5This!("map"));
 }
-mixin(FuncH5!"Map");
+mixin(H5Short!"Map");
 
 unittest {
 	

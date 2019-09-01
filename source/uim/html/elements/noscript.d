@@ -5,7 +5,7 @@ import uim.html;
 class DH5Noscript : DH5Obj {
 	mixin(H5This!("noscript"));
 }
-mixin(FuncH5!"Noscript");
+mixin(H5Short!"Noscript");
 
 unittest {
 	

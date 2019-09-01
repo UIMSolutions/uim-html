@@ -22,7 +22,7 @@ class DH5Audio : DH5Obj {
 	mixin(MyContent!("source", "H5Source"));
 	mixin(MyContent!("track", "H5Track"));
 }
-mixin(FuncH5!"Audio");
+mixin(H5Short!"Audio");
 
 unittest {
 	

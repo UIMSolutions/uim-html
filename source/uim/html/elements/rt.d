@@ -5,7 +5,7 @@ import uim.html;
 class DH5Rt : DH5Obj {
 	mixin(H5This!"rt");
 }
-mixin(FuncH5!"Rt");
+mixin(H5Short!"Rt");
 
 unittest {
 	

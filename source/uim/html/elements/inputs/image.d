@@ -5,7 +5,7 @@ import uim.html;
 class DH5InputIMAGE : DH5Input {
 	mixin(H5This!("Input", null, `["type":"image"]`, true)); 
 }
-mixin(FuncH5!"InputIMAGE"); 
+mixin(H5Short!"InputIMAGE"); 
 
 unittest {
 	

@@ -5,7 +5,7 @@ import uim.html;
 class DH5Dialog : DH5Obj {
 	mixin(H5This!"dialog");
 }
-mixin(FuncH5!"Dialog");
+mixin(H5Short!"Dialog");
 
 unittest {
 	

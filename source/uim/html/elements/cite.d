@@ -5,7 +5,7 @@ import uim.html;
 class DH5Cite : DH5Obj {
 	mixin(H5This!"cite");
 }
-mixin(FuncH5!"Cite");
+mixin(H5Short!"Cite");
 
 unittest {
 	

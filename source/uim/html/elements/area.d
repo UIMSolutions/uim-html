@@ -46,7 +46,7 @@ framename 	Specifies where to open the target URL
 type 	media_type 	Specifies the media type of the target URL
 */
 }
-mixin(FuncH5!"Area");
+mixin(H5Short!"Area");
 
 unittest {
 	mixin(H5Test!("H5Area", "area"));

@@ -47,7 +47,7 @@ mixin(H5This!"form");
 		return super.toString;
 	}
 }
-mixin(FuncH5!"Form");
+mixin(H5Short!"Form");
 
 enum FormTargets : string {
 	None = "",

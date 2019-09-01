@@ -5,7 +5,7 @@ import uim.html;
 class DH5Decorator : DH5Obj {
 	mixin(H5This!("decorator"));
 }
-mixin(FuncH5!"Decorator");
+mixin(H5Short!"Decorator");
 
 unittest {
 	assert(H5Decorator == "<decorator></decorator>");

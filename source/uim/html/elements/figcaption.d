@@ -9,7 +9,7 @@ import uim.html;
 class DH5Figcaption : DH5Obj {
 	mixin(H5This!"figcaption");
 }
-mixin(FuncH5!"Figcaption");
+mixin(H5Short!"Figcaption");
 
 unittest {
 	

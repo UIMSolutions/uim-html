@@ -20,7 +20,7 @@ class DH5List : DH5Obj {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"List");
+mixin(H5Short!"List");
 
 unittest {
 	

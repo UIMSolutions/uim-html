@@ -5,7 +5,7 @@ import uim.html;
 class DH5Caption : DH5Obj {
 	mixin(H5This!"caption");
 }
-mixin(FuncH5!"Caption");
+mixin(H5Short!"Caption");
 
 unittest {
 	assert(H5Caption == "<caption></caption>");

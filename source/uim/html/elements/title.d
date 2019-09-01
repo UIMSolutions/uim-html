@@ -5,7 +5,7 @@ import uim.html;
 class DH5Title : DH5Obj {
 	mixin(H5This!("title"));
 }
-mixin(FuncH5!"Title");
+mixin(H5Short!"Title");
 
 unittest {
 	assert(H5Title == "<title></title>");

@@ -8,7 +8,7 @@ import uim.html;
 class DH5Blockquote : DH5Obj {
 	mixin(H5This!"blockquote");
 }
-mixin(FuncH5!"Blockquote");
+mixin(H5Short!"Blockquote");
 
 unittest {
 	assert(H5Blockquote == "<blockquote></blockquote>");

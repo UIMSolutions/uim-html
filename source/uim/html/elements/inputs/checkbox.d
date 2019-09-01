@@ -10,7 +10,7 @@ class DH5InputCHECKBOX : DH5Input {
 		return super.toString;
 	}
 }
-mixin(FuncH5!"InputCHECKBOX");
+mixin(H5Short!"InputCHECKBOX");
 
 unittest {
 	

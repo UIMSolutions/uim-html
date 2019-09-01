@@ -5,7 +5,7 @@ import uim.html;
 class DH5Ruby : DH5Obj {
 	mixin(H5This!"ruby");
 }
-mixin(FuncH5!"Ruby");
+mixin(H5Short!"Ruby");
 
 unittest {
 	

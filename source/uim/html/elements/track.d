@@ -10,7 +10,7 @@ class DH5Track : DH5Obj {
     mixin(MyAttribute!"src");
     mixin(MyAttribute!"srclang");
 }
-mixin(FuncH5!"Track");
+mixin(H5Short!"Track");
 
 unittest {
 	mixin(H5Test!("H5Track", "track"));

@@ -15,7 +15,7 @@ import uim.html;
 class DH5Dl : DH5Obj {
 	mixin(H5This!"dl");
 }
-mixin(FuncH5!"Dl");
+mixin(H5Short!"Dl");
 
 unittest {
 	assert(H5Dl.toString == "<dl></dl>");

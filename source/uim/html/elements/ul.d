@@ -12,7 +12,7 @@ class DH5Ul : DH5Obj {
 		return cast(O)this;
 	}
 }
-mixin(FuncH5!"Ul");
+mixin(H5Short!"Ul");
 
 unittest {
 	

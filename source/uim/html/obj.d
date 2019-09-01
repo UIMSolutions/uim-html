@@ -45,9 +45,11 @@ class DH5Obj {
 //	this(DH5Obj[] content...) { this(); this.content(content); }
 	
 	 public void init() {
+		 _css = null;
 		_classes = null;
 		_attributes = new DMapString;
 		_html = [];
+		 _js = null;
 	}
 	
 	mixin(TProperty!("bool", "single", "false"));
@@ -55,12 +57,15 @@ class DH5Obj {
 	mixin(TProperty!("string", "id"));
 	mixin(TProperty!("string", "css"));
 	mixin(TProperty!("DH5Obj[]", "html"));
-	mixin(TProperty!("string", "js"));
+
+	protected string[] _js; 
+	@property string js(this O)() { return _js.join(""); }
+	O js(this O)(string[] codes...) { foreach(c; codes) _js ~= c; return cast(O)this; }
+	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
 	string[] _classes;
 	 O classes(this O)() { return _classes; }
-	 O classes(this O)(string[] value) { _classes.add(value); return cast(O)this; }
-	 O classes(this O)(string[] value...) { _classes.add(value); return cast(O)this; }
+	 O classes(this O)(string[] value...) { foreach(c; value) if (c.length > 0) _classes ~= c.strip; return cast(O)this; }
 
 	DMapString _attributes;
 	 auto attributes() { return _attributes; }
@@ -90,10 +95,7 @@ class DH5Obj {
 	override bool opEquals(Object value) { return super.opEquals(value); }
 
 	bool opEquals(string html) { return toString == html; }
-
-	bool opEquals(DH5Obj value) {
-		return toString == value.toString;
-	}
+	bool opEquals(DH5Obj value) { return toString == value.toString; }
 
 	void opIndexAssign(T)(T value, string key) { _attributes[key] = "%s".format(value); }
 	void opIndexAssign(bool value, string key) { _attributes[key] = "%s".format((value) ? "true" : "false"); }
@@ -119,6 +121,7 @@ class DH5Obj {
 	 O opCall(this O)(DH5Obj[] someContent...) { add(someContent); return cast(O)this; }
 	 O opCall(this O)(DH5Obj[] someContent) { add(someContent); return cast(O)this; }
 	 O opCall(this O)(DH5 someContent) { add(someContent.objs); return cast(O)this; }
+	 O opCall(this O)(DJS code) { this.js(code); return cast(O)this; }
 
 	 O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
 	 O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
@@ -237,7 +240,7 @@ class DH5Obj {
 	}
 
 	 string toCSS() {
-		if (_css) return doubleTag("style", _css);
+		if (_css.length > 0) return doubleTag("style", _css);
 		return null;
 	}
 	 string toHTML() {
@@ -250,7 +253,11 @@ class DH5Obj {
 		if (_id.length > 0) result ~= ` id="`~_id~`"`;
 
 		if (_classes.empty) _classes = _attributes["class"].split(" ");
-		if (!_classes.empty) result ~= ` class="`~_classes.unique.sort.join(" ")~`"`;
+		if (!_classes.empty) {
+			string[] cls;
+			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
+			result ~= ` class="`~cls.join(" ")~`"`;
+		}
 
 		if (!_attributes.empty) result ~= attsToHTML;
 		result ~= ">";
@@ -264,7 +271,7 @@ class DH5Obj {
 		return result;
 	}
 	 string toJS() {
-		if (_js) return doubleTag("script", _js);
+		if (_js.length > 0) return doubleTag("script", this.js);
 		return null;
 	}
 	 override string toString() {
@@ -303,8 +310,6 @@ class DH5Obj {
  auto H5Obj(string[string] attributes, DH5Obj content...) { return new DH5Obj(attributes, content); }
 
 unittest {
-	
-
 	auto h5 = H5Obj;
 	assert(h5.id("newID").id == "newID");
 
@@ -316,14 +321,3 @@ unittest {
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
 }
-//	
-//	auto h5 = new DH5Obj;
-//	assert(h5.id("anID").id == "anID");
-//	writeln(h5.classes(["classA", "classB"]).classes);
-//
-//	h5 = new DH5Obj("anID", ["classA", "classB"]);
-//	writeln(h5);
-//	assert(h5.id == "anID");
-//	writeln(h5);
-//	writeln(h5.classes);
-//}

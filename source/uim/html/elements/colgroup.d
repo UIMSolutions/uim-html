@@ -5,7 +5,7 @@ import uim.html;
 class DH5Colgroup : DH5Obj {
 	mixin(H5This!"Colgroup");
 }
-mixin(FuncH5!"Colgroup");
+mixin(H5Short!"Colgroup");
 
 unittest {
 	

@@ -20,7 +20,7 @@ public:
 	 O scripts(this O)(string[] links) { foreach(l; links) add(H5Script(["src":l])); return cast(O)this; }
 	 O script(this O, T...)(T values) { add(H5Script(values)); return cast(O)this; }
 }
-mixin(FuncH5!"Head");
+mixin(H5Short!"Head");
 
 unittest {	
 	assert(H5Head == "<head></head>");

@@ -5,7 +5,7 @@ import uim.html;
 class DH5Iframe : DH5Obj {
 	mixin(H5This!"iframe");
 }
-mixin(FuncH5!"Iframe");
+mixin(H5Short!"Iframe");
 
 unittest {
 	

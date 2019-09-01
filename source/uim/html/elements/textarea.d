@@ -8,7 +8,7 @@ class DH5Textarea : DH5Obj {
 	O cols(this O)(int value) { if (value > 0) attributes["cols"] = to!string(value); return cast(O)this; }
 	O rows(this O)(int value) { if (value > 0) attributes["rows"] = to!string(value); return cast(O)this; }
 }
-mixin(FuncH5!"Textarea");
+mixin(H5Short!"Textarea");
 
 unittest {
 	assert(H5Textarea == "<textarea></textarea>");

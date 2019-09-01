@@ -26,7 +26,6 @@ public import uim.html.elements.cite;
 public import uim.html.elements.code;
 public import uim.html.elements.col;
 public import uim.html.elements.colgroup;
-public import uim.html.elements.command;
 public import uim.html.elements.comment;
 public import uim.html.elements.content;
 public import uim.html.elements.data;
@@ -1700,7 +1699,7 @@ unittest {
 class DH5CENTER : DH5Obj {
 	mixin(H5This!("CENTER"));
 }
-mixin(FuncH5!"CENTER");
+mixin(H5Short!"CENTER");
 
 unittest {
 	

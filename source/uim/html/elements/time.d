@@ -11,7 +11,7 @@ class DH5Time : DH5Obj {
 		// return datetime(value.toString);
 	// }
 }
-mixin(FuncH5!"Time");
+mixin(H5Short!"Time");
 
 unittest {
 	assert(H5Time == "<time></time>");

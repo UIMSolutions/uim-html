@@ -7,7 +7,7 @@ import uim.html;
 class DH5Pre : DH5Obj {
 	mixin(H5This!("pre"));
 }
-mixin(FuncH5!"Pre");
+mixin(H5Short!"Pre");
 
 unittest {
 	assert(H5Pre == "<pre></pre>");

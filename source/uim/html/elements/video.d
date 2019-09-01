@@ -22,7 +22,7 @@ class DH5Video : DH5Obj {
 	mixin(MyContent!("source", "H5Source"));
 	mixin(MyContent!("track", "H5Track"));
 }
-mixin(FuncH5!"Video");
+mixin(H5Short!"Video");
 
 unittest {
 	mixin(H5Test!("H5Video", "video"));

@@ -7,7 +7,7 @@ class DH5Li : DH5Obj {
 
 //	mixin(H5ShortCut!"A");
 }
-mixin(FuncH5!"Li");
+mixin(H5Short!"Li");
 
 unittest {
 	

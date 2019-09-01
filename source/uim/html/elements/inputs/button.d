@@ -5,7 +5,7 @@ import uim.html;
 class DH5InputButton : DH5Input {
 	mixin(H5This!("Input", null, `["type": "button"]`)); 
 }
-mixin(FuncH5!"InputButton");
+mixin(H5Short!"InputButton");
 
 unittest {
 	

@@ -5,13 +5,15 @@ import uim.html;
 class DH5Table : DH5Obj {
 	mixin(H5This!"table");
 
-//	mixin(H5ShortCut!"TBODY");
-//	mixin(H5ShortCut!"THEAD");
-//	mixin(H5ShortCut!"TR");
-//	mixin(H5ShortCut!"TFOOT");
-//	mixin(H5ShortCut!"CAPTION");
+	mixin(MyContent!("header", "H5THead"));
+	mixin(MyContent!("body_", "H5TBody"));
+	mixin(MyContent!("footer", "H5TFoot"));
+	mixin(MyContent!("tr", "H5Tr"));
+	mixin(MyContent!("row", "H5Tr"));
+	mixin(MyContent!("colgroup", "H5Colgroup"));
+	mixin(MyContent!("caption", "H5Caption"));
 }
-mixin(FuncH5!"Table");
+mixin(H5Short!"Table");
 
 unittest {
 	assert(H5Table == "<table></table>");

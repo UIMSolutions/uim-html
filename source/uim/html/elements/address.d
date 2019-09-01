@@ -11,7 +11,7 @@ import uim.html;
 class DH5Address : DH5Obj {
 	mixin(H5This!"address");
 }
-mixin(FuncH5!"Address");
+mixin(H5Short!"Address");
 
 unittest {
 	mixin(H5Test!("H5Address", "address"));

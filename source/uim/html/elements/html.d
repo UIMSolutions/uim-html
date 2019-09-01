@@ -57,12 +57,9 @@ class DH5Html : DH5Obj {
 		_html = [_head, _body]; 
 		return h5Doctype~super.toString; }
 }
-mixin(FuncH5!"Html");
+mixin(H5Short!"Html");
 
 unittest {
 	assert(H5Html == "<!doctype html><html><head></head><body></body></html>");
 	assert(H5Html(["lang":"en"]) == "<!doctype html><html lang=\"en\"><head></head><body></body></html>");
-//	writeln(H5Html.Head(H5META, H5Script, H5STYLE));
-//	writeln(H5Html.Body(H5DIV, H5Script, H5STYLE));
-//	writeln(H5Html.Head(H5META, H5Script, H5STYLE).Body(H5DIV, H5Script, H5STYLE));
 }

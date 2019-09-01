@@ -5,7 +5,7 @@ import uim.html;
 class DH5Rtc : DH5Obj {
 	mixin(H5This!"rtc");
 }
-mixin(FuncH5!"Rtc");
+mixin(H5Short!"Rtc");
 
 unittest {
 	assert(H5Rtc == "<rtc></rtc>");

@@ -5,7 +5,7 @@ import uim.html;
 class DH5InputTEXT : DH5Input {
 	mixin(H5This!("Input", null, `["type":"text"]`, true)); 
 }
-mixin(FuncH5!"InputTEXT"); 
+mixin(H5Short!"InputTEXT"); 
 
 unittest {
 	

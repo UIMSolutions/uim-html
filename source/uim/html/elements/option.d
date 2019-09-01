@@ -5,7 +5,7 @@ import uim.html;
 class DH5Option : DH5Obj {
 	mixin(H5This!"option");
 }
-mixin(FuncH5!"Option");
+mixin(H5Short!"Option");
 
 
 enum option_modes : string {

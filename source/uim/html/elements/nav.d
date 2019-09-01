@@ -9,7 +9,7 @@ import uim.html;
 class DH5Nav : DH5Obj {
 	mixin(H5This!("nav"));
 }
-mixin(FuncH5!"Nav");
+mixin(H5Short!"Nav");
 
 unittest {
 	assert(H5Nav == "<nav></nav>");

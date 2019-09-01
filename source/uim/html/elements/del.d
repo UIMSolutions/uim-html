@@ -5,7 +5,7 @@ import uim.html;
 class DH5Del : DH5Obj {
 	mixin(H5This!"del");
 }
-mixin(FuncH5!"Del");
+mixin(H5Short!"Del");
 
 unittest {
 	assert(H5Del == "<del></del>");

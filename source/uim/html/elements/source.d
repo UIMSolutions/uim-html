@@ -11,7 +11,7 @@ class DH5Source : DH5Obj {
     mixin(MyAttribute!"type");
     mixin(MyAttribute!"media"); 
 }
-mixin(FuncH5!"Source");
+mixin(H5Short!"Source");
 
 unittest {
 	mixin(H5Test!("H5Source", "source"));

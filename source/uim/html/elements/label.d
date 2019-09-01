@@ -8,7 +8,7 @@ class DH5Label : DH5Obj {
 	mixin(MyAttribute!("forId", "for"));
 	mixin(MyAttribute!("form"));
 }
-mixin(FuncH5!"Label");
+mixin(H5Short!"Label");
 
 unittest {
 	mixin(H5Test!("H5Label", "label"));

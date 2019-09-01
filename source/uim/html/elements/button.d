@@ -13,7 +13,7 @@ class DH5Button : DH5Obj {
 //		attributes["type"] = to!string(value);
 //		return cast(O)this; }
 }
-mixin(FuncH5!"Button");
+mixin(H5Short!"Button");
 
 enum ButtonTypes : string {
 	Button = "button",

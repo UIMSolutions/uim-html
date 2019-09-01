@@ -9,7 +9,7 @@ import uim.html;
 class DH5Figure : DH5Obj {
 	mixin(H5This!"figure");
 }
-mixin(FuncH5!"Figure");
+mixin(H5Short!"Figure");
 
 unittest {
 	assert(H5Figure == "<figure></figure>");
