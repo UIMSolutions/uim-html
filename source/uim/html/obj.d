@@ -3,7 +3,7 @@
 import uim.html;
 
 class DH5Obj {
-	 this() { init; }
+	 this() { _init; }
 	 this(string content) { this(); this.content(content); }
 	 this(DH5Obj[] content...) { this(); this.content(content); }
 	 this(DH5 content) { this(); this.content(content); }
@@ -44,7 +44,7 @@ class DH5Obj {
 
 //	this(DH5Obj[] content...) { this(); this.content(content); }
 	
-	 public void init() {
+	 public void _init() {
 		 _css = null;
 		_classes = null;
 		_attributes = new DMapString;
