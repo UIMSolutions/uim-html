@@ -64,8 +64,7 @@ class DH5Obj {
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
 	string[] _classes;
-	 O classes(this O)() { return _classes; }
-	 O classes(this O)(string[] value...) { foreach(c; value) if (c.length > 0) _classes ~= c.strip; return cast(O)this; }
+	O classes(this O)(string[] value...) { foreach(c; value) if (c.length > 0) _classes ~= c.strip; return cast(O)this; }
 
 	DMapString _attributes;
 	 auto attributes() { return _attributes; }
