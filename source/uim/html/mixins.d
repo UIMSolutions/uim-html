@@ -46,65 +46,53 @@ auto h5Methods(const char[] left, const char[] right) {
 template H5This(string tag, string classes = null, string attributes = null, bool single = false) {
 	const char[] strTag = `this.tag("`~tag.toLower~`");`;
 	const char[] strSingle = (single) ? "this.single(true);" : "";
-	const char[] strClasses = (classes) ? "_classes.add("~classes~");" : "";
-	const char[] strAttributes = (attributes) ? "_attributes.add("~attributes~");" : "";
+	const char[] strClasses = (classes) ? "this.classes("~classes~");" : "";
+	const char[] strAttributes = (attributes) ? "this.attributes("~attributes~");" : "";
+	const char[] initial = strTag~strSingle~strClasses~strAttributes;
 
 	const char[] H5This = `
-	this(string someContent) { super(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(DH5Obj[] someContent...) { super(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(DH5 someContent) { super(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string someContent) { super(); `~initial~`this.content(someContent); }
+	this(DH5Obj[] someContent...) { super(); `~initial~`this.content(someContent); }
+	this(DH5 someContent) { super(); `~initial~`this.content(someContent); }
 
-	this(string id, string someContent) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, DH5Obj[] someContent...) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, DH5 someContent) { super(id, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, string someContent) { super(); `~initial~`this.id(id).content(someContent); }
+	this(string id, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).content(someContent); }
+	this(string id, DH5 someContent) { super(); `~initial~`this.id(id).content(someContent); }
 
-	this(string id, string[] someClasses) { super(id, someClasses); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, string someContent) { super(id, someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, DH5Obj[] someContent...) { super(id, someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, DH5 someContent) { super(id, someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, string[] someClasses) { super(); `~initial~`this.id(id).classes(someClasses); }
+	this(string id, string[] someClasses, string someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
+	this(string id, string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
+	this(string id, string[] someClasses, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
 
-	this(string id, string[string] someAttributes)  { super(id, someAttributes); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[string] someAttributes, string someContent)  { super(id, someAttributes).content(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[string] someAttributes, DH5Obj[] someContent...) { super(id, someAttributes).content(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[string] someAttributes, DH5 someContent) { super(id, someAttributes).content(someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, string[string] someAttributes)  { super(); `~initial~`this.id(id).attributes(someAttributes); }
+	this(string id, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
+	this(string id, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
+	this(string id, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
 
-	this(string id, string[] someClasses, string[string] someAttributes)  { super(id, someClasses, someAttributes); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, string[string] someAttributes, string someContent)  { super(id, someClasses, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(id, someClasses, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string id, string[] someClasses, string[string] someAttributes, DH5 someContent) { super(id, someClasses, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string id, string[] someClasses, string[string] someAttributes)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes); }
+	this(string id, string[] someClasses, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
 
-	this(string[] someClasses) { this.classes(someClasses); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] someClasses, string someContent) { super(someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] someClasses, DH5Obj[] someContent...) { super(someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] someClasses, DH5 someContent) { super(someClasses, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string[] someClasses) { super(); `~initial~`this.classes(someClasses); }
+	this(string[] someClasses, string someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
+	this(string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).content(someContent); }
+	this(string[] someClasses, DH5 someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
 
- 	this(string[string] someAttributes) { _attributes(someAttributes); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[string] someAttributes, string someContent) { super(someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[string] someAttributes, DH5Obj[] someContent...) { super(someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[string] someAttributes, DH5 someContent) { super(someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+ 	this(string[string] someAttributes) { super();`~initial~`this.attributes(someAttributes); }
+	this(string[string] someAttributes, string someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
+	this(string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
+	this(string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
 
-	this(string[] classes, string[string] someAttributes) { super(classes, someAttributes); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] classes, string[string] someAttributes, string someContent) { super(classes, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] classes, string[string] someAttributes, DH5Obj[] someContent...) { super(classes, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
-	this(string[] classes, string[string] someAttributes, DH5 someContent) { super(classes, someAttributes, someContent); `~strTag~strSingle~strClasses~strAttributes~`}
+	this(string[] someClasses, string[string] someAttributes) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes); }
+	this(string[] someClasses, string[string] someAttributes, string someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
 	`;
 }
 
 unittest {
 }
-//	O Add(this O, T...)(T values) { 
-//		switch (values.length) {
-//			case 0: break; 
-//			case 1: add(values[0]); break;
-//			default: 
-//				static if ((is(typeof(values[0]) == string)) && ((is(typeof(values[1]) == string[])) || (is(typeof(values[1]) == string[string])))) { 
-//					_id = values[0]; foreach(v; values[1..$]) add(v); }
-//				else { foreach(v; values) add(v); }
-//				break;
-//		}
-//		return cast(O)this;
-//	};
-//	alias add = super.add;  		
 
 template H5Short(string name) {		
 	const char[] H5Short = h5Methods("auto H5"~name, "new DH5"~name);
@@ -133,6 +121,7 @@ auto h5Content(const char[] left, const char[] right) {
 "~left~"(this O)() { this.content("~right~"()); return cast(O)this; }
 
 "~left~"(this O)(string content) { this.content("~right~"(content)); return cast(O)this; }
+"~left~"(this O)(string id, string content) { this.content("~right~"(id, content)); return cast(O)this; }
 "~left~"(this O)(DH5Obj[] content...) { this.content("~right~"(content)); return cast(O)this; }
 "~left~"(this O)(DH5 content) { this.content("~right~"(content)); return cast(O)this; }
 
