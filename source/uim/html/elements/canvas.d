@@ -13,7 +13,7 @@ class DH5Canvas : DH5Obj {
 
 	this(string id, int width, int height, string style = "") { 
 		super("canvas"); 
-		_attributes(["id":id, "width":to!string(width), "height":to!string(height), "style": style]); /* clean; */ }
+		this.attributes(["id":id, "width":to!string(width), "height":to!string(height), "style": style]); /* clean; */ }
 
 	// AddColorStop() 	Specifies the colors and stop positions in a gradient object
 	auto addColorStop(this O)(string varName, string stop, string color) { 

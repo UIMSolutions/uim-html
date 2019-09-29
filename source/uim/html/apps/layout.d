@@ -1,4 +1,4 @@
-﻿module uim.html.templ;
+﻿module uim.html.apps.layout;
 
 import uim.html;
 

@@ -12,9 +12,7 @@ public import vibe.d;
 public import uim.html.mixins;
 public import uim.html.h5;
 public import uim.html.obj;
-public import uim.html.app;
-public import uim.html.page;
-public import uim.html.templ;
+public import uim.html.apps;
 
 public import uim.core;
 public import uim.oop;
@@ -23,10 +21,12 @@ public import uim.web;
 //public import uim.js;
 public import uim.javascript;
 
+public import uim.html.components;
 public import uim.html.core;
 public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
+public import uim.html.snippets;
 
 string h5Doctype = "<!doctype html>";
 

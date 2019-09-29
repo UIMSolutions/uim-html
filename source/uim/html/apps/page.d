@@ -1,10 +1,10 @@
-module uim.html.page;
+module uim.html.apps.page;
 
 import uim.html;
 
 class DH5Page {
-    this() {}
-    this(DH5App anApp) { this(); _app = anApp; }
+	this() {}
+	this(DH5App anApp) { this(); _app = anApp; }
 	this(string aName) { this(); _name = aName; }
 	this(DH5App anApp, string aName) { this(anApp); _name = aName; }
 

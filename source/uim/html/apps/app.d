@@ -1,4 +1,4 @@
-module uim.html.app;
+module uim.html.apps.app;
 
 import uim.html;
 

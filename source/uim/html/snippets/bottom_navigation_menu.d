@@ -1,0 +1,1 @@
+module uim.html.snippets.bottom_navigation_menu;

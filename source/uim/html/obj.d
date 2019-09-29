@@ -37,7 +37,7 @@ class DH5Obj {
 	 this(string[] classes, string[string] someAttributes, DH5Obj[] content...) { this(classes, someAttributes).content(content); }
 	 this(string[] classes, string[string] someAttributes, DH5 content) { this(classes, someAttributes).content(content); }
 	
-	 this(string[string] someAttributes) { this(); _attributes(someAttributes); }
+	 this(string[string] someAttributes) { this().attributes(someAttributes); }
 	 this(string[string] someAttributes, string content) { this(someAttributes).content(content); }
 	 this(string[string] someAttributes, DH5Obj[] content...) { this(someAttributes).content(content); }
 	 this(string[string] someAttributes, DH5 content) { this(someAttributes).content(content); }
@@ -47,7 +47,7 @@ class DH5Obj {
 	 public void _init() {
 		 _css = null;
 		_classes = null;
-		_attributes = new DMapString;
+		_attributes = null;
 		_html = [];
 		 _js = null;
 	}
@@ -65,10 +65,11 @@ class DH5Obj {
 
 	/// Classes of HTML element
 	string[] _classes;
+	auto classes() { return _classes; }
 	O classes(this O)(string[] value...) { foreach(c; value) if (c.length > 0) _classes ~= c.strip; return cast(O)this; }
 
 	/// Attributes of HTML element
-	DMapString _attributes;
+	string[string] _attributes;
 	 auto attributes() { return _attributes; }
 	 O attributes(this O)(string key, string value) { _attributes[key] = value; return cast(O)this; }
 	 O attributes(this O)(string[string] values) { foreach(k, v; values) _attributes[k] = v; return cast(O)this; }
@@ -250,17 +251,19 @@ class DH5Obj {
 		// firstTag
 		result ~= "<"~_tag;
 
-		if (_id.length == 0) _id = _attributes["id"];
+		if (!_id) if ("id" in _attributes) _id = _attributes["id"];
 		if (_id.length > 0) result ~= ` id="`~_id~`"`;
+		_attributes.remove("id");
 
-		if (_classes.empty) _classes = _attributes["class"].split(" ");
-		if (!_classes.empty) {
+		if (!_classes) if ("class" in _attributes) _classes = _attributes["class"].split(" ");
+		if (_classes) {
 			string[] cls;
 			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
 			result ~= ` class="`~cls.join(" ")~`"`;
 		}
+		_attributes.remove("class");	
 
-		if (!_attributes.empty) result ~= attsToHTML;
+		if (_attributes) result ~= attsToHTML;
 		result ~= ">";
 
 		// secondTag
