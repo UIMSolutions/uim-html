@@ -11,7 +11,5 @@ class DH5Abbr : DH5Obj {
 mixin(H5Short!"Abbr");
 
 unittest {
-	
-
 	mixin(H5Test!("H5Abbr", "abbr"));
 }

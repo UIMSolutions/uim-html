@@ -8,5 +8,5 @@ class DH5Svg : DH5Obj {
 mixin(H5Short!"Svg");
 
 unittest {
-	assert(H5Svg == "<svg></svg>");
+	assert(Assert(H5Svg, "<svg></svg>"));
 }

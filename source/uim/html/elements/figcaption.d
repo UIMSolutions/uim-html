@@ -12,9 +12,7 @@ class DH5Figcaption : DH5Obj {
 mixin(H5Short!"Figcaption");
 
 unittest {
-	
-	
-	assert(H5Figcaption == "<figcaption></figcaption>");
+	assert(Assert(H5Figcaption,"<figcaption></figcaption>"));
 }
 
 

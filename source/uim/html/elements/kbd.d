@@ -8,5 +8,5 @@ class DH5Kbd : DH5Obj {
 mixin(H5Short!"Kbd");
 
 unittest {
-	assert(H5Kbd == "<kbd></kbd>");
+	assert(Assert(H5Kbd, "<kbd></kbd>"));
 }

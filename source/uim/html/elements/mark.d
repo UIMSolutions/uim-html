@@ -9,7 +9,5 @@ class DH5Mark : DH5Obj {
 mixin(H5Short!"Mark");
 
 unittest {
-	
-	
-	assert(H5Mark == "<mark></mark>");
+	assert(Assert(H5Mark,"<mark></mark>"));
 }

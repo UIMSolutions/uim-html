@@ -15,5 +15,5 @@ class DH5Comment : DH5Obj {
 mixin(H5Short!"Comment");
 
 unittest {
-	assert(H5Comment == "<comment></comment>");
+	assert(Assert(H5Comment,"<comment></comment>"));
 }

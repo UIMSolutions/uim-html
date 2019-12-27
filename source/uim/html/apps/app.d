@@ -3,56 +3,167 @@ module uim.html.apps.app;
 import uim.html;
 
 class DH5App {
-	this() { }
-	this(string aName) { this(); _name = aName; }
-	this(string aName, string someContent) { this(aName); _content = someContent; }
+	this() { this.index("Hallo World"); }
+	this(string aName) { this().name(aName); }
+	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
 
-	mixin(TProperty!("string", "rootPath"));
-	mixin(TProperty!("string", "content"));
-	mixin(TProperty!("string", "name"));
+	/// Name of app
+	string _name;
+	/// Get name of app
+	string name() { return _name; }
+	/// Change name of app
+	O name(this O)(string newName) { _name = newName; return cast(O)this; }
+	unittest {		
+		/// TODO
+	}
 
-	mixin(TProperty!("DH5Page", "index"));
-	O index(this O)(string newContent) { _index = VUEIndex.content(newContent); return cast(O)this; }
-	O index(this O)(string newContent, string function(string, string[string]) func, string[string] someParameters = null) { _index = H5Page.content(newContent).layout(func).parameters(someParameters); return cast(O)this; }
+	/// central layout for page
+	DH5AppLayout _layout;
+	auto layout() { if (_layout) return _layout; return null; }
+	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout; return cast(O)this; }
+	unittest {
+		/// TODO		
+	}
 
-	mixin(TProperty!("DH5Page[string]", "pages"));
-	O pages(this O)(string name, DH5Page newPage) { newPage.app(this); _pages[name] = newPage; return cast(O)this; }
-	O pages(this O)(string name, string newPage) { _pages[name] = H5Page(this).content(newPage); return cast(O)this; }
-	O page(this O)(DH5Page newPage) { newPage.app(this); _pages[newPage.name] = newPage; return cast(O)this; }
+	/// Rootpath of app
+	string _rootPath;
+	auto  rootPath() { return _rootPath; }
+	O rootPath(this O)(string newPath) { _rootPath = newPath; if (uim.core.datatypes.string_.endsWith(_rootPath, "/")) _rootPath = _rootPath[0..$-1]; return cast(O)this; }
+	unittest {
+		assert(H5App.rootPath("/test/path").rootPath == "/test/path");		
+		assert(H5App.rootPath("/test/path/").rootPath == "/test/path");		
+	}
 
+	/// Index startpage
+	DH5AppPage _index;
+	auto index() { return _index; }
+	O index(this O)(string newContent) { this.index(H5AppPage.content(newContent)); return cast(O)this; }
+	O index(this O)(DH5AppPage newPage) { _index = newPage; page("index", newPage); return cast(O)this; }
+	unittest {		
+		/// TODO
+	}
+
+	/// Styles (CSS) of an app
+	DH5AppStyle[string] _styles;
+	auto styles() { return _styles; }
+	O styles(this O)(DH5AppStyle[string] addStyle) { foreach(name, style; addStyle) this.css(name, style); return cast(O)this; }
+	O styles(this O)(string[string] addStyle) { foreach(name, style; addStyle) this.style(name, style); return cast(O)this; }
+	O styles(this O)(string name, DH5AppStyle addStyle) { addStyle.app(this); _styles[name] = addStyle; return cast(O)this; }
+	O styles(this O)(string name, string addStyle) { _styles[name] = H5AppStyle(this).content(addStyle); return cast(O)this; }
+	O styles(this O)(DH5AppStyle addStyle) { addStyle.app(this); _styles[addStyle.name] = addStyle; return cast(O)this; }
+	O removeStyle(this O)(string name) { _styles.remove(name); return cast(O)this; }
+	O clearStyles(this O)(string name) { _styles = null; return cast(O)this; }
+	unittest {	
+			/// TODO	
+	}
+
+	/// Images of an app
+	DH5AppImage[string] _images;
+	auto images() { return _images; }
+	O image(this O)(DH5AppImage[string] addImage) { foreach(name, image; addImage) this.image(name,image); return cast(O)this; }
+	O image(this O)(string[string] addImage) { foreach(name, image; addImage) this.image(name,image); return cast(O)this; }
+	O image(this O)(string name, DH5AppImage addImage) { addImage.app(this); _image[name] = addImage; return cast(O)this; }
+	O image(this O)(string name, string addImage) { _image[name] = H5AppImage(this).content(addImage); return cast(O)this; }
+	O image(this O)(DH5AppImage addImage) { addImage.app(this); _image[addImage.name] = addImage; return cast(O)this; }
+	O removeImage(this O)(string[] names...) { foreach(name; names) _images.remove(name); return cast(O)this; }
+	O clearImages(this O)() { _images = null; return cast(O)this; }
+	unittest {	
+			/// TODO	
+	}
+
+/// Images of an app
+	DH5AppScript[string] _scripts;
+	O scripts(this O)(DH5AppScript[string] addScript) { foreach(name, script; addScript) this.script(name,script); return cast(O)this; }
+	O scripts(this O)(string[string] addScript) { foreach(name, script; addScript) this.script(name,script); return cast(O)this; }
+	O scripts(this O)(string name, DH5AppScript addScript) { addScript.app(this); _scripts[name] = addScript; return cast(O)this; }
+	O scripts(this O)(string name, string addScript) { _scripts[name] = H5AppScript(this).content(addScript); return cast(O)this; }
+	O scripts(this O)(DH5AppScript addScript) { addScript.app(this); _scripts[addScript.name] = addScript; return cast(O)this; }
+	O removeScripts(this O)(string[] names...) { foreach(name; names) _scripts.remove(name); return cast(O)this; }
+	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
+	unittest {	
+			/// TODO	
+	}
+	/// Pages of app
+	DH5AppPage[string] _pages;
+	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.pages(name,page); return cast(O)this; }
+	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name,page); return cast(O)this; }
+	O pages(this O)(string name, DH5AppPage newPage) { newPage.app(this); _pages[name] = newPage; return cast(O)this; }
+	O pages(this O)(string name, string newPage) { _pages[name] = H5AppPage(this).content(newPage); return cast(O)this; }
+	O page(this O)(DH5AppPage newPage) { newPage.app(this); _pages[newPage.name] = newPage; return cast(O)this; }	
+	O page(this O)(string name, DH5AppPage newPage) { newPage.app(this); _pages[newPage.name] = newPage; return cast(O)this; }
+	O removePages(this O)(string[] names...) { foreach(name; names) _pages.remove(name); return cast(O)this; }
+	O clearPages(this O)() { _pages = null; return cast(O)this; }
+	unittest {	
+			/// TODO	
+	}
+
+	/// Central request handler
+	O registerApp(this O)(URLRouter router) {
+		debug writeln("Register app -", this.rootPath);
+		router.get(this.rootPath ~ "*", &this.request);
+		router.post(this.rootPath ~ "*", &this.request);
+		return cast(O)this;
+	}
+	unittest {	
+			/// TODO	
+	}
+
+	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		auto path = req.path.replace(_rootPath, "");
-		auto pathItems = path.split("/");
+		writeln("HTMLApp");
+		/// Extract appPath from URL path
+		debug writeln(rootPath);
+		debug writeln(req);
+	  auto appPath = req.path.replace(rootPath~"/", "");
+		debug writeln("1-", appPath);
+		appPath = appPath.replace(rootPath, "");
+		debug writeln("2-", appPath);
+		auto pathItems = appPath.split("/");
+		debug writeln("3-", appPath);
+		debug writeln(pathItems.length, " ", pathItems);
 
-		if (pathItems.length > 0) {
+		/// Empty path -> index
+		if (pathItems.length == 0) { 
+			debug writeln("pathItems.length == ", pathItems.length);
+			debug writeln("Index? ");
+			debug writeln("Index? ", this);
+			debug writeln("Index? ", _index);
+			debug writeln("Index = ", this.index);
+			this.index.request(req, res); }
+		/// Short path -> direct pages
+		if (pathItems.length == 1) { 
+			debug writeln("pathItems.length == ", pathItems.length);
 			switch(pathItems[0]) {				
 				case "index":
-				case "start": _index.request(req, res); break;
-				default: 
-					string name;
-					if (pathItems.length > 1) {
-						auto type = pathItems[0];
-						name = pathItems[1..$].join("/").replace(".js", "");
-						switch(type) {
-							case "css": break;
-							case "img": break;
-							case "js": break;
-							case "page": if (name in _pages) _pages[name].request(req, res); break;
-							default: break;
-						}
-					}
-					else {
-						if (name in _pages) _pages[name].request(req, res);
-					}
-				break;
+				case "start": this.index.request(req, res); break;
+				// case "manifest.json": _index.request(req, res); break;
+				default: break; //error
 			}
 		}
-	}
-	override string toString() {
-		return (_content) ? _content : "";
+		if (pathItems.length > 1) { 
+			debug writeln("pathItems.length == ", pathItems.length);
+			switch(pathItems[0]) {			
+				case "css": 
+					if (appPath in _styles) _styles[name].request(req, res);
+					break;
+				case "img": 
+					if (appPath in _images) _images[name].request(req, res);
+					break;
+				case "js": 
+					if (appPath in _scripts) _scripts[name].request(req, res);
+					break;
+				default: 
+					if (appPath in _pages) _pages[name].request(req, res);
+					break;
+			}
+		}
+		debug writeln("Request not found"); // Error
 	}
 }
 auto H5App() { return new DH5App(); }
+auto H5App(string aName) { return new DH5App(aName); }
+auto H5App(string aName, string aRootPath) { return new DH5App(aName, aRootPath); }
 
 unittest {
+		/// TODO
 }

@@ -9,7 +9,5 @@ mixin(H5Short!("Br"));
 alias Br = H5Br;
 
 unittest {
-	
-
-	assert(H5Br == "<br>");
+	assert(Assert(H5Br,"<br>"));
 }

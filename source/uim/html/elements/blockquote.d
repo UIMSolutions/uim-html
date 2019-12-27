@@ -11,5 +11,5 @@ class DH5Blockquote : DH5Obj {
 mixin(H5Short!"Blockquote");
 
 unittest {
-	assert(H5Blockquote == "<blockquote></blockquote>");
+	assert(Assert(H5Blockquote,"<blockquote></blockquote>"));
 }

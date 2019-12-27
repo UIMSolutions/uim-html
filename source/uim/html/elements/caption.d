@@ -8,5 +8,5 @@ class DH5Caption : DH5Obj {
 mixin(H5Short!"Caption");
 
 unittest {
-	assert(H5Caption == "<caption></caption>");
+	assert(Assert(H5Caption,"<caption></caption>"));
 }

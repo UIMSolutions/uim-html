@@ -8,7 +8,5 @@ class DH5Iframe : DH5Obj {
 mixin(H5Short!"Iframe");
 
 unittest {
-	
-	
-	assert(H5Iframe == "<iframe></iframe>");
+	assert(Assert(H5Iframe, "<iframe></iframe>"));
 }

@@ -7,8 +7,6 @@ class DH5Footer : DH5Obj {
 }
 mixin(H5Short!"Footer");
 
-unittest {
-	
-	
-	assert(H5Footer == "<footer></footer>");
+unittest {	
+	assert(Assert(H5Footer,"<footer></footer>"));
 }

@@ -1,15 +1,29 @@
 {
 	"name": "uim-html",
 	"authors": [ "UI Manufaktur Team" ],
-	"description": "D Library for embedded HTML5",
+	"description": "A D library for creating HTML5 projects",
 	"copyright": "Copyright © 2019, UI Manufaktur UG",
 	"license": "Apache 2.0",
 	"targetType": "library",
 	"dependencies": {
-		"vibe-d": "==0.8.5",
-		"uim-core": "==0.19.9",
-		"uim-oop": "==0.19.9",
-		"uim-web": "==0.19.9",
-		"uim-javascript": "==0.19.9"
-	}
+		"vibe-d": "~>0.8.5"
+	},
+	"sourcePaths": [
+		"../uim-core",
+		"../uim-oop",
+		"../uim-web",
+		"../uim-css",
+		"../uim-json",
+		"../uim-javascript",
+		"./"
+	],
+	"importPaths": [
+		"../uim-core",
+		"../uim-oop",
+		"../uim-web",
+		"../uim-css",
+		"../uim-json",
+		"../uim-javascript",
+		"./"
+	]
 }

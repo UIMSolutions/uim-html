@@ -18,5 +18,5 @@ class DH5Dl : DH5Obj {
 mixin(H5Short!"Dl");
 
 unittest {
-	assert(H5Dl.toString == "<dl></dl>");
+	assert(Assert(H5Dl,"<dl></dl>"));
 }

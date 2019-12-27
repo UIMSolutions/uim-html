@@ -8,7 +8,5 @@ mixin(H5This!("link", null, null, true));
 mixin(H5Short!("Link"));
 
 unittest {
-	
-	
-	assert(H5Link == "<link>");
+	assert(Assert(H5Link,"<link>"));
 }

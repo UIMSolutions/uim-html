@@ -8,5 +8,5 @@ class DH5Meta : DH5Obj {
 mixin(H5Short!("Meta"));
 
 unittest {
-	assert(H5Meta == "<meta>");
+	assert(Assert(H5Meta, "<meta>"));
 }

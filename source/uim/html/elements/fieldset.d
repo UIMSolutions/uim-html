@@ -8,7 +8,5 @@ class DH5Fieldset : DH5Obj {
 mixin(H5Short!"Fieldset");
 
 unittest {
-	
-	
-	assert(H5Fieldset == "<fieldset></fieldset>");
+	assert(Assert(H5Fieldset,"<fieldset></fieldset>"));
 }

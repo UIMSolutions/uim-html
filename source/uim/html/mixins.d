@@ -197,3 +197,34 @@ O "~name~"(this O)(string[] classes, string[string] attributes, string content) 
 O "~name~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content...) { _"~name~" = new "~className~"(classes, attributes, content); return cast(O)this; }
  ";
 }
+
+template XPropertyAA(string name) {
+	const char[] Name = capitalize(name);
+	const char[] XPropertyAA = `
+	string[string] _`~name~`; 
+	string[string] `~name~`() { return _`~name~`; }
+	O clear`~Name~`(this O)() { _`~name~` = _`~name~`.clear; return cast(O)this; }
+	O remove`~Name~`(this O)(string name) { _`~name~`.remove(name); return cast(O)this; }
+	O `~name~`(this O)(string name, string value) { _`~name~`[name] = value; return cast(O)this; }
+	O `~name~`(this O)(string[string] values) { foreach(k, v; values) _`~name~`[k] = v; return cast(O)this; }`;
+}
+
+template XPropertyArray(string name) {
+	const char[] Name = capitalize(name);
+	const char[] XPropertyArray = `
+	string[] _`~name~`; 
+	string[] `~name~`() { return _`~name~`; }
+	O clear`~Name~`(this O)() { _`~name~` = null; return cast(O)this; }
+	O remove`~Name~`(this O)(string value) { _`~name~` = _`~name~`.sub(value); return cast(O)this; }
+	O `~name~`(this O)(string value) { _`~name~` = _`~name~`.add(value, true); return cast(O)this; }
+	O `~name~`(this O)(string[] values) { _`~name~` = _`~name~`.add(values, true); return cast(O)this; }`;
+}
+
+template XPropertyString(string name) {
+	const char[] Name = capitalize(name);
+	const char[] XPropertyString = `
+	string _`~name~`; 
+	string `~name~`() { return _`~name~`; }
+	O clear`~Name~`(this O)() { _`~name~` = ""; return cast(O)this; }
+	O `~name~`(this O)(string value) { _`~name~` ~= value; return cast(O)this; }`;
+}

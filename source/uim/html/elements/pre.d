@@ -10,5 +10,5 @@ class DH5Pre : DH5Obj {
 mixin(H5Short!"Pre");
 
 unittest {
-	assert(H5Pre == "<pre></pre>");
+	assert(Assert(H5Pre,"<pre></pre>"));
 }

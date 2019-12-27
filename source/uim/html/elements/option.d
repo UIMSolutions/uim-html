@@ -15,8 +15,6 @@ enum option_modes : string {
 }
 
 unittest {
-	
-	
-	assert(H5Option == "<option></option>");
+	assert(Assert(H5Option,"<option></option>"));
 }
 

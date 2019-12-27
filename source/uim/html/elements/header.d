@@ -8,7 +8,5 @@ class DH5Header : DH5Obj {
 mixin(H5Short!"Header");
 
 unittest {
-	
-	
-	assert(H5Header == "<header></header>");
+	assert(Assert(H5Header,"<header></header>"));
 }

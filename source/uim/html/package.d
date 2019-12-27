@@ -6,27 +6,29 @@ public import std.string;
 public import std.conv;
 public import std.array;
 public import std.traits;
+public import std.uuid;
 
 public import vibe.d;
 
+// uim libraries
+public import uim.core;
+public import uim.oop;
+public import uim.web;
+public import uim.css;
+public import uim.json;
+public import uim.javascript;
+
+// own modules
 public import uim.html.mixins;
+public import uim.html.convert;
 public import uim.html.h5;
 public import uim.html.obj;
 public import uim.html.apps;
 
-public import uim.core;
-public import uim.oop;
-public import uim.web;
-// public import uim.css;
-//public import uim.js;
-public import uim.javascript;
-
-public import uim.html.components;
 public import uim.html.core;
 public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
-public import uim.html.snippets;
 
 string h5Doctype = "<!doctype html>";
 
@@ -162,13 +164,21 @@ auto HTML(string tag, bool single = false)(string[] classes) { return (single) ?
 auto HTML(string tag)(string content) { return "<"~tag~">"~content~"</"~tag~">"; }
 auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class=\""~classes.unique.join(" ")~"\">"~content~"</"~tag~">"; }
 
+/*
 unittest {
-	assert(HTML!"div" == "<div />");
-	assert(HTML!("input", true) == "<input>");
-	assert(HTML!"div"(["aClass"]) == "<div class=\"aClass\" />");
-	assert(HTML!"div"(["aClass", "aClass"]) == "<div class=\"aClass\" />");
-	assert(HTML!"div"(["aClass", "bClass"]) == "<div class=\"aClass bClass\" />");
-	assert(HTML!("input", true)(["aClass"]) == "<input class=\"aClass\">");
-	assert(HTML!"div"("someContent") == "<div>someContent</div>");
-	assert(HTML!"div"(["aClass"], "someContent") == "<div class=\"aClass\">someContent</div>");
-}
+	assert(Assert(HTML!"div","<div />");
+	assert(Assert(HTML!("input", true),"<input>");
+	assert(Assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
+	assert(Assert(HTML!"div"(["aClass", "aClass"]),"<div class=\"aClass\" />");
+	assert(Assert(HTML!"div"(["aClass", "bClass"]),"<div class=\"aClass bClass\" />");
+	assert(Assert(HTML!("input", true)(["aClass"]),"<input class=\"aClass\">");
+	assert(Assert(HTML!"div"("someContent"),"<div>someContent</div>");
+	assert(Assert(HTML!"div"(["aClass"], "someContent"),"<div class=\"aClass\">someContent</div>");
+}*/
+
+bool Assert(DH5Obj h5, string txt) { 
+	if (h5 == txt) return true;
+	debug writeln("Wrong? -> "~h5.toString); return false;  }
+bool Assert(DH5 h5, string txt) { 
+	if (h5.toString == txt) return true;
+	debug writeln("Wrong? -> "~h5.toString); return false; }

@@ -45,21 +45,20 @@ class DH5Obj {
 //	this(DH5Obj[] content...) { this().content(content); }
 	
 	 public void _init() {
-		 _css = null;
+		_css = CSSRules;
 		_classes = null;
 		_attributes = null;
 		_html = [];
-		 _js = null;
+		_js = null;
 	}
 	
 	mixin(TProperty!("bool", "single", "false"));
 	mixin(TProperty!("string", "tag"));
 	mixin(TProperty!("string", "id"));
-	mixin(TProperty!("string", "css"));
 	mixin(TProperty!("DH5Obj[]", "html"));
 
-	protected string[] _js; 
-	@property string js(this O)() { return _js.join(""); }
+	protected string _js; 
+	@property string js() { return _js; }
 	O js(this O)(string[] codes...) { foreach(c; codes) _js ~= c; return cast(O)this; }
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
@@ -76,8 +75,8 @@ class DH5Obj {
 
 	// Attributes
 	string attribute(string name) { return _attributes[name]; }
-	 O attribute(this O)(string name, string value) { if (value.length > 0) _attributes[name] = value; else _attributes.remove(name); return cast(O)this; }
-	 O attribute(this O)(string name, bool value) { if (value) attribute(name, "true"); else _attributes.remove(name); return cast(O)this; }
+	O attribute(this O)(string name, string value) { if (value.length > 0) _attributes[name] = value; else _attributes.remove(name); return cast(O)this; }
+	O attribute(this O)(string name, bool value) { if (value) attribute(name, "true"); else _attributes.remove(name); return cast(O)this; }
 //	O attribute(this O)(string[string] values) { foreach(k, v; values) _attributes[k] = v; return cast(O)this; }
 	
 	 O accesskey(this O)(string value) { if (value.length > 0) attributes["accesskey"] = value; return cast(O)this; }
@@ -97,7 +96,6 @@ class DH5Obj {
 	override bool opEquals(Object value) { return super.opEquals(value); }
 
 	bool opEquals(string html) { return toString == html; }
-	bool opEquals(DH5Obj value) { return toString == value.toString; }
 
 	void opIndexAssign(T)(T value, string key) { _attributes[key] = "%s".format(value); }
 	void opIndexAssign(bool value, string key) { _attributes[key] = "%s".format((value) ? "true" : "false"); }
@@ -113,47 +111,47 @@ class DH5Obj {
 		else return null;
 	}
 
-	 O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
-	 O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c; return cast(O)this; }
-	 O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
+	O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c; return cast(O)this; }
+	O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
 	
-	 O opCall(this O)(string[] someClasses) { add(someClasses); return cast(O)this; }
-	 O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
-	 O opCall(this O)(string[] someContent...) { foreach(c; someContent) add(c); return cast(O)this; }
-	 O opCall(this O)(DH5Obj[] someContent...) { add(someContent); return cast(O)this; }
-	 O opCall(this O)(DH5Obj[] someContent) { add(someContent); return cast(O)this; }
-	 O opCall(this O)(DH5 someContent) { add(someContent.objs); return cast(O)this; }
-	 O opCall(this O)(DJS code) { this.js(code); return cast(O)this; }
+	DCSSRules _css;
+	DCSSRules css() { return _css; }
+	O clearCss(this O)() { _css = CSSRules; return cast(O)this; }
+	O css(this O)(string aSelector, string name, string value) { return this.css(CSSRule(aSelector, name, value)); }
+	O css(this O)(string aSelector, string[string] someDeclarations) { return this.css(CSSRule(aSelector, someDeclarations)); }
+	O opCall(this O)(DCSSRule aRule) { return this.css(aRule); }
+	O opCall(this O)(DCSSRules aRules) { return this.css(aRules);  }
+	O css(this O)(DCSSRule aRule) { _css(aRule); return cast(O)this; }
+	O css(this O)(DCSSRules aRules) { _css(aRules); return cast(O)this; }
+	unittest {}
 
-	 O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
-	 O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
-	 O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
-	 O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
-	 O add(this O)(DH5Obj[] someContent) { foreach(c; someContent) _html ~= c; return cast(O)this; }
-	 O add(this O)(DH5 someContent) { _html ~= someContent.objs; return cast(O)this; }
+	O opCall(this O)(string[] someClasses) { add(someClasses); return cast(O)this; }
+	O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
+	O opCall(this O)(string[] someContent...) { foreach(c; someContent) add(c); return cast(O)this; }
+	O opCall(this O)(DH5Obj[] someContent...) { add(someContent); return cast(O)this; }
+	O opCall(this O)(DH5Obj[] someContent) { add(someContent); return cast(O)this; }
+	O opCall(this O)(DH5 someContent) { add(someContent.objs); return cast(O)this; }
+	O opCall(this O)(DJS code) { this.js(code); return cast(O)this; }
+	unittest {}
+
+	O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
+	O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
+	O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
+	O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
+	O add(this O)(DH5Obj[] someContent) { foreach(c; someContent) _html ~= c; return cast(O)this; }
+	O add(this O)(DH5 someContent) { _html ~= someContent.objs; return cast(O)this; }
 
 	 O clear(this O)() { 
-		_css = "";
+		_css = CSSRules;
 		_html = [];
 		_js = "";
 		return cast(O)this;
 	}
-	 O clearCss(this O)() { 
-		_css = "";
-		return cast(O)this;
-	}
-	 O clearContent(this O)() { 
-		_html = [];
-		return cast(O)this;
-	}
-	 O clearHtml(this O)() { 
-		_html = [];
-		return cast(O)this;
-	}
-	 O clearJs(this O)() { 
-		_js = "";
-		return cast(O)this;
-	}
+	O clearContent(this O)() { _html = []; return cast(O)this; }
+	O clearHtml(this O)() { _html = []; return cast(O)this; }
+	O clearJs(this O)() { _js = ""; return cast(O)this; }
+
 	/* accesskey - specifies a shortcut key to activate/focus an element. */
 	//	mixin(H5Attribute("accesskey"));
 	//	// className (class) - Specifies one or more classnames for an element (refers to a class in a style sheet)
@@ -178,12 +176,6 @@ class DH5Obj {
 	//title 	Specifies extra information about an element
 	//translate 	Specifies whether the content of an element should be translated or not
 	
-	
-	//	@property JS js() { return _js; }
-	//	@property DH5Obj html() { return _html; }
-	//	@property DCSS css() { return _css; }
-
-
 	 bool isBoolAttribute(string name) {
 		if (name in [
 				"async":true, 
@@ -242,7 +234,7 @@ class DH5Obj {
 	}
 
 	 string toCSS() {
-		if (_css.length > 0) return doubleTag("style", _css);
+		if (auto result = _css.toString) return doubleTag("style", result);
 		return null;
 	}
 	 string toHTML() {

@@ -8,8 +8,6 @@ class DH5Cite : DH5Obj {
 mixin(H5Short!"Cite");
 
 unittest {
-	
-
-	assert(H5Cite == "<cite></cite>");
+	assert(Assert(H5Cite,"<cite></cite>"));
 }
 

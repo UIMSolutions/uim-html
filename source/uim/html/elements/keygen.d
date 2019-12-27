@@ -8,7 +8,5 @@ class DH5Keygen : DH5Obj {
 mixin(H5Short!"Keygen");
 
 unittest {
-	
-	
-	assert(H5Keygen == "<keygen></keygen>");
+	assert(Assert(H5Keygen,"<keygen></keygen>"));
 }

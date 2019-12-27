@@ -8,5 +8,5 @@ class DH5Samp : DH5Obj {
 mixin(H5Short!"Samp");
 
 unittest {
-	assert(H5Samp == "<samp></samp>");
+	assert(Assert(H5Samp,"<samp></samp>"));
 }

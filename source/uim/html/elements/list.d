@@ -13,7 +13,7 @@ class DH5List : DH5Obj {
 
 	//	DH5LI[] _items; // listitems
 //	@property void items(DH5LI[] values) { _items = values; }
-//	@property DH5LI[] items() { return _items; }ss	
+//	@property DH5LI[] items() { return _items; }	
 	override string toString() {
 //		foreach(i, item; _items) add(item);
 //		
@@ -23,7 +23,5 @@ class DH5List : DH5Obj {
 mixin(H5Short!"List");
 
 unittest {
-	
-	
-	assert(H5List == "<list></list>");
+	assert(Assert(H5List,"<list></list>"));
 }

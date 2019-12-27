@@ -8,7 +8,5 @@ class DH5Legend : DH5Obj {
 mixin(H5Short!"Legend");
 
 unittest {
-	
-	
-	assert(H5Legend == "<legend></legend>");
+	assert(Assert(H5Legend,"<legend></legend>"));
 }

@@ -8,6 +8,6 @@ class DH5Div : DH5Obj {
 mixin(H5Short!"Div");
 
 unittest {
-	assert(H5Div == "<div></div>");
-	assert(H5Div("content") == `<div>content</div>`);
+	assert(Assert(H5Div,"<div></div>"));
+	assert(Assert(H5Div("content"),`<div>content</div>`));
 }

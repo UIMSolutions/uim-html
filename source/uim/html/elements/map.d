@@ -8,7 +8,5 @@ class DH5Map : DH5Obj {
 mixin(H5Short!"Map");
 
 unittest {
-	
-	
-	assert(H5Map == "<map></map>");
+	assert(Assert(H5Map,"<map></map>"));
 }

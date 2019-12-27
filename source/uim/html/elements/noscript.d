@@ -8,7 +8,5 @@ class DH5Noscript : DH5Obj {
 mixin(H5Short!"Noscript");
 
 unittest {
-	
-	
-	assert(H5Noscript == "<noscript></noscript>");
+	assert(Assert(H5Noscript,"<noscript></noscript>"));
 }

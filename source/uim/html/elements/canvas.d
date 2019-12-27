@@ -19,8 +19,8 @@ class DH5Canvas : DH5Obj {
 	auto addColorStop(this O)(string varName, string stop, string color) { 
 		this.js(varName~".addColorStop("~stop~","~color~");"); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).addColorStop("name", "0", "black") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');name.addColorStop(0,black);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).addColorStop("name", "0", "black"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');name.addColorStop(0,black);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// Arc() 	Creates an arc/curve (used to create circles, or parts of circles)
@@ -42,8 +42,8 @@ class DH5Canvas : DH5Obj {
 	auto clearRect(this O)(int x, int y, int width, int height) { this.js(pre~"clearRect(%s,%s,%s,%s);".format(x, y, width, height)); return cast(O)this; }
 	auto clearRect(this O)(string x, string y, string width, string height) { this.js(pre~"clearRect(%s,%s,%s,%s);".format(x, y, width, height)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).clearRect("0","0","10","10") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.clearRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).clearRect("0","0","10","10"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.clearRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// Clip() 	Clips a region of any shape and size from the original canvas
@@ -63,16 +63,16 @@ class DH5Canvas : DH5Obj {
 	auto createLinearGradient(this O)(string varName, string x0, string y0, string x1, string y1) { 
 		this.js("var %s=context.createLinearGradient(%s,%s,%s,%s);".format(varName, x0, y0, x1, y1)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).createLinearGradient("name", "0", "0", "10", "10") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');var name=context.createLinearGradient(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).createLinearGradient("name", "0", "0", "10", "10"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');var name=context.createLinearGradient(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// CreatePattern() 	Repeats a specified element in the specified direction
 	auto createPattern(this O)(string varName,string image,string mode) { 
 		this.js("var %s=context.createPattern(%s,%s);".format(varName, image, mode)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).createPattern("name", "image", "mode") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');var name=context.createPattern(image,mode);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).createPattern("name", "image", "mode"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');var name=context.createPattern(image,mode);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// CreateRadialGradient() 	Creates a radial/circular gradient (to use on canvas content)
@@ -81,8 +81,8 @@ class DH5Canvas : DH5Obj {
 	auto createRadialGradient(this O)(string varName, string x0, string y0, string r0, string x1, string y1, string r1) { 
 		this.js("var %s=context.createRadialGradient(%s,%s,%s,%s,%s,%s);".format(varName, x0, y0, r0, x1, y1, r1)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).createRadialGradient("name", "0", "0", "5", "10", "10", "100") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');var name=context.createRadialGradient(0,0,5,10,10,100);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).createRadialGradient("name", "0", "0", "5", "10", "10", "100"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');var name=context.createRadialGradient(0,0,5,10,10,100);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// ----- Image Drawing
@@ -100,15 +100,15 @@ class DH5Canvas : DH5Obj {
 	auto fillRect(this O)(int x, int y, int width, int height) { this.js(pre~"fillRect(%s,%s,%s,%s);".format(x, y, width, height)); return cast(O)this; }
 	auto fillRect(this O)(string x, string y, string width, string height) { this.js(pre~"fillRect(%s,%s,%s,%s);".format(x, y, width, height)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).fillRect("0","0","10","10") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.fillRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).fillRect("0","0","10","10"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.fillRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// FillStyle 	Sets or returns the color, gradient, or pattern used to fill the drawing
 	auto fillStyle(this O)(string style) { this.js(pre~"fillStyle="~style~";"); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).fillStyle("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.fillStyle=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).fillStyle("value"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.fillStyle=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 	// FillText() 	Draws "filled" text on the canvas
 	auto fillText(this O)(string text, double x, double y) { this.js(pre~"fillText(%s,%s,%s);".format(text, x, y)); return cast(O)this; }
@@ -206,32 +206,32 @@ class DH5Canvas : DH5Obj {
 	auto shadowBlur(this O)(uint blur) { this.js(pre~"shadowBlur=%s;".format(blur)); return cast(O)this; }
 	auto shadowBlur(this O)(string blur) { this.js(pre~"shadowBlur=%s;".format(blur)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).shadowBlur("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.shadowBlur=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).shadowBlur("value"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.shadowBlur=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// ShadowColor 	Sets or returns the color to use for shadows
 	// auto shadowColor(this O)() { add(pre~"shadowColor"); return this; }
 	auto shadowColor(this O)(string color) { this.js(pre~"shadowColor=%s;".format(color)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).shadowColor("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.shadowColor=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).shadowColor("value"),  `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.shadowColor=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// ShadowOffsetX 	Sets the horizontal distance of the shadow from the shape
 	auto shadowOffsetX(this O)(int value) { this.js(pre~"shadowOffsetX=%s;".format(value)); return cast(O)this; }
 	auto shadowOffsetX(this O)(string value) { this.js(pre~"shadowOffsetX=%s;".format(value)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).shadowOffsetX("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.shadowOffsetX=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).shadowOffsetX("value"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.shadowOffsetX=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// ShadowOffsetY 	Sets the vertical distance of the shadow from the shape
 	auto shadowOffsetY(this O)(int value) { this.js(pre~"shadowOffsetY=%s;".format(value)); return cast(O)this; }
 	auto shadowOffsetY(this O)(string value) { this.js(pre~"shadowOffsetY=%s;".format(value)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).shadowOffsetY("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.shadowOffsetY=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).shadowOffsetY("value"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.shadowOffsetY=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// SetTransform() 	Resets the current transform to the identity matrix. Then runs transform()
@@ -245,14 +245,14 @@ auto setTransform(this O)(string a, string b, string c, string d, string e, stri
 	auto strokeRect(this O)(int x, int y, int width, int height) { this.js(pre~"strokeRect(%s,%s,%s,%s);".format(x,y,width,height)); return cast(O)this;	}
 	auto strokeRect(this O)(string x, string y, string width, string height) { this.js(pre~"strokeRect(%s,%s,%s,%s);".format(x,y,width,height)); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).strokeRect("0","0","10","10") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.strokeRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).strokeRect("0","0","10","10"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.strokeRect(0,0,10,10);}window.addEventListener("load",drawtest,true);</script>`));
 	}
 	//	StrokeStyle 	Sets or returns the color, gradient, or pattern used for strokes
 	auto strokeStyle(this O)(string style) { this.js(pre~"strokeStyle="~style~";"); return cast(O)this; }
 	unittest {
-		assert(H5Canvas("test", [""]).strokeStyle("value") == `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
-		`var context=canvas.getContext('2d');context.strokeStyle=value;}window.addEventListener("load",drawtest,true);</script>`);
+		assert(Assert(H5Canvas("test", [""]).strokeStyle("value"), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
+		`var context=canvas.getContext('2d');context.strokeStyle=value;}window.addEventListener("load",drawtest,true);</script>`));
 	}
 
 	// StrokeText() 	Draws text on the canvas (no fill)

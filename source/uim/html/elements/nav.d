@@ -12,6 +12,6 @@ class DH5Nav : DH5Obj {
 mixin(H5Short!"Nav");
 
 unittest {
-	assert(H5Nav == "<nav></nav>");
+	assert(Assert(H5Nav,"<nav></nav>"));
 }
  

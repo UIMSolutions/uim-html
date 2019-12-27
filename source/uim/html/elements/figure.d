@@ -12,5 +12,5 @@ class DH5Figure : DH5Obj {
 mixin(H5Short!"Figure");
 
 unittest {
-	assert(H5Figure == "<figure></figure>");
+	assert(Assert(H5Figure, "<figure></figure>"));
 }

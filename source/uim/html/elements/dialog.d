@@ -8,7 +8,5 @@ class DH5Dialog : DH5Obj {
 mixin(H5Short!"Dialog");
 
 unittest {
-	
-
-	assert(H5Dialog == "<dialog></dialog>");
+	assert(Assert(H5Dialog,"<dialog></dialog>"));
 }

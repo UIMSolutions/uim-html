@@ -8,7 +8,5 @@ class DH5Shadow : DH5Obj {
 mixin(H5Short!"Shadow");
 
 unittest {
-	
-	
-	assert(H5Shadow == "<shadow></shadow>");
+	assert(Assert(H5Shadow, "<shadow></shadow>"));
 }

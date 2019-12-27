@@ -8,7 +8,5 @@ class DH5Colgroup : DH5Obj {
 mixin(H5Short!"Colgroup");
 
 unittest {
-	
-
-	assert(H5Colgroup == "<colgroup></colgroup>");
+	assert(Assert(H5Colgroup,"<colgroup></colgroup>"));
 }

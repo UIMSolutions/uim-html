@@ -8,7 +8,5 @@ class DH5S : DH5Obj {
 mixin(H5Short!"S");
 
 unittest {
-	
-	
-	assert(H5S == "<s></s>");
+	assert(Assert(H5S,"<s></s>"));
 }

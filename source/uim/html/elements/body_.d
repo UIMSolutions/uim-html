@@ -11,5 +11,5 @@ class DH5Body : DH5Obj {
 mixin(H5Short!"Body");
 
 unittest {
-	assert(H5Body == "<body></body>");
+	assert(Assert(H5Body,"<body></body>"));
 }

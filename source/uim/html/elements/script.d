@@ -8,5 +8,5 @@ class DH5Script : DH5Obj {
 mixin(H5Short!"Script");
 
 unittest {
-	assert(H5Script == "<script></script>");
+	assert(Assert(H5Script,"<script></script>"));
 }

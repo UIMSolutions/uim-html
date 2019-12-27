@@ -2,6 +2,7 @@
 
 import uim.html;
 
+// List item
 class DH5Li : DH5Obj {
 	mixin(H5This!"li");
 
@@ -10,7 +11,5 @@ class DH5Li : DH5Obj {
 mixin(H5Short!"Li");
 
 unittest {
-	
-	
-	assert(H5Li == "<li></li>");
+	assert(Assert(H5Li, "<li></li>"));
 }

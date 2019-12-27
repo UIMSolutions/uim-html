@@ -8,5 +8,5 @@ class DH5Rtc : DH5Obj {
 mixin(H5Short!"Rtc");
 
 unittest {
-	assert(H5Rtc == "<rtc></rtc>");
+	assert(Assert(H5Rtc, "<rtc></rtc>"));
 }

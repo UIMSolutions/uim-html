@@ -8,5 +8,5 @@ class DH5Object : DH5Obj {
 mixin(H5Short!"Object");
 
 unittest {
-	assert(H5Object == "<object></object>");
+	assert(Assert(H5Object, "<object></object>"));
 }

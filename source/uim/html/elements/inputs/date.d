@@ -2,13 +2,12 @@
 
 import uim.html;
 
-class DH5InputDATE : DH5Input {
+class DH5InputDate : DH5Input {
 	mixin(H5This!("Input", null, `["type":"date"]`, true)); 
 }
+mixin(H5Short!"InputDate");
 
 unittest {
-	
-
-	assert((new DH5InputDATE).toString == "<input type=\"date\">");
+	assert(Assert(new DH5InputDate, `<input type="date">`));
 }
 

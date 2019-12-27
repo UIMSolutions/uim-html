@@ -73,7 +73,5 @@ enum Methods : string {
 string toString(Methods value) { return cast(string)value; }
 
 unittest {
-	
-	
-	assert(H5Form == "<form></form>");
+	assert(Assert(H5Form,"<form></form>"));
 }

@@ -28,8 +28,8 @@ unittest {
 	
 
 	mixin(H5Test!("H5Audio", "audio"));
-	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
-	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]).content("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
+	assert(Assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]),`<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`)); 
+	assert(Assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]).content("Your browser does not support the audio tag."),`<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`)); 
 }
 
 /**

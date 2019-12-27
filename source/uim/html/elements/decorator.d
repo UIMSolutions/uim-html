@@ -8,5 +8,5 @@ class DH5Decorator : DH5Obj {
 mixin(H5Short!"Decorator");
 
 unittest {
-	assert(H5Decorator == "<decorator></decorator>");
+	assert(Assert(H5Decorator,"<decorator></decorator>"));
 }

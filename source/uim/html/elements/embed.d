@@ -8,7 +8,5 @@ class DH5Embed : DH5Obj {
 mixin(H5Short!"Embed");
 
 unittest {
-	
-	
-	assert(H5Embed == "<embed></embed>");
+	assert(Assert(H5Embed,"<embed></embed>"));
 }

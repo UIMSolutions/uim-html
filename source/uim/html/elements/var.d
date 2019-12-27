@@ -8,5 +8,5 @@ class DH5Var : DH5Obj {
 mixin(H5Short!"Var");
 
 unittest {
-	assert(H5Var == "<var></var>");
+	assert(Assert(H5Var,"<var></var>"));
 }

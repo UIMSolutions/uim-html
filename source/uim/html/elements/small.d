@@ -8,8 +8,6 @@ class DH5Small : DH5Obj {
 mixin(H5Short!"Small");
 
 unittest {
-	
-	
-	assert(H5Small == "<small></small>");
+	assert(Assert(H5Small,"<small></small>"));
 }
 

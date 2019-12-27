@@ -8,5 +8,5 @@ class DH5Progress : DH5Obj {
 mixin(H5Short!"Progress");
 
 unittest {
-	assert(H5Progress == "<progress></progress>");
+	assert(Assert(H5Progress, "<progress></progress>"));
 }
