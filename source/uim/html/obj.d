@@ -63,17 +63,18 @@ class DH5Obj {
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
 	/// Classes of HTML element
-	string[] _classes;
-	auto classes() { return _classes; }
-	O classes(this O)(string[] value...) { foreach(c; value) if (c.length > 0) _classes ~= c.strip; return cast(O)this; }
+	mixin(XStringArray!"classes");
+	unittest {
+		/// TODO
+	}
 
 	/// Attributes of HTML element
-	string[string] _attributes;
-	 auto attributes() { return _attributes; }
-	 O attributes(this O)(string key, string value) { _attributes[key] = value; return cast(O)this; }
-	 O attributes(this O)(string[string] values) { foreach(k, v; values) _attributes[k] = v; return cast(O)this; }
+	mixin(XStringAA!"attributes");
+	unittest {
+		/// TODO
+	}
 
-	// Attributes
+	// Attribute
 	string attribute(string name) { return _attributes[name]; }
 	O attribute(this O)(string name, string value) { if (value.length > 0) _attributes[name] = value; else _attributes.remove(name); return cast(O)this; }
 	O attribute(this O)(string name, bool value) { if (value) attribute(name, "true"); else _attributes.remove(name); return cast(O)this; }

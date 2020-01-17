@@ -95,7 +95,7 @@ template EnumValue(string EnumType, string name, string target = "class", string
 	@property auto "~name~"("~EnumType~" value) { put("~target~", "~name~"); return this; }
 	 void put("~EnumType~" value) { "~name~"(value); }
 	 void put(string key, "~EnumType~" value) { put(key, value.toString); }
-	 void add("~EnumType~"[string] values) { foreach(k, v; values) put(k, v); }
+	 void add("~EnumType~"[string] values) { foreach(kv; values.byKeyValue) put(kv.key, kv.value); }
 	 void add("~EnumType~" value) { "~name~"(value); }
 	 void put("~EnumType~"[string] values) { foreach(k, v; values) put(k, v); }
 ";

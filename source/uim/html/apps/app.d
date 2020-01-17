@@ -20,19 +20,21 @@ class DH5App {
 	/// central layout for page
 	DH5AppLayout _layout;
 	auto layout() { if (_layout) return _layout; return null; }
-	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout; return cast(O)this; }
+	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout.app(this); return cast(O)this; }
 	unittest {
 		/// TODO		
 	}
 
 	/// Rootpath of app
-	string _rootPath;
+	string _rootPath = "/";
 	auto  rootPath() { return _rootPath; }
 	O rootPath(this O)(string newPath) { _rootPath = newPath; if (uim.core.datatypes.string_.endsWith(_rootPath, "/")) _rootPath = _rootPath[0..$-1]; return cast(O)this; }
 	unittest {
 		assert(H5App.rootPath("/test/path").rootPath == "/test/path");		
 		assert(H5App.rootPath("/test/path/").rootPath == "/test/path");		
 	}
+	auto path() { return _rootPath~"/index"; }
+
 
 	/// Index startpage
 	DH5AppPage _index;
@@ -42,6 +44,11 @@ class DH5App {
 	unittest {		
 		/// TODO
 	}
+
+	mixin(XStringAA!"use");
+	unittest {
+		/// TODO 
+	}	
 
 	/// Styles (CSS) of an app
 	DH5AppStyle[string] _styles;
@@ -73,24 +80,35 @@ class DH5App {
 
 /// Images of an app
 	DH5AppScript[string] _scripts;
-	O scripts(this O)(DH5AppScript[string] addScript) { foreach(name, script; addScript) this.script(name,script); return cast(O)this; }
-	O scripts(this O)(string[string] addScript) { foreach(name, script; addScript) this.script(name,script); return cast(O)this; }
-	O scripts(this O)(string name, DH5AppScript addScript) { addScript.app(this); _scripts[name] = addScript; return cast(O)this; }
+	auto scripts() { return  _scripts; }
+	O scripts(this O)(DH5AppScript[string] addScript) { foreach(kv; addScript.byKeyValue) this.script(kv.key,kv.value); return cast(O)this; }
+	O scripts(this O)(string[string] addScript) { foreach(kv; addScript.byKeyValue) this.script(kv.key,kv.value); return cast(O)this; }
+	O scripts(this O)(string name, DH5AppScript addScript) { _scripts[name] = addScript.app(this); return cast(O)this; }
 	O scripts(this O)(string name, string addScript) { _scripts[name] = H5AppScript(this).content(addScript); return cast(O)this; }
-	O scripts(this O)(DH5AppScript addScript) { addScript.app(this); _scripts[addScript.name] = addScript; return cast(O)this; }
+	O scripts(this O)(DH5AppScript addScript) { addScript.app(this); _scripts[addScript.name] = addScript.app(this); return cast(O)this; }
+
+	O script(this O)(DH5AppScript addScript) { this.script(addScript.name, addScript); return cast(O)this; }
+	O script(this O)(string name, DH5AppScript addScript) { _scripts[name] = addScript.app(this); return cast(O)this; }
+
 	O removeScripts(this O)(string[] names...) { foreach(name; names) _scripts.remove(name); return cast(O)this; }
 	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {	
 			/// TODO	
 	}
+
 	/// Pages of app
-	DH5AppPage[string] _pages;
+	protected DH5AppPage[string] _pages;
+	@property DH5AppPage[string] pages() { return _pages; }
+	O pages(this O)(DH5AppPage[] newPages) { foreach(page; newPages) this.page(page); return cast(O)this; }
 	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.pages(name,page); return cast(O)this; }
-	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name,page); return cast(O)this; }
+	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 	O pages(this O)(string name, DH5AppPage newPage) { newPage.app(this); _pages[name] = newPage; return cast(O)this; }
-	O pages(this O)(string name, string newPage) { _pages[name] = H5AppPage(this).content(newPage); return cast(O)this; }
+	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { _pages[name] = H5AppPage(this).content(newPage).parameters(pageParameters); return cast(O)this; }
+
+	O page(this O)(string name, string newPage, string[string] pageParameters = null) { _pages[name] = H5AppPage(this, name).content(newPage).parameters(pageParameters); return cast(O)this; }
 	O page(this O)(DH5AppPage newPage) { newPage.app(this); _pages[newPage.name] = newPage; return cast(O)this; }	
 	O page(this O)(string name, DH5AppPage newPage) { newPage.app(this); _pages[newPage.name] = newPage; return cast(O)this; }
+
 	O removePages(this O)(string[] names...) { foreach(name; names) _pages.remove(name); return cast(O)this; }
 	O clearPages(this O)() { _pages = null; return cast(O)this; }
 	unittest {	
@@ -102,6 +120,7 @@ class DH5App {
 		debug writeln("Register app -", this.rootPath);
 		router.get(this.rootPath ~ "*", &this.request);
 		router.post(this.rootPath ~ "*", &this.request);
+
 		return cast(O)this;
 	}
 	unittest {	
@@ -112,51 +131,68 @@ class DH5App {
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
 		writeln("HTMLApp");
 		/// Extract appPath from URL path
-		debug writeln(rootPath);
-		debug writeln(req);
-	  auto appPath = req.path.replace(rootPath~"/", "");
-		debug writeln("1-", appPath);
-		appPath = appPath.replace(rootPath, "");
-		debug writeln("2-", appPath);
+		debug writeln("req.path -", req.path);
+		debug writeln("rootPath -", rootPath);
+	  auto appPath = req.path.replace(rootPath, "");
+		debug writeln("appPath  -", appPath);
 		auto pathItems = appPath.split("/");
-		debug writeln("3-", appPath);
-		debug writeln(pathItems.length, " ", pathItems);
+		while ((pathItems.length > 0) && (pathItems[0].length == 0)) pathItems = pathItems[1..$];
+		debug writeln("pathItems-", pathItems);
 
-		/// Empty path -> index
-		if (pathItems.length == 0) { 
-			debug writeln("pathItems.length == ", pathItems.length);
-			debug writeln("Index? ");
-			debug writeln("Index? ", this);
-			debug writeln("Index? ", _index);
-			debug writeln("Index = ", this.index);
-			this.index.request(req, res); }
 		/// Short path -> direct pages
 		if (pathItems.length == 1) { 
-			debug writeln("pathItems.length == ", pathItems.length);
-			switch(pathItems[0]) {				
+			debug writeln("pathItems.length == 1");
+			auto objName = pathItems[0];
+			debug writeln("objName = ", objName);
+			switch(objName) {				
 				case "index":
 				case "start": this.index.request(req, res); break;
-				// case "manifest.json": _index.request(req, res); break;
-				default: break; //error
+				case "manifest":
+				case "manifest.json": break; /// TODO
+				default: 
+					if (objName in _pages) _pages[objName].request(req, res);
+					if (objName in _styles) _styles[objName].request(req, res);
+					if (objName in _images) _images[objName].request(req, res);
+					if (objName in _scripts) _scripts[objName].request(req, res);
+					// Call Error handler
+					/// TODO
+					break; //error
 			}
 		}
 		if (pathItems.length > 1) { 
-			debug writeln("pathItems.length == ", pathItems.length);
-			switch(pathItems[0]) {			
+			debug writeln("pathItems.length > 1");
+			auto folder = pathItems[0];
+			auto objName = pathItems[1..$].join("/");
+			debug writeln("objName = ", objName);
+			switch(folder) {			
 				case "css": 
-					if (appPath in _styles) _styles[name].request(req, res);
+					debug writeln("css");
+					if (objName in _styles) _styles[objName].request(req, res);
 					break;
 				case "img": 
-					if (appPath in _images) _images[name].request(req, res);
+					debug writeln("img");
+					if (objName in _images) _images[objName].request(req, res);
 					break;
 				case "js": 
-					if (appPath in _scripts) _scripts[name].request(req, res);
+					debug writeln("js");
+					if (objName in _scripts) {
+						debug writeln("Looking for a script in exiting: ", _scripts.keys);
+						_scripts[objName].request(req, res);
+					}
+					break;
+				case "page": 
+					debug writeln("page");
+					if (objName in _pages) _pages[objName].request(req, res);
+					break;
+				case "data": 
+					debug writeln("data");
+					/// TODO
 					break;
 				default: 
-					if (appPath in _pages) _pages[name].request(req, res);
 					break;
 			}
 		}
+		if (appPath in _pages) _pages[appPath].request(req, res);
 		debug writeln("Request not found"); // Error
 	}
 }

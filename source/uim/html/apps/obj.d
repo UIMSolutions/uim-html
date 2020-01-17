@@ -6,7 +6,7 @@ class DH5AppObj {
 	this() { }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
-	this(DH5App anApp, string aName) { this().app(anApp).name(aName); }
+	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
 	/// App of obj
 	DH5App _app;
@@ -26,6 +26,9 @@ class DH5AppObj {
 		assert(H5AppPage.name("test").name == "test");
 	}
 
+	auto path() { 
+		if (_app) return app.rootPath ~ name;
+		return "/"~name; }
 
 	/// Mimetype of obj
 	string _mimetype;
@@ -43,6 +46,16 @@ class DH5AppObj {
 		/// TODO
 	}
 
+	/// Page parameters - will be used to communicate between components
+	mixin(XStringAA!"parameters");
+	unittest {
+		assert(H5AppPage.parameters == null);
+		assert(H5AppPage.parameters(["x":"y"]).parameters == ["x":"y"]);
+		assert(H5AppPage.parameters("x", "y").parameters == ["x":"y"]);
+	}
+	unittest {
+		/// TODO
+	}
 
 	/// Content of obj
 	string _content;

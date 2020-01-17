@@ -3,10 +3,10 @@ module uim.html.apps.script;
 import uim.html;
 
 class DH5AppScript : DH5AppObj {
-	this() { super(); this.mimetype("application/Script"); }
-	this(DH5App anApp) { this().app(anApp).mimetype("application/Script"); }
-	this(string aName) { this().name(aName).mimetype("application/Script"); }
-	this(DH5App anApp, string aName) { this().app(anApp).name(aName).mimetype("application/Script"); }
+	this() { super(); this.mimetype("application/javascript"); }
+	this(DH5App anApp) { this().app(anApp).mimetype("application/javascript"); }
+	this(string aName) { this().name(aName).mimetype("application/javascript"); }
+	this(DH5App anApp, string aName) { this().app(anApp).name(aName).mimetype("application/javascript"); }
 
 	/// TODO bind variables
 }
