@@ -59,7 +59,7 @@ class DH5AppObj {
 
 	/// Content of obj
 	string _content;
-	auto content() { return _content; }
+	string content() { return _content; }
 	O content(this O)(string addContent) { _content ~= addContent; _cached = true; return cast(O)this; }
 	O clearContent(this O)() { _content = null; _cached = false; return cast(O)this; }
 	unittest {
