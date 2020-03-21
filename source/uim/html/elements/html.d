@@ -10,11 +10,10 @@ import uim.html;
 class DH5Html : DH5Obj {
 	mixin(H5This!"html");
 
-	 override public void _init() {
+	override public void _init() {
 		super._init;
 
-		_head = H5Head;
-		_body = H5Body;
+		this.content(H5Head, H5Body);
 	}
 
 	 void Add(T...)(T values) { _body.Add(values); }
@@ -41,21 +40,29 @@ class DH5Html : DH5Obj {
 				break;
 		}
 		return cast(O)this;
-	};
+	}
 
 	alias add = typeof(super).add;  		
 
-	mixin(TProperty!("DH5Head", "head"));
-	mixin(TProperty!("DH5Body", "body"));
+	auto head() { return cast(DH5Head)_html[0]; }
+	auto head(this O)(DH5Head newHead) { _html[0] = newHead; return cast(O)this;}
+	auto head(this O)(string[] classes) { _html[0](classes); return cast(O)this;}
+	auto head(this O)(string[string] attributes) { _html[0](attributes); return cast(O)this;}
+	auto head(this O)(string addContent) { _html[0](addContent); return cast(O)this;}
+
+	auto body_() { return cast(DH5Body)_html[1]; }
+	auto body_(this O)(DH5Body newBody) { _html[1] = newBody; return cast(O)this; }
+	auto body_(this O)(string[] classes) { _html[1](classes); return cast(O)this;}
+	auto body_(this O)(string[string] attributes) { _html[1](attributes); return cast(O)this;}
+	auto body_(this O)(string addContent) { _html[1](addContent); return cast(O)this;}
 		
-	 void opBinary(string op, T...)(T values) { static if ((op == "+") || (op == "~")) Add(values); }
+	void opBinary(string op, T...)(T values) { static if ((op == "+") || (op == "~")) Add(values); }
 
-	 O scripts(this O)(string[] links) { _body.scripts(links); return cast(O)this; }
-	 O script(this O, T...)(T values) { _body.script(values);  return cast(O)this; }
+	O scripts(this O)(string[] links) { _body.scripts(links); return cast(O)this; }
+	O script(this O, T...)(T values) { _body.script(values);  return cast(O)this; }
 
-	 override string toString() { 
-		_html = [_head, _body]; 
-		return h5Doctype~super.toString; }
+	override string toString() { 
+	return h5Doctype~super.toString; }
 }
 mixin(H5Short!"Html");
 

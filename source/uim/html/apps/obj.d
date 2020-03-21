@@ -8,6 +8,14 @@ class DH5AppObj {
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
+	SysTime _accessTime, _modificationTime;
+	
+	bool opEquals(string txt) { return toString == txt; }
+
+	O sourceFile(this O)(string path) { 	
+		std.file.getTimes(path, _accessTime, _modificationTime);
+		return cast(O)this; }
+	
 	/// App of obj
 	DH5App _app;
 	auto app() { return _app; }
@@ -59,9 +67,13 @@ class DH5AppObj {
 
 	/// Content of obj
 	string _content;
-	string content() { return _content; }
-	O content(this O)(string addContent) { _content ~= addContent; _cached = true; return cast(O)this; }
-	O clearContent(this O)() { _content = null; _cached = false; return cast(O)this; }
+	string content() { 
+		// debug writeln("H5AppObj: string content()");
+		return _content; }
+	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent)_content ~= c.toString; return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent)_content ~= c.toString; return cast(O)this; }
+	O content(this O)(string addContent) { _content ~= addContent; return cast(O)this; }
+	O clearContent(this O)() { _content = null; return cast(O)this; }
 	unittest {
 		assert(H5AppObj.content("test").content == "test");
 		assert(H5AppObj.content("double").content("test").content == "doubletest");
@@ -71,6 +83,7 @@ class DH5AppObj {
 
 	/// Response to HTTP request
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
+		debug writeln("H5AppObj: void request()");
 		res.writeBody(toString, _mimetype); 
 	}
 	unittest {
@@ -80,17 +93,19 @@ class DH5AppObj {
 	string _toString;
 	/// Export to string
 	override string toString() {
+		debug writeln("H5AppObj: override string toString()");
 		if (cached) {
 			if (!_toString) _toString = this.content; 
 			return _toString; 
 		}
-		return this.content; 
+		return _toString; 
 	}
 }
 auto H5AppObj() { return new DH5AppObj(); }
 auto H5AppObj(DH5App anApp) { return new DH5AppObj(anApp); }
 auto H5AppObj(string aName) { return new DH5AppObj(aName); }
 auto H5AppObj(DH5App anApp, string aName) { return new DH5AppObj(anApp, aName); }
-	unittest {
-		/// TODO
-	}
+
+unittest {
+	/// TODO
+}

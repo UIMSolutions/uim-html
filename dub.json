@@ -1,13 +1,24 @@
 {
-	"name": "uim-html",
-	"authors": [ "UI Manufaktur Team" ],
-	"description": "A D library for creating HTML5 projects",
+	"authors": [
+		"UI Manufaktur Team"
+	],
 	"copyright": "Copyright © 2019, UI Manufaktur UG",
-	"license": "Apache 2.0",
-	"targetType": "library",
 	"dependencies": {
+		"arsd-official:htmltotext": "~>5.2.4",
 		"vibe-d": "~>0.8.6"
 	},
+	"description": "A D library for creating HTML5 projects",
+	"importPaths": [
+		"../uim-core",
+		"../uim-oop",
+		"../uim-web",
+		"../uim-css",
+		"../uim-json",
+		"../uim-javascript",
+		"./"
+	],
+	"license": "Apache 2.0",
+	"name": "uim-html",
 	"sourcePaths": [
 		"../uim-core",
 		"../uim-oop",
@@ -17,13 +28,5 @@
 		"../uim-javascript",
 		"./"
 	],
-	"importPaths": [
-		"../uim-core",
-		"../uim-oop",
-		"../uim-web",
-		"../uim-css",
-		"../uim-json",
-		"../uim-javascript",
-		"./"
-	]
+	"targetType": "library"
 }

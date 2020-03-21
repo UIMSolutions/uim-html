@@ -7,6 +7,11 @@ import uim.html;
 	this() { super(); }
 	this(DH5App anApp) { this().app(anApp); }
 
+	string[] _headClasses;
+	string[string] _headAttributes;
+	string[] _bodyClasses;
+	string[string] _bodyAttributes;
+
 	mixin(XString!("preHead"));
 	mixin(XString!("postHead"));
 	mixin(XString!("preContent"));
@@ -16,86 +21,93 @@ import uim.html;
 	mixin(OString!("title"));
 	
 	string[] _metas;
-	O metas(this O)(string value, string[] values...) { _metas ~= value; _metas ~= values; return cast(O)this;}
-	O metas(this O)(string[] values) { _metas ~= values; return cast(O)this;}
-	string[] metas() { 
-		string[] results = _metas;
-		return results;
-	 }
+	string[] metas() { return _metas; }
+	O metas(this O)(string value, string[] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(DH5Meta[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(DH5Meta[] addMetas...) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[string] value, string[string][] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this; }
+
+	O meta(this O)(string[string] addValues) { this.meta(H5Meta(addValues)); return cast(O)this; }
+	O meta(this O)(DH5Meta addMeta) { _metas ~= addMeta.toString; return cast(O)this; }
+
+	O clearMetas(this O)() { _metas = null; return cast(O)this; }
 	unittest {
 		/// TODO
 	}
 
 	string[] _styles;
-	O styles(this O)(string value, string[] values...) { _styles ~= value; _styles ~= values; return cast(O)this;}
-	O styles(this O)(string[] values) { _styles ~= values; return cast(O)this;}
-	string[] styles() { 
-		string[] results = _styles;
-		return results;
-	 }
+	string[] styles() { return  _styles; }
+	O styles(this O)(DH5Link link, DH5Link[] links...) { this.style(link).styles(links); return cast(O)this;}
+	O styles(this O)(DH5Link[] links) { foreach(link; links) this.style(link); return cast(O)this;}
+	O styles(this O)(string link, string[] links...) { this.style(link).styles(links); return cast(O)this;}
+	O styles(this O)(string[] links) { foreach(link; links) this.style(link); return cast(O)this;}
+
+	O style(this O)(string link) { this.style(H5Link(["href":link, "rel":"stylesheet"])); return cast(O)this;}
+	O style(this O)(DH5Link link) { _styles ~= link.toString; return cast(O)this;}
+
 	unittest {
 		/// TODO
 	}
 
 	string[] _libraries;
-	O library(this O)(string libName, string libVersion, string libFile) { _libraries ~= `<script src="/lib/%s/%s/%s"></script>`.format(libName, libVersion, libFile); return cast(O)this;}
-	O libraries(this O)(string value, string[] values...) { _libraries ~= value; _libraries ~= values; return cast(O)this;}
-	O libraries(this O)(string[] values) { _libraries ~= values; return cast(O)this;}
-	string[] libraries() { 
-		string[] results = _libraries;
-		return results;
-	 }
+	string[] libraries() { return _libraries; }
+	O libraries(this O)(string link, string[] links...) { this.library(link).libraries(links); return cast(O)this;}
+	O libraries(this O)(string[] links) { foreach(l; links) this.library(l); return cast(O)this;}
+
+	O library(this O)(string libName, string libVersion, string libFile) { this.library("/lib/%s/%s/%s".format(libName, libVersion, libFile)); return cast(O)this;}
+	O library(this O)(string link) { this.library(H5Script(["src":link])); return cast(O)this; }
+	O library(this O)(DH5Script link) { _libraries ~= link.toString; return cast(O)this; }
 	unittest {
-		/// TODO
+		// assert(H5AppLayout.)
 	}
 
 	mixin(XString!("headPart"));
 	mixin(XString!("bodyPart"));
 
+	/// central layout for page
+	DH5AppLayout _layout;
+	auto layout() { if (_layout) return _layout; return null; }
+	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout.app(this.app); return cast(O)this; }
+	unittest {
+		/// TODO		
+	}
+
 	string opCall() { return toString(null); }
 	string opCall(string content, string[string] parameters = null) { return toString(content, parameters); }
 	string toString(string content, string[string] parameters = null) {
-		auto result = "<!doctype html>";
-		result ~= `<html lang="`~("lang" in parameters ? parameters["lang"] : "en")~`">`;
+	/*	auto result = "<!doctype html>";
+		result ~= ``;
 		result ~= `<html><head>`~preHead;
 		result ~= postHead~`</head>`;
 		result ~= `<body>`~_preContent~content~_postContent~`</body></html>`;
 //		return result;
+*/
+	auto result = H5Html
+	.attributes("lang", ("lang" in parameters ? parameters["lang"] : "en"))
+	.attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
+	.head(_headClasses)
+	.head(_headAttributes)
+	.head(this.metas.join()~("metas" in parameters ? parameters["metas"] : ""))
+	.head("title" in parameters ? H5Title(parameters["title"]).toString : H5Title(this.title).toString)
+	.head(this.styles.join()~("styles" in parameters ? parameters["styles"] : ""))
+	.head("style" in parameters ? H5Style(parameters["style"]).toString : "")
+	.body_(_bodyClasses)
+	.body_(_bodyAttributes)
+	.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
+	.body_(this.libraries.join()~("libraries" in parameters ? parameters["libraries"] : ""))
+	.body_("script" in parameters ? H5Script(parameters["script"]).toString : "");
 
-	return `<!DOCTYPE html>
-<html>
-  <head>
-    `~this.metas.join()~("metas" in parameters ? parameters["metas"] : "")~`
-    `~this.styles.join()~("styles" in parameters ? parameters["styles"] : "")~`
-    <title>`~("title" in parameters ? parameters["title"] : this.title)~`</title>
-  </head>
-  <body>
-    `~content~`    
-    `~this.libraries.join()~("libraries" in parameters ? parameters["libraries"] : "")~`
-  </body>
-</html>`;
-
-/*    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>*/
+		return result.toString;
 	}
 	override string toString() {
 		return toString(null, null);
+	}
+	unittest {
+		assert(H5AppLayout == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
+		writeln(H5AppLayout()("xxx"));
+		assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}
 }
 auto H5AppLayout() { return new DH5AppLayout(); }

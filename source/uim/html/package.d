@@ -5,6 +5,7 @@ public import std.stdio;
 public import std.string;
 public import std.conv;
 public import std.array;
+public import std.file;
 public import std.traits;
 public import std.uuid;
 
@@ -182,3 +183,9 @@ bool Assert(DH5Obj h5, string txt) {
 bool Assert(DH5 h5, string txt) { 
 	if (h5.toString == txt) return true;
 	debug writeln("Wrong? -> "~h5.toString); return false; }
+
+string toString(DH5Obj[] elements) {
+	string result;
+	foreach(element; elements) result ~= element.toString();
+	return result;
+}

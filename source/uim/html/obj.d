@@ -63,15 +63,22 @@ class DH5Obj {
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
 	/// Classes of HTML element
-	mixin(XStringArray!"classes");
+	protected string[] _classes;
+	auto classes() { return _classes.sort.array; }
+	O classes(this O)(string[] addValues...) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
+	O classes(this O)(string[] addValues) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
+	O clearClasses(this O)() { _classes = []; return cast(O)this; }
 	unittest {
-		/// TODO
+		assert(H5Obj.classes(["a", "b"]).classes == ["a", "b"]); 
+		assert(H5Obj.classes(["b", "a"]).classes == ["a", "b"]); 
+		assert(H5Obj.classes("a", "b").classes == ["a", "b"]); 
+		assert(H5Obj.classes("b", "a").classes == ["a", "b"]); 
 	}
 
 	/// Attributes of HTML element
 	mixin(XStringAA!"attributes");
 	unittest {
-		/// TODO
+		assert(H5Obj.attributes(["a": "b"]).attributes == ["a": "b"]); 
 	}
 
 	// Attribute
@@ -115,6 +122,7 @@ class DH5Obj {
 	O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _html ~= c; return cast(O)this; }
 	O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
+	O clearContent(this O)() { _html = []; return cast(O)this; }
 	
 	DCSSRules _css;
 	DCSSRules css() { return _css; }
@@ -149,7 +157,6 @@ class DH5Obj {
 		_js = "";
 		return cast(O)this;
 	}
-	O clearContent(this O)() { _html = []; return cast(O)this; }
 	O clearHtml(this O)() { _html = []; return cast(O)this; }
 	O clearJs(this O)() { _js = ""; return cast(O)this; }
 
@@ -239,33 +246,28 @@ class DH5Obj {
 		return null;
 	}
 	 string toHTML() {
-		string result;
+		string first;
 
 		// firstTag
-		result ~= "<"~_tag;
+		first ~= "<"~_tag;
 
 		if (!_id) if ("id" in _attributes) _id = _attributes["id"];
-		if (_id.length > 0) result ~= ` id="`~_id~`"`;
+		if (_id.length > 0) first ~= ` id="`~_id~`"`;
 		_attributes.remove("id");
 
 		if (!_classes) if ("class" in _attributes) _classes = _attributes["class"].split(" ");
 		if (_classes) {
 			string[] cls;
 			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
-			result ~= ` class="`~cls.join(" ")~`"`;
+			first ~= ` class="`~cls.join(" ")~`"`;
 		}
 		_attributes.remove("class");	
 
-		if (_attributes) result ~= attsToHTML;
-		result ~= ">";
+		if (_attributes) first ~= attsToHTML;
+		first ~= ">";
+		if (_single) return first;
 
-		// secondTag
-		if (!_single){
-			string inner;
-			foreach(h5; _html) inner ~= h5.toString;
-			result ~= inner~endTag(_tag);
-		}
-		return result;
+		return first~_html.toString~endTag(_tag);
 	}
 	 string toJS() {
 		if (_js.length > 0) return doubleTag("script", this.js);
@@ -280,7 +282,7 @@ class DH5Obj {
 	}
 }
  auto H5Obj(string content) { return new DH5Obj(content); }
- auto H5Obj(DH5Obj content...) { return new DH5Obj(content); }
+ auto H5Obj(DH5Obj[] content...) { return new DH5Obj(content); }
 
  auto H5Obj(string id, string[] classes) { return new DH5Obj(id, classes); }
  auto H5Obj(string id, string[] classes, string content) { return new DH5Obj(id, classes, content); }
