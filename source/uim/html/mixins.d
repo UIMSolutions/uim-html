@@ -2,6 +2,48 @@
 
 import uim.html;
 
+template H5Calls(const char[] left, const char[] right = "") {
+	const char[] r = (right.length > 0 ? right : "D"~left);
+	const char[] H5Calls = "
+auto "~left~"(string content) { return new "~r~"(content); }
+auto "~left~"(DH5Obj[] content...) { return new "~r~"(content); }
+auto "~left~"(DH5 content) { return new "~r~"(content); }
+
+auto "~left~"(string id, string content) { return new "~r~"(id, content); }
+auto "~left~"(string id, DH5Obj[] content...) { return new "~r~"(id, content); }
+auto "~left~"(string id, DH5 content) { return new "~r~"(id, content); }
+
+auto "~left~"(string id, string[] classes) { return new "~r~"(id, classes); }
+auto "~left~"(string id, string[] classes, string content) { return new "~r~"(id, classes, content); }
+auto "~left~"(string id, string[] classes, DH5Obj[] content...) { return new "~r~"(id, classes, content); }
+auto "~left~"(string id, string[] classes, DH5 content) { return new "~r~"(id, classes, content); }
+
+auto "~left~"(string id, string[string] attributes) { return new "~r~"(id, attributes); }
+auto "~left~"(string id, string[string] attributes, string content) { return new "~r~"(id, attributes, content); }
+auto "~left~"(string id, string[string] attributes, DH5Obj[] content...) { return new "~r~"(id, attributes, content); }
+auto "~left~"(string id, string[string] attributes, DH5 content) { return new "~r~"(id, attributes, content); }
+
+auto "~left~"(string id, string[] classes, string[string] attributes) { return new "~r~"(id, classes, attributes); }
+auto "~left~"(string id, string[] classes, string[string] attributes, string content) { return new "~r~"(id, classes, attributes, content); }
+auto "~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { return new "~r~"(id, classes, attributes, content); }
+auto "~left~"(string id, string[] classes, string[string] attributes, DH5 content) { return new "~r~"(id, classes, attributes, content); }
+
+auto "~left~"(string[] classes) { return new "~r~"(classes); }
+auto "~left~"(string[] classes, string content) { return new "~r~"(classes, content); }
+auto "~left~"(string[] classes, DH5Obj[] content...) { return new "~r~"(classes, content); }
+auto "~left~"(string[] classes, DH5 content) { return new "~r~"(classes, content); }
+
+auto "~left~"(string[string] attributes) { return new "~r~"(attributes); }
+auto "~left~"(string[string] attributes, string content) { return new "~r~"(attributes, content); }
+auto "~left~"(string[string] attributes, DH5Obj[] content...) { return new "~r~"(attributes, content); }
+auto "~left~"(string[string] attributes, DH5 content) { return new "~r~"(attributes, content); }
+
+auto "~left~"(string[] classes, string[string] attributes) { return new "~r~"(classes, attributes); }
+auto "~left~"(string[] classes, string[string] attributes, string content) { return new "~r~"(classes, attributes, content); }
+auto "~left~"(string[] classes, string[string] attributes, DH5Obj[] content...) { return new "~r~"(classes, attributes, content); }
+auto "~left~"(string[] classes, string[string] attributes, DH5 content) { return new "~r~"(classes, attributes, content); }";
+}
+
 auto h5Methods(const char[] left, const char[] right) {
 	return "
 "~left~"(string content) { return "~right~"(content); }
@@ -43,10 +85,10 @@ auto h5Methods(const char[] left, const char[] right) {
 "~left~"(string[] classes, string[string] attributes, DH5 content) { return "~right~"(classes, attributes, content); }";
 }
 
-template H5This(string tag, string classes = null, string attributes = null, bool single = false) {
-	const char[] strTag = `this.tag("`~tag.toLower~`");`;
+template H5This(string tag, string[] classes = null, string attributes = null, bool single = false) {
+	const char[] strTag = (tag.length > 0) ? `this.tag("`~tag.toLower~`");` : "";
 	const char[] strSingle = (single) ? "this.single(true);" : "";
-	const char[] strClasses = (classes) ? "this.classes("~classes~");" : "";
+	const char[] strClasses = (classes) ? "this.classes(["~classes.map!(a => `"`~a~`"`).join(",")~"]);" : "";
 	const char[] strAttributes = (attributes) ? "this.attributes("~attributes~");" : "";
 	const char[] initial = strTag~strSingle~strClasses~strAttributes;
 
