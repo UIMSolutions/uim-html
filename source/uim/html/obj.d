@@ -82,9 +82,11 @@ class DH5Obj {
 	}
 
 	// Attribute
-	string attribute(string name) { return _attributes[name]; }
-	O attribute(this O)(string name, string value) { if (value.length > 0) _attributes[name] = value; else _attributes.remove(name); return cast(O)this; }
-	O attribute(this O)(string name, bool value) { if (value) attribute(name, "true"); else _attributes.remove(name); return cast(O)this; }
+	string attribute(string name) { return (name in _attributes? _attributes[name] :""); }
+	O attribute(this O)(string name, string value) { _attributes[name] = value; return cast(O)this; }
+	O attribute(this O)(string name, bool value) { if (value) attribute(name, "true"); else attribute(name, "false"); return cast(O)this; }
+	O removeAttribute(this O)(string name) { _attributes.remove(name); return cast(O)this; }
+	
 //	O attribute(this O)(string[string] values) { foreach(k, v; values) _attributes[k] = v; return cast(O)this; }
 	
 	 O accesskey(this O)(string value) { if (value.length > 0) attributes["accesskey"] = value; return cast(O)this; }
@@ -231,7 +233,13 @@ class DH5Obj {
 		foreach(key; _attributes.keys.sort) {
 			switch(key.toLower) {
 				case "id":
-				case "class": break;
+					this.id(_attributes[key]); 
+					_attributes.remove(key);
+					break;
+				case "class": 
+					this.classes(_attributes[key].split(" ")); 
+					_attributes.remove(key);
+					break;
 				default: 
 					if (isBoolAttribute(key)) items~=key;
 					else items~=key~`="`~_attributes[key]~`"`;
@@ -247,23 +255,19 @@ class DH5Obj {
 	}
 	 string toHTML() {
 		string first;
-
+		string attsHTML = attsToHTML;
 		// firstTag
 		first ~= "<"~_tag;
 
-		if (!_id) if ("id" in _attributes) _id = _attributes["id"];
 		if (_id.length > 0) first ~= ` id="`~_id~`"`;
-		_attributes.remove("id");
 
-		if (!_classes) if ("class" in _attributes) _classes = _attributes["class"].split(" ");
 		if (_classes) {
 			string[] cls;
 			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
 			first ~= ` class="`~cls.join(" ")~`"`;
 		}
-		_attributes.remove("class");	
 
-		if (_attributes) first ~= attsToHTML;
+		if (_attributes) first ~= attsHTML;
 		first ~= ">";
 		if (_single) return first;
 
@@ -279,6 +283,26 @@ class DH5Obj {
 		result ~= toHTML;
 		result ~= toJS;
 		return result;
+	}
+	/// generate HTML in pretty format
+	string toPretty(int intendSpace = 0, int step = 2) {
+		string result;
+		result = startTag(this.tag, this.attributes).indent(intendSpace);
+		if (!single) {
+			result ~= "\n";
+			foreach(obj; _html) result ~= obj.toPretty(intendSpace+step, step)~"\n";
+			result ~= endTag(this.tag).indent(intendSpace);
+		}
+		return result;
+	}
+	unittest {
+		/*
+		writeln(H5Obj.tag("div").toPretty);
+		writeln("---------");
+		writeln(H5Obj.tag("div")(H5Obj.tag("div")).toPretty);
+		writeln("---------");
+		writeln(H5Obj.tag("div")(H5Obj.tag("div")(H5Obj.tag("div"))).toPretty);
+		*/
 	}
 }
  auto H5Obj(string content) { return new DH5Obj(content); }
@@ -325,4 +349,12 @@ unittest {
 	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
+}
+
+string toPretty(DH5Obj[] objs, int intendSpace = 0, int step = 2) {
+	string result;
+	foreach(obj; objs) {
+		if (obj) result ~= obj.toPretty;
+	} 
+	return result;
 }

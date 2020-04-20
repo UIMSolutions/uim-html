@@ -68,10 +68,10 @@ class DH5AppObj {
 	/// Content of obj
 	string _content;
 	string content() { 
-		// debug writeln("H5AppObj: string content()");
+		// // debug // writeln("H5AppObj: string content()");
 		return _content; }
-	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent)_content ~= c.toString; return cast(O)this; }
-	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent)_content ~= c.toString; return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(string addContent) { _content ~= addContent; return cast(O)this; }
 	O clearContent(this O)() { _content = null; return cast(O)this; }
 	unittest {
@@ -83,7 +83,7 @@ class DH5AppObj {
 
 	/// Response to HTTP request
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		debug writeln("H5AppObj: void request()");
+		// debug // writeln("H5AppObj: void request()");
 		res.writeBody(toString, _mimetype); 
 	}
 	unittest {
@@ -94,11 +94,19 @@ class DH5AppObj {
 	/// Export to string
 	override string toString() {
 		debug writeln("H5AppObj: override string toString()");
+		debug writeln("Content...", this.content);
+		
 		if (cached) {
-			if (!_toString) _toString = this.content; 
+			if (_toString.length == 0) _toString = this.content; 
 			return _toString; 
 		}
-		return _toString; 
+		return this.content; 
+	}
+	unittest {
+		assert(H5AppObj.content("test").toString == "test");
+		assert(H5AppObj.content("double").content("test").toString == "doubletest");
+		assert(H5AppObj.content("double").content("test").clearContent.toString == "");
+		assert(H5AppObj.content("double").content("test").clearContent.content("test").toString == "test");
 	}
 }
 auto H5AppObj() { return new DH5AppObj(); }

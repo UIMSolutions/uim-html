@@ -2,15 +2,10 @@
 
 import uim.html;
 
-class DH5InputCheckbox : DH5Input {
-	mixin(H5This!"Input"); 
-
-	override string toString() {
-		this["TYPE"] = "checkbox";
-		return super.toString;
-	}
+class DH5Checkbox : DH5Input {
+	mixin(H5This!("Input", null, `["type":"checkbox"]`)); 
 }
-mixin(H5Short!"InputCheckbox");
+mixin(H5Short!"Checkbox");
 
 unittest {
 	

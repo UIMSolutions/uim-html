@@ -8,6 +8,21 @@ class DH5AppPage : DH5AppObj {
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
+	/// Language of page
+	string _lang = "en";
+	/// Get language of page
+	string lang() { return _lang; }
+	string language() { return _lang; }
+	/// Change language of page
+	O lang(this O)(string newLang) { _lang = newLang; return cast(O)this; }
+	O language(this O)(string newLang) { _lang = newLang; return cast(O)this; }
+	unittest {		
+			assert(H5App.lang("aLanguage").lang == "aLanguage");	
+			assert(H5App.lang("aLanguage").lang("otherLanguage").lang == "otherLanguage");
+			assert(H5App.language("aLanguage").language == "aLanguage");	
+			assert(H5App.language("aLanguage").language("otherLanguage").language == "otherLanguage");
+	}
+
 	/// Every page can has his own layout - Otherwise it will use central app layout
 	DH5AppLayout _layout;
 	auto layout() { 
@@ -17,11 +32,27 @@ class DH5AppPage : DH5AppObj {
 	}
 	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout; return cast(O)this; }
 	unittest {
-		auto ly = H5AppLayout;
-		assert(H5AppPage.content("xxx") == "xxx");
-		assert(H5AppPage.content("xxx").layout(ly) == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
+		//auto ly = H5AppLayout;
+		//assert(H5AppPage.content("xxx") == "xxx");
+		//assert(H5AppPage.content("xxx").layout(ly) == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}
 
+	string[] _metas;
+	string[] metas() { return _metas; }
+	O metas(this O)(string value, string[] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(DH5Meta[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(DH5Meta[] addMetas...) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[string] value, string[string][] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
+	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this; }
+
+	O meta(this O)(string[string] addValues) { this.meta(H5Meta(addValues)); return cast(O)this; }
+	O meta(this O)(DH5Meta addMeta) { _metas ~= addMeta.toString; return cast(O)this; }
+
+	O clearMetas(this O)() { _metas = null; return cast(O)this; }
+	unittest {
+		/// TODO
+	}
 	/// Page fragments
 	mixin(XStringAA!"fragments");
 	unittest {
@@ -30,25 +61,54 @@ class DH5AppPage : DH5AppObj {
 		assert(H5AppPage.fragments("x", "y").fragments == ["x":"y"]);
 	}
 
+	string[] _styles;
+	string[] styles() { return  _styles; }
+	O styles(this O)(DH5Link link, DH5Link[] links...) { this.style(link).styles(links); return cast(O)this;}
+	O styles(this O)(DH5Link[] links) { foreach(link; links) this.style(link); return cast(O)this;}
+	O styles(this O)(string link, string[] links...) { this.style(link).styles(links); return cast(O)this;}
+	O styles(this O)(string[] links) { foreach(link; links) this.style(link); return cast(O)this;}
+
+	O style(this O)(string link) { this.style(H5Link(["href":link, "rel":"stylesheet"])); return cast(O)this;}
+	O style(this O)(DH5Link link) { _styles ~= link.toString; return cast(O)this;}
+
+	unittest {
+		/// TODO
+	}
+
+	mixin(XString!("css"));
+
+	string[] _libraries;
+	string[] libraries() { return _libraries; }
+	O libraries(this O)(string link, string[] links...) { this.library(link).libraries(links); return cast(O)this;}
+	O libraries(this O)(string[] links) { foreach(l; links) this.library(l); return cast(O)this;}
+
+	O library(this O)(string link) { this.library(H5Script(["src":link])); return cast(O)this; }
+	O library(this O)(DH5Script link) { _libraries ~= link.toString; return cast(O)this; }
+	unittest {
+		// assert(H5AppLayout.)
+	}
+
+	mixin(XString!("script"));
+	
 	/// Export to string
 	override string toString() {
 		// if (_layout) return _layout.toString(this.content, this.parameters);
 		// return _content;
-		// debug writeln("H5Page: override string toString()");
+		// // debug // writeln("H5Page: override string toString()");
 		if (cached) {
-			// debug writeln("Cached");
+			// // debug // writeln("Cached");
 			if (_toString) return _toString;
-			if (this.content) { _toString = (this.layout ? this.layout.toString(this.content, this.parameters) : this.content); return _toString; }
+			if (this.content) { _toString = (this.layout ? this.layout.toString(this, this.parameters) : this.content); return _toString; }
 		}
 		// Not cached
-		// debug writeln("Not Cached");
-		debug writeln(this.content);
-		if (this.content) { return (this.layout ? this.layout.toString(this.content, this.parameters) : this.content); }
+		// // debug // writeln("Not Cached");
+		// // debug // writeln(this.content);
+		if (this.content) { return (this.layout ? this.layout.toString(this, this.parameters) : this.content); }
 		return _toString;
 	}
 	unittest {
-		writeln(`writeln(H5AppPage)`);
-		writeln(H5AppPage);
+		//// writeln(`// writeln(H5AppPage)`);
+		//// writeln(H5AppPage);
 	}
 }
 auto H5AppPage() { return new DH5AppPage(); }

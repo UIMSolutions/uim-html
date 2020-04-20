@@ -14,7 +14,6 @@ public import vibe.d;
 // uim libraries
 public import uim.core;
 public import uim.oop;
-public import uim.web;
 public import uim.css;
 public import uim.json;
 public import uim.javascript;
@@ -30,6 +29,7 @@ public import uim.html.core;
 public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
+public import uim.html.parser;
 
 string h5Doctype = "<!doctype html>";
 
@@ -179,13 +179,109 @@ unittest {
 
 bool Assert(DH5Obj h5, string txt) { 
 	if (h5 == txt) return true;
-	debug writeln("Wrong? -> "~h5.toString); return false;  }
+	// debug // writeln("Wrong? -> "~h5.toString); 
+	return false;  }
 bool Assert(DH5 h5, string txt) { 
 	if (h5.toString == txt) return true;
-	debug writeln("Wrong? -> "~h5.toString); return false; }
+	// debug // writeln("Wrong? -> "~h5.toString); 
+	return false; }
 
 string toString(DH5Obj[] elements) {
 	string result;
 	foreach(element; elements) result ~= element.toString();
 	return result;
+}
+
+string singleTag(string tag, string[string] attributes = null)
+{
+	return startTag(tag, attributes);
+}
+
+string doubleTag(string tag, string[string] attributes = null, string content = null)
+{
+	if (content.length > 0)
+		return startTag(tag, attributes) ~ content ~ endTag(tag);
+	return startTag(tag, attributes) ~ endTag(tag);
+}
+
+string doubleTag(string tag, string content)
+{
+	return startTag(tag) ~ content ~ endTag(tag);
+}
+
+string startTag(string tag, string[string] attributes = null)
+{
+	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">";
+}
+
+@safe string endTag(string tag)
+{
+	return "</" ~ tag ~ ">";
+}
+
+string attributesToHTML(string[string] attributes)
+{
+	string result = "";
+	auto keys = attributes.keys.sort;
+	foreach (k; keys)
+	{
+		auto v = attributes[k];
+		if (v.length == 0)
+			continue;
+		if (v == "false")
+			continue;
+		if (v == "true")
+			result ~= " " ~ k;
+		else
+			result ~= " " ~ k ~ "=\"" ~ v ~ "\"";
+	}
+	return result;
+}
+
+@safe string escapeToHTML(string test)
+{
+	string result;
+	foreach (c; test)
+	{
+		switch (c)
+		{
+		case '"':
+			result ~= "&quot;";
+			break;
+		case '&':
+			result ~= "&amp;";
+			break;
+		case '<':
+			result ~= "&lt;";
+			break;
+		case '>':
+			result ~= "&gt;";
+			break;
+		default:
+			result ~= c;
+		}
+	}
+	return result;
+}
+
+unittest
+{
+	assert(startTag("div") == "<div>");
+	assert(startTag("div", ["class": "active"]) == `<div class="active">`);
+
+	assert(endTag("div") == `</div>`);
+
+	assert(singleTag("input") == `<input>`);
+	assert(singleTag("input", ["value": "NextPage",
+				"hidden": "true"]) == `<input hidden value="NextPage">`);
+
+	assert(doubleTag("div") == `<div></div>`);
+	assert(doubleTag("div", ["value": "NextPage",
+				"hidden": "true"]) == `<div hidden value="NextPage"></div>`);
+	assert(doubleTag("div", ["value": "NextPage", "hidden": "true"],
+			"Hello World!") == `<div hidden value="NextPage">Hello World!</div>`);
+	assert(doubleTag("div", "Hello World!") == `<div>Hello World!</div>`);
+
+	assert(escapeToHTML("Me&You") == "Me&amp;You");
+	assert(escapeToHTML(`<Me&You&"MySelf">`) == "&lt;Me&amp;You&amp;&quot;MySelf&quot;&gt;");
 }

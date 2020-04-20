@@ -9,7 +9,7 @@ public:
 	mixin(H5This!("head"));
 
 	 DH5Head Meta(STRINGAA values) { this.add(H5Meta(values)); return this; }
-	 	DH5Head Base(STRINGAA values) { this.add(H5Base(values)); return this; }
+	DH5Head Base(STRINGAA values) { this.add(H5Base(values)); return this; }
 	 DH5Head Link(STRINGAA values) { this.add(H5Link(values)); return this; }
 	 DH5Head Link(string href, string media = "") { 
 		if (media) return Link(["rel":"stylesheet", "href": href, "type":"text/css", "media":media]);

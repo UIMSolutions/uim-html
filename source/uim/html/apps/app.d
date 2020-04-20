@@ -14,9 +14,26 @@ class DH5App {
 	string name() { return _name; }
 	/// Change name of app
 	O name(this O)(string newName) { _name = newName; return cast(O)this; }
-	unittest {		
-		/// TODO
+	unittest {	
+			assert(H5App.name("aName").name == "aName");	
+			assert(H5App.name("aName").name("otherName").name == "otherName");
 	}
+
+	/// Language of app
+	string _lang = "en";
+	/// Get language of app
+	string lang() { return _lang; }
+	string language() { return _lang; }
+	/// Change language of app
+	O lang(this O)(string newLang) { _lang = newLang; return cast(O)this; }
+	O language(this O)(string newLang) { _lang = newLang; return cast(O)this; }
+	unittest {		
+			assert(H5App.lang("aLanguage").lang == "aLanguage");	
+			assert(H5App.lang("aLanguage").lang("otherLanguage").lang == "otherLanguage");
+			assert(H5App.language("aLanguage").language == "aLanguage");	
+			assert(H5App.language("aLanguage").language("otherLanguage").language == "otherLanguage");
+	}
+
 
 	/// central layout for page
 	DH5AppLayout _layout;
@@ -51,19 +68,20 @@ class DH5App {
 		/// TODO 
 	}	
 
-	/// Manage objs of an app
+	/// Manage theobjs of an app
 	DH5AppObj[string] _objs;
 	auto objs() { return _objs; }
-	O objs(this O)(DH5AppObj[string] addObjs) { foreach(name, addObj; addObjs) this.obj(addObj); return cast(O)this; }
-	O objs(this O)(DH5AppObj[] addObjs...) { foreach(addObj; addObjs) this.obj(addObj); return cast(O)this; }
+	O objs(this O)(DH5AppObj[string] newObjects) { foreach(objName, objNew; newObjects) this.obj(objName, objNew); return cast(O)this; }
+	O objs(this O)(DH5AppObj[] newObjects...) { foreach(objNew; newObjects) this.obj(objNew); return cast(O)this; }
 
-	O obj(this O)(DH5AppObj addObj) { this.obj(addObj.name, addObj); return cast(O)this; }
-	O obj(this O)(string name, DH5AppObj addObj) { addObj.app(this); _objs[name] = addObj; return cast(O)this; }
+	O obj(this O)(DH5AppObj newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
+	O obj(this O)(string objName, DH5AppObj newObject) { newObject.app(this); _objs[objName] = newObject; return cast(O)this; }
 	
 	DH5AppObj opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
 
-	O remove(this O)(string[] names...) { foreach(name; names) _objs.remove(name); return cast(O)this; }
-	O clear(this O)(string name) { _objs = null; return cast(O)this; }
+	O remove(this O)(string[] names...) { foreach(objName; names) _objs.remove(objName); return cast(O)this; }
+	O remove(this O)(string[] names) { foreach(objName; names) _objs.remove(objName); return cast(O)this; }
+	O clear(this O)() { _objs = null; return cast(O)this; }
 	unittest {	
 			/// TODO	
 	}
@@ -82,18 +100,34 @@ class DH5App {
 			if (cast(DH5AppStyle)_objs[name]) return true; 
 		return false; }
 	unittest {
-		assert(H5App.style("test", "testContent").isStyle("test"));
-		assert(!H5App.page("test", "testContent").isStyle("test"));
+		assert(H5App.styles("test", "testContent").isStyle("test"));
+		assert(!H5App.pages("test", "testContent").isStyle("test"));
 	}
 
-	O styles(this O)(DH5AppStyle[] addStyles) { foreach(addStyle; addStyles) this.style(name, addStyle); return cast(O)this; }
-	O styles(this O)(DH5AppStyle[] addStyles...) { foreach(addStyle; addStyles) this.style(name, addStyle); return cast(O)this; }
-	O styles(this O)(DH5AppStyle[string] addStyles) { foreach(name, addStyle; addStyles) this.style(name, addStyle); return cast(O)this; }
-	O styles(this O)(string[string] addStyles) { foreach(name, addStyle; addStyles) this.style(name, addStyle); return cast(O)this; }
+	O data(this O)(DH5AppData[] addData) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
+	O data(this O)(DH5AppData[] addData...) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
 
-	O style(this O)(string name, string addStyle) { this.style(name, H5AppStyle(this, name).content(addStyle)); return cast(O)this; }
-	O style(this O)(DH5AppStyle addStyle) { this.style(addStyle.name, addStyle); return cast(O)this; }
-	O style(this O)(string name, DH5AppStyle addStyle) { this.obj(name, addStyle); return cast(O)this; }
+	O data(this O)(DH5AppData[string] addData) { foreach(name, d; addData) this.data(name, d); return cast(O)this; }
+	O data(this O)(string[string] addData) { foreach(name, d; addData) this.data(name, d); return cast(O)this; }
+
+	O data(this O)(string name, string addData) { this.data(name, DH5AppData(this, name).content(addData)); return cast(O)this; }
+	O data(this O)(string name, DH5AppData addData) { this.obj(name, addData); return cast(O)this; }
+
+	O removeData(this O)(DH5AppData[] items...) { foreach(item; items) if (item.name in _objs) if (auto obj = cast(DH5AppData)_objs[item.name]) this.remove(item.name); return cast(O)this; }
+	O removeData(this O)(string[] names...) { foreach(name; names) this.remove(name); return cast(O)this; }
+	O clearData(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppData)item) this.remove(name); return cast(O)this; }
+	unittest {	
+			/// TODO	
+	}
+
+	O styles(this O)(DH5AppStyle[] addStyles) { foreach(addStyle; addStyles) this.styles(addStyle.name, addStyle); return cast(O)this; }
+	O styles(this O)(DH5AppStyle[] addStyles...) { foreach(addStyle; addStyles) this.styles(addStyle.name, addStyle); return cast(O)this; }
+
+	O styles(this O)(DH5AppStyle[string] addStyles) { foreach(name, addStyle; addStyles) this.styles(name, addStyle); return cast(O)this; }
+	O styles(this O)(string[string] addStyles) { foreach(name, addStyle; addStyles) this.styles(name, addStyle); return cast(O)this; }
+
+	O styles(this O)(string name, string addStyle) { this.styles(name, H5AppStyle(this, name).content(addStyle)); return cast(O)this; }
+	O styles(this O)(string name, DH5AppStyle addStyle) { this.obj(name, addStyle); return cast(O)this; }
 
 	O removeStyles(this O)(string[] names...) { foreach(name; names) this.remove(name); return cast(O)this; }
 	O clearStyles(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppStyle)item) this.remove(name); return cast(O)this; }
@@ -111,26 +145,26 @@ class DH5App {
 		foreach(name, obj; _objs) if (auto result = cast(DH5AppImage)obj) results[name] = result;
 		return results; }
 	unittest {
-		assert("test" in H5App.image("test", "testContent").imagesByName());
-		assert("xyz" !in H5App.image("test", "testContent").imagesByName());
+		assert("test" in H5App.images("test", "testContent").imagesByName());
+		assert("xyz" !in H5App.images("test", "testContent").imagesByName());
 	}
 	bool isImage(string name) { 
 		if (name in _objs) 
 			if (cast(DH5AppImage)_objs[name]) return true; 
 		return false; }
 	unittest {
-		assert(H5App.image("test", "testContent").isImage("test"));
-		assert(!H5App.page("test", "testContent").isImage("test"));
+		assert(H5App.images("test", "testContent").isImage("test"));
+		assert(!H5App.pages("test", "testContent").isImage("test"));
 	}
 
-	O images(this O)(string[] addImages) { foreach(addImage; addImages) this.image(addImage); return cast(O)this; }
-	O images(this O)(string[] addImages...) { foreach(addImage; addImages) this.image(addImage); return cast(O)this; }
-	O images(this O)(DH5AppImage[string] addImages) { foreach(name, addImage; addImages) this.image(name, addImage); return cast(O)this; }
-	O images(this O)(string[string] addImages) { foreach(name, addImage; addImages) this.image(name, addImage); return cast(O)this; }
+	O images(this O)(string[] addImages) { foreach(addImage; addImages) this.images(addImage.name, addImages); return cast(O)this; }
+	O images(this O)(string[] addImages...) { foreach(addImage; addImages) this.images(addImage.name, addImages); return cast(O)this; }
 
-	O image(this O)(string name, string addImage) { this.image(name, H5AppImage(this, name).content(addImage)); return cast(O)this; }
-	O image(this O)(DH5AppImage addImage) { this.image(addImage.name, addImage); return cast(O)this; }
-	O image(this O)(string name, DH5AppImage addImage) { this.obj(name, addImage); return cast(O)this; }
+	O images(this O)(DH5AppImage[string] addImages) { foreach(name, addImage; addImages) this.images(name, addImage); return cast(O)this; }
+	O images(this O)(string[string] addImages) { foreach(name, addImage; addImages) this.images(name, addImage); return cast(O)this; }
+
+	O images(this O)(string name, string addImage) { this.images(name, H5AppImage(this, name).content(addImage)); return cast(O)this; }
+	O images(this O)(string name, DH5AppImage addImage) { this.obj(name, addImage); return cast(O)this; }
 
 	O removeImages(this O)(string[] names...) { foreach(name; names) this.remove(name); return cast(O)this; }
 	O clearImages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppImage)item) this.remove(name); return cast(O)this; }
@@ -152,18 +186,18 @@ class DH5App {
 			if (cast(DH5AppScript)_objs[name]) return true; 
 		return false; }
 	unittest {
-		assert(H5App.script("test", "testContent").isScript("test"));
-		assert(!H5App.page("test", "testContent").isScript("test"));
+		assert(H5App.scripts("test", "testContent").isScript("test"));
+		assert(!H5App.pages("test", "testContent").isScript("test"));
 	}
 
-	O scripts(this O)(DH5AppScript[] addScripts) { foreach(addScript; addScripts) this.script(addScript); return cast(O)this; }
-	O scripts(this O)(DH5AppScript[] addScripts...) { foreach(addScript; addScripts) this.script(addScript); return cast(O)this; }
-	O scripts(this O)(DH5AppScript[string] addScripts) { foreach(name, addScript; addScripts) this.script(name,addScript); return cast(O)this; }
-	O scripts(this O)(string[string] addScripts) { foreach(name; addScripts) this.script(name, addScript); return cast(O)this; }
+	O scripts(this O)(DH5AppScript[] addScripts) { foreach(addScript; addScripts) this.scripts(addScript.name, addScript); return cast(O)this; }
+	O scripts(this O)(DH5AppScript[] addScripts...) { foreach(addScript; addScripts) this.scripts(addScript.name, addScript); return cast(O)this; }
+	
+	O scripts(this O)(DH5AppScript[string] addScripts) { foreach(name, addScript; addScripts) this.scripts(name, addScript); return cast(O)this; }
+	O scripts(this O)(string[string] addScripts) { foreach(name; addScripts) this.scripts(name, addScript); return cast(O)this; }
 
-	O script(this O)(string name, string addScript) { this.script(name, H5AppScript(this, name).content(addScript)); return cast(O)this; }
-	O script(this O)(DH5AppScript addScript) { this.script(addScript.name, addScript); return cast(O)this; }
-	O script(this O)(string name, DH5AppScript addScript) { this.obj(name, addScript); return cast(O)this; }
+	O scripts(this O)(string name, string addScript) { this.scripts(name, H5AppScript(this, name).content(addScript)); return cast(O)this; }
+	O scripts(this O)(string name, DH5AppScript addScript) { this.obj(name, addScript); return cast(O)this; }
 
 	O removeScripts(this O)(string[] names...) { foreach(name; names) this.remove(name); return cast(O)this; }
 	O clearScripts(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppScript)item) this.remove(name); return cast(O)this; }
@@ -185,31 +219,32 @@ class DH5App {
 			if (cast(DH5AppPage)_objs[name]) return true; 
 		return false; }
 	unittest {
-		assert(H5App.page("test", "testContent").isPage("test"));
-		assert(!H5App.script("test", "testContent").isPage("test"));
+		assert(H5App.pages("test", "testContent").isPage("test"));
+		assert(!H5App.scripts("test", "testContent").isPage("test"));
 	}
 
-	O pages(this O)(DH5AppPage[] newPages) { foreach(page; newPages) this.page(page); return cast(O)this; }
-	O pages(this O)(DH5AppPage[] newPages...) { foreach(page; newPages) this.page(page); return cast(O)this; }
-	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.page(name, page); return cast(O)this; }
-	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.page(name, page); return cast(O)this; }
+	O pages(this O)(DH5AppPage[] newPages) { foreach(page; newPages) this.pages(page); return cast(O)this; }
+	O pages(this O)(DH5AppPage[] newPages...) { foreach(page; newPages) this.pages(page); return cast(O)this; }
+	
+	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
+	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 
-	O page(this O)(string name, string newPage, string[string] pageParameters = null) { this.page(name, H5AppPage(this, name).content(newPage).parameters(pageParameters)); return cast(O)this; }
-	O page(this O)(DH5AppPage newPage, string[string] pageParameters = null) { this.page(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
-	O page(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }
+	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { this.pages(name, H5AppPage(this, name).content(newPage).parameters(pageParameters)); return cast(O)this; }
+	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
+	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }
 
 	O removePages(this O)(string[] names...) { this.remove(names); return cast(O)this; }
 	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
 	unittest {	
-			writeln(H5App.page("test", "testcontent").pages.length);	
-			writeln(H5App.page("test", "testcontent").pages);	
-			assert(H5App.page("test", "testcontent").pages.length == 1);	
-			assert(H5App.page("test", "testcontent").removePages("test").pages.length == 0);	
+			// writeln(H5App.page("test", "testcontent").pages.length);	
+			// writeln(H5App.page("test", "testcontent").pages);	
+			assert(H5App.pages("test", "testcontent").pages.length == 1);	
+			assert(H5App.pages("test", "testcontent").removePages("test").pages.length == 0);	
 	}
 
 	/// Central request handler
 	O registerApp(this O)(URLRouter router) {
-		debug writeln("Register app -", this.rootPath);
+		// debug // writeln("Register app -", this.rootPath);
 		router.get(this.rootPath ~ "*", &this.request);
 		router.post(this.rootPath ~ "*", &this.request);	
 
@@ -221,30 +256,30 @@ class DH5App {
 
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		writeln("HTMLApp");
+		writeln(this.objs);
 		/// Extract appPath from URL path
-		debug writeln("req.path - ", req.path);
-		debug writeln("rootPath - ", rootPath);
+		// debug // writeln("req.path - ", req.path);
+		// debug // writeln("rootPath - ", rootPath);
 	  auto appPath = req.path.replace(rootPath, "");
-		debug writeln("appPath  - ", appPath);
+		writeln("appPath  - ", appPath);
 
 		if (req.path == rootPath) {
 			if ("index" in _objs) _objs["index"].request(req, res);
 		}
 
 		auto pathItems = appPath.split("/");
+		writeln("PathItems: ", pathItems);
 
 		if (appPath in _objs) {
-			debug writeln("Found - ", appPath);
-			debug writeln("Found - ", _objs[appPath].name);
+			writeln("Found Obj -> ", appPath);
 			_objs[appPath].request(req, res);
 		}
 /*
 		/// Short path -> direct pages
 		if (pathItems.length == 1) { 
-			debug writeln("pathItems.length == 1");
+			// debug // writeln("pathItems.length == 1");
 			auto objName = pathItems[0];
-			debug writeln("objName = ", objName);
+			// debug // writeln("objName = ", objName);
 			switch(objName) {				
 				case "index":
 				case "start": this.index.request(req, res); break;
@@ -260,38 +295,38 @@ class DH5App {
 			}
 		}
 		if (pathItems.length > 1) { 
-			debug writeln("pathItems.length > 1");
+			// debug // writeln("pathItems.length > 1");
 			auto folder = pathItems[0];
 			auto objName = pathItems[1..$].join("/");
-			debug writeln("objName = ", objName);
+			// debug // writeln("objName = ", objName);
 			switch(folder) {			
 				case "css": 
-					debug writeln("css");
+					// debug // writeln("css");
 					if (objName in _styles) _styles[objName].request(req, res);
 					break;
 				case "img": 
-					debug writeln("img");
+					// debug // writeln("img");
 					if (objName in _images) _images[objName].request(req, res);
 					break;
 				case "js": 
-					debug writeln("js");
+					// debug // writeln("js");
 					if (objName in _scripts) {
-						debug writeln("Looking for a script in exiting: ", _scripts.keys);
+						// debug // writeln("Looking for a script in exiting: ", _scripts.keys);
 						_scripts[objName].request(req, res);
 					}
 					break;
 				case "page": 
-					debug writeln("page");
+					// debug // writeln("page");
 					break;
 				case "data": 
-					debug writeln("data");
+					// debug // writeln("data");
 					/// TODO
 					break;
 				default: 
 					break;
 			}
 		}
-		debug writeln("Request not found"); // Error */
+		// debug // writeln("Request not found"); // Error */
 	} 
 }
 auto H5App() { return new DH5App(); }

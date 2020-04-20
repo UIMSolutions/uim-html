@@ -29,5 +29,5 @@ static this() {
 }
 unittest {
   import std.stdio;
-  writeln(Libraries.toPrettyString);
+  // writeln(Libraries.toPrettyString);
 }

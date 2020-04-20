@@ -48,12 +48,14 @@ class DH5Html : DH5Obj {
 	auto head(this O)(DH5Head newHead) { _html[0] = newHead; return cast(O)this;}
 	auto head(this O)(string[] classes) { _html[0](classes); return cast(O)this;}
 	auto head(this O)(string[string] attributes) { _html[0](attributes); return cast(O)this;}
+	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](classes, attributes); return cast(O)this;}
 	auto head(this O)(string addContent) { _html[0](addContent); return cast(O)this;}
 
 	auto body_() { return cast(DH5Body)_html[1]; }
 	auto body_(this O)(DH5Body newBody) { _html[1] = newBody; return cast(O)this; }
 	auto body_(this O)(string[] classes) { _html[1](classes); return cast(O)this;}
 	auto body_(this O)(string[string] attributes) { _html[1](attributes); return cast(O)this;}
+	//auto body_(this O)(string[] classes, string[string] attributes) { _html[1](classes, attributes); return cast(O)this;}
 	auto body_(this O)(string addContent) { _html[1](addContent); return cast(O)this;}
 		
 	void opBinary(string op, T...)(T values) { static if ((op == "+") || (op == "~")) Add(values); }

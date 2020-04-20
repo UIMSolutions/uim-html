@@ -9,6 +9,13 @@ class DH5 {
     auto objs(this O)() { return _objs; }
     O clear(this O)() {  _objs = []; return cast(O)this; }
 
+    DH5Obj obj(string tag) {
+        switch(tag.toLower) {
+            case "thead": return H5Thead();
+            default: return H5Obj().tag(tag);
+        } 
+    }
+
 /*
     T opBinary(string op)(DH5Obj[] someElements) {
         static if (op, "~") return _objs~someElements;

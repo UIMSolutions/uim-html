@@ -4,7 +4,8 @@ import uim.html;
 
 /// Page layout
  class DH5AppLayout : DH5AppObj {
-	this() { super(); }
+	this() { super(); 
+	_lang = "en"; }
 	this(DH5App anApp) { this().app(anApp); }
 
 	string[] _headClasses;
@@ -18,6 +19,7 @@ import uim.html;
 	mixin(XString!("postContent"));
 	mixin(XStringArray!("requires"));
 	
+	mixin(OString!("lang"));
 	mixin(OString!("title"));
 	
 	string[] _metas;
@@ -51,18 +53,21 @@ import uim.html;
 		/// TODO
 	}
 
+	mixin(XString!("css"));
+	
 	string[] _libraries;
 	string[] libraries() { return _libraries; }
 	O libraries(this O)(string link, string[] links...) { this.library(link).libraries(links); return cast(O)this;}
 	O libraries(this O)(string[] links) { foreach(l; links) this.library(l); return cast(O)this;}
 
-	O library(this O)(string libName, string libVersion, string libFile) { this.library("/lib/%s/%s/%s".format(libName, libVersion, libFile)); return cast(O)this;}
 	O library(this O)(string link) { this.library(H5Script(["src":link])); return cast(O)this; }
 	O library(this O)(DH5Script link) { _libraries ~= link.toString; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
 
+	mixin(XString!("script"));
+	
 	mixin(XString!("headPart"));
 	mixin(XString!("bodyPart"));
 
@@ -74,39 +79,79 @@ import uim.html;
 		/// TODO		
 	}
 
-	string opCall() { return toString(null); }
+	string opCall() { return toString(); }
+	string opCall(DH5AppPage page, string[string] parameters = null) { return toString(page, parameters); }
 	string opCall(string content, string[string] parameters = null) { return toString(content, parameters); }
+	
+	override string toString() { return toString("", null); }
+	string toString(DH5AppPage page, string[string] parameters = null) {
+		if ("title" !in parameters) {
+			parameters["title"] =  this.lang;
+			if (page) parameters["title"] = page.lang; 
+		}
+
+		if ("lang" !in parameters) {
+			parameters["lang"] =  this.lang;
+			if (page) parameters["lang"] = page.lang; 
+		}
+
+		if ("metas" !in parameters) parameters["metas"] = "";
+		parameters["metas"] = this.metas.join() ~ (page ? page.metas.join():"") ~ parameters["metas"];
+
+		if ("styles" !in parameters) parameters["styles"] = "";
+		parameters["styles"] = this.styles.join() ~ (page ? page.styles.join():"") ~ parameters["styles"];
+
+		if ("css" !in parameters) parameters["css"] = "";
+		parameters["css"] = this.css ~ (page ? page.css:"") ~ parameters["css"];
+
+		if ("libraries" !in parameters) parameters["libraries"] = "";
+		parameters["libraries"] = this.libraries.join() ~ (page ? page.libraries.join():"") ~ parameters["libraries"];
+
+		if ("script" !in parameters) parameters["script"] = "";
+		parameters["script"] = this.script ~ (page ? page.script:"") ~ parameters["script"];
+
+		return toString(page.content, parameters);
+	}
+
 	string toString(string content, string[string] parameters = null) {
-	/*	auto result = "<!doctype html>";
-		result ~= ``;
-		result ~= `<html><head>`~preHead;
-		result ~= postHead~`</head>`;
-		result ~= `<body>`~_preContent~content~_postContent~`</body></html>`;
-//		return result;
-*/
-	auto result = H5Html
-	.attributes("lang", ("lang" in parameters ? parameters["lang"] : "en"))
-	.attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
-	.head(_headClasses)
-	.head(_headAttributes)
-	.head(this.metas.join()~("metas" in parameters ? parameters["metas"] : ""))
-	.head("title" in parameters ? H5Title(parameters["title"]).toString : H5Title(this.title).toString)
-	.head(this.styles.join()~("styles" in parameters ? parameters["styles"] : ""))
-	.head("style" in parameters ? H5Style(parameters["style"]).toString : "")
-	.body_(_bodyClasses)
-	.body_(_bodyAttributes)
-	.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
-	.body_(this.libraries.join()~("libraries" in parameters ? parameters["libraries"] : ""))
-	.body_("script" in parameters ? H5Script(parameters["script"]).toString : "");
+		auto finalTitle = parameters.get("title", this.title);
+		auto finalLang = parameters.get("lang", this.lang);
+
+		auto finalMetas = (this.metas ? this.metas.join():"");
+		finalMetas ~= parameters.get("metas", "");
+
+		auto finalLibraries = (this.libraries ? this.libraries.join():"");
+		finalLibraries ~= parameters.get("libraries", "");
+
+		auto finalScript = this.script;
+		finalScript ~= parameters.get("script", "");
+
+		auto finalStyles = (this.styles ? this.styles.join():"");
+		finalStyles ~= parameters.get("styles", "");
+
+		auto finalCss = this.css;
+		finalCss ~= parameters.get("css", "");
+
+		// debug // writeln("Create HTML");
+		auto result = H5Html
+		.attributes("lang", finalLang).attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
+		.head(_headClasses)
+		.head(_headAttributes)
+		.head(finalMetas)
+		.head(finalTitle.length > 0 ? "<title>" ~ finalTitle ~ "</title>":"")
+		.head(finalStyles)
+		.head(finalCss.length > 0 ? "<style>"~finalCss~"</style>":"")
+		.body_(_bodyClasses)
+		.body_(_bodyAttributes)
+		.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
+		.body_(finalLibraries)
+		.body_(finalScript.length > 0 ? "<script>"~finalScript~"</script>":"");
 
 		return result.toString;
 	}
-	override string toString() {
-		return toString(null, null);
-	}
 	unittest {
+		writeln(H5AppLayout);
 		assert(H5AppLayout == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
-		writeln(H5AppLayout()("xxx"));
 		assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}
 }
