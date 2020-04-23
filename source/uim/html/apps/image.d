@@ -3,7 +3,7 @@ module uim.html.apps.image;
 import uim.html;
 
 class DH5AppImage : DH5AppObj {
-	this() { super(); }
+	this() { super(); _name = "image"; }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this().app(anApp).name(aName); }
@@ -14,5 +14,6 @@ auto H5AppImage(string aName) { return new DH5AppImage(aName); }
 auto H5AppImage(DH5App anApp, string aName) { return new DH5AppImage(anApp, aName); }
 
 unittest {
-	/// TODO
+	assert(H5AppImage.name == "image");
+	assert(H5AppImage.name("newImage").name == "newImage");
 }

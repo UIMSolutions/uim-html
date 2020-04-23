@@ -58,9 +58,10 @@ class DH5App {
 	DH5AppPage _index;
 	auto index() { return _index; }
 	O index(this O)(string newContent) { this.index(H5AppPage.content(newContent)); return cast(O)this; }
-	O index(this O)(DH5AppPage newPage) { _index = newPage; page("index", newPage); return cast(O)this; }
+	O index(this O)(DH5AppPage newPage) { _index = newPage; this.pages("index", newPage); return cast(O)this; }
 	unittest {		
-		/// TODO
+		auto page = H5AppPage;
+		assert(H5App.index(page).index == page);
 	}
 
 	mixin(XStringAA!"use");
