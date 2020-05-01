@@ -259,11 +259,14 @@ class DH5App {
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
 		writeln(this.objs);
 		/// Extract appPath from URL path
-		// debug // writeln("req.path - ", req.path);
-		// debug // writeln("rootPath - ", rootPath);
-	  auto appPath = req.path.replace(rootPath, "");
-		writeln("appPath  - ", appPath);
-
+		debug writeln("req.path - ", req.path);
+		debug writeln("rootPath - ", rootPath);
+		string appPath;
+	  if (indexOf(req.path, rootPath) == 0) {
+			if (req.path.length > rootPath.length) appPath = req.path[indexOf(req.path, rootPath)+rootPath.length..$];
+			else appPath = "";
+			writeln("appPath  - ", appPath);
+		}
 		if (req.path == rootPath) {
 			if ("index" in _objs) _objs["index"].request(req, res);
 		}

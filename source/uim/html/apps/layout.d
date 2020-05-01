@@ -24,16 +24,15 @@ import uim.html;
 	
 	string[] _metas;
 	string[] metas() { return _metas; }
-	O metas(this O)(string value, string[] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
-	O metas(this O)(string[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
-	O metas(this O)(DH5Meta[] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
-	O metas(this O)(DH5Meta[] addMetas...) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
-	O metas(this O)(string[string] value, string[string][] addMetas...) { this.meta(value); foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this;}
-	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.meta(addMeta); return cast(O)this; }
+	O metas(this O)(string value, string[] addMetas...) { this.metas(value); foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
+	O metas(this O)(string[] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
+	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas(value); foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
+	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this; }
 
-	O meta(this O)(string[string] addValues) { this.meta(H5Meta(addValues)); return cast(O)this; }
-	O meta(this O)(DH5Meta addMeta) { _metas ~= addMeta.toString; return cast(O)this; }
+	O metas(this O)(string[string] addValues) { this.metas(H5Meta(addValues)); return cast(O)this; }
+	O metas(this O)(DH5Meta[] addMetas...) {foreach(meta; addMetas) _metas ~= meta.toString; return cast(O)this; }
 
+	O metas(this O)(DH5Meta[] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
 	O clearMetas(this O)() { _metas = null; return cast(O)this; }
 	unittest {
 		/// TODO
