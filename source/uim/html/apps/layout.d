@@ -22,52 +22,52 @@ import uim.html;
 	mixin(OString!("lang"));
 	mixin(OString!("title"));
 	
-	string[] _metas;
-	string[] metas() { return _metas; }
-	O metas(this O)(string value, string[] addMetas...) { this.metas(value); foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
-	O metas(this O)(string[] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
-	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas(value); foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
-	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this; }
+	protected DH5Meta[] _metas;
+	DH5Meta[] metas() { return _metas; }
+	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas(H5Meta(value)).metas(addMeta); return cast(O)this;}
+	O metas(this O)(string[string][] addMetas) { foreach(addMeta; addMetas) this.metas(H5Meta(addMeta)); return cast(O)this; }
 
-	O metas(this O)(string[string] addValues) { this.metas(H5Meta(addValues)); return cast(O)this; }
-	O metas(this O)(DH5Meta[] addMetas...) {foreach(meta; addMetas) _metas ~= meta.toString; return cast(O)this; }
+	O metas(this O)(DH5Meta[] addMetas...) { this.metas(addMetas); return cast(O)this; }
+	O metas(this O)(DH5Meta[] addMetas) { _metas ~= addMetas; return cast(O)this;}
 
-	O metas(this O)(DH5Meta[] addMetas) { foreach(addMeta; addMetas) this.metas(addMeta); return cast(O)this;}
 	O clearMetas(this O)() { _metas = null; return cast(O)this; }
 	unittest {
 		/// TODO
 	}
 
-	string[] _styles;
-	string[] styles() { return  _styles; }
-	O styles(this O)(DH5Link link, DH5Link[] links...) { this.style(link).styles(links); return cast(O)this;}
-	O styles(this O)(DH5Link[] links) { foreach(link; links) this.style(link); return cast(O)this;}
-	O styles(this O)(string link, string[] links...) { this.style(link).styles(links); return cast(O)this;}
-	O styles(this O)(string[] links) { foreach(link; links) this.style(link); return cast(O)this;}
+	DH5Link[] _styles;
+	DH5Link[] styles() { return  _styles; }	
+	O styles(this O)(string link, string[] links...) { this.styles([link]~links); return cast(O)this;}
+	O styles(this O)(string[] links) { foreach(link; links) this.styles(H5Link(link)); return cast(O)this;}
 
-	O style(this O)(string link) { this.style(H5Link(["href":link, "rel":"stylesheet"])); return cast(O)this;}
-	O style(this O)(DH5Link link) { _styles ~= link.toString; return cast(O)this;}
+	O styles(this O)(string[string] link, string[string] links...) { this.styles([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] links) { foreach(link; links) this.styles(H5Link(link)); return cast(O)this;}
 
+	O styles(this O)(DH5Link[] links...) { this.styles(links); return cast(O)this;}
+	O styles(this O)(DH5Link[] links) { _styles ~= links; return cast(O)this;}
+
+	O clearStyles(this O)() { _styles = null; return cast(O)this; }
 	unittest {
 		/// TODO
 	}
 
-	mixin(XString!("css"));
-	
-	string[] _libraries;
-	string[] libraries() { return _libraries; }
-	O libraries(this O)(string link, string[] links...) { this.library(link).libraries(links); return cast(O)this;}
-	O libraries(this O)(string[] links) { foreach(l; links) this.library(l); return cast(O)this;}
+	DH5Script[] _libraries;
+	DH5Script[] libraries() { return _libraries; }
+	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
+	O libraries(this O)(string[] libs) { foreach(lib; libs) this.libraries(H5Link(libs)); return cast(O)this;}
 
-	O library(this O)(string link) { this.library(H5Script(["src":link])); return cast(O)this; }
-	O library(this O)(DH5Script link) { _libraries ~= link.toString; return cast(O)this; }
+	O libraries(this O)(string[string] lib, string[string] libs...) { this.libraries([lib]~libs); return cast(O)this;}
+	O libraries(this O)(string[string][] libs) { foreach(lib; libs) this.libraries(H5Link(lib)); return cast(O)this;}
+
+	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
+	O libraries(this O)(DH5Script[] libs) { libraries ~= libs; return cast(O)this;}
+
+	O clearLibraries(this O)() { _libs = null; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
 
-	mixin(XString!("script"));
-	
-	mixin(XString!("headPart"));
+xx	mixin(XString!("headPart"));
 	mixin(XString!("bodyPart"));
 
 	/// central layout for page
@@ -95,56 +95,44 @@ import uim.html;
 		}
 
 		if ("metas" !in parameters) parameters["metas"] = "";
-		parameters["metas"] = this.metas.join() ~ (page ? page.metas.join():"") ~ parameters["metas"];
+		parameters["metas"] = this.metas.toString ~ (page ? page.metas.toString:"") ~ parameters["metas"];
 
 		if ("styles" !in parameters) parameters["styles"] = "";
-		parameters["styles"] = this.styles.join() ~ (page ? page.styles.join():"") ~ parameters["styles"];
-
-		if ("css" !in parameters) parameters["css"] = "";
-		parameters["css"] = this.css ~ (page ? page.css:"") ~ parameters["css"];
+		parameters["styles"] = this.styles.toString ~ (page ? page.styles.toString:"") ~ parameters["styles"];
 
 		if ("libraries" !in parameters) parameters["libraries"] = "";
-		parameters["libraries"] = this.libraries.join() ~ (page ? page.libraries.join():"") ~ parameters["libraries"];
-
-		if ("script" !in parameters) parameters["script"] = "";
-		parameters["script"] = this.script ~ (page ? page.script:"") ~ parameters["script"];
+		parameters["libraries"] = this.libraries.toString ~ (page ? page.libraries.toString:"") ~ parameters["libraries"];
 
 		return toString(page.content, parameters);
 	}
 
 	string toString(string content, string[string] parameters = null) {
-		auto finalTitle = parameters.get("title", this.title);
-		auto finalLang = parameters.get("lang", this.lang);
+		auto finalLang = parameters.get("lang", this.lang); // if lang !in parameters use this.lang
+		auto finalTitle = parameters.get("title", this.title);  // if title !in parameters use this.title
 
-		auto finalMetas = (this.metas ? this.metas.join():"");
-		finalMetas ~= parameters.get("metas", "");
+		auto finalMetas = (this.metas ? this.metas.toString:""); // First layout metas (if exists)
+		finalMetas ~= parameters.get("metas", ""); // second metas in parameters (if exists)
 
-		auto finalLibraries = (this.libraries ? this.libraries.join():"");
-		finalLibraries ~= parameters.get("libraries", "");
+		auto finalLibraries = (this.libraries ? this.libraries.toString:""); // First layout libraries (if exists)
+		finalLibraries ~= parameters.get("libraries", ""); // second libraries in parameters (if exists)
 
-		auto finalScript = this.script;
-		finalScript ~= parameters.get("script", "");
+		auto finalStyles = (this.styles ? this.styles.toString:""); // First layout styles (if exists)
+		finalStyles ~= parameters.get("styles", ""); // second styles in parameters (if exists)
 
-		auto finalStyles = (this.styles ? this.styles.join():"");
-		finalStyles ~= parameters.get("styles", "");
-
-		auto finalCss = this.css;
-		finalCss ~= parameters.get("css", "");
-
-		// debug // writeln("Create HTML");
+		// creating HTML page
 		auto result = H5Html
 		.attributes("lang", finalLang).attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
+		// Head part of HTML
 		.head(_headClasses)
 		.head(_headAttributes)
 		.head(finalMetas)
 		.head(finalTitle.length > 0 ? "<title>" ~ finalTitle ~ "</title>":"")
 		.head(finalStyles)
-		.head(finalCss.length > 0 ? "<style>"~finalCss~"</style>":"")
+		// Body part of HTML
 		.body_(_bodyClasses)
 		.body_(_bodyAttributes)
 		.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
-		.body_(finalLibraries)
-		.body_(finalScript.length > 0 ? "<script>"~finalScript~"</script>":"");
+		.body_(finalLibraries);
 
 		return result.toString;
 	}

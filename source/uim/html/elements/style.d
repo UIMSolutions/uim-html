@@ -9,3 +9,22 @@ mixin(H5Short!"Style");
 unittest {
 	assert(Assert(H5Style,"<style></style>"));
 }
+
+string toString(DH5Style[] styles) {
+	string result;
+	foreach(style; styles) result ~= style.toString;
+	return result;
+}
+unittest {
+	assert([H5Style, H5Style].toString == "<style><style>");
+}
+
+DH5Style[] H5Styles(string[string][] styles...) { return H5Styles(styles); }
+DH5Style[] H5Styles(string[string][] styles) { 
+	DH5Style[] results;
+	foreach(style; styles) results ~= H5Style(style);
+	return results;
+}
+unittest {
+	/// TODO
+}
