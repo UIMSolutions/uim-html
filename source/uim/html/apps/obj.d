@@ -84,6 +84,16 @@ class DH5AppObj {
 	/// Response to HTTP request
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
 		// debug // writeln("H5AppObj: void request()");
+		_parameters["peer"] = req.peer;
+		_parameters["host"] = req.host;
+		_parameters["path"] = req.path;
+		_parameters["rootDir"] = req.rootDir;
+		_parameters["fullURL"] = req.fullURL.toString;
+		_parameters["queryString"] = req.queryString;
+		_parameters["json"] = req.json.toString;
+		_parameters["username"] = req.username;
+		_parameters["password"] = req.password;
+		writeln("Request: ", req, "\n", _parameters);
 		res.writeBody(toString, _mimetype); 
 	}
 	unittest {

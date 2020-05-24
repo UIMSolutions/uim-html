@@ -16,7 +16,7 @@ string toString(DH5Style[] styles) {
 	return result;
 }
 unittest {
-	assert([H5Style, H5Style].toString == "<style><style>");
+	assert([H5Style, H5Style].toString == "<style></style><style></style>");
 }
 
 DH5Style[] H5Styles(string[string][] styles...) { return H5Styles(styles); }

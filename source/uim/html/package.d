@@ -20,7 +20,6 @@ public import uim.javascript;
 
 // own modules
 public import uim.html.mixins;
-public import uim.html.convert;
 public import uim.html.h5;
 public import uim.html.obj;
 public import uim.html.apps;
@@ -284,4 +283,13 @@ unittest
 
 	assert(escapeToHTML("Me&You") == "Me&amp;You");
 	assert(escapeToHTML(`<Me&You&"MySelf">`) == "&lt;Me&amp;You&amp;&quot;MySelf&quot;&gt;");
+}
+
+string asString(T:DH5Obj)(T[] objs) {
+	string result;
+	foreach(obj; objs) result ~= obj.toString;
+	return result;
+}
+unittest {
+	assert([H5Meta, H5Meta].toString == "<meta><meta>");
 }

@@ -7,82 +7,98 @@ template H5Calls(const char[] left, const char[] right = "") {
 	const char[] H5Calls = "
 auto "~left~"(string content) { return new "~r~"(content); }
 auto "~left~"(DH5Obj[] content...) { return new "~r~"(content); }
+auto "~left~"(DH5Obj[] content) { return new "~r~"(content); }
 auto "~left~"(DH5 content) { return new "~r~"(content); }
 
 auto "~left~"(string id, string content) { return new "~r~"(id, content); }
 auto "~left~"(string id, DH5Obj[] content...) { return new "~r~"(id, content); }
+auto "~left~"(string id, DH5Obj[] content) { return new "~r~"(id, content); }
 auto "~left~"(string id, DH5 content) { return new "~r~"(id, content); }
 
 auto "~left~"(string id, string[] classes) { return new "~r~"(id, classes); }
 auto "~left~"(string id, string[] classes, string content) { return new "~r~"(id, classes, content); }
 auto "~left~"(string id, string[] classes, DH5Obj[] content...) { return new "~r~"(id, classes, content); }
+auto "~left~"(string id, string[] classes, DH5Obj[] content) { return new "~r~"(id, classes, content); }
 auto "~left~"(string id, string[] classes, DH5 content) { return new "~r~"(id, classes, content); }
 
 auto "~left~"(string id, string[string] attributes) { return new "~r~"(id, attributes); }
 auto "~left~"(string id, string[string] attributes, string content) { return new "~r~"(id, attributes, content); }
 auto "~left~"(string id, string[string] attributes, DH5Obj[] content...) { return new "~r~"(id, attributes, content); }
+auto "~left~"(string id, string[string] attributes, DH5Obj[] content) { return new "~r~"(id, attributes, content); }
 auto "~left~"(string id, string[string] attributes, DH5 content) { return new "~r~"(id, attributes, content); }
 
 auto "~left~"(string id, string[] classes, string[string] attributes) { return new "~r~"(id, classes, attributes); }
 auto "~left~"(string id, string[] classes, string[string] attributes, string content) { return new "~r~"(id, classes, attributes, content); }
 auto "~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { return new "~r~"(id, classes, attributes, content); }
+auto "~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content) { return new "~r~"(id, classes, attributes, content); }
 auto "~left~"(string id, string[] classes, string[string] attributes, DH5 content) { return new "~r~"(id, classes, attributes, content); }
 
 auto "~left~"(string[] classes) { return new "~r~"(classes); }
 auto "~left~"(string[] classes, string content) { return new "~r~"(classes, content); }
 auto "~left~"(string[] classes, DH5Obj[] content...) { return new "~r~"(classes, content); }
+auto "~left~"(string[] classes, DH5Obj[] content) { return new "~r~"(classes, content); }
 auto "~left~"(string[] classes, DH5 content) { return new "~r~"(classes, content); }
 
 auto "~left~"(string[string] attributes) { return new "~r~"(attributes); }
 auto "~left~"(string[string] attributes, string content) { return new "~r~"(attributes, content); }
 auto "~left~"(string[string] attributes, DH5Obj[] content...) { return new "~r~"(attributes, content); }
+auto "~left~"(string[string] attributes, DH5Obj[] content) { return new "~r~"(attributes, content); }
 auto "~left~"(string[string] attributes, DH5 content) { return new "~r~"(attributes, content); }
 
 auto "~left~"(string[] classes, string[string] attributes) { return new "~r~"(classes, attributes); }
 auto "~left~"(string[] classes, string[string] attributes, string content) { return new "~r~"(classes, attributes, content); }
 auto "~left~"(string[] classes, string[string] attributes, DH5Obj[] content...) { return new "~r~"(classes, attributes, content); }
+auto "~left~"(string[] classes, string[string] attributes, DH5Obj[] content) { return new "~r~"(classes, attributes, content); }
 auto "~left~"(string[] classes, string[string] attributes, DH5 content) { return new "~r~"(classes, attributes, content); }";
 }
 
 auto h5Methods(const char[] left, const char[] right) {
 	return "
-"~left~"(string content) { return "~right~"(content); }
-"~left~"(DH5Obj[] content...) { return "~right~"(content); }
-"~left~"(DH5 content) { return "~right~"(content); }
+"~left~"(string content) { "~right~"(content); }
+"~left~"(DH5Obj[] content...) { "~right~"(content); }
+"~left~"(DH5Obj[] content) { "~right~"(content); }
+"~left~"(DH5 content) { "~right~"(content); }
 
-"~left~"(string id, string content) { return "~right~"(id, content); }
-"~left~"(string id, DH5Obj[] content...) { return "~right~"(id, content); }
-"~left~"(string id, DH5 content) { return "~right~"(id, content); }
+"~left~"(string id, string content) { "~right~"(id, content); }
+"~left~"(string id, DH5Obj[] content...) { "~right~"(id, content); }
+"~left~"(string id, DH5Obj[] content) { "~right~"(id, content); }
+"~left~"(string id, DH5 content) { "~right~"(id, content); }
 
-"~left~"(string id, string[] classes) { return "~right~"(id, classes); }
-"~left~"(string id, string[] classes, string content) { return "~right~"(id, classes, content); }
-"~left~"(string id, string[] classes, DH5Obj[] content...) { return "~right~"(id, classes, content); }
-"~left~"(string id, string[] classes, DH5 content) { return "~right~"(id, classes, content); }
+"~left~"(string id, string[] classes) { "~right~"(id, classes); }
+"~left~"(string id, string[] classes, string content) { "~right~"(id, classes, content); }
+"~left~"(string id, string[] classes, DH5Obj[] content...) { "~right~"(id, classes, content); }
+"~left~"(string id, string[] classes, DH5Obj[] content) { "~right~"(id, classes, content); }
+"~left~"(string id, string[] classes, DH5 content) { "~right~"(id, classes, content); }
 
-"~left~"(string id, string[string] attributes) { return "~right~"(id, attributes); }
-"~left~"(string id, string[string] attributes, string content) { return "~right~"(id, attributes, content); }
-"~left~"(string id, string[string] attributes, DH5Obj[] content...) { return "~right~"(id, attributes, content); }
-"~left~"(string id, string[string] attributes, DH5 content) { return "~right~"(id, attributes, content); }
+"~left~"(string id, string[string] attributes) { "~right~"(id, attributes); }
+"~left~"(string id, string[string] attributes, string content) { "~right~"(id, attributes, content); }
+"~left~"(string id, string[string] attributes, DH5Obj[] content...) { "~right~"(id, attributes, content); }
+"~left~"(string id, string[string] attributes, DH5Obj[] content) { "~right~"(id, attributes, content); }
+"~left~"(string id, string[string] attributes, DH5 content) { "~right~"(id, attributes, content); }
 
-"~left~"(string id, string[] classes, string[string] attributes) { return "~right~"(id, classes, attributes); }
-"~left~"(string id, string[] classes, string[string] attributes, string content) { return "~right~"(id, classes, attributes, content); }
-"~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { return "~right~"(id, classes, attributes, content); }
-"~left~"(string id, string[] classes, string[string] attributes, DH5 content) { return "~right~"(id, classes, attributes, content); }
+"~left~"(string id, string[] classes, string[string] attributes) { "~right~"(id, classes, attributes); }
+"~left~"(string id, string[] classes, string[string] attributes, string content) { "~right~"(id, classes, attributes, content); }
+"~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { "~right~"(id, classes, attributes, content); }
+"~left~"(string id, string[] classes, string[string] attributes, DH5Obj[] content) { "~right~"(id, classes, attributes, content); }
+"~left~"(string id, string[] classes, string[string] attributes, DH5 content) { "~right~"(id, classes, attributes, content); }
 
-"~left~"(string[] classes) { return "~right~"(classes); }
-"~left~"(string[] classes, string content) { return "~right~"(classes, content); }
-"~left~"(string[] classes, DH5Obj[] content...) { return "~right~"(classes, content); }
-"~left~"(string[] classes, DH5 content) { return "~right~"(classes, content); }
+"~left~"(string[] classes) { "~right~"(classes); }
+"~left~"(string[] classes, string content) { "~right~"(classes, content); }
+"~left~"(string[] classes, DH5Obj[] content...) { "~right~"(classes, content); }
+"~left~"(string[] classes, DH5Obj[] content) { "~right~"(classes, content); }
+"~left~"(string[] classes, DH5 content) { "~right~"(classes, content); }
 
-"~left~"(string[string] attributes) { return "~right~"(attributes); }
-"~left~"(string[string] attributes, string content) { return "~right~"(attributes, content); }
-"~left~"(string[string] attributes, DH5Obj[] content...) { return "~right~"(attributes, content); }
-"~left~"(string[string] attributes, DH5 content) { return "~right~"(attributes, content); }
+"~left~"(string[string] attributes) { "~right~"(attributes); }
+"~left~"(string[string] attributes, string content) { "~right~"(attributes, content); }
+"~left~"(string[string] attributes, DH5Obj[] content...) { "~right~"(attributes, content); }
+"~left~"(string[string] attributes, DH5Obj[] content) { "~right~"(attributes, content); }
+"~left~"(string[string] attributes, DH5 content) { "~right~"(attributes, content); }
 
-"~left~"(string[] classes, string[string] attributes) { return "~right~"(classes, attributes); }
-"~left~"(string[] classes, string[string] attributes, string content) { return "~right~"(classes, attributes, content); }
-"~left~"(string[] classes, string[string] attributes, DH5Obj[] content...) { return "~right~"(classes, attributes, content); }
-"~left~"(string[] classes, string[string] attributes, DH5 content) { return "~right~"(classes, attributes, content); }";
+"~left~"(string[] classes, string[string] attributes) { "~right~"(classes, attributes); }
+"~left~"(string[] classes, string[string] attributes, string content) { "~right~"(classes, attributes, content); }
+"~left~"(string[] classes, string[string] attributes, DH5Obj[] content...) { "~right~"(classes, attributes, content); }
+"~left~"(string[] classes, string[string] attributes, DH5Obj[] content) { "~right~"(classes, attributes, content); }
+"~left~"(string[] classes, string[string] attributes, DH5 content) { "~right~"(classes, attributes, content); }";
 }
 
 template H5This(string tag, string[] classes = null, string attributes = null, bool single = false) {
@@ -101,46 +117,48 @@ template H5This(string tag, string[] classes = null, string attributes = null, b
 
 	this(string id, string someContent) { super(); `~initial~`this.id(id).content(someContent); }
 	this(string id, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).content(someContent); }
+	this(string id, DH5Obj[] someContent) { super(); `~initial~`this.id(id).content(someContent); }
 	this(string id, DH5 someContent) { super(); `~initial~`this.id(id).content(someContent); }
 
 	this(string id, string[] someClasses) { super(); `~initial~`this.id(id).classes(someClasses); }
 	this(string id, string[] someClasses, string someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
 	this(string id, string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
+	this(string id, string[] someClasses, DH5Obj[] someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
 	this(string id, string[] someClasses, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
 
 	this(string id, string[string] someAttributes)  { super(); `~initial~`this.id(id).attributes(someAttributes); }
 	this(string id, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
 	this(string id, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
+	this(string id, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
 	this(string id, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
 
 	this(string id, string[] someClasses, string[string] someAttributes)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes); }
 	this(string id, string[] someClasses, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
 	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
 	this(string id, string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
 
 	this(string[] someClasses) { super(); `~initial~`this.classes(someClasses); }
 	this(string[] someClasses, string someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
 	this(string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).content(someContent); }
+	this(string[] someClasses, DH5Obj[] someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
 	this(string[] someClasses, DH5 someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
 
  	this(string[string] someAttributes) { super();`~initial~`this.attributes(someAttributes); }
 	this(string[string] someAttributes, string someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
 	this(string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
+	this(string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
 	this(string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
 
 	this(string[] someClasses, string[string] someAttributes) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes); }
 	this(string[] someClasses, string[string] someAttributes, string someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
 	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
 	this(string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
 	`;
 }
 
-unittest {
-}
-
-template H5Short(string name) {		
-	const char[] H5Short = h5Methods("auto H5"~name, "new DH5"~name);
-}
+template H5Short(string name) {	const char[] H5Short = h5Methods("auto H5"~name, "return new DH5"~name); }
 
 template MyClassAttribute(string name, string clname = null) {
 	const char[] cl = (clname) ? clname : name;
@@ -204,53 +222,60 @@ template AttributeString(string name) {
 `;
 }
 
-auto h5Content(const char[] left, const char[] right) {
+auto h5Content(const char[] left, const char[] middle, const char[] right) {
 	return "
-O "~left~"(this O)() { this.content("~right~"()); return cast(O)this; }
+O "~left~"(this O)() { "~middle~"("~right~"()); return cast(O)this; }
 
-O "~left~"(this O)(string content) { this.content("~right~"(content)); return cast(O)this; }
-O "~left~"(this O)(DH5Obj[] content...) { this.content("~right~"(content)); return cast(O)this; }
-O "~left~"(this O)(DH5 content) { this.content("~right~"(content)); return cast(O)this; }
+O "~left~"(this O)(string content) { "~middle~"("~right~"(content)); return cast(O)this; }
+O "~left~"(this O)(DH5Obj[] content...) { "~middle~"("~right~"(content)); return cast(O)this; }
+O "~left~"(this O)(DH5Obj[] content) { "~middle~"("~right~"(content)); return cast(O)this; }
+O "~left~"(this O)(DH5 content) { "~middle~"("~right~"(content)); return cast(O)this; }
 
-O "~left~"(this O)(string id, string content) { this.content("~right~"(id, content)); return cast(O)this; }
-O "~left~"(this O)(string id, DH5Obj[] content...) { this.content("~right~"(id, content)); return cast(O)this; }
-O "~left~"(this O)(string id, DH5 content) { this.content("~right~"(id, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string content) { "~middle~"("~right~"(id, content)); return cast(O)this; }
+O "~left~"(this O)(string id, DH5Obj[] content...) { "~middle~"("~right~"(id, content)); return cast(O)this; }
+O "~left~"(this O)(string id, DH5Obj[] content) { "~middle~"("~right~"(id, content)); return cast(O)this; }
+O "~left~"(this O)(string id, DH5 content) { "~middle~"("~right~"(id, content)); return cast(O)this; }
 
-O "~left~"(this O)(string id, string[] classes) { this.content("~right~"(id, classes)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, string content) { this.content("~right~"(id, classes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, DH5Obj[] content...) { this.content("~right~"(id, classes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, DH5 content) { this.content("~right~"(id, classes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes) { "~middle~"("~right~"(id, classes)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string content) { "~middle~"("~right~"(id, classes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, DH5Obj[] content...) { "~middle~"("~right~"(id, classes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, DH5Obj[] content) { "~middle~"("~right~"(id, classes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, DH5 content) { "~middle~"("~right~"(id, classes, content)); return cast(O)this; }
 
-O "~left~"(this O)(string id, string[string] attributes) { this.content("~right~"(id, attributes)); return cast(O)this; }
-O "~left~"(this O)(string id, string[string] attributes, string content) { this.content("~right~"(id, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[string] attributes, DH5Obj[] content...) { this.content("~right~"(id, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[string] attributes, DH5 content) { this.content("~right~"(id, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[string] attributes) { "~middle~"("~right~"(id, attributes)); return cast(O)this; }
+O "~left~"(this O)(string id, string[string] attributes, string content) { "~middle~"("~right~"(id, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[string] attributes, DH5Obj[] content...) { "~middle~"("~right~"(id, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[string] attributes, DH5Obj[] content) { "~middle~"("~right~"(id, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[string] attributes, DH5 content) { "~middle~"("~right~"(id, attributes, content)); return cast(O)this; }
 
-O "~left~"(this O)(string id, string[] classes, string[string] attributes) { this.content("~right~"(id, classes, attributes)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, string[string] attributes, string content) { this.content("~right~"(id, classes, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { this.content("~right~"(id, classes, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string id, string[] classes, string[string] attributes, DH5 content) { this.content("~right~"(id, classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string[string] attributes) { "~middle~"("~right~"(id, classes, attributes)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string[string] attributes, string content) { "~middle~"("~right~"(id, classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { "~middle~"("~right~"(id, classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content) { "~middle~"("~right~"(id, classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string id, string[] classes, string[string] attributes, DH5 content) { "~middle~"("~right~"(id, classes, attributes, content)); return cast(O)this; }
 
-O "~left~"(this O)(string[] classes) { this.content("~right~"(classes)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, string content) { this.content("~right~"(classes, content)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, DH5Obj[] content...) { this.content("~right~"(classes, content)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, DH5 content) { this.content("~right~"(classes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes) { "~middle~"("~right~"(classes)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string content) { "~middle~"("~right~"(classes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, DH5Obj[] content...) { "~middle~"("~right~"(classes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, DH5Obj[] content) { "~middle~"("~right~"(classes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, DH5 content) { "~middle~"("~right~"(classes, content)); return cast(O)this; }
 
-O "~left~"(this O)(string[string] attributes) { this.content("~right~"(attributes)); return cast(O)this; }
-O "~left~"(this O)(string[string] attributes, string content) { this.content("~right~"(attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string[string] attributes, DH5Obj[] content...) { this.content("~right~"(attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string[string] attributes, DH5 content) { this.content("~right~"(attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[string] attributes) { "~middle~"("~right~"(attributes)); return cast(O)this; }
+O "~left~"(this O)(string[string] attributes, string content) { "~middle~"("~right~"(attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[string] attributes, DH5Obj[] content...) { "~middle~"("~right~"(attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[string] attributes, DH5Obj[] content) { "~middle~"("~right~"(attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[string] attributes, DH5 content) { "~middle~"("~right~"(attributes, content)); return cast(O)this; }
 
-O "~left~"(this O)(string[] classes, string[string] attributes) { this.content("~right~"(classes, attributes)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, string[string] attributes, string content) { this.content("~right~"(classes, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content...) { this.content("~right~"(classes, attributes, content)); return cast(O)this; }
-O "~left~"(this O)(string[] classes, string[string] attributes, DH5 content) { this.content("~right~"(classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string[string] attributes) { "~middle~"("~right~"(classes, attributes)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string[string] attributes, string content) { "~middle~"("~right~"(classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content...) { "~middle~"("~right~"(classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content) { "~middle~"("~right~"(classes, attributes, content)); return cast(O)this; }
+O "~left~"(this O)(string[] classes, string[string] attributes, DH5 content) { "~middle~"("~right~"(classes, attributes, content)); return cast(O)this; }
  ";
 }
 
-template MyContent(string name, string className) {		
-	const char[] MyContent = h5Content(name, className); 
-}
+template MyContent(string name, string className) {	const char[] MyContent = h5Content(name, "this.content", className); }
+template MyContent(string name, string middle, string className) {	const char[] MyContent = h5Content(name, middle, className); }
 
 template MyH5Obj(string className, string name) {		
 	const char[] MyH5Obj = "
@@ -260,41 +285,49 @@ template MyH5Obj(string className, string name) {
 O "~name~"(this O)("~className~" obj) { _"~name~" = obj; return cast(O)this; }
 
 O "~name~"(this O)(DH5Obj[] content...) { _"~name~" = new "~className~"(content); return cast(O)this; }
+O "~name~"(this O)(DH5Obj[] content) { _"~name~" = new "~className~"(content); return cast(O)this; }
 O "~name~"(this O)(DH5 content) { _"~name~" = new "~className~"(content); return cast(O)this; }
 
 O "~name~"(this O)(string id) { _"~name~" = new "~className~"(id); return cast(O)this; }
 O "~name~"(this O)(string id, string content) { _"~name~" = new "~className~"(id, content); return cast(O)this; }
 O "~name~"(this O)(string id, DH5Obj[] content...) { _"~name~" = new "~className~"(id, content); return cast(O)this; }
+O "~name~"(this O)(string id, DH5Obj[] content) { _"~name~" = new "~className~"(id, content); return cast(O)this; }
 O "~name~"(this O)(string id, DH5 content) { _"~name~" = new "~className~"(id, content); return cast(O)this; }
 
 O "~name~"(this O)(string id, string[] classes) { _"~name~" = new "~className~"(id, classes); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, string content) { _"~name~" = new "~className~"(id, classes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, DH5Obj[] content...) { _"~name~" = new "~className~"(id, classes, content); return cast(O)this; }
+O "~name~"(this O)(string id, string[] classes, DH5Obj[] content) { _"~name~" = new "~className~"(id, classes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, DH5 content) { _"~name~" = new "~className~"(id, classes, content); return cast(O)this; }
 
 O "~name~"(this O)(string id, string[string] attributes) { _"~name~" = new "~className~"(id, attributes); return cast(O)this; }
 O "~name~"(this O)(string id, string[string] attributes, string content) { _"~name~" = new "~className~"(id, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[string] attributes, DH5Obj[] content...) { _"~name~" = new "~className~"(id, attributes, content); return cast(O)this; }
+O "~name~"(this O)(string id, string[string] attributes, DH5Obj[] content) { _"~name~" = new "~className~"(id, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[string] attributes, DH5 content) { _"~name~" = new "~className~"(id, attributes, content); return cast(O)this; }
 
 O "~name~"(this O)(string id, string[] classes, string[string] attributes) { _"~name~" = new "~className~"(id, classes, attributes); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, string[string] attributes, string content) { _"~name~" = new "~className~"(id, classes, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content...) { _"~name~" = new "~className~"(id, classes, attributes, content); return cast(O)this; }
+O "~name~"(this O)(string id, string[] classes, string[string] attributes, DH5Obj[] content) { _"~name~" = new "~className~"(id, classes, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string id, string[] classes, string[string] attributes, DH5 content) { _"~name~" = new "~className~"(id, classes, attributes, content); return cast(O)this; }
 
 O "~name~"(this O)(string[] classes) { _"~name~" = new "~className~"(classes); return cast(O)this; }
 O "~name~"(this O)(string[] classes, string content) { _"~name~" = new "~className~"(classes, content); return cast(O)this; }
 O "~name~"(this O)(string[] classes, DH5Obj[] content...) { _"~name~" = new "~className~"(classes, content); return cast(O)this; }
+O "~name~"(this O)(string[] classes, DH5Obj[] content) { _"~name~" = new "~className~"(classes, content); return cast(O)this; }
 O "~name~"(this O)(string[] classes, DH5 content) { _"~name~" = new "~className~"(classes, content); return cast(O)this; }
 
 O "~name~"(this O)(string[string] attributes) { _"~name~" = new "~className~"(attributes); return cast(O)this; }
 O "~name~"(this O)(string[string] attributes, string content) { _"~name~" = new "~className~"(attributes, content); return cast(O)this; }
 O "~name~"(this O)(string[string] attributes, DH5Obj[] content...) { _"~name~" = new "~className~"(attributes, content); return cast(O)this; }
+O "~name~"(this O)(string[string] attributes, DH5Obj[] content) { _"~name~" = new "~className~"(attributes, content); return cast(O)this; }
 O "~name~"(this O)(string[string] attributes, DH5 content) { _"~name~" = new "~className~"(attributes, content); return cast(O)this; }
 
 O "~name~"(this O)(string[] classes, string[string] attributes) { _"~name~" = new "~className~"(classes, attributes); return cast(O)this; }
 O "~name~"(this O)(string[] classes, string[string] attributes, string content) { _"~name~" = new "~className~"(classes, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content...) { _"~name~" = new "~className~"(classes, attributes, content); return cast(O)this; }
+O "~name~"(this O)(string[] classes, string[string] attributes, DH5Obj[] content) { _"~name~" = new "~className~"(classes, attributes, content); return cast(O)this; }
 O "~name~"(this O)(string[] classes, string[string] attributes, DH5 content) { _"~name~" = new "~className~"(classes, attributes, content); return cast(O)this; }
 ";
 }

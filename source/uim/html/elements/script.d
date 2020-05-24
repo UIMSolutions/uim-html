@@ -17,7 +17,7 @@ string toString(DH5Script[] scripts) {
 	return result;
 }
 unittest {
-	assert([H5Script, H5Script].toString == "<script><script>");
+	assert([H5Script, H5Script].toString == "<script></script><script></script>");
 }
 
 DH5Script[] H5Scripts(string[string][] scripts...) { return H5Scripts(scripts); }

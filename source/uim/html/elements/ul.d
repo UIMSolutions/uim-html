@@ -20,9 +20,10 @@ class DH5Ul : DH5Obj {
 		assert(Assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`));
 	}
 
+	mixin(MyContent!("link", "this.item", "H5Li"));
+
 	O link(this O)(string id, string[] linkClasses, string src, string title) {
-		this.item(id, linkClasses, ["src":src], title); 
-		return cast(O)this;
+		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
 }
 mixin(H5Short!"Ul");

@@ -35,6 +35,17 @@ class DH5App {
 	}
 
 
+	/// Page parameters - will be used to communicate between components
+	mixin(XStringAA!"parameters");
+	unittest {
+		assert(H5AppPage.parameters == null);
+		assert(H5AppPage.parameters(["x":"y"]).parameters == ["x":"y"]);
+		assert(H5AppPage.parameters("x", "y").parameters == ["x":"y"]);
+	}
+	unittest {
+		/// TODO
+	}
+
 	/// central layout for page
 	DH5AppLayout _layout;
 	auto layout() { if (_layout) return _layout; return null; }
@@ -104,6 +115,11 @@ class DH5App {
 		assert(H5App.styles("test", "testContent").isStyle("test"));
 		assert(!H5App.pages("test", "testContent").isStyle("test"));
 	}
+
+	auto data() {
+		DH5AppData[string] results;
+		foreach(name, obj; _objs) if (auto result = cast(DH5AppData)obj) results[name] = result;
+		return results; }
 
 	O data(this O)(DH5AppData[] addData) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
 	O data(this O)(DH5AppData[] addData...) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
@@ -274,63 +290,51 @@ class DH5App {
 		auto pathItems = appPath.split("/");
 		writeln("PathItems: ", pathItems);
 
-		if (appPath in _objs) {
+		if (appPath in _objs) { // static url
 			writeln("Found Obj -> ", appPath);
 			_objs[appPath].request(req, res);
 		}
-/*
-		/// Short path -> direct pages
-		if (pathItems.length == 1) { 
-			// debug // writeln("pathItems.length == 1");
-			auto objName = pathItems[0];
-			// debug // writeln("objName = ", objName);
-			switch(objName) {				
-				case "index":
-				case "start": this.index.request(req, res); break;
-				case "manifest":
-				case "manifest.json": break; /// TODO
-				default: 
-					if (objName in _styles) _styles[objName].request(req, res);
-					if (objName in _images) _images[objName].request(req, res);
-					if (objName in _scripts) _scripts[objName].request(req, res);
-					// Call Error handler
-					/// TODO
-					break; //error
-			}
-		}
-		if (pathItems.length > 1) { 
-			// debug // writeln("pathItems.length > 1");
-			auto folder = pathItems[0];
-			auto objName = pathItems[1..$].join("/");
-			// debug // writeln("objName = ", objName);
-			switch(folder) {			
-				case "css": 
-					// debug // writeln("css");
-					if (objName in _styles) _styles[objName].request(req, res);
-					break;
-				case "img": 
-					// debug // writeln("img");
-					if (objName in _images) _images[objName].request(req, res);
-					break;
-				case "js": 
-					// debug // writeln("js");
-					if (objName in _scripts) {
-						// debug // writeln("Looking for a script in exiting: ", _scripts.keys);
-						_scripts[objName].request(req, res);
+
+		// dynamic url
+		foreach (path, obj; _objs) {
+			writeln(path);
+			if (path.has("*", ":", "?")) {
+				writeln(path, " vs ", appPath);
+				string[] objPathItems = path.split("/");
+				string[] appPathItems = appPath.split("/");
+				writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
+				writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
+				if (objPathItems.length > appPathItems.length) continue;
+
+				foreach (index, item; objPathItems) {
+					write(index, "->", item, "\t");
+					// if (index >= appPathItems.length) break;
+					if (item == appPathItems[index]) continue;
+
+					if (index == (objPathItems.length-1)) { // last item}
+						if (item == "*") obj.request(req, res);
+						if ((item.indexOf(":") == 0) && (item.length > 1)) {
+							_parameters[item[1..$]] = appPathItems[index];
+							obj.request(req, res);
+						}
+						if ((item.indexOf("?") == 0) && (item.length > 1)) {
+							_parameters[item[1..$]] = appPathItems[index];
+							obj.request(req, res);
+						}
 					}
-					break;
-				case "page": 
-					// debug // writeln("page");
-					break;
-				case "data": 
-					// debug // writeln("data");
-					/// TODO
-					break;
-				default: 
-					break;
+					else { // not the last Element
+						if ((item.indexOf(":") == 0) && (item.length > 1)) {
+							_parameters[item[1..$]] = appPathItems[index];
+						}
+						if ((item.indexOf("?") == 0) && (item.length > 1)) {
+							_parameters[item[1..$]] = appPathItems[index];
+						}						
+					}
+				}
 			}
 		}
-		// debug // writeln("Request not found"); // Error */
+
+		if ("error" in _objs) _objs["error"].request(req, res);
 	} 
 }
 auto H5App() { return new DH5App(); }

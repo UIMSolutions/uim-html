@@ -198,7 +198,7 @@ unittest {
  // writeln(H5Node(`<thead><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr></thead>`));
  // writeln(H5Node(`<tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr>`));
   //writeln(H5Node(`<thead><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr></thead>`).toH5.toPretty);
-  writeln(parse(`<!DOCTYPE html>
+  /* writeln(parse(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -308,7 +308,7 @@ unittest {
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="js/app.js"></script>
 </body>
-</html>`).toH5String);
+</html>`).toH5String);*/
 }
 
 H5Node parse2(string txt) {
@@ -399,7 +399,7 @@ H5Node parse2(string txt) {
   return rootNode;
 }
 unittest {
-  writeln(`<tag a d>`);
+  /* writeln(`<tag a d>`);
   writeln(parse2(`<tag a d>`));
   writeln(`<tag a="b" d="c">`);
   writeln(parse2(`<tag a="b" d="c">`));
@@ -414,7 +414,7 @@ unittest {
           <span class="stats">{{ cart.items.length }} <template v-if="cart.items.length == 1">item</template><template v-else>items</template> in cart, totalling {{ cartTotal | currency }}</span>
           <button class="btn btn-primary" @click="isShowingCart = true">View Cart</button>
       </div>
-  </nav>`).toH5String);
+  </nav>`).toH5String);*/ 
 }
 
 
