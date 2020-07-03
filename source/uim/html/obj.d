@@ -258,11 +258,11 @@ class DH5Obj {
 		return " "~items.join(" ");
 	}
 
-	 string toCSS() {
+	 string onlyCSS() {
 		if (auto result = _css.toString) return doubleTag("style", result);
 		return null;
 	}
-	 string toHTML() {
+	 string onlyHTML() {
 		string first;
 		string attsHTML = attsToHTML;
 		// firstTag
@@ -282,17 +282,22 @@ class DH5Obj {
 
 		return first~_html.toString~endTag(_tag);
 	}
-	 string toJS() {
+	 string onlyJS() {
 		if (_js.length > 0) return doubleTag("script", this.js);
 		return null;
 	}
 	 override string toString() {
 		string result;
-		result ~= toCSS;
-		result ~= toHTML;
-		result ~= toJS;
+		result ~= onlyCSS;
+		result ~= onlyHTML;
+		result ~= onlyJS;
 		return result;
 	}
+
+	string toJS(string target = null) {
+		return jsCreateElement(target, _tag, _classes, _attributes, _html.toString); // Not finish TODO
+	}
+
 	/// generate HTML in pretty format
 	string toPretty(int intendSpace = 0, int step = 2) {
 		string result;

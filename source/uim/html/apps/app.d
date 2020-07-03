@@ -75,6 +75,16 @@ class DH5App {
 		assert(H5App.index(page).index == page);
 	}
 
+	/// Index startpage
+	DH5AppPage _error;
+	auto error() { return _error; }
+	O error(this O)(string newContent) { this.error(H5AppPage.content(newContent)); return cast(O)this; }
+	O error(this O)(DH5AppPage newPage) { _error = newPage; this.pages("error", newPage); return cast(O)this; }
+	unittest {		
+		auto page = H5AppPage;
+		assert(H5App.error(page).error == page);
+	}
+
 	mixin(XStringAA!"use");
 	unittest {
 		/// TODO 
@@ -273,68 +283,77 @@ class DH5App {
 
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		writeln(this.objs);
+		_parameters = null;
+		_parameters["method"] = to!string(req.method);
+		_parameters["peer"] = req.peer;
+		_parameters["host"] = req.host;
+		_parameters["path"] = req.path;
+		_parameters["rootDir"] = req.rootDir;
+		_parameters["fullURL"] = req.fullURL.toString;
+		_parameters["queryString"] = req.queryString;
+		_parameters["json"] = req.json.toString;
+		_parameters["username"] = req.username;
+		_parameters["password"] = req.password;
+		
 		/// Extract appPath from URL path
-		debug writeln("req.path - ", req.path);
-		debug writeln("rootPath - ", rootPath);
 		string appPath;
 	  if (indexOf(req.path, rootPath) == 0) {
 			if (req.path.length > rootPath.length) appPath = req.path[indexOf(req.path, rootPath)+rootPath.length..$];
 			else appPath = "";
-			writeln("appPath  - ", appPath);
+
+			if ((appPath.length > 1) && (appPath[$-1..$] == "/")) appPath = appPath[0..$-1];
 		}
+		_parameters["appPath"] = appPath;
+		debug writeln(_parameters);
+
 		if (req.path == rootPath) {
-			if ("index" in _objs) _objs["index"].request(req, res);
+			if ("index" in _objs) _index.request(req, res);
+			if ("error" in _objs) _error.request(req, res);
 		}
 
 		auto pathItems = appPath.split("/");
 		writeln("PathItems: ", pathItems);
 
-		if (appPath in _objs) { // static url
+		if (appPath in _objs) { // static urls
 			writeln("Found Obj -> ", appPath);
+
 			_objs[appPath].request(req, res);
 		}
 
-		// dynamic url
-		foreach (path, obj; _objs) {
-			writeln(path);
-			if (path.has("*", ":", "?")) {
-				writeln(path, " vs ", appPath);
-				string[] objPathItems = path.split("/");
-				string[] appPathItems = appPath.split("/");
-				writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
-				writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
-				if (objPathItems.length > appPathItems.length) continue;
+		// dynamic urls
+		foreach (path, obj; _objs) if (path.has("*", ":", "?")) {
+			writeln(path, " vs ", appPath);
+			string[] objPathItems = path.split("/");
+			string[] appPathItems = appPath.split("/");
+			writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
+			writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
+			if (objPathItems.length > appPathItems.length) continue;
 
-				foreach (index, item; objPathItems) {
-					write(index, "->", item, "\t");
-					// if (index >= appPathItems.length) break;
-					if (item == appPathItems[index]) continue;
-
-					if (index == (objPathItems.length-1)) { // last item}
-						if (item == "*") obj.request(req, res);
-						if ((item.indexOf(":") == 0) && (item.length > 1)) {
-							_parameters[item[1..$]] = appPathItems[index];
-							obj.request(req, res);
-						}
-						if ((item.indexOf("?") == 0) && (item.length > 1)) {
-							_parameters[item[1..$]] = appPathItems[index];
-							obj.request(req, res);
-						}
+			bool foundPage = true;
+			foreach (index, item; objPathItems) {
+				if (!foundPage) break;
+				if (index >= appPathItems.length) {
+					foundPage = false;
+					break;
+				}
+				if (item.has("*", ":", "?")) {
+					// dynamic part
+					if ((item.indexOf(":") == 0) && (item.length > 1)) {
+						_parameters[item[1..$]] = appPathItems[index];
 					}
-					else { // not the last Element
-						if ((item.indexOf(":") == 0) && (item.length > 1)) {
-							_parameters[item[1..$]] = appPathItems[index];
-						}
-						if ((item.indexOf("?") == 0) && (item.length > 1)) {
-							_parameters[item[1..$]] = appPathItems[index];
-						}						
+					if ((item.indexOf("?") == 0) && (item.length > 1)) {
+						_parameters[item[1..$]] = appPathItems[index];
 					}
 				}
+				else if (item != appPathItems[index]) {
+					foundPage = false;
+					break;
+				}
 			}
+			if (foundPage) obj.request(req, res);
 		}
 
-		if ("error" in _objs) _objs["error"].request(req, res);
+		_error.request(req, res);
 	} 
 }
 auto H5App() { return new DH5App(); }
