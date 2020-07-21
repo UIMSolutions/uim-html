@@ -3,10 +3,11 @@ module uim.html.apps.app;
 import uim.html;
 
 class DH5App {
-	this() { // this.index("Hallo World"); 
-	}
+	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
+
+	void init() {}
 
 	/// Name of app
 	string _name;
@@ -258,7 +259,7 @@ class DH5App {
 
 	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { this.pages(name, H5AppPage(this, name).content(newPage).parameters(pageParameters)); return cast(O)this; }
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
-	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }
+	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.name(name).app(this).parameters(pageParameters)); return cast(O)this; }
 
 	O removePages(this O)(string[] names...) { this.remove(names); return cast(O)this; }
 	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
@@ -307,8 +308,14 @@ class DH5App {
 		debug writeln(_parameters);
 
 		if (req.path == rootPath) {
-			if ("index" in _objs) _index.request(req, res);
-			if ("error" in _objs) _error.request(req, res);
+			if ("index" in _objs) {
+				_index.request(req, res);
+				return;
+			}
+			if ("error" in _objs) {
+				_error.request(req, res);
+				return;
+			}
 		}
 
 		auto pathItems = appPath.split("/");
@@ -318,9 +325,10 @@ class DH5App {
 			writeln("Found Obj -> ", appPath);
 
 			_objs[appPath].request(req, res);
+			return;
 		}
 
-		// dynamic urls
+		writeln("dynamic urls");
 		foreach (path, obj; _objs) if (path.has("*", ":", "?")) {
 			writeln(path, " vs ", appPath);
 			string[] objPathItems = path.split("/");
@@ -332,10 +340,12 @@ class DH5App {
 			bool foundPage = true;
 			foreach (index, item; objPathItems) {
 				if (!foundPage) break;
+
 				if (index >= appPathItems.length) {
 					foundPage = false;
 					break;
 				}
+
 				if (item.has("*", ":", "?")) {
 					// dynamic part
 					if ((item.indexOf(":") == 0) && (item.length > 1)) {
@@ -345,12 +355,16 @@ class DH5App {
 						_parameters[item[1..$]] = appPathItems[index];
 					}
 				}
-				else if (item != appPathItems[index]) {
+				else { 
+					if (item != appPathItems[index]) {
 					foundPage = false;
 					break;
-				}
+				}}
 			}
-			if (foundPage) obj.request(req, res);
+			if (foundPage) {
+				obj.request(req, res);
+				return;
+			}
 		}
 
 		_error.request(req, res);

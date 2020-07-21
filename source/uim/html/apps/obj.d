@@ -35,6 +35,20 @@ class DH5AppObj {
 		assert(H5AppPage.name("test").name == "test");
 	}
 
+	protected DateTime _created;
+	auto created() { return _created; }
+	O created(this O)(DateTime value) { _created = value; return cast(O)this; }
+	unittest {
+		// TODO
+	}
+
+	protected DateTime _changed;
+	auto changed() { return _changed; }
+	O changed(this O)(DateTime value) { _changed = value; return cast(O)this; }
+	unittest {
+		// TODO
+	}
+
 	auto path() { 
 		if (_app) return app.rootPath ~ name;
 		return "/"~name; }
@@ -44,7 +58,8 @@ class DH5AppObj {
 	auto mimetype() { return _mimetype; }
 	O mimetype(this O)(string newMimetype) { _mimetype = newMimetype; return cast(O)this; }
 	unittest {
-		/// TODO
+		assert(H5App.mimetype("text/xml").mimetype == "text/xml");
+		assert(H5App.mimetype("text/xml").mimetype("applications/javascript").mimetype == "applications/javascript");
 	}
 
 	/// Name of obj
@@ -61,9 +76,6 @@ class DH5AppObj {
 		assert(H5AppPage.parameters == null);
 		assert(H5AppPage.parameters(["x":"y"]).parameters == ["x":"y"]);
 		assert(H5AppPage.parameters("x", "y").parameters == ["x":"y"]);
-	}
-	unittest {
-		/// TODO
 	}
 
 	/// Content of obj
@@ -98,10 +110,14 @@ class DH5AppObj {
 		debug writeln("H5AppObj: override string toString()");
 		debug writeln("Content...", this.content);
 		
+		debug writeln("Is cached?");
 		if (cached) {
+			debug writeln("Yes, is cached");
 			if (_toString.length == 0) _toString = this.content; 
 			return _toString; 
 		}
+
+		debug writeln("Is not cached");
 		return this.content; 
 	}
 	unittest {
