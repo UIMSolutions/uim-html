@@ -109,22 +109,54 @@ class DH5App {
 			/// TODO	
 	}
 
-	/// Styles (CSS) of an app
-	auto styles() {
-		DH5AppStyle[] results;
-		foreach(name, obj; _objs) if (auto result = cast(DH5AppStyle)obj) results ~= result;
-		return results; }
-	auto stylesByName() {
-		DH5AppStyle[string] results;
-		foreach(name, obj; _objs) if (auto result = cast(DH5AppStyle)obj) results[name] = result;
-		return results; }
-	bool isStyle(string name) { 
-		if (name in _objs) 
-			if (cast(DH5AppStyle)_objs[name]) return true; 
-		return false; }
+	protected DH5Meta[] _metas;
+	DH5Meta[] metas() { return _metas; }
+	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
+	O metas(this O)(string[string][] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
+
+	O metas(this O)(DH5Meta[] addMetas...) { this.metas(addMetas); return cast(O)this; }
+	O metas(this O)(DH5Meta[] addMetas) { _metas ~= addMetas; return cast(O)this;}
+
+	O clearMetas(this O)() { _metas = null; return cast(O)this; }
 	unittest {
-		assert(H5App.styles("test", "testContent").isStyle("test"));
-		assert(!H5App.pages("test", "testContent").isStyle("test"));
+		assert(uim.html.elements.meta.toString(H5AppLayout.metas(["a":"b"]).metas)  == `<meta a="b">`);
+		assert(uim.html.elements.meta.toString(H5AppLayout.metas([["a":"b"]]).metas)  == `<meta a="b">`);
+		assert(uim.html.elements.meta.toString(H5AppLayout.metas(H5Meta(["a":"b"])).metas)  == `<meta a="b">`);
+		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
+	}
+
+	DH5Obj[] _styles;
+	DH5Obj[] styles() { return  _styles; }	
+	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
+	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
+
+	O styles(this O)(string[string] link, string[string][] links...) { this.styles([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] links) { foreach(link; links) _styles ~= H5Link(link); return cast(O)this;}
+
+	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
+	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
+	O styles(this O)(DH5Link[] links...) { this.styles(links); return cast(O)this;}
+	O styles(this O)(DH5Link[] links) { _styles ~= links; return cast(O)this;}
+
+	O clearStyles(this O)() { _styles = null; return cast(O)this; }
+	unittest {
+		/// TODO
+	}
+
+	DH5Script[] _libraries;
+	DH5Script[] libraries() { return _libraries; }
+	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
+	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(libs); return cast(O)this;}
+
+	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
+	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
+
+	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
+	O libraries(this O)(DH5Script[] libs) { _libraries ~= libs; return cast(O)this;}
+
+	O clearLibraries(this O)() { _libraries = null; return cast(O)this; }
+	unittest {
+		// assert(H5AppLayout.)
 	}
 
 	auto data() {

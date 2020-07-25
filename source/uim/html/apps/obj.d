@@ -58,8 +58,8 @@ class DH5AppObj {
 	auto mimetype() { return _mimetype; }
 	O mimetype(this O)(string newMimetype) { _mimetype = newMimetype; return cast(O)this; }
 	unittest {
-		assert(H5App.mimetype("text/xml").mimetype == "text/xml");
-		assert(H5App.mimetype("text/xml").mimetype("applications/javascript").mimetype == "applications/javascript");
+		assert(H5AppObj.mimetype("text/xml").mimetype == "text/xml");
+		assert(H5AppObj.mimetype("text/xml").mimetype("applications/javascript").mimetype == "applications/javascript");
 	}
 
 	/// Name of obj
@@ -73,9 +73,9 @@ class DH5AppObj {
 	/// Page parameters - will be used to communicate between components
 	mixin(XStringAA!"parameters");
 	unittest {
-		assert(H5AppPage.parameters == null);
-		assert(H5AppPage.parameters(["x":"y"]).parameters == ["x":"y"]);
-		assert(H5AppPage.parameters("x", "y").parameters == ["x":"y"]);
+		assert(H5AppObj.parameters == null);
+		assert(H5AppObj.parameters(["x":"y"]).parameters == ["x":"y"]);
+		assert(H5AppObj.parameters("x", "y").parameters == ["x":"y"]);
 	}
 
 	/// Content of obj

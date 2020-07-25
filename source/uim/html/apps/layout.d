@@ -89,6 +89,10 @@ import uim.html;
 	
 	override string toString() { return toString("", null); }
 	string toString(DH5AppPage page, string[string] parameters = null) {
+		DH5Meta[] resultingMetas;
+		DH5Obj[] resultingStyles;
+		DH5Script[] resultingLibraries;
+	
 		if ("title" !in parameters) {
 			parameters["title"] =  this.title;
 			if (page) parameters["title"] = page.title; 
@@ -99,18 +103,27 @@ import uim.html;
 			if (page) parameters["lang"] = page.lang; 
 		}
 
-		if (page) {
-			if ("metas" !in parameters) parameters["metas"] = page.metas.asString;
-			else parameters["metas"] = page.metas.asString~parameters["metas"];
-
-			if ("styles" !in parameters) parameters["styles"] = page.styles.asString;
-			else parameters["styles"] = page.styles.asString~parameters["styles"];
-
-			if ("libraries" !in parameters) parameters["libraries"] = page.libraries.asString;
-			else parameters["libraries"] = page.libraries.asString~parameters["libraries"];
-
-			return toString(page.content, parameters);
+		if (this.app) {			
+			resultingMetas ~= app.metas;
+			resultingStyles ~= app.styles;
+			resultingLibraries ~= app.libraries;
 		}
+
+		if (page) {			
+			resultingMetas ~= page.metas;
+			resultingStyles ~= page.styles;
+			resultingLibraries ~= page.libraries;
+		}
+		
+		if ("metas" !in parameters) parameters["metas"] = resultingMetas.asString~parameters["metas"];
+		else parameters["metas"] = resultingMetas.asString;
+
+		if ("styles" !in parameters) parameters["styles"] = resultingStyles.asString~parameters["styles"];
+		else parameters["styles"] = resultingStyles.asString;
+
+		if ("libraries" !in parameters) parameters["libraries"] = resultingLibraries.asString~parameters["libraries"];
+		else parameters["libraries"] = resultingLibraries.asString;
+
 		return toString("", parameters);
 	}
 
