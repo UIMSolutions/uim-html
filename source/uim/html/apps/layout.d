@@ -59,7 +59,7 @@ import uim.html;
 	DH5Script[] _libraries;
 	DH5Script[] libraries() { return _libraries; }
 	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(libs); return cast(O)this;}
+	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
 
 	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
 	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
@@ -89,10 +89,6 @@ import uim.html;
 	
 	override string toString() { return toString("", null); }
 	string toString(DH5AppPage page, string[string] parameters = null) {
-		DH5Meta[] resultingMetas;
-		DH5Obj[] resultingStyles;
-		DH5Script[] resultingLibraries;
-	
 		if ("title" !in parameters) {
 			parameters["title"] =  this.title;
 			if (page) parameters["title"] = page.title; 
@@ -103,31 +99,43 @@ import uim.html;
 			if (page) parameters["lang"] = page.lang; 
 		}
 
-		if (this.app) {			
-			resultingMetas ~= app.metas;
-			resultingStyles ~= app.styles;
-			resultingLibraries ~= app.libraries;
-		}
-
 		if (page) {			
-			resultingMetas ~= page.metas;
-			resultingStyles ~= page.styles;
-			resultingLibraries ~= page.libraries;
+			debug writeln("Reading header settings from page");
+			if (page.metas) {
+				if ("metas" in parameters) parameters["metas"] = page.metas.asString~parameters["metas"];
+				else parameters["metas"] = page.metas.asString;
+			}
+			if (page.styles) {
+				if ("styles" in parameters) parameters["styles"] = page.styles.asString~parameters["styles"];
+				else parameters["styles"] = page.styles.asString;
+			}
+			if (page.libraries) {
+				if ("libraries" in parameters) parameters["libraries"] = page.libraries.asString~parameters["libraries"];
+				else parameters["libraries"] = page.libraries.asString;
+			}
+			debug writeln(parameters);
 		}
-		
-		if ("metas" !in parameters) parameters["metas"] = resultingMetas.asString~parameters["metas"];
-		else parameters["metas"] = resultingMetas.asString;
-
-		if ("styles" !in parameters) parameters["styles"] = resultingStyles.asString~parameters["styles"];
-		else parameters["styles"] = resultingStyles.asString;
-
-		if ("libraries" !in parameters) parameters["libraries"] = resultingLibraries.asString~parameters["libraries"];
-		else parameters["libraries"] = resultingLibraries.asString;
-
-		return toString("", parameters);
+		return toString(page.content, parameters);
 	}
 
 	string toString(string content, string[string] parameters = null) {
+		debug writeln("Reading header settings from app");
+		if (this.app) {			
+			if (this.app.metas) {
+				if ("metas" in parameters) parameters["metas"] = this.app.metas.asString~parameters["metas"];
+				else parameters["metas"] = this.app.metas.asString;
+			}
+			if (this.app.styles) {
+				if ("styles" in parameters) parameters["styles"] = this.app.styles.asString~parameters["styles"];
+				else parameters["styles"] = this.app.styles.asString;
+			}
+			if (this.app.libraries) {
+				if ("libraries" in parameters) parameters["libraries"] = this.app.libraries.asString~parameters["libraries"];
+				else parameters["libraries"] = this.app.libraries.asString;
+			}
+			debug writeln(parameters);
+		}
+
 		auto finalLang = parameters.get("lang", this.lang); // if lang !in parameters use this.lang
 		auto finalTitle = parameters.get("title", this.title);  // if title !in parameters use this.title
 

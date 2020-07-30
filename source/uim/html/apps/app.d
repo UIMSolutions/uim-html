@@ -146,7 +146,7 @@ class DH5App {
 	DH5Script[] _libraries;
 	DH5Script[] libraries() { return _libraries; }
 	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(libs); return cast(O)this;}
+	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
 
 	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
 	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}

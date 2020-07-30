@@ -29,6 +29,14 @@ public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
 public import uim.html.parser;
+// API
+public import uim.html.audio;
+public import uim.html.canvas;
+public import uim.html.dragdrop;
+public import uim.html.geolocation;
+public import uim.html.video;
+public import uim.html.webstorage;
+public import uim.html.webworker;
 
 string h5Doctype = "<!doctype html>";
 

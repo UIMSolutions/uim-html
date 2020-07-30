@@ -60,7 +60,7 @@ class DH5AppPage : DH5AppObj {
 	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string] links...) { this.styles([link]~links); return cast(O)this;}
+	O styles(this O)(string[string] link, string[string][] links...) { this.styles([link]~links); return cast(O)this;}
 	O styles(this O)(string[string][] links) { foreach(link; links) _styles ~= H5Link(link); return cast(O)this;}
 
 	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
@@ -76,15 +76,15 @@ class DH5AppPage : DH5AppObj {
 	DH5Script[] _libraries;
 	DH5Script[] libraries() { return _libraries; }
 	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(libs); return cast(O)this;}
+	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
 
-	O libraries(this O)(string[string] lib, string[string] libs...) { this.libraries([lib]~libs); return cast(O)this;}
+	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
 	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
 
 	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
 	O libraries(this O)(DH5Script[] libs) { _libraries ~= libs; return cast(O)this;}
 
-	O clearLibraries(this O)() { _librariess = null; return cast(O)this; }
+	O clearLibraries(this O)() { _libraries = null; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
