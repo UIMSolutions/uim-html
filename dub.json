@@ -5,7 +5,7 @@
     "copyright": "Copyright © 2017-2020, UI Manufaktur UG",
     "description": "A D library for creating HTML5 projects",
     "targetType": "library",
-    "license": "Apache 2.0",
+    "license": "MIT",
     "name": "uim-html",
     "dependencies": {
         "arsd-official:htmltotext": "~>7.2.0",
