@@ -3,7 +3,7 @@
 import uim.html;
 
 /// Page layout
- class DH5AppLayout : DH5AppObj {
+  class DH5AppLayout : DH5AppObj {
 	this() { super(); 
 	_lang = "en"; }
 	this(DH5App anApp) { this().app(anApp); }
@@ -91,16 +91,17 @@ import uim.html;
 	string toString(DH5AppPage page, string[string] parameters = null) {
 		if ("title" !in parameters) {
 			parameters["title"] =  this.title;
-			if (page) parameters["title"] = page.title; 
 		}
 
 		if ("lang" !in parameters) {
 			parameters["lang"] =  this.lang;
-			if (page) parameters["lang"] = page.lang; 
 		}
 
 		if (page) {			
 			debug writeln("Reading header settings from page");
+			if (page.title) parameters["title"] =  this.title;
+			if (page.lang) parameters["lang"] = this.lang;
+
 			if (page.metas) {
 				if ("metas" in parameters) parameters["metas"] = page.metas.asString~parameters["metas"];
 				else parameters["metas"] = page.metas.asString;

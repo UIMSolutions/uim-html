@@ -3,7 +3,7 @@ module uim.html.apps.style;
 import uim.html;
 
 /// Style (CSS) of an App
-class DH5AppStyle : DH5AppObj {
+ class DH5AppStyle : DH5AppObj {
 	this() { super(); this.mimetype("text/css"); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }

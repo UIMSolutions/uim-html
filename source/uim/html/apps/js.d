@@ -9,7 +9,7 @@ class DH5AppJavascript : DH5AppObj {
 	this(DH5App anApp, string aName) { this().app(anApp).name(aName).mimetype("application/javascript"); }
 
 	/// Export to string
-	override string toString() {
+	override string toString(string[string] parameters) {
 		if (cached) {
 			if (_toString) return _toString;
 			if (_content) { _toString = _content; return _toString; }

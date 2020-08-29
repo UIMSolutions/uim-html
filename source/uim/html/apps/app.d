@@ -2,19 +2,22 @@ module uim.html.apps.app;
 
 import uim.html;
 
-class DH5App {
+ class DH5App {
 	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
 
 	void init() {}
 
+	/// Id of app
+	mixin(OProperty!("string", "id"));
+	unittest {	
+			assert(H5App.id("aId").id == "aId");	
+			assert(H5App.id("aId").id("otherId").id == "otherId");
+	}
+
 	/// Name of app
-	string _name;
-	/// Get name of app
-	string name() { return _name; }
-	/// Change name of app
-	O name(this O)(string newName) { _name = newName; return cast(O)this; }
+	mixin(OProperty!("string", "name"));
 	unittest {	
 			assert(H5App.name("aName").name == "aName");	
 			assert(H5App.name("aName").name("otherName").name == "otherName");
@@ -39,9 +42,9 @@ class DH5App {
 	/// Page parameters - will be used to communicate between components
 	mixin(XStringAA!"parameters");
 	unittest {
-		assert(H5AppPage.parameters == null);
-		assert(H5AppPage.parameters(["x":"y"]).parameters == ["x":"y"]);
-		assert(H5AppPage.parameters("x", "y").parameters == ["x":"y"]);
+		assert(H5App.parameters == null);
+		assert(H5App.parameters(["x":"y"]).parameters == ["x":"y"]);
+		assert(H5App.parameters("x", "y").parameters == ["x":"y"]);
 	}
 	unittest {
 		/// TODO
@@ -91,8 +94,10 @@ class DH5App {
 		/// TODO 
 	}	
 
-	/// Manage theobjs of an app
+	// ----------
+	// Manage the objs of an app. Everything is an obj
 	DH5AppObj[string] _objs;
+
 	auto objs() { return _objs; }
 	O objs(this O)(DH5AppObj[string] newObjects) { foreach(objName, objNew; newObjects) this.obj(objName, objNew); return cast(O)this; }
 	O objs(this O)(DH5AppObj[] newObjects...) { foreach(objNew; newObjects) this.obj(objNew); return cast(O)this; }
@@ -140,7 +145,7 @@ class DH5App {
 
 	O clearStyles(this O)() { _styles = null; return cast(O)this; }
 	unittest {
-		/// TODO
+		/// TODO	
 	}
 
 	DH5Script[] _libraries;
@@ -164,17 +169,19 @@ class DH5App {
 		foreach(name, obj; _objs) if (auto result = cast(DH5AppData)obj) results[name] = result;
 		return results; }
 
+	O data(this O)(DH5AppData[] addData...) { data(addData); return cast(O)this; }
 	O data(this O)(DH5AppData[] addData) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
-	O data(this O)(DH5AppData[] addData...) { foreach(d; addData) this.data(d.name, d); return cast(O)this; }
 
-	O data(this O)(DH5AppData[string] addData) { foreach(name, d; addData) this.data(name, d); return cast(O)this; }
 	O data(this O)(string[string] addData) { foreach(name, d; addData) this.data(name, d); return cast(O)this; }
+	O data(this O)(DH5AppData[string] addData) { foreach(name, d; addData) this.data(name, d); return cast(O)this; }
 
 	O data(this O)(string name, string addData) { this.data(name, DH5AppData(this, name).content(addData)); return cast(O)this; }
 	O data(this O)(string name, DH5AppData addData) { this.obj(name, addData); return cast(O)this; }
 
+	/// Remove (only) data files from objs
+	O removeData(this O)(string[] names...) { foreach(item; items) if (item.name in _objs) if (auto obj = cast(DH5AppData)_objs[item.name]) this.remove(item.name); return cast(O)this; }
 	O removeData(this O)(DH5AppData[] items...) { foreach(item; items) if (item.name in _objs) if (auto obj = cast(DH5AppData)_objs[item.name]) this.remove(item.name); return cast(O)this; }
-	O removeData(this O)(string[] names...) { foreach(name; names) this.remove(name); return cast(O)this; }
+
 	O clearData(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppData)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			/// TODO	
@@ -265,15 +272,40 @@ class DH5App {
 			/// TODO	
 	}
 
-	/// Pages of app
-	auto pages() {
+	// Page handling
+	// Get all pages of an app
+	 auto pages() {
 		DH5AppPage[] results;
 		foreach(name, obj; _objs) if (auto result = cast(DH5AppPage)obj) results ~= result;
 		return results; }
-	auto pagesByName() {
-		DH5AppPage[string] results;
-		foreach(name, obj; _objs) if (auto result = cast(DH5AppPage)obj) results[name] = result;
+	unittest {
+		assert(H5App.pages("test", "testcontent").pages.length == 1);	
+		assert(H5App.pages("test", "testcontent").pages("test", "testcontent").pages.length == 1);	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.length == 2);	
+	}		
+
+	// Get pages by names
+	DH5AppPage pageByName(string name) {
+		if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) return obj;
+		return null; }
+	unittest {
+		assert(H5App.pages("test", "testcontent").pageByName("test").name == "test");	
+		assert(H5App.pages("test", "testcontent").pageByName("test").name != "xyz");	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pageByName("test").name == "test");	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pageByName("test").name != "xyz");	
+	}		
+
+	DH5AppPage[] pagesByName(string[] names...) { return pagesByName(names); }
+	DH5AppPage[] pagesByName(string[] names) {
+		DH5AppPage[] results;
+		foreach(name; names) if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) results ~= obj;
 		return results; }
+	unittest {
+		assert(H5App.pages("test", "testcontent").pagesByName("test")[0].name == "test");	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pagesByName("test", "test2")[1].name == "test2");	
+	}		
+
+	// Is a (DH5)AppPage or inherit
 	bool isPage(string name) { 
 		if (name in _objs) 
 			if (cast(DH5AppPage)_objs[name]) return true; 
@@ -293,7 +325,7 @@ class DH5App {
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
 	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.name(name).app(this).parameters(pageParameters)); return cast(O)this; }
 
-	O removePages(this O)(string[] names...) { this.remove(names); return cast(O)this; }
+	O removePages(this O)(string[] names...) { foreach(name; names) if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) this.remove(name); return cast(O)this; }
 	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			// writeln(H5App.page("test", "testcontent").pages.length);	
@@ -316,7 +348,7 @@ class DH5App {
 
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		_parameters = null;
+		_parameters = parameters.dup;
 		_parameters["method"] = to!string(req.method);
 		_parameters["peer"] = req.peer;
 		_parameters["host"] = req.host;
@@ -341,11 +373,11 @@ class DH5App {
 
 		if (req.path == rootPath) {
 			if ("index" in _objs) {
-				_index.request(req, res);
+				_index.request(req, res, _parameters);
 				return;
 			}
 			if ("error" in _objs) {
-				_error.request(req, res);
+				_error.request(req, res, _parameters);
 				return;
 			}
 		}
@@ -356,7 +388,7 @@ class DH5App {
 		if (appPath in _objs) { // static urls
 			writeln("Found Obj -> ", appPath);
 
-			_objs[appPath].request(req, res);
+			_objs[appPath].request(req, res, _parameters);
 			return;
 		}
 
@@ -394,7 +426,7 @@ class DH5App {
 				}}
 			}
 			if (foundPage) {
-				obj.request(req, res);
+				obj.request(req, res, _parameters);
 				return;
 			}
 		}
@@ -402,9 +434,9 @@ class DH5App {
 		_error.request(req, res);
 	} 
 }
-auto H5App() { return new DH5App(); }
-auto H5App(string aName) { return new DH5App(aName); }
-auto H5App(string aName, string aRootPath) { return new DH5App(aName, aRootPath); }
+ auto H5App() { return new DH5App(); }
+ auto H5App(string aName) { return new DH5App(aName); }
+ auto H5App(string aName, string aRootPath) { return new DH5App(aName, aRootPath); }
 
 unittest {
 		/// TODO

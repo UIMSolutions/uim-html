@@ -2,7 +2,7 @@ module uim.html.apps.manifest;
 
 import uim.html;
 
- class DH5AppManifest : DH5AppObj {
+  class DH5AppManifest : DH5AppObj {
 	this() { super(); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
@@ -14,11 +14,10 @@ import uim.html;
 	 * Description: A placeholder background color for the application page to display before its stylesheet is loaded. 
 	 * This value is used by the user agent to draw the background color of a shortcut when the manifest is available before the stylesheet has loaded.
 	 */
-	protected string _backgroundColor;
-	auto backgroundColor() { return _backgroundColor; } 
-	O backgroundColor(this O)(string newBackgroundColor) { _backgroundColor = newBackgroundColor; return cast(O)this; }
+	mixin(OProperty!("string", "backgroundColor"));
 	unittest {
 		assert(H5AppManifest.backgroundColor("blue").backgroundColor == "blue");
+		assert(H5AppManifest.backgroundColor("blue").backgroundColor("red").backgroundColor == "red");
 	}
 
 	/**
@@ -29,7 +28,7 @@ import uim.html;
 	 * "travel", "utilities", "weather" and vendor-specific values.
 	 */
 	protected string[] _categories;
-	protected O category(this O)(string addCategory) { if (!_categories.has(addCategory)) _categories ~= addCategory; return cast(O)this; }
+	/* protected O category(this O)(string addCategory) { if (!_categories.has(addCategory)) _categories ~= addCategory; return cast(O)this; }
 	/// Work with categories
 	auto categories() { return _categories; } 
 	O categories(this O)(string[] addCategories...) { foreach(cat; addCategories) this.category(cat); return cast(O)this; }
@@ -39,16 +38,15 @@ import uim.html;
 		assert(H5AppManifest.categories(["tool", "www"]).categories == ["tool", "www"]);
 		assert(H5AppManifest.categories(["tool", "www"]).categories("map").categories == ["tool", "www", "map"]);
 	}
-
+*/
 	/**
 	 * description - string in which developers can explain what the application does. 
 	 * description is directionality-capable
 	 */
-	protected string _description;
-	auto description() { return _description; } 
-	O description(this O)(string newDescription) { _description = newDescription; return cast(O)this; }
+	mixin(OProperty!("string", "description"));
 	unittest {
 		assert(H5AppManifest.description("This is an app").description == "This is an app");
+		assert(H5AppManifest.description("This is an app").description("This is a second app").description == "This is a second app");
 	}
 		
 	/**
@@ -56,9 +54,7 @@ import uim.html;
 	 * Direction-capable members are name, short_name and _description
 	 * Valid values are "auto", "ltr" and "rtl"
 	 */
-	protected string _dir;
-	auto dir() { return _dir; } 
-	O dir(this O)(string newDir) { _dir = newDir; return cast(O)this; }
+	mixin(OProperty!("string", "dir"));
 	unittest {
 		assert(H5AppManifest.dir("auto").dir == "auto");
 	}
@@ -72,9 +68,7 @@ import uim.html;
    *   "minimal-ui"	- Application will look and feel like a standalone application, but will have a minimal set of UI elements for controlling navigation. The elements will vary by browser.	
    *   "browser"	  - (Default) Application opens in a conventional browser tab or new window, depending on the browser and platform. 	
 	 */
-	protected string _display;
-	auto display() { return _display; } 
-	O display(this O)(string newDisplay) { _display = newDisplay; return cast(O)this; }
+	mixin(OProperty!("string", "display"));
 	unittest {
 		assert(H5AppManifest.display("fullscreen").display == "fullscreen");
 	}

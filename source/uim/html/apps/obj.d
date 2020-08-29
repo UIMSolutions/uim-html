@@ -2,7 +2,7 @@ module uim.html.apps.obj;
 
 import uim.html;
 
-class DH5AppObj {
+ class DH5AppObj {
 	this() { }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
@@ -95,10 +95,14 @@ class DH5AppObj {
 	}
 
 	/// Response to HTTP request
-	void request(HTTPServerRequest req, HTTPServerResponse res) {
+	void request(HTTPServerRequest req, HTTPServerResponse res, string[string] parameters = null) {
 		// debug // writeln("H5AppObj: void request()");
-		if (_app) _parameters = _app.parameters.dup;
-		res.writeBody(toString, _mimetype); 
+		string[string] requestParameters;
+		if (this.app) foreach(k, v; this.app.parameters) requestParameters[k] = v;
+		foreach(k, v; this.parameters) requestParameters[k] = v;
+		foreach(k, v; parameters) requestParameters[k] = v;
+
+		res.writeBody(toString(requestParameters), _mimetype); 
 	}
 	unittest {
 		/// TODO
@@ -106,7 +110,8 @@ class DH5AppObj {
 
 	string _toString;
 	/// Export to string
-	override string toString() {
+	override string toString() { string[string] pm; return toString(pm); }
+	string toString(string[string] parameters) {
 		debug writeln("H5AppObj: override string toString()");
 		debug writeln("Content...", this.content);
 		

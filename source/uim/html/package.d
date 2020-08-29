@@ -25,10 +25,12 @@ public import uim.html.obj;
 public import uim.html.apps;
 
 public import uim.html.core;
+public import uim.html.components;	
 public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
 public import uim.html.parser;
+public import uim.html.snippets;
 // API
 public import uim.html.audio;
 public import uim.html.canvas;

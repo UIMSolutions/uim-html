@@ -8,6 +8,12 @@ class DH5AppPage : DH5AppObj {
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
+	mixin(OProperty!("string", "title"));
+	unittest {
+		assert(H5AppPage.title("aTitle").title == "aTitle");	
+		assert(H5AppPage.title("aTitle").title("otherTitle").title == "otherTitle");
+	}
+
 	/// Language of page
 	string _lang = "en";
 	/// Get language of page
@@ -23,8 +29,6 @@ class DH5AppPage : DH5AppObj {
 			assert(H5App.language("aLanguage").language("otherLanguage").language == "otherLanguage");
 	}
 
-	mixin(OString!("title"));
-	
   /// Every page can has his own layout - Otherwise it will use central app layout
 	DH5AppLayout _layout;
 	auto layout() { 
@@ -90,7 +94,7 @@ class DH5AppPage : DH5AppObj {
 	}
 	
 	/// Export to string
-	override string toString() {
+	override string toString(string[string] parameters) {
 		// if (_layout) return _layout.toString(this.content, this.parameters);
 		// return _content;
 		// // debug // writeln("H5Page: override string toString()");
@@ -110,10 +114,10 @@ class DH5AppPage : DH5AppObj {
 		//// writeln(H5AppPage);
 	}
 }
-auto H5AppPage() { return new DH5AppPage(); }
-auto H5AppPage(string aName) { return new DH5AppPage(aName); }
-auto H5AppPage(DH5App anApp) { return new DH5AppPage(anApp); }
-auto H5AppPage(DH5App anApp, string aName) { return new DH5AppPage(anApp, aName); }
+ auto H5AppPage() { return new DH5AppPage(); }
+ auto H5AppPage(string aName) { return new DH5AppPage(aName); }
+ auto H5AppPage(DH5App anApp) { return new DH5AppPage(anApp); }
+ auto H5AppPage(DH5App anApp, string aName) { return new DH5AppPage(anApp, aName); }
 
 unittest {
     assert(H5AppPage);
@@ -126,3 +130,12 @@ unittest {
     assert(H5AppPage(app, "name").app == app);
     assert(H5AppPage(app, "name").name("newname").name() == "newname");
 }
+
+	// Get page by names
+	 DH5AppPage pageByName(DH5AppPage[] pages, string name) {
+		foreach(page; pages) if (page.name == name) return page;
+		return null; }
+	unittest {
+		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
+	}		
