@@ -1,7 +1,5 @@
 ﻿module uim.html.core.jscanvas;
 
-//import std.stdio;
-//import std.string;
 import uim.html;
 //
 //class DJSCanvas : DJS {

@@ -2,6 +2,7 @@
 
 import uim.html;
 
+// Additional element to handle string in DOM
 class DH5String : DH5Obj {
 	private string _content;
     this(string aContent) { _content = aContent; }
@@ -11,4 +12,5 @@ class DH5String : DH5Obj {
 		return _content.indent(intendSpace);
 	}
 }
-DH5String H5String(string text) { return new DH5String(text); }
+auto H5String(string text) { return new DH5String(text); }
+auto H5String(T)(T value) { return new DH5String(to!string(value)); }

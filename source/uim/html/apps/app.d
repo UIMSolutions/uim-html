@@ -2,7 +2,7 @@ module uim.html.apps.app;
 
 import uim.html;
 
- class DH5App {
+class DH5App {
 	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }

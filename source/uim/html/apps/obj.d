@@ -2,8 +2,11 @@ module uim.html.apps.obj;
 
 import uim.html;
 
- class DH5AppObj {
-	this() { }
+class DH5AppObj {
+	this() { 
+		this
+		.created(DateTime(2017, 1, 1, 1, 1, 1))
+		.changed(DateTime(2017, 1, 1, 1, 1, 1)); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
@@ -17,11 +20,19 @@ import uim.html;
 		std.file.getTimes(path, _accessTime, _modificationTime);
 		return cast(O)this; }
 	
-	/// App of obj
-	DH5App _app;
-	auto app() { return _app; }
-	O app(this O)(DH5App newApp) { _app = newApp; return cast(O)this; }
+	/**
+	* app 
+	* 
+	* Property which contains the (parent) app
+	* DH5App app() - return app if exists
+	* (this O) app(DH5App newApp) - setting new app / returns obj
+	* 
+	* Adding this obj to another app will changes this property to the new app 
+	**/
+	mixin(OProperty!("DH5App", "app"));
 	unittest {
+		assert(H5AppPage(H5App("test")).app.name == "test");
+		assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");
 	}
 
 	/**
