@@ -1,13 +1,16 @@
 ﻿module uim.html;
 
 public import core.vararg;
+public import std.algorithm;
+public import std.array;
+public import std.conv;
+public import std.file;
+public import std.range;
 public import std.stdio;
 public import std.string;
-public import std.conv;
-public import std.array;
-public import std.file;
 public import std.traits;
 public import std.uuid;
+
 
 public import vibe.d;
 
@@ -29,6 +32,7 @@ public import uim.html.components;
 public import uim.html.elements;
 public import uim.html.elements.inputs;
 public import uim.html.extras;
+public import uim.html.helpers;
 public import uim.html.parser;
 public import uim.html.snippets;
 // API
@@ -307,3 +311,7 @@ unittest {
 auto FA(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]);}
 auto FAR(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]);}
 auto FAS(string name, string[] classes = null) {return H5I(classes~["fas", "fa-"~name]);}
+
+auto Fa(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]).toString;}
+auto Far(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]).toString;}
+auto Fas(string name, string[] classes = null) {return H5I(classes~["fas", "fa-"~name]).toString;}

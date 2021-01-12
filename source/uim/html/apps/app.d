@@ -7,7 +7,11 @@ class DH5App {
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
 
-	void init() {}
+	void init() {
+		_layout = new DH5AppLayout;
+		this.index(new DH5AppPage);
+		this.error(new DH5AppPage);
+	}
 
 	/// Id of app
 	mixin(OProperty!("string", "id"));
@@ -275,8 +279,8 @@ class DH5App {
 	// Page handling
 	// Get all pages of an app
 	 auto pages() {
-		DH5AppPage[] results;
-		foreach(name, obj; _objs) if (auto result = cast(DH5AppPage)obj) results ~= result;
+		DH5AppPage[string] results;
+		foreach(name, obj; _objs) if (auto result = cast(DH5AppPage)obj) results[name] = result;
 		return results; }
 	unittest {
 		assert(H5App.pages("test", "testcontent").pages.length == 1);	
@@ -323,7 +327,10 @@ class DH5App {
 
 	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { this.pages(name, H5AppPage(this, name).content(newPage).parameters(pageParameters)); return cast(O)this; }
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
-	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { this.obj(name, newPage.name(name).app(this).parameters(pageParameters)); return cast(O)this; }
+	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { 
+		if (newPage.name.length == 0) newPage.name = name; 
+		this.obj(name, newPage.app(this).parameters(pageParameters)); 
+		return cast(O)this; }
 
 	O removePages(this O)(string[] names...) { foreach(name; names) if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) this.remove(name); return cast(O)this; }
 	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
@@ -394,11 +401,11 @@ class DH5App {
 
 		writeln("dynamic urls");
 		foreach (path, obj; _objs) if (path.has("*", ":", "?")) {
-			writeln(path, " vs ", appPath);
+			// writeln(path, " vs ", appPath);
 			string[] objPathItems = path.split("/");
 			string[] appPathItems = appPath.split("/");
-			writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
-			writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
+			// writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
+			// writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
 			if (objPathItems.length > appPathItems.length) continue;
 
 			bool foundPage = true;

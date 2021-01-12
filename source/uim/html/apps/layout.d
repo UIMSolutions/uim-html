@@ -22,6 +22,8 @@ import uim.html;
 	mixin(OString!("lang"));
 	mixin(OString!("title"));
 	
+	mixin(OProperty!("DH5Html", "html"));
+
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
 	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
@@ -36,6 +38,19 @@ import uim.html;
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([["a":"b"]]).metas)  == `<meta a="b">`);
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas(H5Meta(["a":"b"])).metas)  == `<meta a="b">`);
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
+	}
+
+	DH5Obj[] _links;
+	DH5Obj[] links() { return  _links; }	
+	O links(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
+	O links(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+
+	O links(this O)(DH5Link[] links...) { this.links(links); return cast(O)this;}
+	O links(this O)(DH5Link[] links) { _links ~= links; return cast(O)this;}
+
+	O clearLinks(this O)() { _links = null; return cast(O)this; }
+	unittest {
+		/// TODO
 	}
 
 	DH5Obj[] _styles;
@@ -106,6 +121,9 @@ import uim.html;
 				if ("metas" in parameters) parameters["metas"] = page.metas.asString~parameters["metas"];
 				else parameters["metas"] = page.metas.asString;
 			}
+			if (page.links) {
+				parameters["links"] = "links" in parameters ? page.styles.asString~parameters["styles"] : page.styles.asString;
+			}
 			if (page.styles) {
 				if ("styles" in parameters) parameters["styles"] = page.styles.asString~parameters["styles"];
 				else parameters["styles"] = page.styles.asString;
@@ -141,7 +159,7 @@ import uim.html;
 		auto finalTitle = parameters.get("title", this.title);  // if title !in parameters use this.title
 
 		// creating HTML page
-		auto result = H5Html
+		_html = H5Html
 		.attributes("lang", finalLang).attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
 		// Head part of HTML
 		.head(_headClasses)
@@ -155,7 +173,7 @@ import uim.html;
 		.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
 		.body_(this.libraries.asString~parameters.get("libraries", ""));
 
-		return result.toString;
+		return _html.toString;
 	}
 	unittest {
 		writeln(H5AppLayout);

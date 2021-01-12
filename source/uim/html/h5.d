@@ -568,11 +568,11 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
         assert(Assert(H5.shadow, "<shadow></shadow>"));
     }
 
-    mixin(H5Def!"slot");
+/*     mixin(H5Def!"slot");
     unittest { 
         assert(Assert(H5.slot, "<slot></slot>"));
     }
-
+ */
     mixin(H5Def!"small");
     unittest { 
         assert(Assert(H5.small, "<small></small>"));

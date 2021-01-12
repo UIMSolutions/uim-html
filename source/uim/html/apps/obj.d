@@ -46,16 +46,14 @@ class DH5AppObj {
 		assert(H5AppPage.name("test").name == "test");
 	}
 
-	protected DateTime _created;
-	auto created() { return _created; }
-	O created(this O)(DateTime value) { _created = value; return cast(O)this; }
+	mixin(OProperty!("DateTime", "created"));
+	O created(this O)(SysTime value) { this.created(cast(DateTime)value); return cast(O)this; }
 	unittest {
 		// TODO
 	}
 
-	protected DateTime _changed;
-	auto changed() { return _changed; }
-	O changed(this O)(DateTime value) { _changed = value; return cast(O)this; }
+	mixin(OProperty!("DateTime", "changed"));
+	O changed(this O)(SysTime value) { this.changed(cast(DateTime)value); return cast(O)this; }
 	unittest {
 		// TODO
 	}
@@ -112,6 +110,11 @@ class DH5AppObj {
 		if (this.app) foreach(k, v; this.app.parameters) requestParameters[k] = v;
 		foreach(k, v; this.parameters) requestParameters[k] = v;
 		foreach(k, v; parameters) requestParameters[k] = v;
+
+		foreach(k, v; req.params) requestParameters[k] = v;
+		foreach(k, v; req.headers) requestParameters[k] = v;
+		foreach(k, v; req.query) requestParameters[k] = v;
+		foreach(k, v; req.form) requestParameters[k] = v;
 
 		res.writeBody(toString(requestParameters), _mimetype); 
 	}

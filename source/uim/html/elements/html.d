@@ -12,8 +12,8 @@ class DH5Html : DH5Obj {
 
 	override public void _init() {
 		super._init;
-
-		this.content(H5Head, H5Body);
+		_head = H5Head;
+		_body_ = H5Body;
 	}
 
 	 void Add(T...)(T values) { _body.Add(values); }
@@ -44,31 +44,32 @@ class DH5Html : DH5Obj {
 
 	alias add = typeof(super).add;  		
 
-	auto head() { return cast(DH5Head)_html[0]; }
-	auto head(this O)(DH5Head newHead) { _html[0] = newHead; return cast(O)this;}
-	auto head(this O)(string[] classes) { _html[0](classes); return cast(O)this;}
-	auto head(this O)(string[string] attributes) { _html[0](attributes); return cast(O)this;}
+	mixin(OProperty!("DH5Head","head"));
+	auto head(this O)(string[] classes) { _head(classes); return cast(O)this;}
+	auto head(this O)(string[string] attributes) { _head(attributes); return cast(O)this;}
 	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](classes, attributes); return cast(O)this;}
-	auto head(this O)(string addContent) { _html[0](addContent); return cast(O)this;}
+	auto head(this O)(string addContent) { _head(addContent); return cast(O)this;}
 
-	auto body_() { return cast(DH5Body)_html[1]; }
-	auto body_(this O)(DH5Body newBody) { _html[1] = newBody; return cast(O)this; }
-	auto body_(this O)(string[] classes) { _html[1](classes); return cast(O)this;}
-	auto body_(this O)(string[string] attributes) { _html[1](attributes); return cast(O)this;}
-	//auto body_(this O)(string[] classes, string[string] attributes) { _html[1](classes, attributes); return cast(O)this;}
-	auto body_(this O)(string addContent) { _html[1](addContent); return cast(O)this;}
+	mixin(OProperty!("DH5Body","body_"));
+	auto body_(this O)(string[] classes) { _body_(classes); return cast(O)this;}
+	auto body_(this O)(string[string] attributes) { _body_(attributes); return cast(O)this;}
+	auto body_(this O)(string[] classes, string[string] attributes) { _body_(classes, attributes); return cast(O)this;}
+	auto body_(this O)(string addContent) { _body_(addContent); return cast(O)this;}
+	auto body_(this O)(DH5Obj[] addContent...) { _body_(addContent); return cast(O)this;}
+	auto body_(this O)(DH5Obj[] addContent) { _body_(addContent); return cast(O)this;}
 		
 	void opBinary(string op, T...)(T values) { static if ((op == "+") || (op == "~")) Add(values); }
 
-	O scripts(this O)(string[] links) { _body.scripts(links); return cast(O)this; }
+/* 	O scripts(this O)(string[] links) { _body.scripts(links); return cast(O)this; }
 	O script(this O, T...)(T values) { _body.script(values);  return cast(O)this; }
-
+ */
 	override string toString() { 
-	return h5Doctype~super.toString; }
+	return h5Doctype~H5Obj(_id, _classes, _attributes, _head, _body_).tag("html").toString; }
 }
 mixin(H5Short!"Html");
 
 unittest {
+	writeln(H5Html);
 	assert(Assert(H5Html,"<!doctype html><html><head></head><body></body></html>"));
 	assert(Assert(H5Html(["lang":"en"]),"<!doctype html><html lang=\"en\"><head></head><body></body></html>"));
 }

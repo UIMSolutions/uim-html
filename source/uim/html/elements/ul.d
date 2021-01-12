@@ -21,10 +21,15 @@ class DH5Ul : DH5Obj {
 	}
 
 	mixin(MyContent!("link", "this.item", "H5Li"));
+	unittest {
+	}
 
 	O link(this O)(string id, string[] linkClasses, string src, string title) {
 		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
+	unittest {
+	}
+
 }
 mixin(H5Short!"Ul");
 

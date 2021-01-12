@@ -29,6 +29,8 @@ class DH5AppPage : DH5AppObj {
 			assert(H5App.language("aLanguage").language("otherLanguage").language == "otherLanguage");
 	}
 
+	string[string] keywords;
+	
   /// Every page can has his own layout - Otherwise it will use central app layout
 	DH5AppLayout _layout;
 	auto layout() { 
@@ -57,6 +59,19 @@ class DH5AppPage : DH5AppObj {
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([["a":"b"]]).metas)  == `<meta a="b">`);
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas(H5Meta(["a":"b"])).metas)  == `<meta a="b">`);
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
+	}
+
+	DH5Obj[] _links;
+	DH5Obj[] links() { return  _links; }	
+	O links(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
+	O links(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+
+	O links(this O)(DH5Link[] links...) { this.links(links); return cast(O)this;}
+	O links(this O)(DH5Link[] links) { _links ~= links; return cast(O)this;}
+
+	O clearLinks(this O)() { _links = null; return cast(O)this; }
+	unittest {
+		/// TODO
 	}
 
 	DH5Obj[] _styles;
@@ -136,6 +151,6 @@ unittest {
 		foreach(page; pages) if (page.name == name) return page;
 		return null; }
 	unittest {
-		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
+/* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
 		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-	}		
+ */	}		
