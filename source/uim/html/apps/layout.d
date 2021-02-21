@@ -40,8 +40,8 @@ import uim.html;
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
 	}
 
-	DH5Obj[] _links;
-	DH5Obj[] links() { return  _links; }	
+	DH5Link[] _links;
+	DH5Link[] links() { return  _links; }	
 	O links(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
 	O links(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
 
@@ -53,13 +53,13 @@ import uim.html;
 		/// TODO
 	}
 
-	DH5Obj[] _styles;
-	DH5Obj[] styles() { return  _styles; }	
+	DH5Style[] _styles;
+	DH5Style[] styles() { return  _styles; }	
 	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string][] links...) { this.styles([link]~links); return cast(O)this;}
-	O styles(this O)(string[string][] links) { foreach(link; links) _styles ~= H5Link(link); return cast(O)this;}
+	O styles(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
 
 	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
 	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
@@ -71,18 +71,18 @@ import uim.html;
 		/// TODO
 	}
 
-	DH5Script[] _libraries;
-	DH5Script[] libraries() { return _libraries; }
-	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
+	DH5Script[] _scripts;
+	DH5Script[] scripts() { return _scripts; }
+	O scripts(this O)(string lib, string[] libs...) { this.scripts([lib]~libs); return cast(O)this;}
+	O scripts(this O)(string[] libs) { foreach(lib; libs) _scripts ~= H5Script(["src":lib]); return cast(O)this;}
 
-	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(string[string] lib, string[string][] libs...) { this.scripts([lib]~libs); return cast(O)this;}
+	O scripts(this O)(string[string][] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
 
-	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
-	O libraries(this O)(DH5Script[] libs) { _libraries ~= libs; return cast(O)this;}
+	O scripts(this O)(DH5Script[] libs...) { this.scripts(libs); return cast(O)this;}
+	O scripts(this O)(DH5Script[] libs) { _scripts ~= libs; return cast(O)this;}
 
-	O clearLibraries(this O)() { _libraries = null; return cast(O)this; }
+	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
@@ -103,80 +103,100 @@ import uim.html;
 	string opCall(string content, string[string] parameters = null) { return toString(content, parameters); }
 	
 	override string toString() { return toString("", null); }
-	string toString(DH5AppPage page, string[string] parameters = null) {
-		if ("title" !in parameters) {
-			parameters["title"] =  this.title;
-		}
-
-		if ("lang" !in parameters) {
-			parameters["lang"] =  this.lang;
-		}
-
-		if (page) {			
-			debug writeln("Reading header settings from page");
-			if (page.title) parameters["title"] =  this.title;
-			if (page.lang) parameters["lang"] = this.lang;
-
-			if (page.metas) {
-				if ("metas" in parameters) parameters["metas"] = page.metas.asString~parameters["metas"];
-				else parameters["metas"] = page.metas.asString;
-			}
-			if (page.links) {
-				parameters["links"] = "links" in parameters ? page.styles.asString~parameters["styles"] : page.styles.asString;
-			}
-			if (page.styles) {
-				if ("styles" in parameters) parameters["styles"] = page.styles.asString~parameters["styles"];
-				else parameters["styles"] = page.styles.asString;
-			}
-			if (page.libraries) {
-				if ("libraries" in parameters) parameters["libraries"] = page.libraries.asString~parameters["libraries"];
-				else parameters["libraries"] = page.libraries.asString;
-			}
-			debug writeln(parameters);
-		}
-		return toString(page.content, parameters);
+	string toString(DH5AppPage page, string[string] someParameters = null) {
+		return toString(page, page.content, someParameters);
 	}
 
-	string toString(string content, string[string] parameters = null) {
-		debug writeln("Reading header settings from app");
-		if (this.app) {			
-			if (this.app.metas) {
-				if ("metas" in parameters) parameters["metas"] = this.app.metas.asString~parameters["metas"];
-				else parameters["metas"] = this.app.metas.asString;
-			}
-			if (this.app.styles) {
-				if ("styles" in parameters) parameters["styles"] = this.app.styles.asString~parameters["styles"];
-				else parameters["styles"] = this.app.styles.asString;
-			}
-			if (this.app.libraries) {
-				if ("libraries" in parameters) parameters["libraries"] = this.app.libraries.asString~parameters["libraries"];
-				else parameters["libraries"] = this.app.libraries.asString;
-			}
-			debug writeln(parameters);
-		}
+	string toString(DH5AppPage page, string content, string[string] someParameters = null) {
+		// layout override app, page override layout, parameters override page
+		string[string] newParameters;
 
+		if (app) newParameters = app.parameters.dup;
+		// Layout overrides app
+		foreach(k,v; this.parameters) newParameters[k] = v;
+		// page overrides layout & app
+		foreach(k,v; page.parameters) newParameters[k] = v;
+		// parameters overrides App & layout & page
+		foreach(k,v; someParameters) newParameters[k] = v;
+
+		DH5Meta[] newMetas;
+		if (app) newMetas ~= app.metas;
+		newMetas ~= this.metas;
+		newMetas ~= page.metas;
+
+		DH5Link[] newLinks;		
+//		if (app) newLinks = app.links;
+		newLinks ~= this.links;
+		newLinks ~= page.links;
+
+		DH5Style[] newStyles;
+		if (app) newStyles ~= app.styles;
+		newStyles ~= this.styles;
+		newStyles ~= page.styles;
+
+		DH5Script[] newScripts;
+		if (app) newScripts ~= app.scripts;
+		newScripts ~= this.scripts;
+		newScripts ~= page.scripts;
+
+		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, newParameters);
+	}
+
+	string toString(string content, string[string] someParameters = null) {
+		// layout override app, parameters override layout
+		string[string] newParameters;
+
+		if (app) newParameters = app.parameters.dup;
+		// Layout overrides app
+		foreach(k,v; this.parameters) newParameters[k] = v;
+		// parameters overrides App & layout & page
+		foreach(k,v; someParameters) newParameters[k] = v;
+
+		DH5Meta[] newMetas;
+		if (app) newMetas = app.metas;
+		newMetas ~= this.metas;
+
+		DH5Link[] newLinks;		
+//		if (app) newLinks = app.links;
+		newLinks ~= this.links;
+
+		DH5Style[] newStyles;
+		if (app) newStyles = app.styles;
+		newStyles ~= this.styles;
+
+		DH5Script[] newScripts;
+		if (app) newScripts ~= app.scripts;
+		newScripts ~= this.scripts;
+
+		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, newParameters);
+	}
+
+	auto htmlDocument(string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, string[string] parameters = null) {
 		auto finalLang = parameters.get("lang", this.lang); // if lang !in parameters use this.lang
 		auto finalTitle = parameters.get("title", this.title);  // if title !in parameters use this.title
 
 		// creating HTML page
 		_html = H5Html
-		.attributes("lang", finalLang).attributes("dir", ("dir" in parameters ? parameters["dir"] : "ltr"))
+		.attributes("lang", finalLang).attributes("dir", parameters.get("dir", "ltr"))
 		// Head part of HTML
 		.head(_headClasses)
 		.head(_headAttributes)
-		.head(this.metas.asString~parameters.get("metas", ""))
 		.head(finalTitle.length > 0 ? "<title>" ~ finalTitle ~ "</title>":"")
-		.head(this.styles.asString~parameters.get("styles", ""))
+		.head(newMetas.asString~parameters.get("metas", ""))
+		.head(newLinks.asString~parameters.get("links", ""))
+		.head(newStyles.asString~parameters.get("styles", ""))
+		.head("style" in parameters ? H5Style(parameters["style"]).toString : "")
 		// Body part of HTML
 		.body_(_bodyClasses)
 		.body_(_bodyAttributes)
-		.body_(this.layout ?  this.layout.toString(content, this.parameters) : content)
-		.body_(this.libraries.asString~parameters.get("libraries", ""));
+		.body_(this.layout ?  this.layout.toString(content, parameters) : content)
+		.body_(newScripts.asString~parameters.get("scripts", ""))
+		.body_("script" in parameters ? H5Script(parameters["script"]).toString : "");
 
 		return _html.toString;
 	}
 	unittest {
-		writeln(H5AppLayout);
+		// writeln(H5AppLayout);
 		assert(H5AppLayout == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
 		assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}

@@ -3,7 +3,13 @@ module uim.html.apps.page;
 import uim.html;
 
 class DH5AppPage : DH5AppObj {
-	this() { super(); this.mimetype("text/html"); }
+	this() { super(); 
+	clearMetas;
+	clearLinks;
+	clearStyles;
+	clearScripts;
+	
+	this.mimetype("text/html"); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
@@ -61,10 +67,12 @@ class DH5AppPage : DH5AppObj {
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
 	}
 
-	DH5Obj[] _links;
-	DH5Obj[] links() { return  _links; }	
+	DH5Link[] _links;
+	DH5Link[] links() { return  _links; }	
 	O links(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
-	O links(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+	O links(this O)(string[string][] links) { 
+		foreach(link; links) _links ~= H5Link(link); 
+		return cast(O)this;}
 
 	O links(this O)(DH5Link[] links...) { this.links(links); return cast(O)this;}
 	O links(this O)(DH5Link[] links) { _links ~= links; return cast(O)this;}
@@ -74,13 +82,13 @@ class DH5AppPage : DH5AppObj {
 		/// TODO
 	}
 
-	DH5Obj[] _styles;
-	DH5Obj[] styles() { return  _styles; }	
+	DH5Style[] _styles;
+	DH5Style[] styles() { return  _styles; }	
 	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string][] links...) { this.styles([link]~links); return cast(O)this;}
-	O styles(this O)(string[string][] links) { foreach(link; links) _styles ~= H5Link(link); return cast(O)this;}
+	O styles(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
 
 	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
 	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
@@ -92,25 +100,40 @@ class DH5AppPage : DH5AppObj {
 		/// TODO
 	}
 
-	DH5Script[] _libraries;
-	DH5Script[] libraries() { return _libraries; }
-	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
+	DH5Script[] _scripts;
+	DH5Script[] scripts() { return _scripts; }
 
-	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(string newScript, string[] newScripts...) { this.scripts([newScript]~newScripts); return cast(O)this;}
+	O scripts(this O)(string[] newScripts) { 
+		debug writeln("In AppPAge: O scripts(this O)(string[] newScripts)");
+		writeln("Scripts length = ", newScripts.length);
+		_scripts ~= newScripts.map!(a => H5Script(a)).array; 
+		return cast(O)this;}
 
-	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
-	O libraries(this O)(DH5Script[] libs) { _libraries ~= libs; return cast(O)this;}
+	O scripts(this O)(string[string] newScript, string[string][] newScripts...) { this.scripts([newScript]~newScripts); return cast(O)this;}
+	O scripts(this O)(string[string][] newScripts) { _scripts ~= newScripts.map!(a => H5Script(a)).array; return cast(O)this;}
 
-	O clearLibraries(this O)() { _libraries = null; return cast(O)this; }
+	O scripts(this O)(DH5Script[] newScripts...) { this.scripts(newScripts); return cast(O)this;}
+	O scripts(this O)(DH5Script[] newScripts) { _scripts ~= newScripts; return cast(O)this;}
+
+	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
 	
 	/// Export to string
 	override string toString(string[string] parameters) {
-		// if (_layout) return _layout.toString(this.content, this.parameters);
+		// Check layout
+		DH5AppLayout lt;
+		if (app) lt = app.layout;
+		if (this.layout) lt = this.layout;
+
+		// if layout, use layout
+		if (lt) return this.layout.toString(this, parameters);
+		return this.content; // No layout, only content
+
+		// old stuff :-(
+/* 		// if (_layout) return _layout.toString(this.content, this.parameters);
 		// return _content;
 		// // debug // writeln("H5Page: override string toString()");
 		if (cached) {
@@ -123,7 +146,7 @@ class DH5AppPage : DH5AppObj {
 		// // debug // writeln(this.content);
 		if (this.content) { return (this.layout ? this.layout.toString(this, this.parameters) : this.content); }
 		return _toString;
-	}
+ */	}
 	unittest {
 		//// writeln(`// writeln(H5AppPage)`);
 		//// writeln(H5AppPage);

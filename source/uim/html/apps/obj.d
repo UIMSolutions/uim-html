@@ -111,10 +111,10 @@ class DH5AppObj {
 		foreach(k, v; this.parameters) requestParameters[k] = v;
 		foreach(k, v; parameters) requestParameters[k] = v;
 
-		foreach(k, v; req.params) requestParameters[k] = v;
-		foreach(k, v; req.headers) requestParameters[k] = v;
-		foreach(k, v; req.query) requestParameters[k] = v;
-		foreach(k, v; req.form) requestParameters[k] = v;
+		foreach(key; req.params.byKey) requestParameters[key] = req.params[key];
+		foreach(key; req.headers.byKey) requestParameters[key] = req.headers[key];
+		foreach(key; req.query.byKey) requestParameters[key] = req.query[key];
+		foreach(key; req.form.byKey) requestParameters[key] = req.form[key];
 
 		res.writeBody(toString(requestParameters), _mimetype); 
 	}

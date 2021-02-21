@@ -134,13 +134,13 @@ class DH5App {
 		assert(uim.html.elements.meta.toString(H5AppLayout.metas([H5Meta(["a":"b"])]).metas)  == `<meta a="b">`);
 	}
 
-	DH5Obj[] _styles;
-	DH5Obj[] styles() { return  _styles; }	
+	DH5Style[] _styles;
+	DH5Style[] styles() { return  _styles; }	
 	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string][] links...) { this.styles([link]~links); return cast(O)this;}
-	O styles(this O)(string[string][] links) { foreach(link; links) _styles ~= H5Link(link); return cast(O)this;}
+	O styles(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
 
 	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
 	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
@@ -152,18 +152,18 @@ class DH5App {
 		/// TODO	
 	}
 
-	DH5Script[] _libraries;
-	DH5Script[] libraries() { return _libraries; }
-	O libraries(this O)(string lib, string[] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[] libs) { foreach(lib; libs) _libraries ~= H5Script(["src":lib]); return cast(O)this;}
+	DH5Script[] _scripts;
+	DH5Script[] scripts() { return _scripts; }
+	O scripts(this O)(string lib, string[] libs...) { this.scripts([lib]~libs); return cast(O)this;}
+	O scripts(this O)(string[] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
 
-	O libraries(this O)(string[string] lib, string[string][] libs...) { this.libraries([lib]~libs); return cast(O)this;}
-	O libraries(this O)(string[string][] libs) { foreach(lib; libs) _libraries ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(string[string] lib, string[string][] libs...) { this.scripts([lib]~libs); return cast(O)this;}
+	O scripts(this O)(string[string][] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
 
-	O libraries(this O)(DH5Script[] libs...) { this.libraries(libs); return cast(O)this;}
-	O libraries(this O)(DH5Script[] libs) { _libraries ~= libs; return cast(O)this;}
+	O scripts(this O)(DH5Script[] libs...) { this.scripts(libs); return cast(O)this;}
+	O scripts(this O)(DH5Script[] libs) { _scripts ~= libs; return cast(O)this;}
 
-	O clearLibraries(this O)() { _libraries = null; return cast(O)this; }
+	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {
 		// assert(H5AppLayout.)
 	}
@@ -243,8 +243,8 @@ class DH5App {
 			/// TODO	
 	}
 
-	/// Managing Scripts 
-	auto scripts() {
+	/* /// Managing Scripts 
+	auto getScripts() {
 		DH5AppScript[] results;
 		foreach(name, obj; _objs) if (auto result = cast(DH5AppScript)obj) results ~= result;
 		return results; }
@@ -274,7 +274,7 @@ class DH5App {
 	O clearScripts(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppScript)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			/// TODO	
-	}
+	} */
 
 	// Page handling
 	// Get all pages of an app
@@ -380,11 +380,11 @@ class DH5App {
 
 		if (req.path == rootPath) {
 			if ("index" in _objs) {
-				_index.request(req, res, _parameters);
+				_index.request(req, res, _parameters.dup);
 				return;
 			}
 			if ("error" in _objs) {
-				_error.request(req, res, _parameters);
+				_error.request(req, res, _parameters.dup);
 				return;
 			}
 		}
@@ -395,7 +395,7 @@ class DH5App {
 		if (appPath in _objs) { // static urls
 			writeln("Found Obj -> ", appPath);
 
-			_objs[appPath].request(req, res, _parameters);
+			_objs[appPath].request(req, res, _parameters.dup);
 			return;
 		}
 
@@ -433,7 +433,7 @@ class DH5App {
 				}}
 			}
 			if (foundPage) {
-				obj.request(req, res, _parameters);
+				obj.request(req, res, _parameters.dup);
 				return;
 			}
 		}
