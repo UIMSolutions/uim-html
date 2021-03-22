@@ -2,8 +2,10 @@
 
 import uim.html;
 
-class DH5Datalist : DH5Obj {
+@safe class DH5Datalist : DH5Obj {
 	mixin(H5This!"datalist");
+
+	mixin(MyContent!("option", "H5Option"));
 }
 mixin(H5Short!"Datalist");
 

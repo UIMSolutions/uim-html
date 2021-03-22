@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Tfoot : DH5Obj {
+@safe class DH5Tfoot : DH5Obj {
 	mixin(H5This!"tfoot");
 
 	mixin(MyContent!("tr", "H5Tr"));

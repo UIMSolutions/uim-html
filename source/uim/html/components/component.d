@@ -2,7 +2,7 @@ module uim.html.components.component;
 
 import uim.html;
 
-class DH5Component {
+@safe class DH5Component {
   this() {}
 
   mixin(XString!("css"));

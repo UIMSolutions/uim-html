@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Legend : DH5Obj {
+@safe class DH5Legend : DH5Obj {
 	mixin(H5This!"legend");
 }
 mixin(H5Short!"Legend");

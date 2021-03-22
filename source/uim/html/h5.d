@@ -2,7 +2,7 @@ module uim.html.h5;
 
 import uim.html;
 
-class DH5 {
+@safe class DH5 {
     this() { _objs = []; }
 
     protected DH5Obj[] _objs;

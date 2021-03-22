@@ -2,6 +2,7 @@
 
 import uim.html;
 
+@safe:
 class DH5Obj {
 	 this() { _init; }
 	 this(string content) { this().content(content); }
@@ -70,12 +71,12 @@ class DH5Obj {
 	O js(this O)(string[] codes...) { foreach(c; codes) _js ~= c; return cast(O)this; }
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
-	/// Classes of HTML element
+	/// classes of HTML element
 	protected string[] _classes;
 	auto classes() { return _classes.sort.array; }
 	O classes(this O)(string[] addValues...) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
 	O classes(this O)(string[] addValues) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
-	O clearClasses(this O)() { _classes = []; return cast(O)this; }
+	O clearclasses(this O)() { _classes = []; return cast(O)this; }
 	unittest {
 		assert(H5Obj.classes(["a", "b"]).classes == ["a", "b"]); 
 		assert(H5Obj.classes(["b", "a"]).classes == ["a", "b"]); 
@@ -111,9 +112,8 @@ class DH5Obj {
 	 O title(this O)(string value) { if (value.length > 0) attributes["title"] = value; return cast(O)this; }
 	 O translate(this O)(bool value) { if (value) attributes["translate"] = "true"; return cast(O)this; }
 
-	override bool opEquals(Object value) { return super.opEquals(value); }
-
-	bool opEquals(string html) { return toString == html; }
+//	Should be @safe ...bool opEquals(DH5Obj value) { return (this == value); }
+	bool opEquals(string html) { return (toString == html); }
 
 	void opIndexAssign(T)(T value, string key) { _attributes[key] = "%s".format(value); }
 	void opIndexAssign(bool value, string key) { _attributes[key] = "%s".format((value) ? "true" : "false"); }
@@ -146,7 +146,7 @@ class DH5Obj {
 	O css(this O)(DCSSRules aRules) { _css(aRules); return cast(O)this; }
 	unittest {}
 
-	O opCall(this O)(string[] someClasses) { add(someClasses); return cast(O)this; }
+	O opCall(this O)(string[] someclasses) { add(someclasses); return cast(O)this; }
 	O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
 	O opCall(this O)(string[] someContent...) { foreach(c; someContent) add(c); return cast(O)this; }
 	O opCall(this O)(DH5Obj[] someContent...) { add(someContent); return cast(O)this; }
@@ -155,7 +155,7 @@ class DH5Obj {
 	O opCall(this O)(DJS code) { this.js(code); return cast(O)this; }
 	unittest {}
 
-	O add(this O)(string[] someClasses) { _classes.add(someClasses); return cast(O)this; }
+	O add(this O)(string[] someclasses) { _classes.add(someclasses); return cast(O)this; }
 	O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
 	O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
 	O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
@@ -173,8 +173,8 @@ class DH5Obj {
 
 	/* accesskey - specifies a shortcut key to activate/focus an element. */
 	//	mixin(H5Attribute("accesskey"));
-	//	// className (class) - Specifies one or more classnames for an element (refers to a class in a style sheet)
-	//	mixin(H5Attribute("className", "class"));
+	//	// @safe className (@safe class) - Specifies one or more @safe classnames for an element (refers to a @safe class in a style sheet)
+	//	mixin(H5Attribute("@safe className", "@safe class"));
 	//
 	//	// contenteditable - Specifies whether the content of an element is editable or not
 	//	mixin(H5BoolAttribute("contenteditable"));
@@ -239,13 +239,13 @@ class DH5Obj {
 
 	 string attsToHTML() {
 		string[] items;
-		foreach(key; _attributes.keys.sort) {
+		foreach(key; _attributes.byKey.array.sort!("a < b")) {
 			switch(key.toLower) {
 				case "id":
 					this.id(_attributes[key]); 
 					_attributes.remove(key);
 					break;
-				case "class": 
+				case "@safe class": 
 					this.classes(_attributes[key].split(" ")); 
 					_attributes.remove(key);
 					break;
@@ -273,7 +273,7 @@ class DH5Obj {
 		if (_classes) {
 			string[] cls;
 			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
-			first ~= ` class="`~cls.join(" ")~`"`;
+			first ~= ` @safe class="`~cls.join(" ")~`"`;
 		}
 
 		if (_attributes) first ~= attsHTML;
@@ -366,9 +366,9 @@ unittest {
 
 	h5 = H5Obj("content");
 	assert(H5Obj.id == null);
-	assert(H5Obj(["classA", "classB"]).id == null);
-	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);
-	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
+	assert(H5Obj(["@safe classA", "@safe classB"]).id == null);
+	assert(H5Obj(["@safe classA", "@safe classB"], ["a":"x", "b":"y"]).id == null);
+	assert(H5Obj(["@safe classA", "@safe classB"], ["a":"x", "b":"y"], "content1").id == null);
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
 }

@@ -2,7 +2,7 @@ module uim.html.components.sidebar_dropdown;
 
 import uim.html;
 
-class DH5SidebarDropdown : DH5Component {
+@safe class DH5SidebarDropdown : DH5Component {
   this() {
     super();
     this
@@ -50,7 +50,7 @@ class DH5SidebarDropdown : DH5Component {
   padding: 0px 10px;
 }
 
-/* Add an active class to the active dropdown button */
+/* Add an active @safe class to the active dropdown button */
 .active {
   background-color: green;
   color: white;
@@ -74,15 +74,15 @@ class DH5SidebarDropdown : DH5Component {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }`)
-.html(`<dclassiv class="sidenav">
+.html(`<d@safe classiv @safe class="sidenav">
   <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
   <a href="#contact">Contact</a>
-  <button class="dropdown-btn">Dropdown 
-    <i class="fa fa-caret-down"></i>
+  <button @safe class="dropdown-btn">Dropdown 
+    <i @safe class="fa fa-caret-down"></i>
   </button>
-  <div class="dropdown-container">
+  <div @safe class="dropdown-container">
     <a href="#">Link 1</a>
     <a href="#">Link 2</a>
     <a href="#">Link 3</a>
@@ -90,19 +90,19 @@ class DH5SidebarDropdown : DH5Component {
   <a href="#contact">Search</a>
 </div>
 
-<div class="main">
+<div @safe class="main">
   <h2>Sidebar Dropdown</h2>
   <p>Click on the dropdown button to open the dropdown menu inside the side navigation.</p>
   <p>This sidebar is of full height (100%) and always shown.</p>
   <p>Some random text..</p>
 </div>`)
 .js(`* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
+var dropdown = document.getElementsBy@safe className("dropdown-btn");
 var i;
 
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
-  this.classList.toggle("active");
+  this.@safe classList.toggle("active");
   var dropdownContent = this.nextElementSibling;
   if (dropdownContent.style.display === "block") {
   dropdownContent.style.display = "none";

@@ -2,7 +2,7 @@ module uim.html.apps.manifest;
 
 import uim.html;
 
-  class DH5AppManifest : DH5AppObj {
+  @safe class DH5AppManifest : DH5AppObj {
 	this() { super(); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }

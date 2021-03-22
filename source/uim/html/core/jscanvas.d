@@ -2,7 +2,7 @@
 
 import uim.html;
 //
-//class DJSCanvas : DJS {
+//@safe class DJSCanvas : DJS {
 //	string idName;
 //	string contextName = "context";
 //

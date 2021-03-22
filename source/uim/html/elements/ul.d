@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Ul : DH5Obj {
+@safe class DH5Ul : DH5Obj {
 	mixin(H5This!"ul");
 
 	mixin(MyContent!("li", "H5Li"));
@@ -17,7 +17,7 @@ class DH5Ul : DH5Obj {
 	unittest {
 		assert(Assert(H5Ul.item, "<ul><li></li></ul>"));
 		assert(Assert(H5Ul.item.item, "<ul><li></li><li></li></ul>"));
-		assert(Assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`));
+		assert(Assert(H5Ul.item(["test"]), `<ul><li @safe class="test"></li></ul>`));
 	}
 
 	mixin(MyContent!("link", "this.item", "H5Li"));

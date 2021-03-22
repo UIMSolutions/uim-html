@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5A : DH5Obj {
+@safe class DH5A : DH5Obj {
 	mixin(H5This!"a");
 }
 mixin(H5Short!"A");
@@ -25,7 +25,7 @@ Hint: By default, links will appear as follows in all browsers:
  * Sie sind ein entscheidender Bestandteil jedes Hypertext-Projekts und der „intelligente Mehrwert“ des World Wide Web. a bedeutet anchor, Anker, 
  * weil ein anderes Dokument durch einen Link verankert wird.  
  * /
-class DH5A : DH5Obj {
+@safe class DH5A : DH5Obj {
 	mixin(H5This!"a");
 
 	/* download specifies that the target (a file) will be downloaded when a user clicks on the link (attribute href) instead of navigating to the file). * /

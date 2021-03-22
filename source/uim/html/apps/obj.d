@@ -2,7 +2,7 @@ module uim.html.apps.obj;
 
 import uim.html;
 
-class DH5AppObj {
+@safe class DH5AppObj {
 	this() { 
 		this
 		.created(DateTime(2017, 1, 1, 1, 1, 1))
@@ -89,8 +89,9 @@ class DH5AppObj {
 
 	/// Content of obj
 	string _content;
-	string content() { 
-		// // debug // writeln("H5AppObj: string content()");
+	string content(string[string] someParameters = null) { 
+		debug writeln("parameters in DH5AppObj/content => ", someParameters); 
+
 		return _content; }
 	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
@@ -104,19 +105,17 @@ class DH5AppObj {
 	}
 
 	/// Response to HTTP request
-	void request(HTTPServerRequest req, HTTPServerResponse res, string[string] parameters = null) {
-		// debug // writeln("H5AppObj: void request()");
-		string[string] requestParameters;
-		if (this.app) foreach(k, v; this.app.parameters) requestParameters[k] = v;
-		foreach(k, v; this.parameters) requestParameters[k] = v;
-		foreach(k, v; parameters) requestParameters[k] = v;
+	void request(HTTPServerRequest req, HTTPServerResponse res) {
+		auto reqParameters = readRequestParameters(req, this.parameters.dup);
+		request(reqParameters, res);	}
+	void request(STRINGAA reqParameters, HTTPServerResponse res) {
+		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
 
-		foreach(key; req.params.byKey) requestParameters[key] = req.params[key];
-		foreach(key; req.headers.byKey) requestParameters[key] = req.headers[key];
-		foreach(key; req.query.byKey) requestParameters[key] = req.query[key];
-		foreach(key; req.form.byKey) requestParameters[key] = req.form[key];
-
-		res.writeBody(toString(requestParameters), _mimetype); 
+		debug writeln("parameters in DH5AppObj/request => ", reqParameters); 
+		
+		auto result = toString(reqParameters);
+		if ("redirect" in reqParameters) res.redirect(reqParameters["redirect"]);
+		res.writeBody(result, _mimetype); 
 	}
 	unittest {
 		/// TODO
@@ -125,14 +124,13 @@ class DH5AppObj {
 	string _toString;
 	/// Export to string
 	override string toString() { string[string] pm; return toString(pm); }
-	string toString(string[string] parameters) {
-		debug writeln("H5AppObj: override string toString()");
-		debug writeln("Content...", this.content);
+	string toString(string[string] reqParameters) {
+		debug writeln("parameters in DH5AppObj/toString => ", reqParameters); 
 		
 		debug writeln("Is cached?");
 		if (cached) {
 			debug writeln("Yes, is cached");
-			if (_toString.length == 0) _toString = this.content; 
+			if (_toString.length == 0) _toString = this.content(reqParameters); 
 			return _toString; 
 		}
 

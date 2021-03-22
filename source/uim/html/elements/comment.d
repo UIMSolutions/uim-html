@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Comment : DH5Obj {
+@safe class DH5Comment : DH5Obj {
 	mixin(H5This!"comment");
 
 	override string toString() {

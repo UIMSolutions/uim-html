@@ -3,7 +3,7 @@
 import uim.html;
 import std.datetime;
 
-class DH5Time : DH5Obj {
+@safe class DH5Time : DH5Obj {
 	mixin(H5This!"time");
 	
 	mixin(MyAttribute!"datetime");

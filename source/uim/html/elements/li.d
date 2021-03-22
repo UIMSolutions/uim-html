@@ -3,7 +3,7 @@
 import uim.html;
 
 // List item
-class DH5Li : DH5Obj {
+@safe class DH5Li : DH5Obj {
 	mixin(H5This!"li");
 
 //	mixin(H5ShortCut!"A");

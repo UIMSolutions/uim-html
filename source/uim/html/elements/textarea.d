@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Textarea : DH5Obj {
+@safe class DH5Textarea : DH5Obj {
 	mixin(H5This!"textarea");
 
 	O cols(this O)(uint value) { if (value > 0) this.attributes("cols", to!string(value)); return cast(O)this; }

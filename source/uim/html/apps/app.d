@@ -2,7 +2,7 @@ module uim.html.apps.app;
 
 import uim.html;
 
-class DH5App {
+@safe class DH5App {
 	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
@@ -26,6 +26,9 @@ class DH5App {
 			assert(H5App.name("aName").name == "aName");	
 			assert(H5App.name("aName").name("otherName").name == "otherName");
 	}
+
+	// Current sessions
+	mixin(OProperty!("string[string][UUID]", "sessions"));
 
 	/// Language of app
 	string _lang = "en";
@@ -80,7 +83,27 @@ class DH5App {
 	O index(this O)(DH5AppPage newPage) { _index = newPage; this.pages("index", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
-		assert(H5App.index(page).index == page);
+//		assert(H5App.index(page).index == page);
+	}
+
+	/// Login startpage
+	DH5AppPage _login;
+	auto login() { return _login; }
+	O login(this O)(string newContent) { this.login(H5AppPage.content(newContent)); return cast(O)this; }
+	O login(this O)(DH5AppPage newPage) { _login = newPage; this.pages("login", newPage); return cast(O)this; }
+	unittest {		
+		auto page = H5AppPage;
+//		assert(H5App.login(page).login == page);
+	}
+
+	/// Logout startpage
+	DH5AppPage _logout;
+	auto logout() { return _logout; }
+	O logout(this O)(string newContent) { this.logout(H5AppPage.content(newContent)); return cast(O)this; }
+	O logout(this O)(DH5AppPage newPage) { _logout = newPage; this.pages("logout", newPage); return cast(O)this; }
+	unittest {		
+		auto page = H5AppPage;
+//		assert(H5App.logout(page).logout == page);
 	}
 
 	/// Index startpage
@@ -90,7 +113,7 @@ class DH5App {
 	O error(this O)(DH5AppPage newPage) { _error = newPage; this.pages("error", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
-		assert(H5App.error(page).error == page);
+		// assert(H5App.error(page).error == page);
 	}
 
 	mixin(XStringAA!"use");
@@ -136,16 +159,16 @@ class DH5App {
 
 	DH5Style[] _styles;
 	DH5Style[] styles() { return  _styles; }	
-	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
-	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
+	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
+	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)); return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
-	O styles(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+	O styles(this O)(string[string] addLink, string[string][] addLinks...) { this.links([link]~links); return cast(O)this;}
+	O styles(this O)(string[string][] addLinks) { _links ~= addLinks.map!(a => H5Link(a)); return cast(O)this;}
 
-	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
-	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
-	O styles(this O)(DH5Link[] links...) { this.styles(links); return cast(O)this;}
-	O styles(this O)(DH5Link[] links) { _styles ~= links; return cast(O)this;}
+	O styles(this O)(DH5Style[] addStyles...) { this.styles(addStyles); return cast(O)this; }
+	O styles(this O)(DH5Style[] addStyles) { _styles ~= addStyles; return cast(O)this; }
+	O styles(this O)(DH5Link[] addLinks...) { this.styles(addLinks); return cast(O)this; }
+	O styles(this O)(DH5Link[] addLinks) { _links ~= addLinks; return cast(O)this; }
 
 	O clearStyles(this O)() { _styles = null; return cast(O)this; }
 	unittest {
@@ -287,7 +310,7 @@ class DH5App {
 		assert(H5App.pages("test", "testcontent").pages("test", "testcontent").pages.length == 1);	
 		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.length == 2);	
 	}		
-
+	
 	// Get pages by names
 	DH5AppPage pageByName(string name) {
 		if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) return obj;
@@ -355,36 +378,29 @@ class DH5App {
 
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		_parameters = parameters.dup;
-		_parameters["method"] = to!string(req.method);
-		_parameters["peer"] = req.peer;
-		_parameters["host"] = req.host;
-		_parameters["path"] = req.path;
-		_parameters["rootDir"] = req.rootDir;
-		_parameters["fullURL"] = req.fullURL.toString;
-		_parameters["queryString"] = req.queryString;
-		_parameters["json"] = req.json.toString;
-		_parameters["username"] = req.username;
-		_parameters["password"] = req.password;
-		
+		request(readRequestParameters(req, parameters.dup), res);
+		debug writeln("Request => ", req);
+	}
+	void request(STRINGAA reqParameters, HTTPServerResponse res) {
 		/// Extract appPath from URL path
 		string appPath;
-	  if (indexOf(req.path, rootPath) == 0) {
-			if (req.path.length > rootPath.length) appPath = req.path[indexOf(req.path, rootPath)+rootPath.length..$];
+		string reqPath = reqParameters.get("path", rootPath);
+	  if (indexOf(reqPath, rootPath) == 0) {
+			if (reqPath.length > rootPath.length) appPath = reqPath[reqPath.indexOf(rootPath)+rootPath.length..$];
 			else appPath = "";
 
 			if ((appPath.length > 1) && (appPath[$-1..$] == "/")) appPath = appPath[0..$-1];
 		}
-		_parameters["appPath"] = appPath;
-		debug writeln(_parameters);
+		reqParameters["appPath"] = appPath;
+		debug writeln(reqParameters);
 
-		if (req.path == rootPath) {
+		if (reqPath == rootPath) {
 			if ("index" in _objs) {
-				_index.request(req, res, _parameters.dup);
+				_index.request(reqParameters, res);
 				return;
 			}
 			if ("error" in _objs) {
-				_error.request(req, res, _parameters.dup);
+				_error.request(reqParameters, res);
 				return;
 			}
 		}
@@ -395,11 +411,11 @@ class DH5App {
 		if (appPath in _objs) { // static urls
 			writeln("Found Obj -> ", appPath);
 
-			_objs[appPath].request(req, res, _parameters.dup);
+			_objs[appPath].request(reqParameters, res);
 			return;
 		}
 
-		writeln("dynamic urls");
+		debug writeln("dynamic urls");
 		foreach (path, obj; _objs) if (path.has("*", ":", "?")) {
 			// writeln(path, " vs ", appPath);
 			string[] objPathItems = path.split("/");
@@ -417,13 +433,22 @@ class DH5App {
 					break;
 				}
 
+				// dynamic part
 				if (item.has("*", ":", "?")) {
-					// dynamic part
-					if ((item.indexOf(":") == 0) && (item.length > 1)) {
-						_parameters[item[1..$]] = appPathItems[index];
-					}
-					if ((item.indexOf("?") == 0) && (item.length > 1)) {
-						_parameters[item[1..$]] = appPathItems[index];
+					if (item.length > 1) { 
+						string op = item[0..1];
+						switch(op) {
+					  		case ":": 
+								reqParameters[item[1..$]] = appPathItems[index];
+								break;
+							case "?":
+								reqParameters[item[1..$]] = appPathItems[index];
+								break;
+							case "*":
+								break;
+							default:
+								break;
+						}
 					}
 				}
 				else { 
@@ -433,12 +458,12 @@ class DH5App {
 				}}
 			}
 			if (foundPage) {
-				obj.request(req, res, _parameters.dup);
+				obj.request(reqParameters, res);
 				return;
 			}
 		}
 
-		_error.request(req, res);
+		_error.request(reqParameters, res);
 	} 
 }
  auto H5App() { return new DH5App(); }
@@ -447,4 +472,29 @@ class DH5App {
 
 unittest {
 		/// TODO
+}
+
+void redirectCheck(string[string] parameters) {
+	writeln("Has Redirect? ", parameters.get("redirect", ""));
+	if ("redirect" in parameters) redirect(parameters["redirect"]);
+}
+
+auto readRequestParameters(HTTPServerRequest req, STRINGAA someParameters) {
+		someParameters["method"] = to!string(req.method);
+		someParameters["peer"] = req.peer;
+		someParameters["host"] = req.host;
+		someParameters["path"] = req.path;
+		someParameters["rootDir"] = req.rootDir;
+		someParameters["fullURL"] = req.fullURL.toString;
+		someParameters["queryString"] = req.queryString;
+		someParameters["json"] = req.json.toString;
+		someParameters["username"] = req.username;
+		someParameters["password"] = req.password;
+		
+		foreach(key; req.params.byKey) someParameters[key] = req.params[key];
+		foreach(key; req.headers.byKey) someParameters[key] = req.headers[key];
+		foreach(key; req.query.byKey) someParameters[key] = req.query[key];
+		foreach(key; req.form.byKey) someParameters[key] = req.form[key];
+
+		return someParameters;
 }

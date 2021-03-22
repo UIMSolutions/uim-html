@@ -2,7 +2,7 @@ module uim.html.apps.data;
 
 import uim.html;
 
- class DH5AppData : DH5AppObj {
+@safe class DH5AppData : DH5AppObj {
 	this() { super(); _name = "data"; this.mimetype("text/json"); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }

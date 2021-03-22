@@ -17,145 +17,145 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
-	<div class="row">
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+<div @safe class="container">
+	<div @safe class="row">
+		<div @safe class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+            <div @safe class="MultiCarousel-inner">
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
+                <div @safe class="item">
+                    <div @safe class="pad15">
+                        <p @safe class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary leftLst"><</button>
-            <button class="btn btn-primary rightLst">></button>
+            <button @safe class="btn btn-primary leftLst"><</button>
+            <button @safe class="btn btn-primary rightLst">></button>
         </div>
 	</div>
-	<div class="row">
-	    <div class="col-md-12 text-center">
+	<div @safe class="row">
+	    <div @safe class="col-md-12 text-center">
 	        <br/><br/><br/>
 	        <hr/>
 	        <p>Settings</p>
@@ -172,7 +172,7 @@ $(document).ready(function () {
     var itemWidth = "";
 
     $('.leftLst, .rightLst').click(function () {
-        var condition = $(this).hasClass("leftLst");
+        var condition = $(this).has@safe class("leftLst");
         if (condition)
             click(0, this);
         else
@@ -192,7 +192,7 @@ $(document).ready(function () {
     function ResCarouselSize() {
         var incno = 0;
         var dataItems = ("data-items");
-        var itemClass = ('.item');
+        var item@safe class = ('.item');
         var id = 0;
         var btnParentSb = '';
         var itemsSplit = '';
@@ -200,7 +200,7 @@ $(document).ready(function () {
         var bodyWidth = $('body').width();
         $(itemsDiv).each(function () {
             id = id + 1;
-            var itemNumbers = $(this).find(itemClass).length;
+            var itemNumbers = $(this).find(item@safe class).length;
             btnParentSb = $(this).parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
             $(this).parent().attr("id", "MultiCarousel" + id);
@@ -223,12 +223,12 @@ $(document).ready(function () {
                 itemWidth = sampwidth / incno;
             }
             $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-            $(this).find(itemClass).each(function () {
+            $(this).find(item@safe class).each(function () {
                 $(this).outerWidth(itemWidth);
             });
 
-            $(".leftLst").addClass("over");
-            $(".rightLst").removeClass("over");
+            $(".leftLst").add@safe class("over");
+            $(".rightLst").remove@safe class("over");
 
         });
     }
@@ -244,21 +244,21 @@ $(document).ready(function () {
         var xds = Math.abs(values[4]);
         if (e == 0) {
             translateXval = parseInt(xds) - parseInt(itemWidth * s);
-            $(el + ' ' + rightBtn).removeClass("over");
+            $(el + ' ' + rightBtn).remove@safe class("over");
 
             if (translateXval <= itemWidth / 2) {
                 translateXval = 0;
-                $(el + ' ' + leftBtn).addClass("over");
+                $(el + ' ' + leftBtn).add@safe class("over");
             }
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
             translateXval = parseInt(xds) + parseInt(itemWidth * s);
-            $(el + ' ' + leftBtn).removeClass("over");
+            $(el + ' ' + leftBtn).remove@safe class("over");
 
             if (translateXval >= itemsCondition - itemWidth / 2) {
                 translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).addClass("over");
+                $(el + ' ' + rightBtn).add@safe class("over");
             }
         }
         $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');

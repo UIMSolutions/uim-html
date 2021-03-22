@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Link : DH5Obj {
+@safe class DH5Link : DH5Obj {
 mixin(H5This!("link", null, null, true));
 }
 mixin(H5Short!("Link"));

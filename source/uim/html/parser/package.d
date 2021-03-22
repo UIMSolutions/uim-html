@@ -2,6 +2,8 @@ module uim.html.parser;
 
 import uim.html;
 
+@safe:
+
 size_t[] posOfAll(string text, string searchTxt) {
   size_t[] results;
 
@@ -53,7 +55,7 @@ string fillWith(string txt, string addTxt, size_t startPos, size_t endPos) {
   return result;
 }
 
-class DH5Node
+@safe class DH5Node
 {
   string txt;
   bool isRoot = true;
@@ -122,8 +124,8 @@ class DH5Node
     if ("id" in _attributes) {
       id = _attributes ["id"]; _attributes.remove("id");
     }
-    if ("class" in _attributes) {
-      classes = _attributes ["class"]; _attributes.remove("class");
+    if ("@safe class" in _attributes) {
+      classes = _attributes ["@safe class"]; _attributes.remove("@safe class");
     }
   }
 
@@ -477,7 +479,7 @@ auto parse2(string html) {
         }
         writeln(attributes);
         if ("id" in attributes) { node.id(attributes["id"]); attributes.remove("id"); }
-        if ("class" in attributes) { node.classes(attributes["class"]); attributes.remove("class"); }
+        if ("@safe class" in attributes) { node.classes(attributes["@safe class"]); attributes.remove("@safe class"); }
         node.attributes = attributes;
       }
       node.level = level;

@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5InputTEL: DH5Input {
+@safe class DH5InputTEL: DH5Input {
 	mixin(H5This!("Input", null, `["type":"tel"]`, true)); 
 }
 mixin(H5Short!"InputTEL"); 

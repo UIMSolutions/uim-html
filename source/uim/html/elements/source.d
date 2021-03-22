@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Source : DH5Obj {
+@safe class DH5Source : DH5Obj {
 	mixin(H5This!"source");
 	
 	mixin(MyAttribute!"sizes");

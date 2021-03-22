@@ -40,7 +40,7 @@ template DTag(string fName, string tName) {
 ";
 }
 
-//class DHTML {
+//@safe class DHTML {
 //	DHTML listener;
 //	static DHTML opCall(T...)(T values) { return new DHTML(values); }
 //	O opCall(this O, T...)(T values) { foreach(v; values) add(v); return cast(O)this; } 

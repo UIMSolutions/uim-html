@@ -3,7 +3,7 @@
 import uim.html;
 
 // Additional element to handle string in DOM
-class DH5String : DH5Obj {
+@safe class DH5String : DH5Obj {
 	private string _content;
     this(string aContent) { _content = aContent; }
     override string toString() { return _content; }

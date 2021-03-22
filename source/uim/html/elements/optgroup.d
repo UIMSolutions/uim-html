@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Optgroup : DH5Obj {
+@safe class DH5Optgroup : DH5Obj {
 	mixin(H5This!"optgroup");
 
 //	O option(this O)() {

@@ -2,8 +2,8 @@
 
 import uim.html;
 
-/// HTML5 "mark" class
-class DH5Mark : DH5Obj {
+/// HTML5 "mark" @safe class
+@safe class DH5Mark : DH5Obj {
 	mixin(H5This!"Mark");
 }
 mixin(H5Short!"Mark");

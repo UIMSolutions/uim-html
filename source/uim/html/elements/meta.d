@@ -2,6 +2,7 @@
 
 import uim.html;
 
+@safe:
 class DH5Meta : DH5Obj {
 	mixin(H5This!("meta", null, null, true));
 }

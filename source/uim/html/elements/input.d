@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Input : DH5Obj {
+@safe class DH5Input : DH5Obj {
 	mixin(H5This!("input", null, null, true));
 	unittest {
 		assert(Assert(H5Input,"<input>"));

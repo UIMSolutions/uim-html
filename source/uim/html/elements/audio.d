@@ -5,7 +5,7 @@ import uim.html;
 /*
  * The <audio> tag defines sound, such as music or other audio streams.
  */
-class DH5Audio : DH5Obj {
+@safe class DH5Audio : DH5Obj {
 	mixin(H5This!"Audio");
 
 	mixin(MyAttribute!"autoplay");

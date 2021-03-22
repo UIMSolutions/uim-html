@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Keygen : DH5Obj {
+@safe class DH5Keygen : DH5Obj {
 	mixin(H5This!"keygen");
 }
 mixin(H5Short!"Keygen");

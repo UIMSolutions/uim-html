@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5List : DH5Obj {
+@safe class DH5List : DH5Obj {
 	mixin(H5This!("list"));
 
 //	this(string tag, string[] texts...) { this(tag); Add(texts); }

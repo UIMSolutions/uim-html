@@ -44,6 +44,8 @@ public import uim.html.video;
 public import uim.html.webstorage;
 public import uim.html.webworker;
 
+@safe:
+
 string h5Doctype = "<!doctype html>";
 
 enum FormMethod : string { get = "get", put = "put" } 
@@ -104,7 +106,7 @@ template EnumField(string EnumType, string name, string defaultValue = "") {
 	 void put("~EnumType~" value) { "~name~"(value); }
 ";
 }
-template EnumValue(string EnumType, string name, string target = "class", string defaultValue = "") {
+template EnumValue(string EnumType, string name, string target = "@safe class", string defaultValue = "") {
 	const char[] EnumValue = "
 	@property auto "~name~"("~EnumType~" value) { put("~target~", "~name~"); return this; }
 	 void put("~EnumType~" value) { "~name~"(value); }
@@ -130,7 +132,7 @@ template EnumArray(string EnumType, string name) {
 	void put("~EnumType~" value) { "~name~"(value); }
 ";
 }
-template EnumValues(string EnumType, string target = "class") {
+template EnumValues(string EnumType, string target = "@safe class") {
 	const char[] EnumValues = "
 	void add("~EnumType~"[string] values) { foreach(k, v; values) put(k, v); }
 	void add("~EnumType~" value) { add(\""~target~"\", value); }
@@ -190,33 +192,33 @@ unittest {
 	assert(Assert(HTML!"div"(["aClass"], "someContent"),"<div class=\"aClass\">someContent</div>");
 }*/
 
-bool Assert(DH5Obj h5, string txt) { 
+@safe bool Assert(DH5Obj h5, string txt) { 
 	if (h5 == txt) return true;
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false;  }
-bool Assert(DH5 h5, string txt) { 
+@safe bool Assert(DH5 h5, string txt) { 
 	if (h5.toString == txt) return true;
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false; }
 
-string toString(DH5Obj[] elements) {
+@safe string toString(DH5Obj[] elements) {
 	string result;
 	foreach(element; elements) result ~= element.toString();
 	return result;
 }
 
-string singleTag(string tag, string[string] attributes = null)
+@safe string singleTag(string tag, string[string] attributes = null)
 {
 	return startTag(tag, attributes);
 }
 
-string doubleTag(string tag, string[string] attributes = null, string content = null)
-{
+@safe string doubleTag(string tag, string[string] attributes = null, string content = null) {
 	if (content.length > 0)
 		return startTag(tag, attributes) ~ content ~ endTag(tag);
 	return startTag(tag, attributes) ~ endTag(tag);
 }
 
+@safe: 
 string doubleTag(string tag, string content)
 {
 	return startTag(tag) ~ content ~ endTag(tag);
@@ -235,7 +237,7 @@ string startTag(string tag, string[string] attributes = null)
 string attributesToHTML(string[string] attributes)
 {
 	string result = "";
-	auto keys = attributes.keys.sort;
+	auto keys = attributes.byKey().array.sort!("a < b");
 	foreach (k; keys)
 	{
 		auto v = attributes[k];
@@ -280,7 +282,7 @@ string attributesToHTML(string[string] attributes)
 unittest
 {
 	assert(startTag("div") == "<div>");
-	assert(startTag("div", ["class": "active"]) == `<div class="active">`);
+	assert(startTag("div", ["@safe class": "active"]) == `<div class="active">`);
 
 	assert(endTag("div") == `</div>`);
 

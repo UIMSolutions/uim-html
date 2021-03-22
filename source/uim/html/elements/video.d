@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Video : DH5Obj {
+@safe class DH5Video : DH5Obj {
 	mixin(H5This!"video");
 
 	mixin(MyAttribute!"autoplay");

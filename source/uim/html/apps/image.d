@@ -2,7 +2,7 @@ module uim.html.apps.image;
 
 import uim.html;
 
- class DH5AppImage : DH5AppObj {
+ @safe class DH5AppImage : DH5AppObj {
 	this() { super(); _name = "image"; }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }

@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Param : DH5Obj {
+@safe class DH5Param : DH5Obj {
 	mixin(H5This!"param");
 }
 mixin(H5Short!"Param");

@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Track : DH5Obj {
+@safe class DH5Track : DH5Obj {
 	mixin(H5This!"track");
 	
 	mixin(MyAttribute!("isDefault", "default"));

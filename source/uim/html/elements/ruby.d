@@ -2,7 +2,7 @@
 
 import uim.html; 
 
-class DH5Ruby : DH5Obj {
+@safe class DH5Ruby : DH5Obj {
 	mixin(H5This!"ruby");
 }
 mixin(H5Short!"Ruby");

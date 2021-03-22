@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Math : DH5Obj {
+@safe class DH5Math : DH5Obj {
 	mixin(H5This!"math");
 }
 mixin(H5Short!"Math");

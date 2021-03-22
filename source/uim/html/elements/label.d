@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Label : DH5Obj {
+@safe class DH5Label : DH5Obj {
 	mixin(H5This!"label");
 
 	mixin(MyAttribute!("forId", "for"));
@@ -13,7 +13,7 @@ class DH5Label : DH5Obj {
 	
 	mixin(MyAttribute!("form"));
 	unittest {
-		assert(Assert(H5Label.form("aForm"), `<label form="aForm"></label>`));
+		assert(H5Label.form("aForm") == `<label form="aForm"></label>`);
 		assert(Assert(H5Label.form("aForm").content("text"), `<label form="aForm">text</label>`));
 	}
 }

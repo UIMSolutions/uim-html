@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Summary : DH5Obj {
+@safe class DH5Summary : DH5Obj {
 	mixin(H5This!"summary");
 }
 mixin(H5Short!"Summary");

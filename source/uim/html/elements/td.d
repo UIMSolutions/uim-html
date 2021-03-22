@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Td : DH5Obj {
+@safe class DH5Td : DH5Obj {
 	mixin(H5This!"td");
 }
 mixin(H5Short!"Td");

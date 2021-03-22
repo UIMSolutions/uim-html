@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Head : DH5Obj {
+@safe class DH5Head : DH5Obj {
 protected:
 	string _title;
 public:

@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5InputPASSWORD : DH5Input {
+@safe class DH5InputPASSWORD : DH5Input {
 	mixin(H5This!("Input", null, `["type":"password"]`, true)); 
 }
 mixin(H5Short!"InputPASSWORD"); 

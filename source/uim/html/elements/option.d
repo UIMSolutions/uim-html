@@ -2,11 +2,10 @@
 
 import uim.html;
 
-class DH5Option : DH5Obj {
+@safe class DH5Option : DH5Obj {
 	mixin(H5This!"option");
 }
 mixin(H5Short!"Option");
-
 
 enum option_modes : string {
 	Default = "",

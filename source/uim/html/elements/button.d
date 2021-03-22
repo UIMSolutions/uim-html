@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Button : DH5Obj {
+@safe class DH5Button : DH5Obj {
 	mixin(H5This!"button");
 
 	/* type */

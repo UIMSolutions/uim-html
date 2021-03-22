@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Select : DH5Obj {
+@safe class DH5Select : DH5Obj {
 	mixin(H5This!"select");
 
 	mixin(TProperty!("string", "selected"));

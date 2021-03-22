@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Body : DH5Obj {
+@safe class DH5Body : DH5Obj {
 	mixin(H5This!("body"));
 
 	O scripts(this O)(string[] links) { foreach(l; links) add(H5Script(["src":l])); return cast(O)this; }

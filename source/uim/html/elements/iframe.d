@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Iframe : DH5Obj {
+@safe class DH5Iframe : DH5Obj {
 	mixin(H5This!"iframe");
 }
 mixin(H5Short!"Iframe");

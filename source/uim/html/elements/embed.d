@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Embed : DH5Obj {
+@safe class DH5Embed : DH5Obj {
 	mixin(H5This!"embed");
 }
 mixin(H5Short!"Embed");

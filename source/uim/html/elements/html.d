@@ -7,7 +7,7 @@ import uim.html;
  * Das html-Element, auch root(-Element) oder Wurzelelement enthält den vollständigen Inhalt einer Internetseite. 
  * Date: January 09, 2015
  */
-class DH5Html : DH5Obj {
+@safe class DH5Html : DH5Obj {
 	mixin(H5This!"html");
 
 	override public void _init() {
@@ -47,7 +47,7 @@ class DH5Html : DH5Obj {
 	mixin(OProperty!("DH5Head","head"));
 	auto head(this O)(string[] classes) { _head(classes); return cast(O)this;}
 	auto head(this O)(string[string] attributes) { _head(attributes); return cast(O)this;}
-	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](classes, attributes); return cast(O)this;}
+	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](@safe classes, attributes); return cast(O)this;}
 	auto head(this O)(string addContent) { _head(addContent); return cast(O)this;}
 
 	mixin(OProperty!("DH5Body","body_"));

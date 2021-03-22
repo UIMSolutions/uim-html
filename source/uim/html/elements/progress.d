@@ -2,7 +2,7 @@
 
 import uim.html;
 
-class DH5Progress : DH5Obj {
+@safe class DH5Progress : DH5Obj {
 	mixin(H5This!"progress");
 }
 mixin(H5Short!"Progress");

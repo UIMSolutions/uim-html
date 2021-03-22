@@ -3,7 +3,7 @@
 import uim.html;
 
 /// Page layout
-  class DH5AppLayout : DH5AppObj {
+  @safe class DH5AppLayout : DH5AppObj {
 	this() { super(); 
 	_lang = "en"; }
 	this(DH5App anApp) { this().app(anApp); }
@@ -55,16 +55,16 @@ import uim.html;
 
 	DH5Style[] _styles;
 	DH5Style[] styles() { return  _styles; }	
-	O styles(this O)(string content, string[] contents...) { this.styles([content]~contents); return cast(O)this; } // <style>...</style>
-	O styles(this O)(string[] links) { foreach(link; links) _styles ~= H5Style(content); return cast(O)this;}
+	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
+	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)).array; return cast(O)this;}
 
-	O styles(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
-	O styles(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+	O styles(this O)(string[string] addLink, string[string][] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
+	O styles(this O)(string[string][] addLinks) { _links ~= addLinks.map!(a => H5Link(a)).array; return cast(O)this;}
 
-	O styles(this O)(DH5Style[] styles...) { this.styles(styles); return cast(O)this;}
-	O styles(this O)(DH5Style[] styles) { _styles ~= styles; return cast(O)this;}
-	O styles(this O)(DH5Link[] links...) { this.styles(links); return cast(O)this;}
-	O styles(this O)(DH5Link[] links) { _styles ~= links; return cast(O)this;}
+	O styles(this O)(DH5Style[] addStyles...) { this.styles(addStyles); return cast(O)this; }
+	O styles(this O)(DH5Style[] addStyles) { _styles ~= addStyles; return cast(O)this; }
+	O styles(this O)(DH5Link[] addLinks...) { this.styles(addLinks); return cast(O)this; }
+	O styles(this O)(DH5Link[] addLinks) { _links ~= addLinks; return cast(O)this; }
 
 	O clearStyles(this O)() { _styles = null; return cast(O)this; }
 	unittest {
@@ -107,17 +107,15 @@ import uim.html;
 		return toString(page, page.content, someParameters);
 	}
 
-	string toString(DH5AppPage page, string content, string[string] someParameters = null) {
+	string toString(DH5AppPage page, string content, string[string] reqParameters = null) {
 		// layout override app, page override layout, parameters override page
-		string[string] newParameters;
-
-		if (app) newParameters = app.parameters.dup;
 		// Layout overrides app
-		foreach(k,v; this.parameters) newParameters[k] = v;
+		foreach(k,v; this.parameters) reqParameters[k] = v;
 		// page overrides layout & app
-		foreach(k,v; page.parameters) newParameters[k] = v;
-		// parameters overrides App & layout & page
-		foreach(k,v; someParameters) newParameters[k] = v;
+		if (page) foreach(k,v; page.parameters) reqParameters[k] = v;
+
+		reqParameters["lang"] = page.lang;
+		reqParameters["title"] = page.title;
 
 		DH5Meta[] newMetas;
 		if (app) newMetas ~= app.metas;
@@ -139,18 +137,13 @@ import uim.html;
 		newScripts ~= this.scripts;
 		newScripts ~= page.scripts;
 
-		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, newParameters);
+		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, reqParameters);
 	}
 
-	string toString(string content, string[string] someParameters = null) {
+	string toString(string content, string[string] reqParameters = null) {
 		// layout override app, parameters override layout
-		string[string] newParameters;
-
-		if (app) newParameters = app.parameters.dup;
 		// Layout overrides app
-		foreach(k,v; this.parameters) newParameters[k] = v;
-		// parameters overrides App & layout & page
-		foreach(k,v; someParameters) newParameters[k] = v;
+		foreach(k,v; this.parameters) reqParameters[k] = v;
 
 		DH5Meta[] newMetas;
 		if (app) newMetas = app.metas;
@@ -168,7 +161,7 @@ import uim.html;
 		if (app) newScripts ~= app.scripts;
 		newScripts ~= this.scripts;
 
-		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, newParameters);
+		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, reqParameters);
 	}
 
 	auto htmlDocument(string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, string[string] parameters = null) {

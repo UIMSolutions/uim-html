@@ -2,7 +2,8 @@
 
 import uim.html;
 
-class DH5Form : DH5Obj {
+@safe:
+ class DH5Form : DH5Obj {
 mixin(H5This!"form");
 	string _targetIFrame;
 
