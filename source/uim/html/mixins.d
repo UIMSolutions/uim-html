@@ -172,7 +172,7 @@ template classBoolean(string name, string clname = null) {
 	const char[] classBoolean = "
 	bool _"~name~";
 	@safe @property auto is"~name.capitalize~"() { return _"~name~"; }
-	@safe @property O "~name~"(this O)(bool value = true) { _"~name~" = value; if (value) _classes = _@safe classes.add(\""~cl~"\"); else _classes = _@safe classes.sub(\""~cl~"\", true); return cast(O)this; }
+	@safe @property O "~name~"(this O)(bool value = true) { _"~name~" = value; if (value) _classes = _classes.add(\""~cl~"\"); else _classes = _classes.sub(\""~cl~"\", true); return cast(O)this; }
 ";
 }
 
@@ -180,8 +180,8 @@ template classString(string name) {
 	const char[] classString = "
 	string _"~name~";
 	@safe @property auto "~name~"() { return _"~name~"; }
-	@safe @property O "~name~"(this O)(string value) { _"~name~" = value; _classes = _@safe classes.add(value); return cast(O)this; }
-	@safe O remove"~name.capitalize~"(this O)(string value = _"~name~") { _classes = _@safe classes.sub(_"~name~"); return cast(O)this; }
+	@safe @property O "~name~"(this O)(string value) { _"~name~" = value; _classes = _classes.add(value); return cast(O)this; }
+	@safe O remove"~name.capitalize~"(this O)(string value = _"~name~") { _classes = _classes.sub(_"~name~"); return cast(O)this; }
 ";
 }
 
@@ -189,10 +189,10 @@ template classArray(string name) {
 	const char[] classArray = "
 	string[] _"~name~";
 	@safe @property auto "~name~"() { return _"~name~"; }
-	@safe @property O "~name~"(this O)(string[] values...) { _"~name~" ~= values; foreach(cl; values) _classes = _@safe classes.add(cl); return cast(O)this; }
-	@safe @property O "~name~"(this O)(string[] values) { _"~name~" ~= values; foreach(cl; values) _classes = _@safe classes.add(cl); return cast(O)this; }
-	@safe O remove"~name.capitalize~"(this O)(string[] values...) { foreach(cl; values) { _classes = _@safe classes.sub(cl); _"~name~".sub(cl); } return cast(O)this; }
-	@safe O remove"~name.capitalize~"(this O)(string[] values) { foreach(cl; values) { _classes = _@safe classes.sub(cl); _"~name~".sub(cl); } return cast(O)this; }
+	@safe @property O "~name~"(this O)(string[] values...) { _"~name~" ~= values; foreach(cl; values) _classes = _classes.add(cl); return cast(O)this; }
+	@safe @property O "~name~"(this O)(string[] values) { _"~name~" ~= values; foreach(cl; values) _classes = _classes.add(cl); return cast(O)this; }
+	@safe O remove"~name.capitalize~"(this O)(string[] values...) { foreach(cl; values) { _classes = _classes.sub(cl); _"~name~".sub(cl); } return cast(O)this; }
+	@safe O remove"~name.capitalize~"(this O)(string[] values) { foreach(cl; values) { _classes = _classes.sub(cl); _"~name~".sub(cl); } return cast(O)this; }
 ";
 }
 

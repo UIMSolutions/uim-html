@@ -35,7 +35,7 @@ import uim.html;
 			assert(H5App.language("aLanguage").language("otherLanguage").language == "otherLanguage");
 	}
 
-	string[string] keywords;
+	STRINGAA keywords;
 	
   /// Every page can has his own layout - Otherwise it will use central app layout
 	DH5AppLayout _layout;
@@ -53,8 +53,8 @@ import uim.html;
 
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
-	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
-	O metas(this O)(string[string][] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
+	O metas(this O)(STRINGAA value, STRINGAA[] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
+	O metas(this O)(STRINGAA[] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
 
 	O metas(this O)(DH5Meta[] addMetas...) { this.metas(addMetas); return cast(O)this; }
 	O metas(this O)(DH5Meta[] addMetas) { _metas ~= addMetas; return cast(O)this;}
@@ -69,8 +69,8 @@ import uim.html;
 
 	DH5Link[] _links;
 	DH5Link[] links() { return  _links; }	
-	O links(this O)(string[string] addLink, string[string][] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
-	O links(this O)(string[string][] addLinks) { 
+	O links(this O)(STRINGAA addLink, STRINGAA[] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
+	O links(this O)(STRINGAA[] addLinks) { 
 		foreach(link; addLinks) _links ~= H5Link(link); 
 		return cast(O)this;}
 
@@ -87,8 +87,8 @@ import uim.html;
 	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)).array; return cast(O)this;}
 
-	O styles(this O)(string[string] addLink, string[string][] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
-	O styles(this O)(string[string][] addLinks) { _links ~= addLinks.map!(a => H5Link(a)).array; return cast(O)this;}
+	O styles(this O)(STRINGAA addLink, STRINGAA[] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
+	O styles(this O)(STRINGAA[] addLinks) { _links ~= addLinks.map!(a => H5Link(a)).array; return cast(O)this;}
 
 	O styles(this O)(DH5Style[] addStyles...) { this.styles(addStyles); return cast(O)this; }
 	O styles(this O)(DH5Style[] addStyles) { _styles ~= addStyles; return cast(O)this; }
@@ -103,18 +103,14 @@ import uim.html;
 	DH5Script[] _scripts;
 	DH5Script[] scripts() { return _scripts; }
 
-	O scripts(this O)(string newScript, string[] newScripts...) { this.scripts([newScript]~newScripts); return cast(O)this;}
-	O scripts(this O)(string[] newScripts) { 
-		debug writeln("In AppPAge: O scripts(this O)(string[] newScripts)");
-		writeln("Scripts length = ", newScripts.length);
-		_scripts ~= newScripts.map!(a => H5Script(a)).array; 
-		return cast(O)this;}
+	O scripts(this O)(string[] addScripts...) { this.scripts(addScripts); return cast(O)this;}
+	O scripts(this O)(string[] addScripts) { this.scripts(addScripts.map!(a => H5Script(a)).array); return cast(O)this;}
 
-	O scripts(this O)(string[string] newScript, string[string][] newScripts...) { this.scripts([newScript]~newScripts); return cast(O)this;}
-	O scripts(this O)(string[string][] newScripts) { _scripts ~= newScripts.map!(a => H5Script(a)).array; return cast(O)this;}
+	O scripts(this O)(STRINGAA[] addScripts...) { this.scripts(addScripts); return cast(O)this;}
+	O scripts(this O)(STRINGAA[] addScripts) { this.scripts(addScripts.map!(a => H5Script(a)).array); return cast(O)this;}
 
-	O scripts(this O)(DH5Script[] newScripts...) { this.scripts(newScripts); return cast(O)this;}
-	O scripts(this O)(DH5Script[] newScripts) { _scripts ~= newScripts; return cast(O)this;}
+	O scripts(this O)(DH5Script[] addScripts...) { this.scripts(addScripts); return cast(O)this;}
+	O scripts(this O)(DH5Script[] addScripts) { _scripts ~= addScripts; return cast(O)this;}
 
 	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {
@@ -122,37 +118,17 @@ import uim.html;
 	}
 	
 	/// Export to string
-	override string toString(string[string] someParameters) {
-		debug writeln("parameters in DH5AppPage/toString => ", someParameters); 
-
+	override string toString(STRINGAA reqParameters) {
 		// Check layout
 		DH5AppLayout lt;
 		if (app) lt = app.layout;
 		if (this.layout) lt = this.layout;
 
 		// if layout, use layout
-		if (lt) return this.layout.toString(this, someParameters);
-		return this.content; // No layout, only content
+		if (lt) return this.layout.toString(this, reqParameters);
 
-		// old stuff :-(
-/* 		// if (_layout) return _layout.toString(this.content, this.parameters);
-		// return _content;
-		// // debug // writeln("H5Page: override string toString()");
-		if (cached) {
-			// // debug // writeln("Cached");
-			if (_toString) return _toString;
-			if (this.content) { _toString = (this.layout ? this.layout.toString(this, this.parameters) : this.content); return _toString; }
-		}
-		// Not cached
-		// // debug // writeln("Not Cached");
-		// // debug // writeln(this.content);
-		if (this.content) { return (this.layout ? this.layout.toString(this, this.parameters) : this.content); }
-		return _toString;
- */	}
-	unittest {
-		//// writeln(`// writeln(H5AppPage)`);
-		//// writeln(H5AppPage);
-	}
+		return this.content(reqParameters); // No layout, only content
+	}	
 }
  auto H5AppPage() { return new DH5AppPage(); }
  auto H5AppPage(string aName) { return new DH5AppPage(aName); }

@@ -1,33 +1,31 @@
 {
-    "authors": [
-        "UI Manufaktur Team"
-    ],
-    "copyright": "Copyright © 2017-2020, UI Manufaktur UG",
-    "description": "A D library for creating HTML5 projects",
-    "targetType": "library",
-    "license": "MIT",
-    "name": "uim-html",
-    "dependencies": {
-        "arsd-official:htmltotext": "~>7.2.0",
-        "vibe-d": "~>0.9.0-alpha.4"
-
-    },
-    "sourcePaths": [
-        "../../LIBS/uim-core",
-        "../../LIBS/uim-oop",
-        "../../LIBS/uim-css",
-        "../../LIBS/uim-json",
-        "../../LIBS/uim-javascript",
-        "../../LIBS/uim-jquery",
-        "./"
-    ],
-    "importPaths": [
-        "../../LIBS/uim-core",
-        "../../LIBS/uim-oop",
-        "../../LIBS/uim-css",
-        "../../LIBS/uim-javascript",
-        "../../LIBS/uim-jquery",
-        "../../LIBS/uim-json",
-        "./"
-    ]
+	"name": "uim-html",
+	"authors": [
+		"UI Manufaktur Team"
+	],
+	"copyright": "Copyright © 2017-2020, UI Manufaktur UG",
+	"dependencies": {
+		"silly": "~>1.1.1",
+		"vibe-d": "~>0.9.3"
+	},
+	"importPaths": [
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-css",
+		"../../LIBS/uim-javascript",
+		"../../LIBS/uim-jquery",
+		"../../LIBS/uim-json",
+		"./"
+	],
+	"license": "MIT",
+	"sourcePaths": [
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-css",
+		"../../LIBS/uim-json",
+		"../../LIBS/uim-javascript",
+		"../../LIBS/uim-jquery",
+		"./"
+	],
+	"targetType": "library"
 }

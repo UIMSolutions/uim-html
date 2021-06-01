@@ -47,7 +47,7 @@ import uim.html;
 	mixin(OProperty!("DH5Head","head"));
 	auto head(this O)(string[] classes) { _head(classes); return cast(O)this;}
 	auto head(this O)(string[string] attributes) { _head(attributes); return cast(O)this;}
-	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](@safe classes, attributes); return cast(O)this;}
+	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](classes, attributes); return cast(O)this;}
 	auto head(this O)(string addContent) { _head(addContent); return cast(O)this;}
 
 	mixin(OProperty!("DH5Body","body_"));

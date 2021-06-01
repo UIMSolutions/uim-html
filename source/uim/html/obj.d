@@ -174,7 +174,7 @@ class DH5Obj {
 	/* accesskey - specifies a shortcut key to activate/focus an element. */
 	//	mixin(H5Attribute("accesskey"));
 	//	// @safe className (@safe class) - Specifies one or more @safe classnames for an element (refers to a @safe class in a style sheet)
-	//	mixin(H5Attribute("@safe className", "@safe class"));
+	//	mixin(H5Attribute("className", "class"));
 	//
 	//	// contenteditable - Specifies whether the content of an element is editable or not
 	//	mixin(H5BoolAttribute("contenteditable"));
@@ -245,7 +245,7 @@ class DH5Obj {
 					this.id(_attributes[key]); 
 					_attributes.remove(key);
 					break;
-				case "@safe class": 
+				case "class": 
 					this.classes(_attributes[key].split(" ")); 
 					_attributes.remove(key);
 					break;
@@ -273,7 +273,7 @@ class DH5Obj {
 		if (_classes) {
 			string[] cls;
 			foreach(c; _classes.unique.sort) if (c.length > 0) cls ~= c.strip;
-			first ~= ` @safe class="`~cls.join(" ")~`"`;
+			first ~= ` class="`~cls.join(" ")~`"`;
 		}
 
 		if (_attributes) first ~= attsHTML;
@@ -295,7 +295,14 @@ class DH5Obj {
 	}
 
 	string toJS(string target = null) {
-		return jsCreateElement(target, _tag, _classes, _attributes, _html.toString); // Not finish TODO
+		auto result = jsCreateElement(target, _tag, _classes, _attributes); //, _html.toString); // Not finish TODO
+		foreach(index, h5; _html) {
+			auto node = "child"~to!string(index);
+			if (cast(DH5String)h5) result ~= "let "~node~"=document.createTextNode('"~h5.toString.replace("'", "\\'")~"');"; 
+			else result ~= h5.toJS(node);
+			result ~= target~".appendChild("~node~");";
+		}
+		return result;
 	}
 
 	/// generate HTML in pretty format
@@ -366,9 +373,9 @@ unittest {
 
 	h5 = H5Obj("content");
 	assert(H5Obj.id == null);
-	assert(H5Obj(["@safe classA", "@safe classB"]).id == null);
-	assert(H5Obj(["@safe classA", "@safe classB"], ["a":"x", "b":"y"]).id == null);
-	assert(H5Obj(["@safe classA", "@safe classB"], ["a":"x", "b":"y"], "content1").id == null);
+	assert(H5Obj(["classA", "classB"]).id == null);
+	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);
+	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
 }

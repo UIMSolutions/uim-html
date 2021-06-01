@@ -106,7 +106,7 @@ template EnumField(string EnumType, string name, string defaultValue = "") {
 	 void put("~EnumType~" value) { "~name~"(value); }
 ";
 }
-template EnumValue(string EnumType, string name, string target = "@safe class", string defaultValue = "") {
+template EnumValue(string EnumType, string name, string target = "class", string defaultValue = "") {
 	const char[] EnumValue = "
 	@property auto "~name~"("~EnumType~" value) { put("~target~", "~name~"); return this; }
 	 void put("~EnumType~" value) { "~name~"(value); }
@@ -132,7 +132,7 @@ template EnumArray(string EnumType, string name) {
 	void put("~EnumType~" value) { "~name~"(value); }
 ";
 }
-template EnumValues(string EnumType, string target = "@safe class") {
+template EnumValues(string EnumType, string target = "class") {
 	const char[] EnumValues = "
 	void add("~EnumType~"[string] values) { foreach(k, v; values) put(k, v); }
 	void add("~EnumType~" value) { add(\""~target~"\", value); }
@@ -282,7 +282,7 @@ string attributesToHTML(string[string] attributes)
 unittest
 {
 	assert(startTag("div") == "<div>");
-	assert(startTag("div", ["@safe class": "active"]) == `<div class="active">`);
+	assert(startTag("div", ["class": "active"]) == `<div class="active">`);
 
 	assert(endTag("div") == `</div>`);
 
@@ -317,3 +317,7 @@ auto FAS(string name, string[] classes = null) {return H5I(classes~["fas", "fa-"
 auto Fa(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]).toString;}
 auto Far(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]).toString;}
 auto Fas(string name, string[] classes = null) {return H5I(classes~["fas", "fa-"~name]).toString;}
+
+auto jsReturn(DH5Obj obj) {
+  return "return `%s`;".format(obj);
+}

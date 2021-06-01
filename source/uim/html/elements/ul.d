@@ -17,7 +17,7 @@ import uim.html;
 	unittest {
 		assert(Assert(H5Ul.item, "<ul><li></li></ul>"));
 		assert(Assert(H5Ul.item.item, "<ul><li></li><li></li></ul>"));
-		assert(Assert(H5Ul.item(["test"]), `<ul><li @safe class="test"></li></ul>`));
+		assert(Assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`));
 	}
 
 	mixin(MyContent!("link", "this.item", "H5Li"));

@@ -5,6 +5,7 @@ import uim.html;
 @safe class DH5AppObj {
 	this() { 
 		this
+    .htmlModes(["*"])
 		.created(DateTime(2017, 1, 1, 1, 1, 1))
 		.changed(DateTime(2017, 1, 1, 1, 1, 1)); }
 	this(DH5App anApp) { this().app(anApp); }
@@ -12,7 +13,6 @@ import uim.html;
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
 	SysTime _accessTime, _modificationTime;
-	string[] _htmlModes = ["*"];
 		
 	bool opEquals(string txt) { return toString == txt; }
 
@@ -35,6 +35,7 @@ import uim.html;
 		assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");
 	}
 
+
 	/**
 	 * name - string that represents the name of the application
 	 */
@@ -45,6 +46,8 @@ import uim.html;
 		assert(H5AppPage("test").name == "test");
 		assert(H5AppPage.name("test").name == "test");
 	}
+
+	mixin(OProperty!("string[]", "htmlModes"));
 
 	mixin(OProperty!("DateTime", "created"));
 	O created(this O)(SysTime value) { this.created(cast(DateTime)value); return cast(O)this; }
@@ -89,10 +92,11 @@ import uim.html;
 
 	/// Content of obj
 	string _content;
-	string content(string[string] someParameters = null) { 
-		debug writeln("parameters in DH5AppObj/content => ", someParameters); 
+	string content(string[string] reqParameters) { 
+		debug writeln("parameters in DH5AppObj/content => ", reqParameters); 
 
 		return _content; }
+
 	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(string addContent) { _content ~= addContent; return cast(O)this; }
@@ -105,14 +109,50 @@ import uim.html;
 	}
 
 	/// Response to HTTP request
-	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		auto reqParameters = readRequestParameters(req, this.parameters.dup);
-		request(reqParameters, res);	}
-	void request(STRINGAA reqParameters, HTTPServerResponse res) {
-		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
+	protected HTTPServerRequest _request;
+	protected HTTPServerResponse _response;
+	final void request(HTTPServerRequest req, HTTPServerResponse res) {
+		_request = req;
+		_response = res;
+		STRINGAA reqParameters = readRequestParameters(req, parameters.dup);
+    reqParameters["htmlMode"] = to!string(req.method);
 
-		debug writeln("parameters in DH5AppObj/request => ", reqParameters); 
-		
+    if (this.htmlModes != ["*"]) {
+      foreach(htmlMode; this.htmlModes) {
+        if ((req.method == HTTPMethod.GET) && (!canFind(this.htmlModes, "get"))) { res.statusCode = 404; res.writeBody("Not available", _mimetype); }
+        else if ((req.method == HTTPMethod.POST) && (!canFind(this.htmlModes, "post"))) { res.statusCode = 404; res.writeBody("Not available", _mimetype); }
+        else if ((req.method == HTTPMethod.PUT) && (!canFind(this.htmlModes, "put"))) { res.statusCode = 404; res.writeBody("Not available", _mimetype); }        
+        else if ((req.method == HTTPMethod.DELETE) && (!canFind(this.htmlModes, "delete"))) { res.statusCode = 404; res.writeBody("Not available", _mimetype); } 
+        else { res.statusCode = 404; res.writeBody("Not available", _mimetype); } 
+      }
+    }
+ 
+    if (app) {
+      with(app) {    
+        if (req.peer !in peers) peers[req.peer] = ["peer": req.peer];
+        peers[req.peer]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
+      
+        reqParameters["peer"] = req.peer;
+        reqParameters["peer_lastRequestTime"] = peers[req.peer]["lastRequestTime"];
+
+        if (req.session) {
+          string sessionId;
+          if (req.session.isKeySet("sessionId")) {
+            sessionId = req.session.id;
+            if (sessionId !in sessions) sessions[sessionId] = ["sessionId": sessionId]; 
+            
+            sessions[sessionId]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
+            reqParameters["sessionId"] = sessionId;
+            reqParameters["sessionId_lastRequestTime"] = sessions[sessionId]["lastRequestTime"];
+          }}}}
+	  request(req, res, reqParameters);
+  }
+	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
+		_request = req;
+		_response = res;
+		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
+    reqParameters["htmlMode"] = to!string(req.method);
+	
 		auto result = toString(reqParameters);
 		if ("redirect" in reqParameters) res.redirect(reqParameters["redirect"]);
 		res.writeBody(result, _mimetype); 
@@ -135,7 +175,7 @@ import uim.html;
 		}
 
 		debug writeln("Is not cached");
-		return this.content; 
+		return this.content(reqParameters); 
 	}
 	unittest {
 		assert(H5AppObj.content("test").toString == "test");

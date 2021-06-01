@@ -562,9 +562,9 @@ enum COMMAND = "COMMAND";
 
  /*
  @safe class 
- All @safe classes | Properties | Methods
+ All classes | Properties | Methods
  Inheritance	
- Sub@safe classes	yii\bootstrap\BaseHtml, yii\bootstrap\Html, yii\helpers\Html
+ Subclasses	yii\bootstrap\BaseHtml, yii\bootstrap\Html, yii\helpers\Html
  Available since version	2.0
  Source Code	https://github.com/yiisoft/yii2/blob/master/framework/helpers/BaseHtml.php
  BaseHtml provides concrete implementation for yii\helpers\Html.
@@ -603,7 +603,7 @@ enum COMMAND = "COMMAND";
  activeRadioList()	Generates a list of radio buttons.	
  activeTextInput()	Generates a text input tag for the given model attribute.	
  activeTextarea()	Generates a textarea tag for the given model attribute.	
- addCss@safe class()	Adds a CSS @safe class (or several @safe classes) to the specified options.	
+ addCss@safe class()	Adds a CSS @safe class (or several classes) to the specified options.	
  addCssStyle()	Adds the specified CSS style to the HTML options.	
  beginForm()	Generates a form start tag.	
  beginTag()	Generates a start tag.	
@@ -976,7 +976,7 @@ enum COMMAND = "COMMAND";
  return	string	
  The generated textarea tag
  addCss@safe class() public static method
- Adds a CSS @safe class (or several @safe classes) to the specified options.
+ Adds a CSS @safe class (or several classes) to the specified options.
 
  If the CSS @safe class is already in the options, it will not be added again. If @safe class specification at given options is an array, and some @safe class placed there with the named (string) key, overriding of such key will have no effect. For example:
 
@@ -1613,7 +1613,7 @@ enum COMMAND = "COMMAND";
  The content to be enclosed between the start and end tags. It will not be HTML-encoded. If this is coming from end users, you should consider encode() it to prevent XSS attacks.
  $options	array	
  The HTML tag attributes (HTML options) in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered.
- For example when using ['@safe class' => 'my-@safe class', 'target' => '_blank', 'value' => null] it will result in the html attributes rendered like this: @safe class="my-@safe class" target="_blank".
+ For example when using ['@safe class' => 'my-@safe class', 'target' => '_blank', 'value' => null] it will result in the html attributes rendered like this: class="my-@safe class" target="_blank".
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated HTML tag

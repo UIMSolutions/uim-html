@@ -74,15 +74,15 @@ import uim.html;
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }`)
-.html(`<d@safe classiv @safe class="sidenav">
+.html(`<d@safe classiv class="sidenav">
   <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
   <a href="#contact">Contact</a>
-  <button @safe class="dropdown-btn">Dropdown 
-    <i @safe class="fa fa-caret-down"></i>
+  <button class="dropdown-btn">Dropdown 
+    <i class="fa fa-caret-down"></i>
   </button>
-  <div @safe class="dropdown-container">
+  <div class="dropdown-container">
     <a href="#">Link 1</a>
     <a href="#">Link 2</a>
     <a href="#">Link 3</a>
@@ -90,7 +90,7 @@ import uim.html;
   <a href="#contact">Search</a>
 </div>
 
-<div @safe class="main">
+<div class="main">
   <h2>Sidebar Dropdown</h2>
   <p>Click on the dropdown button to open the dropdown menu inside the side navigation.</p>
   <p>This sidebar is of full height (100%) and always shown.</p>

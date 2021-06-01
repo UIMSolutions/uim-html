@@ -9,9 +9,9 @@ import uim.html;
 	this(DH5App anApp) { this().app(anApp); }
 
 	string[] _headClasses;
-	string[string] _headAttributes;
+	STRINGAA _headAttributes;
 	string[] _bodyClasses;
-	string[string] _bodyAttributes;
+	STRINGAA _bodyAttributes;
 
 	mixin(XString!("preHead"));
 	mixin(XString!("postHead"));
@@ -24,10 +24,21 @@ import uim.html;
 	
 	mixin(OProperty!("DH5Html", "html"));
 
+	mixin(OProperty!("DH5Obj[]", "navSlots"));	
+
+	DH5Obj _navbar;
+	O navbar(this O)(H5Obj newNavbar) {
+		_navbar = newNavbar;
+		return cast(O)this;
+	}
+	DH5Obj navbar() {
+		return _navbar;
+	}
+
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
-	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
-	O metas(this O)(string[string][] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
+	O metas(this O)(STRINGAA value, STRINGAA[] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
+	O metas(this O)(STRINGAA[] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
 
 	O metas(this O)(DH5Meta[] addMetas...) { this.metas(addMetas); return cast(O)this; }
 	O metas(this O)(DH5Meta[] addMetas) { _metas ~= addMetas; return cast(O)this;}
@@ -42,8 +53,8 @@ import uim.html;
 
 	DH5Link[] _links;
 	DH5Link[] links() { return  _links; }	
-	O links(this O)(string[string] link, string[string][] links...) { this.links([link]~links); return cast(O)this;}
-	O links(this O)(string[string][] links) { foreach(link; links) _links ~= H5Link(link); return cast(O)this;}
+	O links(this O)(STRINGAA link, STRINGAA[] links...) { this.links([link]~links); return cast(O)this;}
+	O links(this O)(STRINGAA[] links) { _links ~= links.map!(a => H5Link(a)).array; return cast(O)this;}
 
 	O links(this O)(DH5Link[] links...) { this.links(links); return cast(O)this;}
 	O links(this O)(DH5Link[] links) { _links ~= links; return cast(O)this;}
@@ -58,8 +69,8 @@ import uim.html;
 	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
 	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)).array; return cast(O)this;}
 
-	O styles(this O)(string[string] addLink, string[string][] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
-	O styles(this O)(string[string][] addLinks) { _links ~= addLinks.map!(a => H5Link(a)).array; return cast(O)this;}
+	O styles(this O)(STRINGAA addLink, STRINGAA[] addLinks...) { this.links([addLink]~addLinks); return cast(O)this;}
+	O styles(this O)(STRINGAA[] addLinks) { _links ~= addLinks.map!(a => H5Link(a)).array; return cast(O)this;}
 
 	O styles(this O)(DH5Style[] addStyles...) { this.styles(addStyles); return cast(O)this; }
 	O styles(this O)(DH5Style[] addStyles) { _styles ~= addStyles; return cast(O)this; }
@@ -73,11 +84,11 @@ import uim.html;
 
 	DH5Script[] _scripts;
 	DH5Script[] scripts() { return _scripts; }
-	O scripts(this O)(string lib, string[] libs...) { this.scripts([lib]~libs); return cast(O)this;}
-	O scripts(this O)(string[] libs) { foreach(lib; libs) _scripts ~= H5Script(["src":lib]); return cast(O)this;}
+	O scripts(this O)(string[] addScripts...) { this.scripts(addScripts); return cast(O)this;}
+	O scripts(this O)(string[] addScripts) { _scripts ~= addScripts.map!(a => H5Script(a)).array; return cast(O)this;}
 
-	O scripts(this O)(string[string] lib, string[string][] libs...) { this.scripts([lib]~libs); return cast(O)this;}
-	O scripts(this O)(string[string][] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(STRINGAA lib, STRINGAA[] libs...) { this.scripts([lib]~libs); return cast(O)this;}
+	O scripts(this O)(STRINGAA[] libs) {  _scripts ~= libs.map!(a => H5Script(a)).array; return cast(O)this;}
 
 	O scripts(this O)(DH5Script[] libs...) { this.scripts(libs); return cast(O)this;}
 	O scripts(this O)(DH5Script[] libs) { _scripts ~= libs; return cast(O)this;}
@@ -99,48 +110,47 @@ import uim.html;
 	}
 
 	string opCall() { return toString(); }
-	string opCall(DH5AppPage page, string[string] parameters = null) { return toString(page, parameters); }
-	string opCall(string content, string[string] parameters = null) { return toString(content, parameters); }
+	string opCall(DH5AppPage page, STRINGAA parameters) { return toString(page, parameters); }
+	string opCall(string content, STRINGAA parameters) { return toString(content, parameters); }
 	
 	override string toString() { return toString("", null); }
-	string toString(DH5AppPage page, string[string] someParameters = null) {
-		return toString(page, page.content, someParameters);
+	string toString(DH5AppPage page, STRINGAA reqParameters) {
+		return toString(page, page.content(reqParameters), reqParameters);
 	}
 
-	string toString(DH5AppPage page, string content, string[string] reqParameters = null) {
-		// layout override app, page override layout, parameters override page
-		// Layout overrides app
-		foreach(k,v; this.parameters) reqParameters[k] = v;
-		// page overrides layout & app
-		if (page) foreach(k,v; page.parameters) reqParameters[k] = v;
+	string toString(DH5AppPage page, string content, STRINGAA reqParameters) {
+		if (page) foreach(k,v; page.parameters) if (k !in reqParameters) reqParameters[k] = v;
+		foreach(k,v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
 
-		reqParameters["lang"] = page.lang;
-		reqParameters["title"] = page.title;
+		if (page) {
+			reqParameters["lang"] = page.lang;
+			reqParameters["title"] = page.title;
+		}
 
 		DH5Meta[] newMetas;
 		if (app) newMetas ~= app.metas;
 		newMetas ~= this.metas;
-		newMetas ~= page.metas;
+		if (page) newMetas ~= page.metas;
 
 		DH5Link[] newLinks;		
 //		if (app) newLinks = app.links;
 		newLinks ~= this.links;
-		newLinks ~= page.links;
+		if (page) newLinks ~= page.links;
 
 		DH5Style[] newStyles;
 		if (app) newStyles ~= app.styles;
 		newStyles ~= this.styles;
-		newStyles ~= page.styles;
+		if (page) newStyles ~= page.styles;
 
 		DH5Script[] newScripts;
 		if (app) newScripts ~= app.scripts;
 		newScripts ~= this.scripts;
-		newScripts ~= page.scripts;
+		if (page) newScripts ~= page.scripts;
 
-		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, reqParameters);
+		return htmlDocument(page, content, newMetas, newLinks, newStyles, newScripts, reqParameters);
 	}
 
-	string toString(string content, string[string] reqParameters = null) {
+	string toString(string content, STRINGAA reqParameters) {
 		// layout override app, parameters override layout
 		// Layout overrides app
 		foreach(k,v; this.parameters) reqParameters[k] = v;
@@ -161,37 +171,39 @@ import uim.html;
 		if (app) newScripts ~= app.scripts;
 		newScripts ~= this.scripts;
 
-		return htmlDocument(content, newMetas, newLinks, newStyles, newScripts, reqParameters);
+		return htmlDocument(null, content, newMetas, newLinks, newStyles, newScripts, reqParameters);
 	}
 
-	auto htmlDocument(string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, string[string] parameters = null) {
-		auto finalLang = parameters.get("lang", this.lang); // if lang !in parameters use this.lang
-		auto finalTitle = parameters.get("title", this.title);  // if title !in parameters use this.title
+	auto htmlDocument(DH5AppPage page, string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, STRINGAA reqParameters) {
+		foreach(kv; this.parameters.byKeyValue) if (kv.key !in reqParameters) reqParameters[kv.key] = kv.value;
+		auto finalLang = reqParameters.get("lang", this.lang); // if lang !in parameters use this.lang
+		auto finalTitle = reqParameters.get("title", this.title);  // if title !in parameters use this.title
 
 		// creating HTML page
 		_html = H5Html
-		.attributes("lang", finalLang).attributes("dir", parameters.get("dir", "ltr"))
+		.attributes("lang", finalLang).attributes("dir", reqParameters.get("dir", "ltr"))
 		// Head part of HTML
 		.head(_headClasses)
 		.head(_headAttributes)
 		.head(finalTitle.length > 0 ? "<title>" ~ finalTitle ~ "</title>":"")
-		.head(newMetas.asString~parameters.get("metas", ""))
-		.head(newLinks.asString~parameters.get("links", ""))
-		.head(newStyles.asString~parameters.get("styles", ""))
-		.head("style" in parameters ? H5Style(parameters["style"]).toString : "")
+		.head(newMetas.asString~reqParameters.get("metas", ""))
+		.head(newLinks.asString~reqParameters.get("links", ""))
+		.head("link" in reqParameters ? reqParameters["link"] : "")
+		.head(newStyles.asString~reqParameters.get("styles", ""))
+		.head("style" in reqParameters ? H5Style(reqParameters["style"]).toString : "")
 		// Body part of HTML
 		.body_(_bodyClasses)
 		.body_(_bodyAttributes)
-		.body_(this.layout ?  this.layout.toString(content, parameters) : content)
-		.body_(newScripts.asString~parameters.get("scripts", ""))
-		.body_("script" in parameters ? H5Script(parameters["script"]).toString : "");
+		.body_(this.layout ?  this.layout.toString(content, reqParameters) : content)
+		.body_(newScripts.map!(a => a.toString).array.join(""))
+		.body_("script" in reqParameters ? H5Script(reqParameters["script"]).toString : "");
 
 		return _html.toString;
 	}
 	unittest {
 		// writeln(H5AppLayout);
 		assert(H5AppLayout == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
-		assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
+		//assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}
 }
 auto H5AppLayout() { return new DH5AppLayout(); }

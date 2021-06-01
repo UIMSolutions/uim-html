@@ -14,38 +14,38 @@ import uim.html;
 
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
-<div @safe class="container">
-    <div @safe class="row clearfix">
-    	<div @safe class="col-md-12 table-responsive">
-			<table @safe class="table table-bordered table-hover table-sortable" id="tab_logic">
+<div class="container">
+    <div class="row clearfix">
+    	<div class="col-md-12 table-responsive">
+			<table class="table table-bordered table-hover table-sortable" id="tab_logic">
 				<thead>
 					<tr >
-						<th @safe class="text-center">
+						<th class="text-center">
 							Name
 						</th>
-						<th @safe class="text-center">
+						<th class="text-center">
 							Email
 						</th>
-						<th @safe class="text-center">
+						<th class="text-center">
 							Notes
 						</th>
-    					<th @safe class="text-center">
+    					<th class="text-center">
 							Option
 						</th>
-        				<th @safe class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+        				<th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-    				<tr id='addr0' data-id="0" @safe class="hidden">
+    				<tr id='addr0' data-id="0" class="hidden">
 						<td data-name="name">
-						    <input type="text" name='name0'  placeholder='Name' @safe class="form-control"/>
+						    <input type="text" name='name0'  placeholder='Name' class="form-control"/>
 						</td>
 						<td data-name="mail">
-						    <input type="text" name='mail0' placeholder='Email' @safe class="form-control"/>
+						    <input type="text" name='mail0' placeholder='Email' class="form-control"/>
 						</td>
 						<td data-name="desc">
-						    <textarea name="desc0" placeholder="Description" @safe class="form-control"></textarea>
+						    <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
 						</td>
     					<td data-name="sel">
 						    <select name="sel0">
@@ -56,14 +56,14 @@ import uim.html;
 						    </select>
 						</td>
                         <td data-name="del">
-                            <button name="del0" @safe class='btn btn-danger glyphicon glyphicon-remove row-remove'><span aria-hidden="true">×</span></button>
+                            <button name="del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'><span aria-hidden="true">×</span></button>
                         </td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<a id="add_row" @safe class="btn btn-primary float-right">Add Row</a>
+	<a id="add_row" class="btn btn-primary float-right">Add Row</a>
 </div>`)
 .js(`$(document).ready(function() {
     $("#add_row").on("click", function() {
@@ -110,7 +110,7 @@ import uim.html;
         // add delete button and td
         /*
         $("<td></td>").append(
-            $("<button @safe class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
+            $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
                 .click(function() {
                     $(this).closest("tr").remove();
                 })

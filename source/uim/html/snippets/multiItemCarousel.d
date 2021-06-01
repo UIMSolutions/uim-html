@@ -17,145 +17,145 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div @safe class="container">
-	<div @safe class="row">
-		<div @safe class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div @safe class="MultiCarousel-inner">
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+<div class="container">
+	<div class="row">
+		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+            <div class="MultiCarousel-inner">
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
-                <div @safe class="item">
-                    <div @safe class="pad15">
-                        <p @safe class="lead">Multi Item Carousel</p>
+                <div class="item">
+                    <div class="pad15">
+                        <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
                 </div>
             </div>
-            <button @safe class="btn btn-primary leftLst"><</button>
-            <button @safe class="btn btn-primary rightLst">></button>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
         </div>
 	</div>
-	<div @safe class="row">
-	    <div @safe class="col-md-12 text-center">
+	<div class="row">
+	    <div class="col-md-12 text-center">
 	        <br/><br/><br/>
 	        <hr/>
 	        <p>Settings</p>

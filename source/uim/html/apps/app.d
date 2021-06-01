@@ -7,6 +7,9 @@ import uim.html;
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
 
+  string[string][string] peers;
+  string[string][string] sessions;
+
 	void init() {
 		_layout = new DH5AppLayout;
 		this.index(new DH5AppPage);
@@ -14,6 +17,8 @@ import uim.html;
 	}
 
 	/// Id of app
+  mixin(OProperty!("DOOPRepository", "repository"));
+
 	mixin(OProperty!("string", "id"));
 	unittest {	
 			assert(H5App.id("aId").id == "aId");	
@@ -27,8 +32,6 @@ import uim.html;
 			assert(H5App.name("aName").name("otherName").name == "otherName");
 	}
 
-	// Current sessions
-	mixin(OProperty!("string[string][UUID]", "sessions"));
 
 	/// Language of app
 	string _lang = "en";
@@ -159,8 +162,8 @@ import uim.html;
 
 	DH5Style[] _styles;
 	DH5Style[] styles() { return  _styles; }	
-	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
-	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)); return cast(O)this;}
+	O styles(this O)(string[] addStyles...) { this.styles(addStyles); return cast(O)this; } // <style>...</style>
+	O styles(this O)(string[] addStyles) { _styles ~= addStyles.map!(a => H5Style(a)).array; return cast(O)this;}
 
 	O styles(this O)(string[string] addLink, string[string][] addLinks...) { this.links([link]~links); return cast(O)this;}
 	O styles(this O)(string[string][] addLinks) { _links ~= addLinks.map!(a => H5Link(a)); return cast(O)this;}
@@ -306,9 +309,10 @@ import uim.html;
 		foreach(name, obj; _objs) if (auto result = cast(DH5AppPage)obj) results[name] = result;
 		return results; }
 	unittest {
-		assert(H5App.pages("test", "testcontent").pages.length == 1);	
-		assert(H5App.pages("test", "testcontent").pages("test", "testcontent").pages.length == 1);	
-		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.length == 2);	
+		auto initPages = H5App.pages.length;
+		assert(H5App.pages("test", "testcontent").pages.length == 1 + initPages);	
+		assert(H5App.pages("test", "testcontent").pages("test", "testcontent").pages.length == 1 + initPages);	
+		assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.length == 2 + initPages);	
 	}		
 	
 	// Get pages by names
@@ -359,17 +363,43 @@ import uim.html;
 	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			// writeln(H5App.page("test", "testcontent").pages.length);	
-			// writeln(H5App.page("test", "testcontent").pages);	
-			assert(H5App.pages("test", "testcontent").pages.length == 1);	
-			assert(H5App.pages("test", "testcontent").removePages("test").pages.length == 0);	
+			auto initPages = H5App.pages.length;	
+			assert(H5App.pages("test", "testcontent").pages.length == 1 + initPages);	
+			assert(H5App.pages("test", "testcontent").removePages("test").pages.length == initPages);	
 	}
+
+  /* STRINGAA[string] loginTokens;
+    bool isLogin(string loginToken) {
+      // SessionToken exists?
+      if (loginToken !in loginTokens) return false;
+      
+      // Timeout?
+      const lastAccess = to!long(loginTokens[loginToken]["lastAccess"]);
+      if ((toTimestamp(now()) - lastAccess) > minutes(5).total!"msecs") return false;
+
+      loginTokens[loginToken]["lastAccess"] = to!string(toTimestamp(now()));
+      return true;
+    }
+
+    STRINGAA[string] sessionTokens;  
+    bool isValid(string sessionToken) {
+      // SessionToken exists?
+      if (sessionToken !in sessionTokens) return false;
+      
+      // Timeout?
+      const lastAccess = to!long(sessionTokens[sessionToken]["lastAccess"]);
+      if ((toTimestamp(now()) - lastAccess) > minutes(5).total!"msecs") return false;
+
+      sessionTokens[sessionToken]["lastAccess"] = to!string(toTimestamp(now()));
+      return true;
+    } */
 
 	/// Central request handler
 	O registerApp(this O)(URLRouter router) {
 		// debug // writeln("Register app -", this.rootPath);
-		router.get(this.rootPath ~ "*", &this.request);
-		router.post(this.rootPath ~ "*", &this.request);	
 
+		router.any(this.rootPath ~ "*", &this.request);
+		
 		return cast(O)this;
 	}
 	unittest {	
@@ -378,10 +408,26 @@ import uim.html;
 
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
-		request(readRequestParameters(req, parameters.dup), res);
-		debug writeln("Request => ", req);
-	}
-	void request(STRINGAA reqParameters, HTTPServerResponse res) {
+		STRINGAA reqParameters = readRequestParameters(req, parameters.dup);
+  
+    if (req.peer !in peers) peers[req.peer] = ["peer": req.peer];
+    peers[req.peer]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
+  
+    reqParameters["peer"] = req.peer;
+    reqParameters["peer_lastRequestTime"] = peers[req.peer]["lastRequestTime"];
+
+    if (req.session) {
+      string sessionId;
+      if (req.session.isKeySet("sessionId")) {
+        sessionId = req.session.id;
+        if (sessionId !in sessions) sessions[sessionId] = ["sessionId": sessionId]; 
+        
+        sessions[sessionId]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
+        reqParameters["sessionId"] = sessionId;
+        reqParameters["sessionId_lastRequestTime"] = sessions[sessionId]["lastRequestTime"];
+      }
+    }
+
 		/// Extract appPath from URL path
 		string appPath;
 		string reqPath = reqParameters.get("path", rootPath);
@@ -396,45 +442,52 @@ import uim.html;
 
 		if (reqPath == rootPath) {
 			if ("index" in _objs) {
-				_index.request(reqParameters, res);
-				return;
-			}
+				_index.request(req, res, reqParameters);
+				return; }
 			if ("error" in _objs) {
-				_error.request(reqParameters, res);
-				return;
-			}
+				_error.request(req, res, reqParameters);
+				return; }
 		}
-
+   
 		auto pathItems = appPath.split("/");
 		writeln("PathItems: ", pathItems);
 
 		if (appPath in _objs) { // static urls
 			writeln("Found Obj -> ", appPath);
 
-			_objs[appPath].request(reqParameters, res);
+			_objs[appPath].request(req, res, reqParameters);
 			return;
 		}
 
 		debug writeln("dynamic urls");
-		foreach (path, obj; _objs) if (path.has("*", ":", "?")) {
+    // Future release will handle "*" and "?"
+		foreach (path, obj; _objs) if (path.indexOf(":") > 0) {
 			// writeln(path, " vs ", appPath);
 			string[] objPathItems = path.split("/");
+      debug writeln("objPathItems -> ", objPathItems.length, " ", objPathItems);
 			string[] appPathItems = appPath.split("/");
+      debug writeln("appPathItems -> ", appPathItems.length, " ", appPathItems);
 			// writeln("ObjPathItems: (", objPathItems.length,") ", objPathItems);
 			// writeln("AppjPathItems: (", appPathItems.length,") ", appPathItems);
+			if (objPathItems.length < appPathItems.length) continue;
 			if (objPathItems.length > appPathItems.length) continue;
 
+			// (objPathItems.length == appPathItems.length)
 			bool foundPage = true;
 			foreach (index, item; objPathItems) {
 				if (!foundPage) break;
+				if (item.length == 0) { foundPage = false; break; }
+				if (item == appPathItems[index]) continue;
 
-				if (index >= appPathItems.length) {
-					foundPage = false;
-					break;
-				}
+        debug writeln("Hmmm, length equal.");
+				if (item.length < 2) { foundPage = false; break; }
+				if ((item != appPathItems[index]) && (item.indexOf(":") != 0)) { 
+          foundPage = false; break; }
 
+        debug writeln("Hmmm, item has ':'");
 				// dynamic part
-				if (item.has("*", ":", "?")) {
+        // Future release will handle "*" and "?"
+				if (item.indexOf(":") == 0) {
 					if (item.length > 1) { 
 						string op = item[0..1];
 						switch(op) {
@@ -451,19 +504,15 @@ import uim.html;
 						}
 					}
 				}
-				else { 
-					if (item != appPathItems[index]) {
-					foundPage = false;
-					break;
-				}}
 			}
-			if (foundPage) {
-				obj.request(reqParameters, res);
+
+			if (foundPage) { // found dynamic link
+				obj.request(req, res, reqParameters);
 				return;
 			}
 		}
 
-		_error.request(reqParameters, res);
+		_error.request(req, res, reqParameters);
 	} 
 }
  auto H5App() { return new DH5App(); }
@@ -479,22 +528,22 @@ void redirectCheck(string[string] parameters) {
 	if ("redirect" in parameters) redirect(parameters["redirect"]);
 }
 
-auto readRequestParameters(HTTPServerRequest req, STRINGAA someParameters) {
-		someParameters["method"] = to!string(req.method);
-		someParameters["peer"] = req.peer;
-		someParameters["host"] = req.host;
-		someParameters["path"] = req.path;
-		someParameters["rootDir"] = req.rootDir;
-		someParameters["fullURL"] = req.fullURL.toString;
-		someParameters["queryString"] = req.queryString;
-		someParameters["json"] = req.json.toString;
-		someParameters["username"] = req.username;
-		someParameters["password"] = req.password;
+auto readRequestParameters(HTTPServerRequest req, STRINGAA reqParameters) {
+		reqParameters["method"] = to!string(req.method);
+		reqParameters["peer"] = req.peer;
+		reqParameters["host"] = req.host;
+		reqParameters["path"] = req.path;
+		reqParameters["rootDir"] = req.rootDir;
+		reqParameters["fullURL"] = req.fullURL.toString;
+		reqParameters["queryString"] = req.queryString;
+		reqParameters["json"] = req.json.toString;
+		reqParameters["username"] = req.username;
+		reqParameters["password"] = req.password;
 		
-		foreach(key; req.params.byKey) someParameters[key] = req.params[key];
-		foreach(key; req.headers.byKey) someParameters[key] = req.headers[key];
-		foreach(key; req.query.byKey) someParameters[key] = req.query[key];
-		foreach(key; req.form.byKey) someParameters[key] = req.form[key];
+		foreach(key; req.params.byKey) reqParameters[key] = req.params[key];
+		foreach(key; req.headers.byKey) reqParameters[key] = req.headers[key];
+		foreach(key; req.query.byKey) reqParameters[key] = req.query[key];
+		foreach(key; req.form.byKey) reqParameters[key] = req.form[key];
 
-		return someParameters;
+		return reqParameters;
 }
