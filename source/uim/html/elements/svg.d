@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.svg;
-
+@safe:
 import uim.html;
 
 @safe class DH5Svg : DH5Obj {

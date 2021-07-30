@@ -1,5 +1,5 @@
 ﻿module uim.html.apps.layout;
-
+@safe:
 import uim.html;
 
 /// Page layout

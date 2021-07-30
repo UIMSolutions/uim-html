@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.tr;
-
+@safe:
 import uim.html;
 
 @safe class DH5Tr : DH5Obj {

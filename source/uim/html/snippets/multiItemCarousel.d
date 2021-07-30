@@ -1,5 +1,5 @@
 module uim.html.snippets.multiItemCarousel;
-
+@safe:
 import uim.html;
 
 auto css = `

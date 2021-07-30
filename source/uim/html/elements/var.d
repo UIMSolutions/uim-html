@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.var;
-
+@safe:
 import uim.html;
 
 @safe class DH5Var : DH5Obj {

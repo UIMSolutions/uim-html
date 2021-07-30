@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.p;
-
+@safe:
 import uim.html;
 
 @safe class DH5P : DH5Obj {

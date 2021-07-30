@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.datalist;
-
+@safe:
 import uim.html;
 
 @safe class DH5Datalist : DH5Obj {

@@ -1,5 +1,5 @@
 module uim.html.apps.authpage;
-
+@safe:
 import uim.html;
 
 @safe class DH5AuthAppPage : DH5AppPage {

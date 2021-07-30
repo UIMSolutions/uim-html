@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.dialog;
-
+@safe:
 import uim.html;
 
 @safe class DH5Dialog : DH5Obj {

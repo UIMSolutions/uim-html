@@ -3,7 +3,7 @@
 import std.stdio;
 import std.string;
 import std.array;
-
+@safe:
 import uim.html;
 
 alias STRINGAA = string[string];

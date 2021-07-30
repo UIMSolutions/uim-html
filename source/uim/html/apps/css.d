@@ -1,5 +1,5 @@
 module uim.html.apps.style;
-
+@safe:
 import uim.html;
 
 /// Style (CSS) of an App

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.picture;
-
+@safe:
 import uim.html;
 
 @safe class DH5Picture : DH5Obj {

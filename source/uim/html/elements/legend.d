@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.legend;
-
+@safe:
 import uim.html;
 
 @safe class DH5Legend : DH5Obj {

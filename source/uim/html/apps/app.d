@@ -1,14 +1,11 @@
 module uim.html.apps.app;
-
+@safe:
 import uim.html;
 
 @safe class DH5App {
 	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
-
-  string[string][string] peers;
-  string[string][string] sessions;
 
 	void init() {
 		_layout = new DH5AppLayout;
@@ -17,7 +14,7 @@ import uim.html;
 	}
 
 	/// Id of app
-  mixin(OProperty!("DOOPRepository", "repository"));
+  mixin(OProperty!("DESCEntitySource", "dataSource"));
 
 	mixin(OProperty!("string", "id"));
 	unittest {	
@@ -130,15 +127,15 @@ import uim.html;
 
 	auto objs() { return _objs; }
 	O objs(this O)(DH5AppObj[string] newObjects) { foreach(objName, objNew; newObjects) this.obj(objName, objNew); return cast(O)this; }
-	O objs(this O)(DH5AppObj[] newObjects...) { foreach(objNew; newObjects) this.obj(objNew); return cast(O)this; }
+	O objs(this O)(DH5AppObj[] newObjects...) { newObjects.each!(a => { if (a) this.obj(a); }); return cast(O)this; }
 
 	O obj(this O)(DH5AppObj newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
 	O obj(this O)(string objName, DH5AppObj newObject) { newObject.app(this); _objs[objName] = newObject; return cast(O)this; }
 	
 	DH5AppObj opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
 
-	O remove(this O)(string[] names...) { foreach(objName; names) _objs.remove(objName); return cast(O)this; }
-	O remove(this O)(string[] names) { foreach(objName; names) _objs.remove(objName); return cast(O)this; }
+	O remove(this O)(string[] names...) { this.remove(names); return cast(O)this; }
+	O remove(this O)(string[] names) { names.each!(a => _objs.remove(a)); return cast(O)this; }
 	O clear(this O)() { _objs = null; return cast(O)this; }
 	unittest {	
 			/// TODO	
@@ -147,7 +144,7 @@ import uim.html;
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
 	O metas(this O)(string[string] value, string[string][] addMetas...) { this.metas([value]~addMetas); return cast(O)this;}
-	O metas(this O)(string[string][] addMetas) { foreach(meta; addMetas) this.metas(H5Meta(meta)); return cast(O)this; }
+	O metas(this O)(string[string][] addMetas) { addMetas.each!(a => this.metas(H5Meta(a))); return cast(O)this; }
 
 	O metas(this O)(DH5Meta[] addMetas...) { this.metas(addMetas); return cast(O)this; }
 	O metas(this O)(DH5Meta[] addMetas) { _metas ~= addMetas; return cast(O)this;}
@@ -181,10 +178,10 @@ import uim.html;
 	DH5Script[] _scripts;
 	DH5Script[] scripts() { return _scripts; }
 	O scripts(this O)(string lib, string[] libs...) { this.scripts([lib]~libs); return cast(O)this;}
-	O scripts(this O)(string[] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(string[] libs) { libs.each!(a => _scripts ~= H5Script(a)); return cast(O)this;}
 
 	O scripts(this O)(string[string] lib, string[string][] libs...) { this.scripts([lib]~libs); return cast(O)this;}
-	O scripts(this O)(string[string][] libs) { foreach(lib; libs) _scripts ~= H5Script(lib); return cast(O)this;}
+	O scripts(this O)(string[string][] libs) { libs.each!(a => _scripts ~= H5Script(a)); return cast(O)this;}
 
 	O scripts(this O)(DH5Script[] libs...) { this.scripts(libs); return cast(O)this;}
 	O scripts(this O)(DH5Script[] libs) { _scripts ~= libs; return cast(O)this;}
@@ -346,8 +343,8 @@ import uim.html;
 		assert(!H5App.scripts("test", "testContent").isPage("test"));
 	}
 
-	O pages(this O)(DH5AppPage[] newPages) { foreach(page; newPages) this.pages(page); return cast(O)this; }
-	O pages(this O)(DH5AppPage[] newPages...) { foreach(page; newPages) this.pages(page); return cast(O)this; }
+	O pages(this O)(DH5AppPage[] newPages...) { this.pages(newPages); return cast(O)this; }
+	O pages(this O)(DH5AppPage[] newPages) { newPages.each!(a => { if (a) this.pages(a); }); return cast(O)this; }
 	
 	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
@@ -359,8 +356,8 @@ import uim.html;
 		this.obj(name, newPage.app(this).parameters(pageParameters)); 
 		return cast(O)this; }
 
-	O removePages(this O)(string[] names...) { foreach(name; names) if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) this.remove(name); return cast(O)this; }
-	O clearPages(this O)() { foreach(name, item; _objs) if (auto obj = cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
+	O removePages(this O)(string[] names...) { names.each!(a => { if (a in _objs && cast(DH5AppPage)_objs[a]) this.remove(a); }); return cast(O)this; }
+	O clearPages(this O)() { foreach(name, item; _objs) if (cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			// writeln(H5App.page("test", "testcontent").pages.length);	
 			auto initPages = H5App.pages.length;	
@@ -409,28 +406,12 @@ import uim.html;
 	/// Central request handler
 	void request(HTTPServerRequest req, HTTPServerResponse res) {
 		STRINGAA reqParameters = readRequestParameters(req, parameters.dup);
-  
-    if (req.peer !in peers) peers[req.peer] = ["peer": req.peer];
-    peers[req.peer]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
-  
-    reqParameters["peer"] = req.peer;
-    reqParameters["peer_lastRequestTime"] = peers[req.peer]["lastRequestTime"];
-
-    if (req.session) {
-      string sessionId;
-      if (req.session.isKeySet("sessionId")) {
-        sessionId = req.session.id;
-        if (sessionId !in sessions) sessions[sessionId] = ["sessionId": sessionId]; 
-        
-        sessions[sessionId]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
-        reqParameters["sessionId"] = sessionId;
-        reqParameters["sessionId_lastRequestTime"] = sessions[sessionId]["lastRequestTime"];
-      }
-    }
-
-		/// Extract appPath from URL path
-		string appPath;
+    // if (dataSource) dataSource.insertOne("central", "requests", reqParameters.toJson);
+      
 		string reqPath = reqParameters.get("path", rootPath);
+
+    /// Extract appPath from URL path
+		string appPath; // reqPath = rootPath + appPath
 	  if (indexOf(reqPath, rootPath) == 0) {
 			if (reqPath.length > rootPath.length) appPath = reqPath[reqPath.indexOf(rootPath)+rootPath.length..$];
 			else appPath = "";
@@ -440,20 +421,20 @@ import uim.html;
 		reqParameters["appPath"] = appPath;
 		debug writeln(reqParameters);
 
-		if (reqPath == rootPath) {
-			if ("index" in _objs) {
-				_index.request(req, res, reqParameters);
-				return; }
-			if ("error" in _objs) {
-				_error.request(req, res, reqParameters);
-				return; }
+		if (reqPath == rootPath) { 
+      // ${rootPath}/ ?
+			if ("index" in _objs) { _index.request(req, res, reqParameters); return; }
+
+      // if not, error! ?
+			if ("error" in _objs) { _error.request(req, res, reqParameters); return; }
 		}
    
 		auto pathItems = appPath.split("/");
-		writeln("PathItems: ", pathItems);
+		debug writeln("PathItems: ", pathItems);
 
-		if (appPath in _objs) { // static urls
-			writeln("Found Obj -> ", appPath);
+      // ${rootPath}error ?
+      if (appPath in _objs) { // static urls
+			debug writeln("Found Obj -> ", appPath);
 
 			_objs[appPath].request(req, res, reqParameters);
 			return;
@@ -523,27 +504,3 @@ unittest {
 		/// TODO
 }
 
-void redirectCheck(string[string] parameters) {
-	writeln("Has Redirect? ", parameters.get("redirect", ""));
-	if ("redirect" in parameters) redirect(parameters["redirect"]);
-}
-
-auto readRequestParameters(HTTPServerRequest req, STRINGAA reqParameters) {
-		reqParameters["method"] = to!string(req.method);
-		reqParameters["peer"] = req.peer;
-		reqParameters["host"] = req.host;
-		reqParameters["path"] = req.path;
-		reqParameters["rootDir"] = req.rootDir;
-		reqParameters["fullURL"] = req.fullURL.toString;
-		reqParameters["queryString"] = req.queryString;
-		reqParameters["json"] = req.json.toString;
-		reqParameters["username"] = req.username;
-		reqParameters["password"] = req.password;
-		
-		foreach(key; req.params.byKey) reqParameters[key] = req.params[key];
-		foreach(key; req.headers.byKey) reqParameters[key] = req.headers[key];
-		foreach(key; req.query.byKey) reqParameters[key] = req.query[key];
-		foreach(key; req.form.byKey) reqParameters[key] = req.form[key];
-
-		return reqParameters;
-}

@@ -1,5 +1,5 @@
 ﻿module uim.html.extras.string;
-
+@safe:
 import uim.html;
 
 // Additional element to handle string in DOM

@@ -1,5 +1,6 @@
 ﻿module uim.html;
 
+@safe:
 public import core.vararg;
 public import std.algorithm;
 public import std.array;
@@ -20,6 +21,7 @@ public import uim.oop;
 public import uim.css;
 public import uim.json;
 public import uim.javascript;
+public import uim.entitysource;
 
 // own modules
 public import uim.html.mixins;
@@ -43,8 +45,6 @@ public import uim.html.geolocation;
 public import uim.html.video;
 public import uim.html.webstorage;
 public import uim.html.webworker;
-
-@safe:
 
 string h5Doctype = "<!doctype html>";
 
@@ -192,50 +192,49 @@ unittest {
 	assert(Assert(HTML!"div"(["aClass"], "someContent"),"<div class=\"aClass\">someContent</div>");
 }*/
 
-@safe bool Assert(DH5Obj h5, string txt) { 
-	if (h5 == txt) return true;
+bool Assert(DH5Obj h5, string txt) { 
+  if (h5 && h5 == txt) return true;
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false;  }
-@safe bool Assert(DH5 h5, string txt) { 
-	if (h5.toString == txt) return true;
+bool Assert(DH5 h5, string txt) { 
+	if (h5 && h5.toString == txt) return true;
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false; }
 
-@safe string toString(DH5Obj[] elements) {
-	string result;
-	foreach(element; elements) result ~= element.toString();
-	return result;
+string toString(DH5Obj[] elements) {
+	return elements.map!(a => a ? a.toString : "").join;
 }
 
-@safe string singleTag(string tag, string[string] attributes = null)
-{
+string singleTag(string tag, string[string] attributes = null) {
 	return startTag(tag, attributes);
 }
 
-@safe string doubleTag(string tag, string[string] attributes = null, string content = null) {
+string doubleTag(string tag, string[string] attributes = null, string content = null) {
 	if (content.length > 0)
 		return startTag(tag, attributes) ~ content ~ endTag(tag);
 	return startTag(tag, attributes) ~ endTag(tag);
 }
 
 @safe: 
-string doubleTag(string tag, string content)
-{
-	return startTag(tag) ~ content ~ endTag(tag);
+string doubleTag(string tag, string content) {
+  return startTag(tag) ~ content ~ endTag(tag); }
+unittest {
+  // TODO Test for doubleTag
 }
 
-string startTag(string tag, string[string] attributes = null)
-{
-	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">";
+string startTag(string tag, string[string] attributes = null) {
+	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">"; }
+unittest {
+  // TODO Test for startTag
 }
 
-@safe string endTag(string tag)
-{
-	return "</" ~ tag ~ ">";
+string endTag(string tag) {
+	return "</" ~ tag ~ ">"; }
+unittest {
+  // TODO Test for endtag
 }
 
-string attributesToHTML(string[string] attributes)
-{
+string attributesToHTML(string[string] attributes) {
 	string result = "";
 	auto keys = attributes.byKey().array.sort!("a < b");
 	foreach (k; keys)
@@ -253,7 +252,7 @@ string attributesToHTML(string[string] attributes)
 	return result;
 }
 
-@safe string escapeToHTML(string test)
+string escapeToHTML(string test)
 {
 	string result;
 	foreach (c; test)

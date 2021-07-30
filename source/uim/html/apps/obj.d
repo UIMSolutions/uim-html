@@ -1,5 +1,5 @@
 module uim.html.apps.obj;
-
+@safe:
 import uim.html;
 
 @safe class DH5AppObj {
@@ -109,9 +109,9 @@ import uim.html;
 	}
 
 	/// Response to HTTP request
-	protected HTTPServerRequest _request;
-	protected HTTPServerResponse _response;
-	final void request(HTTPServerRequest req, HTTPServerResponse res) {
+	HTTPServerRequest _request;
+	HTTPServerResponse _response;
+	void request(HTTPServerRequest req, HTTPServerResponse res) {
 		_request = req;
 		_response = res;
 		STRINGAA reqParameters = readRequestParameters(req, parameters.dup);
@@ -128,23 +128,10 @@ import uim.html;
     }
  
     if (app) {
-      with(app) {    
-        if (req.peer !in peers) peers[req.peer] = ["peer": req.peer];
-        peers[req.peer]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
-      
+      with(app) {          
         reqParameters["peer"] = req.peer;
-        reqParameters["peer_lastRequestTime"] = peers[req.peer]["lastRequestTime"];
-
-        if (req.session) {
-          string sessionId;
-          if (req.session.isKeySet("sessionId")) {
-            sessionId = req.session.id;
-            if (sessionId !in sessions) sessions[sessionId] = ["sessionId": sessionId]; 
-            
-            sessions[sessionId]["lastRequestTime"] = to!string(toTimestamp(req.timeCreated));
-            reqParameters["sessionId"] = sessionId;
-            reqParameters["sessionId_lastRequestTime"] = sessions[sessionId]["lastRequestTime"];
-          }}}}
+        readSessionId(req, reqParameters);            
+        }}
 	  request(req, res, reqParameters);
   }
 	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
@@ -164,7 +151,7 @@ import uim.html;
 	string _toString;
 	/// Export to string
 	override string toString() { string[string] pm; return toString(pm); }
-	string toString(string[string] reqParameters) {
+	string toString(STRINGAA reqParameters) {
 		debug writeln("parameters in DH5AppObj/toString => ", reqParameters); 
 		
 		debug writeln("Is cached?");

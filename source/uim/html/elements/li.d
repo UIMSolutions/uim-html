@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.li;
-
+@safe:
 import uim.html;
 
 // List item

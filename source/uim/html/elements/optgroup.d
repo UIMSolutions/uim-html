@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.optgroup;
-
+@safe:
 import uim.html;
 
 @safe class DH5Optgroup : DH5Obj {

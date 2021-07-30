@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.span;
-
+@safe:
 import uim.html;
 
 @safe class DH5Span : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.progress;
-
+@safe:
 import uim.html;
 
 @safe class DH5Progress : DH5Obj {

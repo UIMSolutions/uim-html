@@ -5,7 +5,7 @@ import vibe.d;
 public import uim.html.apps.app;
 public import uim.html.apps.data;
 public import uim.html.apps.image;
-public import uim.html.apps.helpers;
+// public import uim.html.apps.helpers;
 public import uim.html.apps.layout;
 public import uim.html.apps.manifest;
 public import uim.html.apps.obj;

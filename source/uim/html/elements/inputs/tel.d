@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.tel;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputTEL: DH5Input {

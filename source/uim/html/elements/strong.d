@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.strong;
-
+@safe:
 import uim.html;
 
 @safe class DH5Strong : DH5Obj {

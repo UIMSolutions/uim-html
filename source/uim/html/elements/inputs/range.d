@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.range;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputRANGE : DH5Input {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.time;
-
+@safe:
 import uim.html;
 import std.datetime;
 

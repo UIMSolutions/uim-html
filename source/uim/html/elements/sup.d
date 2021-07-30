@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.sup;
-
+@safe:
 import uim.html;
 
 @safe class DH5Sup : DH5Obj {

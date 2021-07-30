@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.rbc;
-
+@safe:
 import uim.html;
 
 @safe class DH5Rbc : DH5Obj {

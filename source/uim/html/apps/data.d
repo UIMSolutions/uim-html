@@ -1,6 +1,6 @@
 module uim.html.apps.data;
 
-@safe:
+@safe:@safe:
 import uim.html;
 
 class DH5AppData : DH5AppObj {
@@ -9,7 +9,11 @@ class DH5AppData : DH5AppObj {
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this().app(anApp).name(aName); }
 
+  mixin(SProperty!("bool", "loginRequired"));
+  mixin(SProperty!("Json", "login"));
+
   mixin(SProperty!("bool", "sessionRequired"));
+  mixin(SProperty!("Json", "session"));
 
   override string toString(STRINGAA reqParameters) {
     return toJson(reqParameters).toString;
@@ -19,10 +23,12 @@ class DH5AppData : DH5AppObj {
     auto result = Json.emptyObject;
     result["error"] = 0;
     result["status"] = 201;
-    result["messages"] = Json.emptyArray;
-   
+    result["messages"] = Json.emptyArray;  
+
     if (sessionRequired) {
-      auto sessionId = getSessionId(_request, reqParameters);
+      string sessionId; 
+      if (_request.session && _request.session.isKeySet("sessionId")) sessionId = _request.session.get("sessionId", "");
+      if ("sessionId" in reqParameters) sessionId = reqParameters["sessionId"];
       if (sessionId.length == 0) {
         result["error"] = 1;
         result["status"] = 409;
@@ -37,8 +43,8 @@ class DH5AppData : DH5AppObj {
       result["sessionId"] = sessionId;
       debug writeln("Found sessionId -> ", sessionId);
 
-      if (this.app.repository) {
-        Json sessionToken = this.app.repository.findOne("central", "sessions", ["id":sessionId]);
+      if (this.app.dataSource) {
+        Json sessionToken = this.app.dataSource.findOne("central", "sessions", ["id":sessionId]);
         if (sessionToken == Json(null)) {
           result["error"] = 1;
           result["status"] = 409;
@@ -68,9 +74,3 @@ unittest {
 	assert(H5AppData.name("newData").name == "newData");
 }
 
-string getSessionId(HTTPServerRequest req, STRINGAA reqParameters) {
-  string sessionId; 
-  if (req.session) sessionId = req.session.id;
-  else sessionId = reqParameters.get("sessionId", sessionId);
-  return sessionId;
-} 

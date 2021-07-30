@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.footer;
-
+@safe:
 import uim.html;
 
 @safe class DH5Footer : DH5Obj {

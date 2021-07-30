@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.shadow;
-
+@safe:
 import uim.html;
 
 @safe class DH5Shadow : DH5Obj {

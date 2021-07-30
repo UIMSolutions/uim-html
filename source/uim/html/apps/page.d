@@ -1,5 +1,5 @@
 module uim.html.apps.page;
-
+@safe:
 import uim.html;
 
 @safe class DH5AppPage : DH5AppObj {
@@ -19,6 +19,9 @@ import uim.html;
 		assert(H5AppPage.title("aTitle").title == "aTitle");	
 		assert(H5AppPage.title("aTitle").title("otherTitle").title == "otherTitle");
 	}
+
+	// window events
+	
 
 	/// Language of page
 	string _lang = "en";
@@ -82,6 +85,9 @@ import uim.html;
 		/// TODO
 	}
 
+  O addLink(this O)(STRINGAA reqParameters, string text) { reqParameters["link"] = reqParameters.get("link", "")~text; return cast(O)this;}
+
+
 	DH5Style[] _styles;
 	DH5Style[] styles() { return  _styles; }	
 	O styles(this O)(string addStyle, string[] addStyles...) { this.styles([addStyle]~addStyles); return cast(O)this; } // <style>...</style>
@@ -100,6 +106,9 @@ import uim.html;
 		/// TODO
 	}
 
+  O addStyle(this O)(STRINGAA reqParameters, string text) { reqParameters["style"] = reqParameters.get("style", "")~text; return cast(O)this;}
+
+
 	DH5Script[] _scripts;
 	DH5Script[] scripts() { return _scripts; }
 
@@ -113,9 +122,15 @@ import uim.html;
 	O scripts(this O)(DH5Script[] addScripts) { _scripts ~= addScripts; return cast(O)this;}
 
 	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
-	unittest {
+  unittest {
 		// assert(H5AppLayout.)
 	}
+
+	O addScript(this O)(STRINGAA reqParameters, string text) { reqParameters["script"] = reqParameters.get("script", "")~text; return cast(O)this;}
+
+  DH5Obj toH5(STRINGAA reqParameters) {
+    return null;
+  }
 	
 	/// Export to string
 	override string toString(STRINGAA reqParameters) {
@@ -127,6 +142,7 @@ import uim.html;
 		// if layout, use layout
 		if (lt) return this.layout.toString(this, reqParameters);
 
+    if (auto h5 = toH5(reqParameters)) return h5.toString;
 		return this.content(reqParameters); // No layout, only content
 	}	
 }
@@ -141,9 +157,9 @@ unittest {
     assert(H5AppPage("name").name("newname").name() == "newname");
 
 		auto app = H5App;
-	  assert(H5AppPage(app).app == app);
+	  // TOODO add @safe assert(H5AppPage(app).app == app);
     assert(H5AppPage(app, "name").name == "name");
-    assert(H5AppPage(app, "name").app == app);
+    // TOD add @safe assert(H5AppPage(app, "name").app == app);
     assert(H5AppPage(app, "name").name("newname").name() == "newname");
 }
 

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.submit;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputSUBMIT : DH5Input {

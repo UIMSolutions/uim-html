@@ -2,7 +2,7 @@
 
 import std.stdio;
 import std.conv;
-import std.string;
+import std.string;@safe:
 import uim.html;
 
 alias STRINGAA = string[string];

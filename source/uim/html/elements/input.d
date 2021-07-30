@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.input;
-
+@safe:
 import uim.html;
 
 @safe class DH5Input : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.audio;
-
+@safe:
 import uim.html;
 
 /*

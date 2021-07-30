@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.link;
-
+@safe:
 import uim.html;
 
 @safe class DH5Link : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.embed;
-
+@safe:
 import uim.html;
 
 @safe class DH5Embed : DH5Obj {

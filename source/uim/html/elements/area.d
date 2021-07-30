@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.area;
-
+@safe:
 import uim.html;
 
 /**

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.option;
-
+@safe:
 import uim.html;
 
 @safe class DH5Option : DH5Obj {

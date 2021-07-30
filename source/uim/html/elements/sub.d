@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.sub;
-
+@safe:
 import uim.html;
 
 @safe class DH5Sub : DH5Obj {

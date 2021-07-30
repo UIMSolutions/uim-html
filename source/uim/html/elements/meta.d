@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.meta;
-
+@safe:
 import uim.html;
 
 @safe:

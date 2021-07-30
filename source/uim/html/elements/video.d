@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.video;
-
+@safe:
 import uim.html;
 
 @safe class DH5Video : DH5Obj {

@@ -1,5 +1,5 @@
 module uim.html.apps.image;
-
+@safe:
 import uim.html;
 
  @safe class DH5AppImage : DH5AppObj {

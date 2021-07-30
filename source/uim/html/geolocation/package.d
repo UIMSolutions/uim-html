@@ -1,5 +1,5 @@
 module uim.html.geolocation;
-
+@safe:
 import uim.html;
 
 

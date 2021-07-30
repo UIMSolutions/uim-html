@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.blockquote;
-
+@safe:
 import uim.html;
 
 /**

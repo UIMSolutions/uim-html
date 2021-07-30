@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.tfoot;
-
+@safe:
 import uim.html;
 
 @safe class DH5Tfoot : DH5Obj {

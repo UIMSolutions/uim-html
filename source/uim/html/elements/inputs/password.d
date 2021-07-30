@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.password;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputPASSWORD : DH5Input {

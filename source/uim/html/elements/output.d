@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.output;
-
+@safe:
 import uim.html;
 
 @safe class DH5Output : DH5Obj {

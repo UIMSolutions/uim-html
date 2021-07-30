@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.week;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputWEEK : DH5Input {

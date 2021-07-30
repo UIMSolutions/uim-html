@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.datetime;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputDATETIME : DH5Input {

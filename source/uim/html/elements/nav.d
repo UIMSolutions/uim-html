@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.nav;
-
+@safe:
 import uim.html;
 
 /**

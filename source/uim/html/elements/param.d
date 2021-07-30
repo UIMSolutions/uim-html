@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.param;
-
+@safe:
 import uim.html;
 
 @safe class DH5Param : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.rtc;
-
+@safe:
 import uim.html;
 
 @safe class DH5Rtc : DH5Obj {

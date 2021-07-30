@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.month;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputMONTH : DH5Input {

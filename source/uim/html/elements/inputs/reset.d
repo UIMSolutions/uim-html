@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.reset;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputRESET : DH5Input {

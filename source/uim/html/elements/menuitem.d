@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.menuitem;
-
+@safe:
 import uim.html;
 
 @safe class DH5Menuitem : DH5Obj {

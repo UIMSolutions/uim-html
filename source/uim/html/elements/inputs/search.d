@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.search;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputSEARCH : DH5Input {

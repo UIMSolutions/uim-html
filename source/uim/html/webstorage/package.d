@@ -1,5 +1,5 @@
 module uim.html.webstorage;
-
+@safe:
 import uim.html;
 
 public import uim.html.webstorage.local;

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.radio;
-
+@safe:
 import uim.html;
 
 @safe class DH5Radio : DH5Input {

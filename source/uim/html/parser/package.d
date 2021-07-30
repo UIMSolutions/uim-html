@@ -1,5 +1,5 @@
 module uim.html.parser;
-
+@safe:
 import uim.html;
 
 @safe:

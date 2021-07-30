@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.cite;
-
+@safe:
 import uim.html;
 
 @safe class DH5Cite : DH5Obj {

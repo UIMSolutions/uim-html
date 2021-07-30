@@ -1,5 +1,5 @@
 module uim.html.apps.js;
-
+@safe:
 import uim.html;
 
 @safe class DH5AppJavascript : DH5AppObj {

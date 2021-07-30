@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.ol;
-
+@safe:
 import uim.html;
 
 @safe class DH5Ol : DH5Obj {

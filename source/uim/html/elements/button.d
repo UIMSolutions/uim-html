@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.button;
-
+@safe:
 import uim.html;
 
 @safe class DH5Button : DH5Obj {

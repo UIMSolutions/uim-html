@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.header;
-
+@safe:
 import uim.html;
 
 @safe class DH5Header : DH5Obj {

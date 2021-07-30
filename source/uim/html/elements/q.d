@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.q;
-
+@safe:
 import uim.html;
 
 @safe class DH5Q : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.summary;
-
+@safe:
 import uim.html;
 
 @safe class DH5Summary : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.table;
-
+@safe:
 import uim.html;
 
 @safe class DH5Table : DH5Obj {

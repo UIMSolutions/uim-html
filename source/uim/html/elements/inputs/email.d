@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.email;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputEmail : DH5Input {

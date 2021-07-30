@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.address;
-
+@safe:
 import uim.html;
 
 /**

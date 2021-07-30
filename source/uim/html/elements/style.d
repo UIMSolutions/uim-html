@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.style;
-
+@safe:
 import uim.html;
 
 @safe class DH5Style : DH5Obj {

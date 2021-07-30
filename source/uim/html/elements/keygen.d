@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.keygen;
-
+@safe:
 import uim.html;
 
 @safe class DH5Keygen : DH5Obj {

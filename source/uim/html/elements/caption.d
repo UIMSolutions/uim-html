@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.caption;
-
+@safe:
 import uim.html;
 
 @safe class DH5Caption : DH5Obj {

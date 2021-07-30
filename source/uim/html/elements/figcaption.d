@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.figcaption;
-
+@safe:
 import uim.html;
 
 /**

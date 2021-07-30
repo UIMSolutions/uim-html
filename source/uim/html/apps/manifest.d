@@ -1,5 +1,5 @@
 module uim.html.apps.manifest;
-
+@safe:
 import uim.html;
 
   @safe class DH5AppManifest : DH5AppObj {

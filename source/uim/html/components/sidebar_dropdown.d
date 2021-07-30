@@ -1,5 +1,5 @@
 module uim.html.components.sidebar_dropdown;
-
+@safe:
 import uim.html;
 
 @safe class DH5SidebarDropdown : DH5Component {

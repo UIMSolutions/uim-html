@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.noscript;
-
+@safe:
 import uim.html;
 
 @safe class DH5Noscript : DH5Obj {

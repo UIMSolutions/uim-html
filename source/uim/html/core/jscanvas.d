@@ -1,5 +1,5 @@
 ﻿module uim.html.core.jscanvas;
-
+@safe:
 import uim.html;
 //
 //@safe class DJSCanvas : DJS {

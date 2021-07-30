@@ -1,5 +1,5 @@
 ﻿module uim.html.obj;
-
+@safe:
 import uim.html;
 
 @safe:
@@ -74,9 +74,13 @@ class DH5Obj {
 	/// classes of HTML element
 	protected string[] _classes;
 	auto classes() { return _classes.sort.array; }
-	O classes(this O)(string[] addValues...) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
-	O classes(this O)(string[] addValues) { foreach(v; addValues) _classes ~= v; return cast(O)this; }
-	O clearclasses(this O)() { _classes = []; return cast(O)this; }
+	O classes(this O)(string[] values...) { this.classes(values); return cast(O)this; }
+	O classes(this O)(string[] values) { _classes ~= values; _classes = uniq(_classes).array; return cast(O)this; }
+	O addClasses(this O)(string[] values...) { this.addClasses(values); return cast(O)this; }
+	O addClasses(this O)(string[] values) { _classes ~= values; _classes = uniq(_classes).array; return cast(O)this; }
+	O removeClasses(this O)(string[] values...) { this.removeClasses(values); return cast(O)this; }
+	O removeClasses(this O)(string[] values) { foreach(value; values) _classes = _classes.filter!(a => value.length > 0 && a != value).array; return cast(O)this; }
+	O clearClasses(this O)() { _classes = []; return cast(O)this; }
 	unittest {
 		assert(H5Obj.classes(["a", "b"]).classes == ["a", "b"]); 
 		assert(H5Obj.classes(["b", "a"]).classes == ["a", "b"]); 
@@ -130,8 +134,8 @@ class DH5Obj {
 	}
 
 	O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
-	O content(this O)(DH5Obj[] addContent...) { _html ~= addContent; return cast(O)this; }
-	O content(this O)(DH5Obj[] addContent) { _html ~= addContent; return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent...) { this.content(addContent); return cast(O)this; }
+	O content(this O)(DH5Obj[] addContent) { _html ~= addContent.filter!(a => a !is null).array; return cast(O)this; }
 	O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
 	O clearContent(this O)() { _html = []; return cast(O)this; }
 	
@@ -286,7 +290,10 @@ class DH5Obj {
 		if (_js.length > 0) return doubleTag("script", this.js);
 		return null;
 	}
-	 override string toString() {
+	override string toString() {
+    return toString(null);
+  }
+	string toString(STRINGAA parameters) {
 		string result;
 		result ~= onlyCSS;
 		result ~= onlyHTML;
@@ -297,10 +304,12 @@ class DH5Obj {
 	string toJS(string target = null) {
 		auto result = jsCreateElement(target, _tag, _classes, _attributes); //, _html.toString); // Not finish TODO
 		foreach(index, h5; _html) {
-			auto node = "child"~to!string(index);
-			if (cast(DH5String)h5) result ~= "let "~node~"=document.createTextNode('"~h5.toString.replace("'", "\\'")~"');"; 
-			else result ~= h5.toJS(node);
-			result ~= target~".appendChild("~node~");";
+      if (h5) {
+        auto node = "child"~to!string(index);
+        if (cast(DH5String)h5) result ~= "let "~node~"=document.createTextNode('"~h5.toString.replace("'", "\\'")~"');"; 
+        else result ~= h5.toJS(node);
+        result ~= target~".appendChild("~node~");";
+      }
 		}
 		return result;
 	}
@@ -311,7 +320,7 @@ class DH5Obj {
 		result = startTag(this.tag, this.attributes).indent(intendSpace);
 		if (!single) {
 			result ~= "\n";
-			foreach(obj; _html) result ~= obj.toPretty(intendSpace+step, step)~"\n";
+			result ~= _html.map!(a => a ? a.toPretty(intendSpace+step, step)~"\n" : "").join;
 			result ~= endTag(this.tag).indent(intendSpace);
 		}
 		return result;
@@ -381,9 +390,5 @@ unittest {
 }
 
 string toPretty(DH5Obj[] objs, int intendSpace = 0, int step = 2) {
-	string result;
-	foreach(obj; objs) {
-		if (obj) result ~= obj.toPretty;
-	} 
-	return result;
+	return objs.map!(a => a ? a.toPretty : "").join;
 }

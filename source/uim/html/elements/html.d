@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.html;
-
+@safe:
 import uim.html;
 
 /**

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.number;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputNUMBER : DH5Input {

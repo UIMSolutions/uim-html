@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.decorator;
-
+@safe:
 import uim.html;
 
 @safe class DH5Decorator : DH5Obj {

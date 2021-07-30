@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.dfn;
-
+@safe:
 import uim.html;
 
 @safe class DH5Dfn : DH5Obj {

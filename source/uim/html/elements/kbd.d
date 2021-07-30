@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.kbd;
-
+@safe:
 import uim.html;
 
 @safe class DH5Kbd : DH5Obj {

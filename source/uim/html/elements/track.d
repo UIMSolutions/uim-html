@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.track;
-
+@safe:
 import uim.html;
 
 @safe class DH5Track : DH5Obj {

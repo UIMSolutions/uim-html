@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.section;
-
+@safe:
 import uim.html;
 
 @safe class DH5Section : DH5Obj {

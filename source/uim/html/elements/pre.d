@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.pre;
-
+@safe:
 import uim.html;
 
 /* Das Element pre erlaubt es, Text so darzustellen, wie er im Editor eingegeben wird, pre steht dabei für preformatted, also präformatiert, vorformatiert. 

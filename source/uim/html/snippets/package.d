@@ -1,5 +1,5 @@
 module uim.html.snippets;
-
+@safe:
 import uim.html;
 
 public import uim.html.snippets.clientOrPartnersLogoSlider;

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.inputs.button;
-
+@safe:
 import uim.html;
 
 @safe class DH5InputButton : DH5Input {

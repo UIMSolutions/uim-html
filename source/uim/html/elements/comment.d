@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.comment;
-
+@safe:
 import uim.html;
 
 @safe class DH5Comment : DH5Obj {

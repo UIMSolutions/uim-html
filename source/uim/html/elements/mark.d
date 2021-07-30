@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.mark;
-
+@safe:
 import uim.html;
 
 /// HTML5 "mark" @safe class

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.slot;
-
+@safe:
 import uim.html;
 /* 
 @safe class DH5Slot : DH5Obj {

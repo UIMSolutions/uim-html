@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.colgroup;
-
+@safe:
 import uim.html;
 
 @safe class DH5Colgroup : DH5Obj {

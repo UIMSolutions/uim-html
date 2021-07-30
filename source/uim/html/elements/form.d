@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.form;
-
+@safe:
 import uim.html;
 
 @safe:

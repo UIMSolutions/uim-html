@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.dd;
-
+@safe:
 import uim.html;
 
 /* Dd-Elemente enthalten eine Beschreibung eines zu beschreibenden Ausdrucks in einer Beschreibungsliste (Dd = description list data) */

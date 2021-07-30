@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.textarea;
-
+@safe:
 import uim.html;
 
 @safe class DH5Textarea : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.figure;
-
+@safe:
 import uim.html;
 
 /**

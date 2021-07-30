@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.title;
-
+@safe:
 import uim.html;
 
 @safe class DH5Title : DH5Obj {

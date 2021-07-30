@@ -1,5 +1,5 @@
 ﻿module uim.html.core.element;
-
+@safe:
 import uim.html;
 
 template classes() {

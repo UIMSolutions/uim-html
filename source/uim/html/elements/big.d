@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.big;
-
+@safe:
 import uim.html;
 
 @safe class DH5Big : DH5Obj {

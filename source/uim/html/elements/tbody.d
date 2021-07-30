@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.tbody;
-
+@safe:
 import uim.html;
 
 @safe class DH5Tbody : DH5Obj {

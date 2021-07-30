@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.iframe;
-
+@safe:
 import uim.html;
 
 @safe class DH5Iframe : DH5Obj {

@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.del;
-
+@safe:
 import uim.html;
 
 @safe class DH5Del : DH5Obj {

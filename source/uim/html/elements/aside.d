@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.aside;
-
+@safe:
 import uim.html;
 
 @safe class DH5Aside : DH5Obj {

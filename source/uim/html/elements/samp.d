@@ -1,5 +1,5 @@
 ﻿module uim.html.elements.samp;
-
+@safe:
 import uim.html;
 
 @safe class DH5Samp : DH5Obj {
