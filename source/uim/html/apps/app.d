@@ -1,8 +1,9 @@
 module uim.html.apps.app;
+
 @safe:
 import uim.html;
 
-@safe class DH5App {
+class DH5App {
 	this() { init; }
 	this(string aName) { this().name(aName); }
 	this(string aName, string aRootPath) { this().name(aName).rootPath(aRootPath); }
@@ -14,8 +15,6 @@ import uim.html;
 	}
 
 	/// Id of app
-  mixin(OProperty!("DESCEntitySource", "dataSource"));
-
 	mixin(OProperty!("string", "id"));
 	unittest {	
 			assert(H5App.id("aId").id == "aId");	
@@ -130,7 +129,11 @@ import uim.html;
 	O objs(this O)(DH5AppObj[] newObjects...) { newObjects.each!(a => { if (a) this.obj(a); }); return cast(O)this; }
 
 	O obj(this O)(DH5AppObj newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
-	O obj(this O)(string objName, DH5AppObj newObject) { newObject.app(this); _objs[objName] = newObject; return cast(O)this; }
+	O obj(this O)(string objName, DH5AppObj newObject) { 
+    newObject.app(this); _objs[objName] = newObject; 
+    // call hook;
+    afterInsertObj(newObject);
+    return cast(O)this; }
 	
 	DH5AppObj opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
 
@@ -140,6 +143,8 @@ import uim.html;
 	unittest {	
 			/// TODO	
 	}
+  // hook
+  void afterInsertObj(DH5AppObj appObject) {}
 
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
@@ -314,8 +319,7 @@ import uim.html;
 	
 	// Get pages by names
 	DH5AppPage pageByName(string name) {
-		if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) return obj;
-		return null; }
+		return isAppPage(name) ? cast(DH5AppPage)_objs[name] : null; }
 	unittest {
 		assert(H5App.pages("test", "testcontent").pageByName("test").name == "test");	
 		assert(H5App.pages("test", "testcontent").pageByName("test").name != "xyz");	
@@ -326,7 +330,7 @@ import uim.html;
 	DH5AppPage[] pagesByName(string[] names...) { return pagesByName(names); }
 	DH5AppPage[] pagesByName(string[] names) {
 		DH5AppPage[] results;
-		foreach(name; names) if (name in _objs) if (auto obj = cast(DH5AppPage)_objs[name]) results ~= obj;
+		foreach(name; names) if (isAppPage(name)) results ~= toAppPage(_objs[name]);
 		return results; }
 	unittest {
 		assert(H5App.pages("test", "testcontent").pagesByName("test")[0].name == "test");	
@@ -334,29 +338,39 @@ import uim.html;
 	}		
 
 	// Is a (DH5)AppPage or inherit
-	bool isPage(string name) { 
-		if (name in _objs) 
-			if (cast(DH5AppPage)_objs[name]) return true; 
-		return false; }
+	bool isAppPage(string name) { 
+		return name in _objs && toAppPage(_objs[name]); }
 	unittest {
-		assert(H5App.pages("test", "testContent").isPage("test"));
-		assert(!H5App.scripts("test", "testContent").isPage("test"));
+		assert(H5App.pages("test", "testContent").isAppPage("test"));
+		assert(!H5App.scripts("test", "testContent").isAppPage("test"));
 	}
 
+  DH5AppPage toAppPage(DH5AppObj obj) {
+    return cast(DH5AppPage)obj; }
+  unittest {
+    /// TODO Test convert
+  }
+
 	O pages(this O)(DH5AppPage[] newPages...) { this.pages(newPages); return cast(O)this; }
-	O pages(this O)(DH5AppPage[] newPages) { newPages.each!(a => { if (a) this.pages(a); }); return cast(O)this; }
+	O pages(this O)(DH5AppPage[] newPages) { newPages.each!(a => this.pages(a.name, a)); return cast(O)this; }
 	
 	O pages(this O)(DH5AppPage[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 
-	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { this.pages(name, H5AppPage(this, name).content(newPage).parameters(pageParameters)); return cast(O)this; }
+	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { 
+    auto p = H5AppPage(this, name).content(newPage).parameters(pageParameters); 
+    this.pages(name, p); return cast(O)this; }
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
-	O pages(this O)(string name, DH5AppPage newPage, string[string] pageParameters = null) { 
-		if (newPage.name.length == 0) newPage.name = name; 
-		this.obj(name, newPage.app(this).parameters(pageParameters)); 
+	O pages(this O)(string name, DH5AppPage addPage, string[string] pageParameters = null) { 
+		if (addPage) {
+      if (name.empty && addPage.name.empty) this.pages("page"~randomUUID.toString, addPage, pageParameters); 
+      else if (name.empty) this.pages(addPage.name, addPage, pageParameters); 
+      else this.obj(name, addPage.app(this).parameters(pageParameters)); 
+    }
 		return cast(O)this; }
 
-	O removePages(this O)(string[] names...) { names.each!(a => { if (a in _objs && cast(DH5AppPage)_objs[a]) this.remove(a); }); return cast(O)this; }
+	O removePages(this O)(string[] names...) { this.removePages(names); return cast(O)this; }
+	O removePages(this O)(string[] names) { foreach(name; names) if (isAppPage(name)) this.remove(name); return cast(O)this; }
 	O clearPages(this O)() { foreach(name, item; _objs) if (cast(DH5AppPage)item) this.remove(name); return cast(O)this; }
 	unittest {	
 			// writeln(H5App.page("test", "testcontent").pages.length);	
@@ -457,7 +471,7 @@ import uim.html;
 			bool foundPage = true;
 			foreach (index, item; objPathItems) {
 				if (!foundPage) break;
-				if (item.length == 0) { foundPage = false; break; }
+				if (item.empty) { foundPage = false; break; }
 				if (item == appPathItems[index]) continue;
 
         debug writeln("Hmmm, length equal.");

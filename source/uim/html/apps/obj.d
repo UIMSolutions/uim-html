@@ -19,7 +19,7 @@ import uim.html;
 	O sourceFile(this O)(string path) { 	
 		std.file.getTimes(path, _accessTime, _modificationTime);
 		return cast(O)this; }
-	
+
 	/**
 	* app 
 	* 
@@ -134,15 +134,23 @@ import uim.html;
         }}
 	  request(req, res, reqParameters);
   }
-	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
-		_request = req;
-		_response = res;
+  void prepareResponse(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
+		_request = req; _response = res;
 		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
     reqParameters["htmlMode"] = to!string(req.method);
+  }
+
+	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
+    debug writeln("DH5AppObj:request(req, res, reqParameters)");
+    prepareResponse(req, res, reqParameters);
 	
 		auto result = toString(reqParameters);
-		if ("redirect" in reqParameters) res.redirect(reqParameters["redirect"]);
-		res.writeBody(result, _mimetype); 
+		if ("redirect" in reqParameters) {
+      debug writeln("Found redirect to ", reqParameters["redirect"]);
+      auto redirect = reqParameters["redirect"]; 
+      reqParameters.remove("redirect");
+      res.redirect(redirect);
+    } else res.writeBody(result, _mimetype); 
 	}
 	unittest {
 		/// TODO
@@ -157,7 +165,7 @@ import uim.html;
 		debug writeln("Is cached?");
 		if (cached) {
 			debug writeln("Yes, is cached");
-			if (_toString.length == 0) _toString = this.content(reqParameters); 
+			if (_toString.empty) _toString = this.content(reqParameters); 
 			return _toString; 
 		}
 

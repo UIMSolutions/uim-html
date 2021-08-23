@@ -29,7 +29,7 @@ class DH5AppData : DH5AppObj {
       string sessionId; 
       if (_request.session && _request.session.isKeySet("sessionId")) sessionId = _request.session.get("sessionId", "");
       if ("sessionId" in reqParameters) sessionId = reqParameters["sessionId"];
-      if (sessionId.length == 0) {
+      if (sessionId.empty) {
         result["error"] = 1;
         result["status"] = 409;
         auto errorMessage = Json.emptyObject;

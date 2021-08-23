@@ -111,7 +111,7 @@ string fillWith(string txt, string addTxt, size_t startPos, size_t endPos) {
     foreach(item; items) if (item.length > 0) _classes ~= item;    
   }
   string classesToH5() {
-    if (_classes.length == 0) return null;
+    if (_classes.empty) return null;
 
     string[] results;
     foreach (c; _classes) results ~= `"%s"`.format(c);
@@ -251,7 +251,7 @@ auto toH5String(DH5Node[] someNodes) {
 
 size_t minLevel(DH5Node[] newNodes) {
   size_t result;
-  if (newNodes.length == 0)
+  if (newNodes.empty)
     return -1;
   result = newNodes[0].level;
   if (newNodes.length == 1)
@@ -275,7 +275,7 @@ DH5Node parse(string html) {
     auto items = item.split(">");
     foreach (ref it; items)
     {
-      if (it.strip.length == 0)
+      if (it.strip.empty)
         continue;
       if (it.indexOf("<") > -1)
         level2Items ~= it ~ ">";

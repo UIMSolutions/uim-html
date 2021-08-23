@@ -19,9 +19,9 @@ public import vibe.d;
 public import uim.core;
 public import uim.oop;
 public import uim.css;
-public import uim.json;
+// public import uim.json;
 public import uim.javascript;
-public import uim.entitysource;
+// public import uim.entitysource;
 
 // own modules
 public import uim.html.mixins;
@@ -240,7 +240,7 @@ string attributesToHTML(string[string] attributes) {
 	foreach (k; keys)
 	{
 		auto v = attributes[k];
-		if (v.length == 0)
+		if (v.empty)
 			continue;
 		if (v == "false")
 			continue;

@@ -293,7 +293,7 @@ auto setTransform(this O)(string a, string b, string c, string d, string e, stri
 	auto transform(this O)(string a, string b, string c, string d, string e, string f) { this.js(pre~"transform(%s,%s,%s,%s,%s,%s);".format(a, b, c, d, e, f)); return cast(O)this; }
 
 	override string toString() {
-		if (_id.length == 0) _id="canvas"~to!string(uniform(0, 1_000_000));
+		if (_id.empty) _id="canvas"~to!string(uniform(0, 1_000_000));
 		auto drawFunc = `draw`~_id;
 		_js = `function `~drawFunc~`(){var canvas=document.getElementById('`~_id~`');`~
 		`var context=canvas.getContext('2d');`~_js~`}window.addEventListener("load",`~drawFunc~`,true);`;

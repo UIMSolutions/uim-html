@@ -233,7 +233,7 @@ import uim.html;
 
   override string toString() {
 		Json values;
-		if (_backgroundColor) values["background-color"] = _backgroundColor;
+/* 		if (_backgroundColor) values["background-color"] = _backgroundColor;
 		if (_categories) values["categories"] = _categories.toJson;
 		if (_description) values["description"] = _description;
 		if (_dir) values["dir"] = _dir;
@@ -250,7 +250,7 @@ import uim.html;
 		if (_serviceworker) values["serviceworker"] = _serviceworker.toJson;
 		if (_shortName) values["short_name"] = _shortName;
 		if (_startUrl) values["start_url"] = _startUrl;
-		if (_themeColor) values["theme_color"] = _themeColor;
+		if (_themeColor) values["theme_color"] = _themeColor; */
 
 		return values.toString;
 	}

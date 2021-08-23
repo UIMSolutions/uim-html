@@ -52,10 +52,10 @@ unittest {
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
 */}
 
-void redirectCheck(string[string] parameters) {
+/* void redirectCheck(string[string] parameters) {
 	writeln("Has Redirect? ", parameters.get("redirect", ""));
 	if ("redirect" in parameters) redirect(parameters["redirect"]);
-}
+} */
 
 auto readRequestParameters(HTTPServerRequest req, STRINGAA reqParameters) {
     reqParameters["httpMode"] = (req.fullURL.toString.indexOf("https") == 0 ? "https" : "http");

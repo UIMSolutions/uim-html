@@ -128,6 +128,13 @@ import uim.html;
 
 	O addScript(this O)(STRINGAA reqParameters, string text) { reqParameters["script"] = reqParameters.get("script", "")~text; return cast(O)this;}
 
+  string opIndex(string key) {
+    switch(key) {
+      case "title": return title;
+      default: return "";
+    }
+  }
+
   DH5Obj toH5(STRINGAA reqParameters) {
     return null;
   }
