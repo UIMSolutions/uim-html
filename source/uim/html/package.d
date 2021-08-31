@@ -21,7 +21,7 @@ public import uim.oop;
 public import uim.css;
 // public import uim.json;
 public import uim.javascript;
-// public import uim.entitysource;
+public import uim.entitysource;
 
 // own modules
 public import uim.html.mixins;

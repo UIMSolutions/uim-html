@@ -42,23 +42,6 @@ class DH5AppData : DH5AppObj {
       }     
       result["sessionId"] = sessionId;
       debug writeln("Found sessionId -> ", sessionId);
-
-      if (this.app.dataSource) {
-        Json sessionToken = this.app.dataSource.findOne("central", "sessions", ["id":sessionId]);
-        if (sessionToken == Json(null)) {
-          result["error"] = 1;
-          result["status"] = 409;
-          auto errorMessage = Json.emptyObject;
-          errorMessage["status"] = "ERROR";
-          errorMessage["title"] = "Sitzung nicht gefunden";
-          errorMessage["description"] = "Ist Ihre Sitzung abgelaufen? Bitte erneut anmelden.";
-          result["messages"] ~= errorMessage;
-
-          return result;
-        }     
-        result["sessionToken"] = sessionToken;
-        debug writeln("Found sessionToken -> ", sessionToken);
-      }
     }
 
     return result;

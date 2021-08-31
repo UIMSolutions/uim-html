@@ -14,6 +14,8 @@ class DH5App {
 		this.error(new DH5AppPage);
 	}
 
+	mixin(OProperty!("DESCEntitySource", "dataSource"));
+	
 	/// Id of app
 	mixin(OProperty!("string", "id"));
 	unittest {	

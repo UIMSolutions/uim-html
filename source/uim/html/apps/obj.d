@@ -30,6 +30,7 @@ import uim.html;
 	* Adding this obj to another app will changes this property to the new app 
 	**/
 	mixin(OProperty!("DH5App", "app"));
+
 	unittest {
 		assert(H5AppPage(H5App("test")).app.name == "test");
 		assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");

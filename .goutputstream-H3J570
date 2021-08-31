@@ -1,0 +1,22 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"botan": "1.12.19",
+		"botan-math": "1.0.3",
+		"color": "0.0.9",
+		"colored": "0.0.23",
+		"diet-ng": "1.7.7",
+		"eventcore": "0.9.17",
+		"libasync": "0.8.6",
+		"memutils": "1.0.4",
+		"mir-linux-kernel": "1.0.1",
+		"openssl": "1.1.6+1.0.1g",
+		"packageversion": "0.0.19",
+		"silly": "1.1.1",
+		"stdx-allocator": "2.77.5",
+		"taggedalgebraic": "0.11.22",
+		"unit-threaded": "1.0.15",
+		"vibe-core": "1.18.1",
+		"vibe-d": "0.9.3"
+	}
+}
