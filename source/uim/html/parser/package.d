@@ -513,11 +513,11 @@ unittest
   // writeln(`<tag>`);
   // writeln(parse2(`<tag>`));
  */
-  auto nodes = parse2(readText("html.txt"));
+ // auto nodes = parse2(readText("html.txt"));
   // writeln(nodeToH5(nodes.nodes,0));
   
-  auto f = File("h5.txt", "w"); // open for writing
-  f.write(nodeToH5(nodes.nodes,0));
+ // auto f = File("h5.txt", "w"); // open for writing
+ // f.write(nodeToH5(nodes.nodes,0));
 }
 
 void writelnNodes(DH5Node[] nodes) {

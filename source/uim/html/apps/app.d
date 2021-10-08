@@ -10,11 +10,10 @@ class DH5App {
 
 	void init() {
 		_layout = new DH5AppLayout;
-		this.index(new DH5AppPage);
-		this.error(new DH5AppPage);
+		this.indexPage(new DH5AppPage);
+		this.errorPage(new DH5AppPage);
 	}
 
-	mixin(OProperty!("DESCEntitySource", "dataSource"));
 	
 	/// Id of app
 	mixin(OProperty!("string", "id"));
@@ -78,40 +77,40 @@ class DH5App {
 
 
 	/// Index startpage
-	DH5AppPage _index;
-	auto index() { return _index; }
-	O index(this O)(string newContent) { this.index(H5AppPage.content(newContent)); return cast(O)this; }
-	O index(this O)(DH5AppPage newPage) { _index = newPage; this.pages("index", newPage); return cast(O)this; }
+	DH5AppPage _indexPage;
+	auto indexPage() { return _indexPage; }
+	O indexPage(this O)(string newContent) { this.indexPage(H5AppPage.content(newContent)); return cast(O)this; }
+	O indexPage(this O)(DH5AppPage newPage) { _indexPage = newPage; this.pages("index", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
 //		assert(H5App.index(page).index == page);
 	}
 
 	/// Login startpage
-	DH5AppPage _login;
-	auto login() { return _login; }
-	O login(this O)(string newContent) { this.login(H5AppPage.content(newContent)); return cast(O)this; }
-	O login(this O)(DH5AppPage newPage) { _login = newPage; this.pages("login", newPage); return cast(O)this; }
+	DH5AppPage _loginPage;
+	auto loginPage() { return _loginPage; }
+	O loginPage(this O)(string newContent) { this.loginPage(H5AppPage.content(newContent)); return cast(O)this; }
+	O loginPage(this O)(DH5AppPage newPage) { _loginPage = newPage; this.pages("login", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
 //		assert(H5App.login(page).login == page);
 	}
 
 	/// Logout startpage
-	DH5AppPage _logout;
-	auto logout() { return _logout; }
-	O logout(this O)(string newContent) { this.logout(H5AppPage.content(newContent)); return cast(O)this; }
-	O logout(this O)(DH5AppPage newPage) { _logout = newPage; this.pages("logout", newPage); return cast(O)this; }
+	DH5AppPage _logoutPage;
+	auto logoutPage() { return _logoutPage; }
+	O logoutPage(this O)(string newContent) { this.logoutPage(H5AppPage.content(newContent)); return cast(O)this; }
+	O logoutPage(this O)(DH5AppPage newPage) { _logoutPage = newPage; this.pages("logout", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
 //		assert(H5App.logout(page).logout == page);
 	}
 
 	/// Index startpage
-	DH5AppPage _error;
-	auto error() { return _error; }
-	O error(this O)(string newContent) { this.error(H5AppPage.content(newContent)); return cast(O)this; }
-	O error(this O)(DH5AppPage newPage) { _error = newPage; this.pages("error", newPage); return cast(O)this; }
+	DH5AppPage _errorPage;
+	auto errorPage() { return _errorPage; }
+	O errorPage(this O)(string newContent) { this.errorPage(H5AppPage.content(newContent)); return cast(O)this; }
+	O errorPage(this O)(DH5AppPage newPage) { _errorPage = newPage; this.pages("error", newPage); return cast(O)this; }
 	unittest {		
 		auto page = H5AppPage;
 		// assert(H5App.error(page).error == page);
@@ -132,9 +131,13 @@ class DH5App {
 
 	O obj(this O)(DH5AppObj newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
 	O obj(this O)(string objName, DH5AppObj newObject) { 
-    newObject.app(this); _objs[objName] = newObject; 
-    // call hook;
-    afterInsertObj(newObject);
+		debug writeln("O obj(this O)(string "~objName~", DH5AppObj newObject)");
+    if (newObject) {
+			newObject.app(this); _objs[objName] = newObject; 
+			// call hook;
+			afterInsertObj(newObject);		
+			debug writeln("Added");
+		}
     return cast(O)this; }
 	
 	DH5AppObj opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
@@ -360,15 +363,29 @@ class DH5App {
 	O pages(this O)(string[string] newPages) { foreach(name, page; newPages) this.pages(name, page); return cast(O)this; }
 
 	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { 
+		debug writeln("ages(this O)(string name, string newPage, string[string] pageParameters = null)");
     auto p = H5AppPage(this, name).content(newPage).parameters(pageParameters); 
+		debug writeln("Added page ");
     this.pages(name, p); return cast(O)this; }
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
 	O pages(this O)(string name, DH5AppPage addPage, string[string] pageParameters = null) { 
+		debug writeln("pages(this O)(string name, DH5AppPage addPage, string[string] pageParameters = null)");
 		if (addPage) {
-      if (name.empty && addPage.name.empty) this.pages("page"~randomUUID.toString, addPage, pageParameters); 
-      else if (name.empty) this.pages(addPage.name, addPage, pageParameters); 
-      else this.obj(name, addPage.app(this).parameters(pageParameters)); 
-    }
+			debug writeln("Adding page ", name);
+      if (name.empty && addPage.name.empty) {
+				debug writeln("if name.empty && addPage.name.empty");
+				this.pages("page"~randomUUID.toString, addPage, pageParameters); 
+			}
+			else if (name.empty) {
+				debug writeln("if (name.empty");
+				this.pages(addPage.name, addPage, pageParameters); 
+			}
+			else {
+				debug writeln("else");
+				this.obj(name, addPage.app(this).parameters(pageParameters)); 
+    	}
+			debug writeln("Added page ");
+		}
 		return cast(O)this; }
 
 	O removePages(this O)(string[] names...) { this.removePages(names); return cast(O)this; }
@@ -439,10 +456,10 @@ class DH5App {
 
 		if (reqPath == rootPath) { 
       // ${rootPath}/ ?
-			if ("index" in _objs) { _index.request(req, res, reqParameters); return; }
+			if ("index" in _objs) { this.indexPage.request(req, res, reqParameters); return; }
 
       // if not, error! ?
-			if ("error" in _objs) { _error.request(req, res, reqParameters); return; }
+			if ("error" in _objs) { this.errorPage.request(req, res, reqParameters); return; }
 		}
    
 		auto pathItems = appPath.split("/");
@@ -509,7 +526,7 @@ class DH5App {
 			}
 		}
 
-		_error.request(req, res, reqParameters);
+		_errorPage.request(req, res, reqParameters);
 	} 
 }
  auto H5App() { return new DH5App(); }

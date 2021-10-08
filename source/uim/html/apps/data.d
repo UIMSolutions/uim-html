@@ -1,6 +1,6 @@
 module uim.html.apps.data;
 
-@safe:@safe:
+@safe:
 import uim.html;
 
 class DH5AppData : DH5AppObj {
@@ -9,11 +9,11 @@ class DH5AppData : DH5AppObj {
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this().app(anApp).name(aName); }
 
-  mixin(SProperty!("bool", "loginRequired"));
-  mixin(SProperty!("Json", "login"));
+  mixin(OProperty!("bool", "loginRequired"));
+  mixin(OProperty!("Json", "login"));
 
-  mixin(SProperty!("bool", "sessionRequired"));
-  mixin(SProperty!("Json", "session"));
+  mixin(OProperty!("bool", "sessionRequired"));
+  mixin(OProperty!("Json", "session"));
 
   override string toString(STRINGAA reqParameters) {
     return toJson(reqParameters).toString;

@@ -21,7 +21,6 @@ public import uim.oop;
 public import uim.css;
 // public import uim.json;
 public import uim.javascript;
-public import uim.entitysource;
 
 // own modules
 public import uim.html.mixins;
@@ -46,6 +45,7 @@ public import uim.html.video;
 public import uim.html.webstorage;
 public import uim.html.webworker;
 
+string cssStorePath = ""
 string h5Doctype = "<!doctype html>";
 
 enum FormMethod : string { get = "get", put = "put" } 

@@ -8,8 +8,8 @@ import uim.html;
 	this(string aName) { this().name(aName); }
 	this(DH5App anApp, string aName) { this(anApp).name(aName); }
 
-  mixin(SProperty!("string", "authToken"));
-  mixin(SProperty!("string", "sessionToken"));
+  mixin(OProperty!("string", "authToken"));
+  mixin(OProperty!("string", "sessionToken"));
 
 	override void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
     this.authToken(reqParameters.get("authToken", ""));
