@@ -1,17 +1,20 @@
 module uim.html.components.component;
+
 @safe:
 import uim.html;
 
-@safe class DH5Component {
-  this() {}
+class DH5Component {
+  this() {
+    this.css(CSSMediaQueries);
+  }
 
-  mixin(XString!("css"));
+  mixin(OProperty!("DCSSMediaQueries", "css"));
   mixin(XString!("html"));
   mixin(XString!("js"));
 
   override string toString() {
     string result;
-    if (css.length > 0) result ~= "<style>"~_css~"</style>";
+    result ~= "<style>"~_css.toString~"</style>";
     if (html.length > 0) result ~= html;
     if (js.length > 0) result ~= "<script>"~_js~"</script>";
     return "";

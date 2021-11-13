@@ -5,7 +5,7 @@ import uim.html;
 @safe class dynamicSortableTable : DH5Component {
   this() {
     super(); 
-    this.css(`.table-sortable tbody tr {
+    /* this.css(`.table-sortable tbody tr {
     cursor: move; }`)
     .html(`<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -115,7 +115,7 @@ import uim.html;
                     $(this).closest("tr").remove();
                 })
         ).appendTo($(tr));
-        */
+        * /
         
         // add the new row
         $(tr).appendTo($('#tab_logic'));
@@ -149,6 +149,6 @@ import uim.html;
 
 
     $("#add_row").trigger("click");
-});`);
+});`);*/
   }
 }

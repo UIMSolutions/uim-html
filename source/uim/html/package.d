@@ -45,7 +45,7 @@ public import uim.html.video;
 public import uim.html.webstorage;
 public import uim.html.webworker;
 
-string cssStorePath = ""
+string cssStorePath = "";
 string h5Doctype = "<!doctype html>";
 
 enum FormMethod : string { get = "get", put = "put" } 

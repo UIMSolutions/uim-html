@@ -135,16 +135,13 @@ import uim.html;
         }}
 	  request(req, res, reqParameters);
   }
-  void prepareResponse(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
-		_request = req; _response = res;
-		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
-    reqParameters["htmlMode"] = to!string(req.method);
-  }
 
 	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
     debug writeln("DH5AppObj:request(req, res, reqParameters)");
-    prepareResponse(req, res, reqParameters);
-	
+		_request = req; _response = res;
+		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
+    reqParameters["htmlMode"] = to!string(req.method);
+
 		auto result = toString(reqParameters);
 		if ("redirect" in reqParameters) {
       debug writeln("Found redirect to ", reqParameters["redirect"]);
@@ -154,8 +151,9 @@ import uim.html;
     } else res.writeBody(result, _mimetype); 
 	}
 	unittest {
+		version(UIm_html) {
 		/// TODO
-	}
+		}}
 
 	string _toString;
 	/// Export to string

@@ -5,11 +5,11 @@ import uim.html;
 @safe class clientOrPartnersLogoSlider : DH5Component {
   this() {
     super(); 
-    this.css(`h2 {
+/*    this.css(`h2 {
   text-align:center;
   padding: 20px;
 }
-/* Slider */
+/ * Slider * /
 .slick-slide {
     margin: 0px 20px;
 }
@@ -154,6 +154,6 @@ import uim.html;
             }
         }]
     });
-});`);
+});`);*/
   }
 }

@@ -365,8 +365,14 @@ class DH5App {
 	O pages(this O)(string name, string newPage, string[string] pageParameters = null) { 
 		debug writeln("ages(this O)(string name, string newPage, string[string] pageParameters = null)");
     auto p = H5AppPage(this, name).content(newPage).parameters(pageParameters); 
-		debug writeln("Added page ");
+		debug writeln("uim.html.apps.app: Added page ");
     this.pages(name, p); return cast(O)this; }
+	unittest {
+		version(uim_html) {
+			// TODO
+		}
+	}
+
 	O pages(this O)(DH5AppPage newPage, string[string] pageParameters) { this.pages(newPage.name, newPage.app(this).parameters(pageParameters)); return cast(O)this; }	
 	O pages(this O)(string name, DH5AppPage addPage, string[string] pageParameters = null) { 
 		debug writeln("pages(this O)(string name, DH5AppPage addPage, string[string] pageParameters = null)");
@@ -384,7 +390,7 @@ class DH5App {
 				debug writeln("else");
 				this.obj(name, addPage.app(this).parameters(pageParameters)); 
     	}
-			debug writeln("Added page ");
+			debug writeln("uim.html.apps.app: Added page ");
 		}
 		return cast(O)this; }
 

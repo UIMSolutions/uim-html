@@ -151,6 +151,8 @@ import uim.html;
 	}
 
 	string toString(string content, STRINGAA reqParameters) {
+		debug writeln(moduleName!DH5AppLayout~":DH5AppLayout::toString");
+
 		// layout override app, parameters override layout
 		// Layout overrides app
 		foreach(k,v; this.parameters) reqParameters[k] = v;
@@ -175,6 +177,8 @@ import uim.html;
 	}
 
 	auto htmlDocument(DH5AppPage page, string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, STRINGAA reqParameters) {
+		debug writeln(moduleName!DH5AppLayout~":DH5AppLayout::htmlDocument");
+
 		foreach(kv; this.parameters.byKeyValue) if (kv.key !in reqParameters) reqParameters[kv.key] = kv.value;
 		auto finalLang = reqParameters.get("lang", this.lang); // if lang !in parameters use this.lang
 		auto finalTitle = reqParameters.get("title", this.title);  // if title !in parameters use this.title

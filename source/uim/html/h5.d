@@ -24,68 +24,81 @@ import uim.html;
 */
     mixin(H5Def!"a");
     unittest { 
+        version(uim_html) {
         assert(Assert(H5.a, "<a></a>"));
-    }
+    }}
     
     mixin(H5Def!"abbr");
     unittest { 
-        assert(Assert(H5.abbr, "<abbr></abbr>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.abbr, "<abbr></abbr>"));
+    }}
     
     mixin(H5Def!"address");
     unittest { 
-        assert(Assert(H5.address, "<address></address>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.address, "<address></address>"));
+    }}
     
     mixin(H5Def!"area");
     unittest { 
-        assert(Assert(H5.area, "<area></area>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.area, "<area></area>"));
+    }}
     
     mixin(H5Def!"article");
     unittest { 
-        assert(Assert(H5.article, "<article></article>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.article, "<article></article>"));
+    }}
 
     mixin(H5Def!"aside");
     unittest { 
-        assert(Assert(H5.aside, "<aside></aside>"));
-    }
+        version(uim_html) {
+           assert(Assert(H5.aside, "<aside></aside>"));
+    }}
     
     mixin(H5Def!"audio");
     unittest { 
-        assert(Assert(H5.audio, "<audio></audio>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.audio, "<audio></audio>"));
+    }}
         
     mixin(H5Def!"b");
     unittest { 
-        assert(Assert(H5.b, "<b></b>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.b, "<b></b>"));
+    }}
     
     mixin(H5Def!"base");
     unittest { 
-        assert(Assert(H5.base, "<base></base>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.base, "<base></base>"));
+    }}
     
     mixin(H5Def!"bdi");
     unittest { 
-        assert(Assert(H5.bdi, "<bdi></bdi>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.bdi, "<bdi></bdi>"));
+    }}
     
     mixin(H5Def!"bdo");
     unittest { 
-        assert(Assert(H5.bdo, "<bdo></bdo>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.bdo, "<bdo></bdo>"));
+    }}
     
     mixin(H5Def!"big");
     unittest { 
-        assert(Assert(H5.big, "<big></big>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.big, "<big></big>"));
+    }}
     
     mixin(H5Def!"blockquote");
     unittest { 
-        assert(Assert(H5.blockquote, "<blockquote></blockquote>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.blockquote, "<blockquote></blockquote>"));
+    }}
     
     // mixin(H5Def!"body");
     auto body_(this O)(string content) { _objs ~=  H5Body(content); return cast(O)this; }
@@ -126,89 +139,106 @@ import uim.html;
     
     mixin(H5Def!"br");
     unittest { 
-        assert(Assert(H5.br, "<br>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.br, "<br>"));
+    }}
     
     mixin(H5Def!"button");
     unittest { 
-        assert(Assert(H5.button, "<button></button>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.button, "<button></button>"));
+    }}
     
     mixin(H5Def!"canvas");
     unittest { 
+        version(uim_html) {
 /*	    assert(Assert(H5.canvas("test", [""]), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
 		`var context=canvas.getContext('2d');}window.addEventListener("load",drawtest,true);</script>`));
-*/    }
+*/    }}
     
     mixin(H5Def!"caption");
     unittest { 
-        assert(Assert(H5.caption, "<caption></caption>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.caption, "<caption></caption>"));
+    }}
     
     mixin(H5Def!"cite");
     unittest { 
-        assert(Assert(H5.cite, "<cite></cite>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.cite, "<cite></cite>"));
+    }}
     
     mixin(H5Def!"code");
     unittest { 
-        assert(Assert(H5.code, "<code></code>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.code, "<code></code>"));
+    }}
     
     mixin(H5Def!"col");
     unittest { 
-        assert(Assert(H5.col, "<col></col>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.col, "<col></col>"));
+    }}
     
     mixin(H5Def!"colgroup");
     unittest { 
-        assert(Assert(H5.colgroup, "<colgroup></colgroup>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.colgroup, "<colgroup></colgroup>"));
+    }}
     
     mixin(H5Def!"content");
     unittest { 
-        assert(Assert(H5.content, "<content></content>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.content, "<content></content>"));
+    }}
     
     mixin(H5Def!"data");
     unittest { 
-        assert(Assert(H5.data, "<data></data>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.data, "<data></data>"));
+    }}
 
     mixin(H5Def!"datalist");
     unittest { 
-        assert(Assert(H5.datalist, "<datalist></datalist>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.datalist, "<datalist></datalist>"));
+    }}
 
      mixin(H5Def!"dd");
     unittest { 
-        assert(Assert(H5.dd, "<dd></dd>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.dd, "<dd></dd>"));
+    }}
 
     mixin(H5Def!"decorator");
     unittest { 
-        assert(Assert(H5.decorator, "<decorator></decorator>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.decorator, "<decorator></decorator>"));
+    }}
 
     mixin(H5Def!"del");
     unittest { 
-        assert(Assert(H5.del, "<del></del>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.del, "<del></del>"));
+    }}
 
     mixin(H5Def!"details");
     unittest { 
-        assert(Assert(H5.details, "<details></details>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.details, "<details></details>"));
+    }}
 
     mixin(H5Def!"dfn");
     unittest { 
-        assert(Assert(H5.dfn, "<dfn></dfn>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.dfn, "<dfn></dfn>"));
+    }}
 
     mixin(H5Def!"dialog");
     unittest { 
-        assert(Assert(H5.dialog, "<dialog></dialog>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.dialog, "<dialog></dialog>"));
+    }}
 
     mixin(H5Def!"div");
     unittest { 

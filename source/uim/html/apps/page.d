@@ -21,7 +21,6 @@ import uim.html;
 	}
 
 	// window events
-	
 
 	/// Language of page
 	string _lang = "en";
@@ -141,7 +140,9 @@ import uim.html;
 	
 	/// Export to string
 	override string toString(STRINGAA reqParameters) {
-		// Check layout
+		debug writeln(moduleName!DH5AppPage~":DH5AppPage::toString");
+
+		debug writeln("Check layout");
 		DH5AppLayout lt;
 		if (app) lt = app.layout;
 		if (this.layout) lt = this.layout;
@@ -149,6 +150,7 @@ import uim.html;
 		// if layout, use layout
 		if (lt) return this.layout.toString(this, reqParameters);
 
+		debug writeln("Has no layout");
     if (auto h5 = toH5(reqParameters)) return h5.toString;
 		return this.content(reqParameters); // No layout, only content
 	}	
