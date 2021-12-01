@@ -244,7 +244,7 @@ enum MENUITEM = "MENUITEM";
 enum COMMAND = "COMMAND";
 
 /*
-@safe class DH5 {
+class DH5 {
 	// Grundstruktur
 	static auto HTML() { return new DH5HTML(); }
 	static auto HEAD() { return new DH5HEAD(); }
@@ -561,7 +561,7 @@ enum COMMAND = "COMMAND";
  import std.string;
 
  /*
- @safe class 
+ class 
  All classes | Properties | Methods
  Inheritance	
  Subclasses	yii\bootstrap\BaseHtml, yii\bootstrap\Html, yii\helpers\Html
@@ -603,7 +603,7 @@ enum COMMAND = "COMMAND";
  activeRadioList()	Generates a list of radio buttons.	
  activeTextInput()	Generates a text input tag for the given model attribute.	
  activeTextarea()	Generates a textarea tag for the given model attribute.	
- addCss@safe class()	Adds a CSS @safe class (or several classes) to the specified options.	
+ addCssclass()	Adds a CSS class (or several classes) to the specified options.	
  addCssStyle()	Adds the specified CSS style to the HTML options.	
  beginForm()	Generates a form start tag.	
  beginTag()	Generates a start tag.	
@@ -639,7 +639,7 @@ enum COMMAND = "COMMAND";
  passwordInput()	Generates a password input field.	
  radio()	Generates a radio button input.	
  radioList()	Generates a list of radio buttons.	
- removeCss@safe class()	Removes a CSS @safe class from the specified options.	
+ removeCssclass()	Removes a CSS class from the specified options.	
  removeCssStyle()	Removes the specified CSS style from the HTML options.	
  renderSelectOptions()	Renders the option tags that can be used by dropDownList() and listBox().	
  renderTagAttributes()	Renders the HTML tag attributes.	
@@ -678,7 +678,7 @@ enum COMMAND = "COMMAND";
  Property Details
  $attributeOrder public static property
  The preferred order of attributes in a tag. This mainly affects the order of the attributes that are rendered by renderTagAttributes().
- public static array $attributeOrder = ['type', 'id', '@safe class', 'name', 'value', 'href', 'src', 'action', 'method', 'selected', 'checked', 'readonly', 'disabled', 'multiple', 'size', 'maxlength', 'width', 'height', 'rows', 'cols', 'alt', 'title', 'rel', 'media']
+ public static array $attributeOrder = ['type', 'id', 'class', 'name', 'value', 'href', 'src', 'action', 'method', 'selected', 'checked', 'readonly', 'disabled', 'multiple', 'size', 'maxlength', 'width', 'height', 'rows', 'cols', 'alt', 'title', 'rel', 'media']
  $dataAttributes public static property (available since version 2.0.3)
  List of tag attributes that should be specially handled when their values are of array type. In particular, if the value of the data attribute is ['name' => 'xyz', 'age' => 13], two attributes will be generated instead of one: data-name="xyz" data-age="13".
  public static array $dataAttributes = ['data', 'data-ng', 'ng']
@@ -768,7 +768,7 @@ enum COMMAND = "COMMAND";
  $options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
- ['text' => 'Please select', 'options' => ['value' => 'none', '@safe class' => 'prompt', 'label' => 'Select']],
+ ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
  options: array, the attributes for the select option tags. The array keys must be valid option values, and the array values are the extra attributes for the corresponding option tags. For example,
  [
  'value1' => ['disabled' => true],
@@ -866,7 +866,7 @@ enum COMMAND = "COMMAND";
  $options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
- ['text' => 'Please select', 'options' => ['value' => 'none', '@safe class' => 'prompt', 'label' => 'Select']],
+ ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
  options: array, the attributes for the select option tags. The array keys must be valid option values, and the array values are the extra attributes for the corresponding option tags. For example,
  [
  'value1' => ['disabled' => true],
@@ -975,19 +975,19 @@ enum COMMAND = "COMMAND";
  maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::$max. This option is available since version 2.0.6.
  return	string	
  The generated textarea tag
- addCss@safe class() public static method
- Adds a CSS @safe class (or several classes) to the specified options.
+ addCssclass() public static method
+ Adds a CSS class (or several classes) to the specified options.
 
- If the CSS @safe class is already in the options, it will not be added again. If @safe class specification at given options is an array, and some @safe class placed there with the named (string) key, overriding of such key will have no effect. For example:
+ If the CSS class is already in the options, it will not be added again. If class specification at given options is an array, and some class placed there with the named (string) key, overriding of such key will have no effect. For example:
 
- $options = ['@safe class' => ['persistent' => 'initial']];
- Html::addCss@safe class($options, ['persistent' => 'override']);
- var_dump($options['@safe class']); // outputs: array('persistent' => 'initial');
- public static void addCss@safe class ( &$options, $@safe class )
+ $options = ['class' => ['persistent' => 'initial']];
+ Html::addCssclass($options, ['persistent' => 'override']);
+ var_dump($options['class']); // outputs: array('persistent' => 'initial');
+ public static void addCssclass ( &$options, $class )
  $options	array	
  The options to be modified.
- $@safe class	string|array	
- The CSS @safe class(es) to be added
+ $class	string|array	
+ The CSS class(es) to be added
  addCssStyle() public static method
  Adds the specified CSS style to the HTML options.
 
@@ -1181,7 +1181,7 @@ enum COMMAND = "COMMAND";
  $options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
- ['text' => 'Please select', 'options' => ['value' => 'none', '@safe class' => 'prompt', 'label' => 'Select']],
+ ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
  options: array, the attributes for the select option tags. The array keys must be valid option values, and the array values are the extra attributes for the corresponding option tags. For example,
  [
  'value1' => ['disabled' => true],
@@ -1410,7 +1410,7 @@ enum COMMAND = "COMMAND";
  $options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
- ['text' => 'Please select', 'options' => ['value' => 'none', '@safe class' => 'prompt', 'label' => 'Select']],
+ ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
  options: array, the attributes for the select option tags. The array keys must be valid option values, and the array values are the extra attributes for the corresponding option tags. For example,
  [
  'value1' => ['disabled' => true],
@@ -1495,13 +1495,13 @@ enum COMMAND = "COMMAND";
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated radio button list
- removeCss@safe class() public static method
- Removes a CSS @safe class from the specified options.
- public static void removeCss@safe class ( &$options, $@safe class )
+ removeCssclass() public static method
+ Removes a CSS class from the specified options.
+ public static void removeCssclass ( &$options, $class )
  $options	array	
  The options to be modified.
- $@safe class	string|array	
- The CSS @safe class(es) to be removed
+ $class	string|array	
+ The CSS class(es) to be removed
  removeCssStyle() public static method
  Removes the specified CSS style from the HTML options.
 
@@ -1613,7 +1613,7 @@ enum COMMAND = "COMMAND";
  The content to be enclosed between the start and end tags. It will not be HTML-encoded. If this is coming from end users, you should consider encode() it to prevent XSS attacks.
  $options	array	
  The HTML tag attributes (HTML options) in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered.
- For example when using ['@safe class' => 'my-@safe class', 'target' => '_blank', 'value' => null] it will result in the html attributes rendered like this: class="my-@safe class" target="_blank".
+ For example when using ['class' => 'my-class', 'target' => '_blank', 'value' => null] it will result in the html attributes rendered like this: class="my-class" target="_blank".
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated HTML tag
@@ -1696,11 +1696,12 @@ unittest {
 //			).toString;
 }
 
-@safe class DH5CENTER : DH5Obj {
+class DH5CENTER : DH5Obj {
 	mixin(H5This!("CENTER"));
 }
 mixin(H5Short!"CENTER");
 
 unittest {
-	
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

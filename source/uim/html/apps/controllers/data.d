@@ -61,7 +61,8 @@ auto H5AppData(string aName) { return new DH5AppData(aName); }
 auto H5AppData(DH5App anApp, string aName) { return new DH5AppData(anApp, aName); }
 
 unittest {
-	assert(H5AppData.name == "data");
-	assert(H5AppData.name("newData").name == "newData");
-}
+  version(uim_html) {
+    assert(H5AppData.name == "data");
+    assert(H5AppData.name("newData").name == "newData");
+    }}
 

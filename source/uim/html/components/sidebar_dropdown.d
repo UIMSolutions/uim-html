@@ -25,7 +25,7 @@ class DH5SidebarDropdown : DH5Component {
       `font-size: 20px;`~ /* Increased text to enable scrolling */
       `padding: 0px 10px;`)
 
-    /* Add an active @safe class to the active dropdown button */
+    /* Add an active class to the active dropdown button */
     .rule(".active", "background-color: green;color: white;")
 
     /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
@@ -41,7 +41,7 @@ class DH5SidebarDropdown : DH5Component {
       .rule(".sidenav a", "font-size: 18px;");
 
         /* }`)
-.html(`<d@safe classiv class="sidenav">
+.html(`<dclassiv class="sidenav">
   <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
@@ -64,12 +64,12 @@ class DH5SidebarDropdown : DH5Component {
   <p>Some random text..</p>
 </div>`)
 .js(`* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-/*var dropdown = document.getElementsBy@safe className("dropdown-btn");
+/*var dropdown = document.getElementsByclassName("dropdown-btn");
 var i;
 
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
-  this.@safe classList.toggle("active");
+  this.classList.toggle("active");
   var dropdownContent = this.nextElementSibling;
   if (dropdownContent.style.display === "block") {
   dropdownContent.style.display = "none";

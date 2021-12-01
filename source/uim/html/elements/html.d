@@ -1,4 +1,5 @@
 ﻿module uim.html.elements.html;
+
 @safe:
 import uim.html;
 
@@ -7,7 +8,7 @@ import uim.html;
  * Das html-Element, auch root(-Element) oder Wurzelelement enthält den vollständigen Inhalt einer Internetseite. 
  * Date: January 09, 2015
  */
-@safe class DH5Html : DH5Obj {
+class DH5Html : DH5Obj {
 	mixin(H5This!"html");
 
 	override public void _init() {

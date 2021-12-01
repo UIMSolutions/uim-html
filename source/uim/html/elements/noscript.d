@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.noscript;
+
 @safe:
 import uim.html;
 
-@safe class DH5Noscript : DH5Obj {
+class DH5Noscript : DH5Obj {
 	mixin(H5This!("noscript"));
 }
 mixin(H5Short!"Noscript");
 
 unittest {
-	assert(Assert(H5Noscript,"<noscript></noscript>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Noscript,"<noscript></noscript>"));
+}}

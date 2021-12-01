@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.ol;
+
 @safe:
 import uim.html;
 
-@safe class DH5Ol : DH5Obj {
+class DH5Ol : DH5Obj {
 	mixin(H5This!"ol");
 
 	mixin(MyContent!("item", "H5Li"));
@@ -12,5 +13,6 @@ import uim.html;
 }
 mixin(H5Short!"Ol");
 unittest {
-	assert(Assert(H5Ol,"<ol></ol>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Ol,"<ol></ol>"));
+}}

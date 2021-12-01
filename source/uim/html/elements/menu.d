@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.menu;
+
 @safe:
 import uim.html;
 
-@safe class DH5Menu : DH5Obj {
+class DH5Menu : DH5Obj {
 	mixin(H5This!"menu");
 }
 mixin(H5Short!"Menu");
 
 unittest {
-	assert(Assert(H5Menu,"<menu></menu>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Menu,"<menu></menu>"));
+}}

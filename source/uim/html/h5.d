@@ -1,8 +1,9 @@
 module uim.html.h5;
+
 @safe:
 import uim.html;
 
-@safe class DH5 {
+class DH5 {
     this() { _objs = []; }
 
     protected DH5Obj[] _objs;
@@ -565,12 +566,13 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
 
     mixin(H5Def!"ruby");
     unittest { 
-        assert(Assert(H5.ruby, "<ruby></ruby>"));
-    }
+        version(uim_html) {
+            assert(Assert(H5.ruby, "<ruby></ruby>"));
+    }}
 
     mixin(H5Def!"s");
     unittest { 
-        assert(Assert(H5.s, "<s></s>"));
+        assert(H5.s == "<s></s>");
     }
 
     mixin(H5Def!"samp");

@@ -182,7 +182,8 @@ auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class
 
 /*
 unittest {
-	assert(Assert(HTML!"div","<div />");
+  version(uim_html) {
+    assert(Assert(HTML!"div","<div />");
 	assert(Assert(HTML!("input", true),"<input>");
 	assert(Assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
 	assert(Assert(HTML!"div"(["aClass", "aClass"]),"<div class=\"aClass\" />");
@@ -306,8 +307,9 @@ string asString(T:DH5Obj)(T[] objs) {
 	return result;
 }
 unittest {
-	assert([H5Meta, H5Meta].toString == "<meta><meta>");
-}
+  version(uim_html) {
+    assert([H5Meta, H5Meta].toString == "<meta><meta>");
+}}
 
 auto FA(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]);}
 auto FAR(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]);}
@@ -324,4 +326,4 @@ auto jsReturn(DH5Obj obj) {
 DH5Obj[] toH5(T:DH5Obj)(T[] items) {
 	if (items) return items.map!(a => cast(DH5Obj)a).array;
 	return null;
-} 
+}

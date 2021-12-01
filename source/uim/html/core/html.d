@@ -3,6 +3,7 @@
 import std.stdio;
 import std.string;
 import std.array;
+
 @safe:
 import uim.html;
 
@@ -40,7 +41,7 @@ template DTag(string fName, string tName) {
 ";
 }
 
-//@safe class DHTML {
+//class DHTML {
 //	DHTML listener;
 //	static DHTML opCall(T...)(T values) { return new DHTML(values); }
 //	O opCall(this O, T...)(T values) { foreach(v; values) add(v); return cast(O)this; } 
@@ -144,5 +145,6 @@ template DTag(string fName, string tName) {
 //
 
 unittest {
-	
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

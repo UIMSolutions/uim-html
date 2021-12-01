@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.list;
+
 @safe:
 import uim.html;
 
-@safe class DH5List : DH5Obj {
+class DH5List : DH5Obj {
 	mixin(H5This!("list"));
 
 //	this(string tag, string[] texts...) { this(tag); Add(texts); }
@@ -23,5 +24,6 @@ import uim.html;
 mixin(H5Short!"List");
 
 unittest {
-	assert(Assert(H5List,"<list></list>"));
-}
+  version(uim_html) {
+    assert(Assert(H5List,"<list></list>"));
+}}

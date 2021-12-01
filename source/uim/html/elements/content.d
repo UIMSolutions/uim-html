@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.content;
+
 @safe:
 import uim.html;
 
-@safe class DH5Content : DH5Obj {
+class DH5Content : DH5Obj {
 	mixin(H5This!("content"));
 }
 mixin(H5Short!"Content");
 
 unittest {
-	assert(Assert(H5Content,"<content></content>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Content,"<content></content>"));
+}}

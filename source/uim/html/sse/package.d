@@ -1,4 +1,5 @@
 module uim.html.sse;
+
 @safe:
 import uim.html;
 

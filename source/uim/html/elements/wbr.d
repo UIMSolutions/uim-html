@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.wbr;
+
 @safe:
 import uim.html;
 
-@safe class DH5Wbr : DH5Obj {
+class DH5Wbr : DH5Obj {
 	mixin(H5This!"wbr");
 }
 mixin(H5Short!"Wbr");

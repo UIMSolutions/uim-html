@@ -1,4 +1,5 @@
 ﻿module uim.html.elements.meta;
+
 @safe:
 import uim.html;
 
@@ -9,24 +10,25 @@ class DH5Meta : DH5Obj {
 mixin(H5Short!("Meta"));
 
 unittest {
-	assert(Assert(H5Meta, "<meta>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Meta, "<meta>"));
+}}
 
 string toString(DH5Meta[] metas) {
 	string result;
 	foreach(meta; metas) result ~= meta.toString;
-	return result;
-}
+	return result; }
 unittest {
-	assert([H5Meta, H5Meta].toString == "<meta><meta>");
-}
+  version(uim_html) {
+    assert([H5Meta, H5Meta].toString == "<meta><meta>");
+}}
 
 DH5Meta[] H5Metas(string[string][] metas...) { return H5Metas(metas); }
 DH5Meta[] H5Metas(string[string][] metas) { 
 	DH5Meta[] results;
 	foreach(meta; metas) results ~= H5Meta(meta);
-	return results;
-}
+	return results; }
 unittest {
+  version(uim_html) {
 	/// TODO
-}
+}}

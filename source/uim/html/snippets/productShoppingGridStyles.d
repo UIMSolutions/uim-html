@@ -1,4 +1,5 @@
 module uim.html.snippets.productShoppingGridStyles;
+
 @safe:
 import uim.html;
 

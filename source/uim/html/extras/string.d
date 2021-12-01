@@ -1,9 +1,10 @@
 ﻿module uim.html.extras.string;
+
 @safe:
 import uim.html;
 
 // Additional element to handle string in DOM
-@safe class DH5String : DH5Obj {
+class DH5String : DH5Obj {
 	private string _content;
     this(string aContent) { _content = aContent; }
     override string toString() { return _content; }

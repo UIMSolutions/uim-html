@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.ul;
+
 @safe:
 import uim.html;
 
-@safe class DH5Ul : DH5Obj {
+class DH5Ul : DH5Obj {
 	mixin(H5This!"ul");
 
 	mixin(MyContent!("li", "H5Li"));
@@ -28,11 +29,12 @@ import uim.html;
 		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
 	unittest {
-	}
-
+  	version(uim_html) {
+	}}
 }
 mixin(H5Short!"Ul");
 
 unittest {
-	assert(Assert(H5Ul, "<ul></ul>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Ul, "<ul></ul>"));
+}}

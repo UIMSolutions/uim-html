@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.footer;
+
 @safe:
 import uim.html;
 
-@safe class DH5Footer : DH5Obj {
+class DH5Footer : DH5Obj {
 	mixin(H5This!("Footer"));
 }
 mixin(H5Short!"Footer");

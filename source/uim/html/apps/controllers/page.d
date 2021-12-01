@@ -1,8 +1,9 @@
 module uim.html.apps.controllers.page;
+
 @safe:
 import uim.html;
 
-@safe class DH5AppPage : DH5AppController {
+class DH5AppPage : DH5AppController {
 	this() { super(); 
 	clearMetas;
 	clearLinks;

@@ -1,4 +1,4 @@
-module uim.html.apps.image;
+module uim.html.apps.controllers.image;
 
 @safe:
 import uim.html;
@@ -15,6 +15,7 @@ auto H5AppImage(string aName) { return new DH5AppImage(aName); }
 auto H5AppImage(DH5App anApp, string aName) { return new DH5AppImage(anApp, aName); }
 
 unittest {
-	assert(H5AppImage.name == "image");
-	assert(H5AppImage.name("newImage").name == "newImage");
-}
+  version(uim_html) {
+    assert(H5AppImage.name == "image");
+		assert(H5AppImage.name("newImage").name == "newImage");
+		}}

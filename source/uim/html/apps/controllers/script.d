@@ -1,8 +1,9 @@
-module uim.html.apps.script;
+module uim.html.apps.controllers.script;
+
 @safe:
 import uim.html;
 
- @safe class DH5AppScript : DH5AppObj {
+class DH5AppScript : DH5AppController {
 	this() { super(); this.mimetype("application/javascript"); }
 	this(DH5App anApp) { this().app(anApp).mimetype("application/javascript"); }
 	this(string aName) { this().name(aName).mimetype("application/javascript"); }
@@ -16,4 +17,6 @@ auto H5AppScript(string aName) { return new DH5AppScript(aName); }
 auto H5AppScript(DH5App anApp, string aName) { return new DH5AppScript(anApp, aName); }
 
 unittest {
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

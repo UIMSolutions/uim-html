@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.body_;
+
 @safe:
 import uim.html;
 
-@safe class DH5Body : DH5Obj {
+class DH5Body : DH5Obj {
 	mixin(H5This!("body"));
 
 	O scripts(this O)(string[] links) { foreach(l; links) add(H5Script(["src":l])); return cast(O)this; }
@@ -11,5 +12,6 @@ import uim.html;
 mixin(H5Short!"Body");
 
 unittest {
-	assert(Assert(H5Body,"<body></body>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Body,"<body></body>"));
+		}}

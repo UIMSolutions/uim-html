@@ -1,4 +1,5 @@
 module uim.html.snippets;
+
 @safe:
 import uim.html;
 

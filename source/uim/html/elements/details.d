@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.details;
+
 @safe:
 import uim.html;
 
-@safe class DH5Details: DH5Obj {
+class DH5Details: DH5Obj {
 	mixin(H5This!"details");
 }
 mixin(H5Short!"Details");
 
 unittest {
-	assert(Assert(H5Details,"<details></details>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Details,"<details></details>"));
+}}

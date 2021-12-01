@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.s;
 
+@safe:
 import uim.html; 
 
-@safe class DH5S : DH5Obj {
+class DH5S : DH5Obj {
 	mixin(H5This!"s");
 }
 mixin(H5Short!"S");
 
 unittest {
-	assert(Assert(H5S,"<s></s>"));
-}
+  version(uim_html) {
+    assert(H5S == "<s></s>");
+}}

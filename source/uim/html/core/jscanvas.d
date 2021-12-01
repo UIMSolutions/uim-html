@@ -1,8 +1,9 @@
 ﻿module uim.html.core.jscanvas;
+
 @safe:
 import uim.html;
 //
-//@safe class DJSCanvas : DJS {
+//class DJSCanvas : DJS {
 //	string idName;
 //	string contextName = "context";
 //
@@ -166,5 +167,6 @@ import uim.html;
 //mixin(Shortcut!("DJSCanvas", "JSCanvas", "name", "string name"));
 
 unittest {
-	
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

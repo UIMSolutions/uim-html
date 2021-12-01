@@ -24,7 +24,7 @@ class DH5AppController {
 		version(uim_html) {
 			// TODO
 			}}
-			
+
 	/**
 	* app 
 	* 
@@ -35,23 +35,22 @@ class DH5AppController {
 	* Adding this obj to another app will changes this property to the new app 
 	**/
 	mixin(OProperty!("DH5App", "app"));
+	mixin(OProperty!("DH5View", "view"));
 
 	unittest {
-		assert(H5AppPage(H5App("test")).app.name == "test");
-		assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");
-	}
+		version(uim_html) {
+			assert(H5AppPage(H5App("test")).app.name == "test");
+			assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");
+			}}
 
 
-	/**
-	 * name - string that represents the name of the application
-	 */
-	protected string _name;
-	auto name() { return _name; } 
-	O name(this O)(string newName) { _name = newName; return cast(O)this; }
+	// name - name of controller
+	mixin(OProperty!("string", "name"));
 	unittest {
-		assert(H5AppPage("test").name == "test");
-		assert(H5AppPage.name("test").name == "test");
-	}
+		version(uim_html) {
+			assert(H5AppPage("test").name == "test");
+			assert(H5AppPage.name("test").name == "test");
+			}}
 
 	mixin(OProperty!("string[]", "htmlModes"));
 
@@ -165,6 +164,7 @@ class DH5AppController {
 	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
     debug writeln("DH5AppController:request(req, res, reqParameters)");
 		beforeResponse(req, res, reqParameters);
+
 		if ("redirect" in reqParameters) {
       debug writeln("Found redirect to ", reqParameters["redirect"]);
       auto redirect = reqParameters["redirect"]; 
@@ -172,14 +172,15 @@ class DH5AppController {
       res.redirect(redirect);
     } 
 
-		auto result = toString(reqParameters);
-		res.writeBody(result, _mimetype); 
+		if (view) res.writeBody(view.render, _mimetype); 
+		else res.writeBody(toString(reqParameters), _mimetype); 
 	}
 	unittest {
-		version(UIm_html) {
+		version(uim_html) {
 		/// TODO
 		}}
 
+	@depraceted
 	string _toString;
 	/// Export to string
 	override string toString() { string[string] pm; return toString(pm); }
@@ -210,5 +211,5 @@ auto H5AppController(DH5App anApp, string aName) { return new DH5AppController(a
 
 unittest {
 	version(uim_html) {
-		// TODO
+		// TODO Add Test
 		}}

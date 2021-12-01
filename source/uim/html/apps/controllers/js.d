@@ -25,5 +25,7 @@ auto H5AppJavascript(DH5App anApp) { return new DH5AppJavascript(anApp); }
 auto H5AppJavascript(string aName) { return new DH5AppJavascript(aName); }
 auto H5AppJavascript(DH5App anApp, string aName) { return new DH5AppJavascript(anApp, aName); }
 
-unittest {
-}
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}

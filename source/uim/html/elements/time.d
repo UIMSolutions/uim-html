@@ -1,9 +1,10 @@
 ﻿module uim.html.elements.time;
+
 @safe:
 import uim.html;
 import std.datetime;
 
-@safe class DH5Time : DH5Obj {
+class DH5Time : DH5Obj {
 	mixin(H5This!"time");
 	
 	mixin(MyAttribute!"datetime");
@@ -14,5 +15,6 @@ import std.datetime;
 mixin(H5Short!"Time");
 
 unittest {
-	assert(Assert(H5Time, "<time></time>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Time, "<time></time>"));
+}}

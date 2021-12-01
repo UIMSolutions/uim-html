@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.option;
+
 @safe:
 import uim.html;
 
-@safe class DH5Option : DH5Obj {
+class DH5Option : DH5Obj {
 	mixin(H5This!"option");
 }
 mixin(H5Short!"Option");
@@ -14,6 +15,7 @@ enum option_modes : string {
 }
 
 unittest {
-	assert(Assert(H5Option,"<option></option>"));
-}
+  version(uim_html) {
+    assert(H5Option == "<option></option>");
+}}
 

@@ -1,4 +1,5 @@
 module uim.html.parser;
+
 @safe:
 import uim.html;
 
@@ -55,7 +56,7 @@ string fillWith(string txt, string addTxt, size_t startPos, size_t endPos) {
   return result;
 }
 
-@safe class DH5Node
+class DH5Node
 {
   string txt;
   bool isRoot = true;

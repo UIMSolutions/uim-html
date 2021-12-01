@@ -1,4 +1,5 @@
 ﻿module uim.html.core.element;
+
 @safe:
 import uim.html;
 
@@ -22,15 +23,16 @@ template classes() {
 	 O addClass(this O)(string newClass) { this.classes(newClass); return cast(O)this; }
 	
 	 O removeClass(this O)(string[] someClasses) { foreach(c; someClasses) removeClass(c); return cast(O)this; }
-	 O removeClass(this O)(string className) { if (has@safe class(className)) classes = std.algorithm.mutation.remove(classes, className); return cast(O)this; }
+	 O removeClass(this O)(string className) { if (hasclass(className)) classes = std.algorithm.mutation.remove(classes, className); return cast(O)this; }
 	
-	 O toggleClass(this O)(string[] someClasses) { foreach(c; someClasses) toggle@safe class(c); return cast(O)this; }
-	 O toggleClass(this O)(string className) { if (has@safe class(className)) removeClass(className); else addClass(className); return cast(O)this; }
+	 O toggleClass(this O)(string[] someClasses) { foreach(c; someClasses) toggleclass(c); return cast(O)this; }
+	 O toggleClass(this O)(string className) { if (hasclass(className)) removeClass(className); else addClass(className); return cast(O)this; }
 	`;
 }
 
 enum ShowMode { standard, onlyHTML, onlyJS, onlyCSS }
 
 unittest {
-	
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

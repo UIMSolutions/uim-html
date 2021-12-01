@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.fieldset;
+
 @safe:
 import uim.html;
 
-@safe class DH5Fieldset : DH5Obj {
+class DH5Fieldset : DH5Obj {
 	mixin(H5This!"fieldset");
 }
 mixin(H5Short!"Fieldset");
 
 unittest {
-	assert(Assert(H5Fieldset,"<fieldset></fieldset>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Fieldset,"<fieldset></fieldset>"));
+}}

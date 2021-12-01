@@ -123,15 +123,15 @@ class DH5App {
 
 	// ----------
 	// Manage the objs of an app. Everything is an obj
-	DH5AppObj[string] _objs;
+	DH5AppController[string] _objs;
 
 	auto objs() { return _objs; }
-	O objs(this O)(DH5AppObj[string] newObjects) { foreach(objName, objNew; newObjects) this.obj(objName, objNew); return cast(O)this; }
-	O objs(this O)(DH5AppObj[] newObjects...) { newObjects.each!(a => { if (a) this.obj(a); }); return cast(O)this; }
+	O objs(this O)(DH5AppController[string] newObjects) { foreach(objName, objNew; newObjects) this.obj(objName, objNew); return cast(O)this; }
+	O objs(this O)(DH5AppController[] newObjects...) { newObjects.each!(a => { if (a) this.obj(a); }); return cast(O)this; }
 
-	O obj(this O)(DH5AppObj newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
-	O obj(this O)(string objName, DH5AppObj newObject) { 
-		debug writeln("O obj(this O)(string "~objName~", DH5AppObj newObject)");
+	O obj(this O)(DH5AppController newObject) { this.obj(newObject.name, newObject); return cast(O)this; }
+	O obj(this O)(string objName, DH5AppController newObject) { 
+		debug writeln("O obj(this O)(string "~objName~", DH5AppController newObject)");
     if (newObject) {
 			newObject.app(this); _objs[objName] = newObject; 
 			// call hook;
@@ -140,7 +140,7 @@ class DH5App {
 		}
     return cast(O)this; }
 	
-	DH5AppObj opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
+	DH5AppController opIndex(string name) { if (name in _objs) return _objs[name]; return null; }
 
 	O remove(this O)(string[] names...) { this.remove(names); return cast(O)this; }
 	O remove(this O)(string[] names) { names.each!(a => _objs.remove(a)); return cast(O)this; }
@@ -149,7 +149,7 @@ class DH5App {
 			/// TODO	
 	}
   // hook
-  void afterInsertObj(DH5AppObj appObject) {}
+  void afterInsertObj(DH5AppController appObject) {}
 
 	protected DH5Meta[] _metas;
 	DH5Meta[] metas() { return _metas; }
@@ -350,7 +350,7 @@ class DH5App {
 		assert(!H5App.scripts("test", "testContent").isAppPage("test"));
 	}
 
-  DH5AppPage toAppPage(DH5AppObj obj) {
+  DH5AppPage toAppPage(DH5AppController obj) {
     return cast(DH5AppPage)obj; }
   unittest {
     /// TODO Test convert

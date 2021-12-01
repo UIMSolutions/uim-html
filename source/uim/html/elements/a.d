@@ -1,15 +1,17 @@
 ﻿module uim.html.elements.a;
+
 @safe:
 import uim.html;
 
-@safe class DH5A : DH5Obj {
+class DH5A : DH5Obj {
 	mixin(H5This!"a");
 }
 mixin(H5Short!"A");
 
 unittest {
-	assert(Assert(H5A,"<a></a>"));
-}
+  version(uim_html) {
+    assert(Assert(H5A,"<a></a>"));
+}}
 
 /**
  * DH5A, H5A, H5.A defines a hyperlink to link from one page to another.
@@ -25,7 +27,7 @@ Hint: By default, links will appear as follows in all browsers:
  * Sie sind ein entscheidender Bestandteil jedes Hypertext-Projekts und der „intelligente Mehrwert“ des World Wide Web. a bedeutet anchor, Anker, 
  * weil ein anderes Dokument durch einen Link verankert wird.  
  * /
-@safe class DH5A : DH5Obj {
+class DH5A : DH5Obj {
 	mixin(H5This!"a");
 
 	/* download specifies that the target (a file) will be downloaded when a user clicks on the link (attribute href) instead of navigating to the file). * /
@@ -76,6 +78,7 @@ Hint: By default, links will appear as follows in all browsers:
 mixin(H5Short!"A");
 
 unittest {
-	assert(Assert(H5A == "<a></a>");
+  version(uim_html) {
+    assert(Assert(H5A == "<a></a>");
 }
 */

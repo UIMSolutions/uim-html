@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.button;
+
 @safe:
 import uim.html;
 
-@safe class DH5Button : DH5Obj {
+class DH5Button : DH5Obj {
 	mixin(H5This!"button");
 
 	/* type */
@@ -22,9 +23,10 @@ enum ButtonTypes : string {
 }
 
 unittest {
-	assert(Assert(H5Button,"<button></button>"));
+  version(uim_html) {
+    assert(Assert(H5Button,"<button></button>"));
 
-//	assert(H5Button.type(ButtonTypes.Button).attributes["type"] == "button");
-//	assert(H5Button.type(ButtonTypes.Reset).attributes["type"] == "submit");
-//	assert(H5Button.type(ButtonTypes.Submit).attributes["type"] == "reset");
-}
+		//	assert(H5Button.type(ButtonTypes.Button).attributes["type"] == "button");
+		//	assert(H5Button.type(ButtonTypes.Reset).attributes["type"] == "submit");
+		//	assert(H5Button.type(ButtonTypes.Submit).attributes["type"] == "reset");
+		}}

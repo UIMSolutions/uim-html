@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.dfn;
+
 @safe:
 import uim.html;
 
-@safe class DH5Dfn : DH5Obj {
+class DH5Dfn : DH5Obj {
 	mixin(H5This!"dfn");
 }
 mixin(H5Short!"Dfn");
 
 unittest {
-	assert(Assert(H5Dfn,"<dfn></dfn>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Dfn,"<dfn></dfn>"));
+}}

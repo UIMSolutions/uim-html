@@ -1,4 +1,5 @@
 ﻿module uim.html.elements.form;
+
 @safe:
 import uim.html;
 
@@ -74,5 +75,6 @@ enum Methods : string {
 string toString(Methods value) { return cast(string)value; }
 
 unittest {
-	assert(Assert(H5Form,"<form></form>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Form,"<form></form>"));
+}}

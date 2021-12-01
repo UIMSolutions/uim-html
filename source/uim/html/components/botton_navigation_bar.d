@@ -8,3 +8,8 @@ class DH5SidebarDropdown : DH5Component {
     super();
   }
 }
+
+unittest {
+	version(uim_html) {
+		// TODO
+		}}

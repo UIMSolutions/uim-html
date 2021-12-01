@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.head;
+
 @safe:
 import uim.html;
 
-@safe class DH5Head : DH5Obj {
+class DH5Head : DH5Obj {
 protected:
 	string _title;
 public:

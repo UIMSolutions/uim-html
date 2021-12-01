@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.colgroup;
+
 @safe:
 import uim.html;
 
-@safe class DH5Colgroup : DH5Obj {
+class DH5Colgroup : DH5Obj {
 	mixin(H5This!"Colgroup");
 }
 mixin(H5Short!"Colgroup");
 
 unittest {
-	assert(Assert(H5Colgroup,"<colgroup></colgroup>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Colgroup,"<colgroup></colgroup>"));
+    }}

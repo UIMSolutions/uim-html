@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.inputs.color;
+
 @safe:
 import uim.html;
 
-@safe class DH5InputCOLOR : DH5Input {
+class DH5InputCOLOR : DH5Input {
 	mixin(H5This!""); 
 
 	override string toString() {
@@ -12,5 +13,6 @@ import uim.html;
 }
 
 unittest {
-	
-}
+	version(uim_html) {
+		// TODO Add Test
+		}}

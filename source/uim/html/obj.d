@@ -1,4 +1,5 @@
 ﻿module uim.html.obj;
+
 @safe:
 import uim.html;
 
@@ -177,7 +178,7 @@ class DH5Obj {
 
 	/* accesskey - specifies a shortcut key to activate/focus an element. */
 	//	mixin(H5Attribute("accesskey"));
-	//	// @safe className (@safe class) - Specifies one or more @safe classnames for an element (refers to a @safe class in a style sheet)
+	//	// className (class) - Specifies one or more classnames for an element (refers to a class in a style sheet)
 	//	mixin(H5Attribute("className", "class"));
 	//
 	//	// contenteditable - Specifies whether the content of an element is editable or not

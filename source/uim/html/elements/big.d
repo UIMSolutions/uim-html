@@ -1,13 +1,15 @@
 ﻿module uim.html.elements.big;
+
 @safe:
 import uim.html;
 
-@safe class DH5Big : DH5Obj {
+class DH5Big : DH5Obj {
 	mixin(H5This!"Big");
 }
 mixin(H5Short!"Big");
 
 unittest {
-	assert(Assert(H5Big,"<big></big>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Big,"<big></big>"));
+    }} 
 

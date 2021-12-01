@@ -1,4 +1,5 @@
 module uim.html.snippets.multiItemCarousel;
+
 @safe:
 import uim.html;
 
@@ -172,7 +173,7 @@ $(document).ready(function () {
     var itemWidth = "";
 
     $('.leftLst, .rightLst').click(function () {
-        var condition = $(this).has@safe class("leftLst");
+        var condition = $(this).hasclass("leftLst");
         if (condition)
             click(0, this);
         else
@@ -192,7 +193,7 @@ $(document).ready(function () {
     function ResCarouselSize() {
         var incno = 0;
         var dataItems = ("data-items");
-        var item@safe class = ('.item');
+        var itemclass = ('.item');
         var id = 0;
         var btnParentSb = '';
         var itemsSplit = '';
@@ -200,7 +201,7 @@ $(document).ready(function () {
         var bodyWidth = $('body').width();
         $(itemsDiv).each(function () {
             id = id + 1;
-            var itemNumbers = $(this).find(item@safe class).length;
+            var itemNumbers = $(this).find(itemclass).length;
             btnParentSb = $(this).parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
             $(this).parent().attr("id", "MultiCarousel" + id);
@@ -223,12 +224,12 @@ $(document).ready(function () {
                 itemWidth = sampwidth / incno;
             }
             $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-            $(this).find(item@safe class).each(function () {
+            $(this).find(itemclass).each(function () {
                 $(this).outerWidth(itemWidth);
             });
 
-            $(".leftLst").add@safe class("over");
-            $(".rightLst").remove@safe class("over");
+            $(".leftLst").addclass("over");
+            $(".rightLst").removeclass("over");
 
         });
     }
@@ -244,21 +245,21 @@ $(document).ready(function () {
         var xds = Math.abs(values[4]);
         if (e == 0) {
             translateXval = parseInt(xds) - parseInt(itemWidth * s);
-            $(el + ' ' + rightBtn).remove@safe class("over");
+            $(el + ' ' + rightBtn).removeclass("over");
 
             if (translateXval <= itemWidth / 2) {
                 translateXval = 0;
-                $(el + ' ' + leftBtn).add@safe class("over");
+                $(el + ' ' + leftBtn).addclass("over");
             }
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
             translateXval = parseInt(xds) + parseInt(itemWidth * s);
-            $(el + ' ' + leftBtn).remove@safe class("over");
+            $(el + ' ' + leftBtn).removeclass("over");
 
             if (translateXval >= itemsCondition - itemWidth / 2) {
                 translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).add@safe class("over");
+                $(el + ' ' + rightBtn).addclass("over");
             }
         }
         $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');

@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.label;
+
 @safe:
 import uim.html;
 
-@safe class DH5Label : DH5Obj {
+class DH5Label : DH5Obj {
 	mixin(H5This!"label");
 
 	mixin(MyAttribute!("forId", "for"));
@@ -20,5 +21,6 @@ import uim.html;
 mixin(H5Short!"Label");
 
 unittest {
-	assert(Assert(H5Label, `<label></label>`));
-}
+  version(uim_html) {
+    assert(Assert(H5Label, `<label></label>`));
+}}

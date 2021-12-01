@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.caption;
+
 @safe:
 import uim.html;
 
-@safe class DH5Caption : DH5Obj {
+class DH5Caption : DH5Obj {
 	mixin(H5This!"caption");
 }
 mixin(H5Short!"Caption");
 
 unittest {
-	assert(Assert(H5Caption,"<caption></caption>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Caption,"<caption></caption>"));
+    }}

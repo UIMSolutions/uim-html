@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.article;
+
 @safe:
 import uim.html;
 
-@safe class DH5Article : DH5Obj {
+class DH5Article : DH5Obj {
 	mixin(H5This!"article");
 }
 mixin(H5Short!"Article");

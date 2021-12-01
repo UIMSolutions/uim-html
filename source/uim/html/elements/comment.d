@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.comment;
+
 @safe:
 import uim.html;
 
-@safe class DH5Comment : DH5Obj {
+class DH5Comment : DH5Obj {
 	mixin(H5This!"comment");
 
 	override string toString() {
@@ -15,5 +16,6 @@ import uim.html;
 mixin(H5Short!"Comment");
 
 unittest {
-	assert(Assert(H5Comment,"<comment></comment>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Comment,"<comment></comment>"));
+}}

@@ -1,8 +1,9 @@
 module uim.html.apps.authpage;
+
 @safe:
 import uim.html;
 
-@safe class DH5AuthAppPage : DH5AppPage {
+class DH5AuthAppPage : DH5AppPage {
 	this() { super(); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }

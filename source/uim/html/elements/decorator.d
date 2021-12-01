@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.decorator;
+
 @safe:
 import uim.html;
 
-@safe class DH5Decorator : DH5Obj {
+class DH5Decorator : DH5Obj {
 	mixin(H5This!("decorator"));
 }
 mixin(H5Short!"Decorator");
 
 unittest {
-	assert(Assert(H5Decorator,"<decorator></decorator>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Decorator,"<decorator></decorator>"));
+}}

@@ -1,14 +1,16 @@
 ﻿module uim.html.elements.style;
+
 @safe:
 import uim.html;
 
-@safe class DH5Style : DH5Obj {
+class DH5Style : DH5Obj {
 	mixin(H5This!("style"));
 }
 mixin(H5Short!"Style");
 unittest {
-	assert(Assert(H5Style,"<style></style>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Style,"<style></style>"));
+}}
 
 string toString(DH5Style[] styles) {
 	string result;
@@ -16,8 +18,9 @@ string toString(DH5Style[] styles) {
 	return result;
 }
 unittest {
-	assert([H5Style, H5Style].toString == "<style></style><style></style>");
-}
+  version(uim_html) {
+    assert([H5Style, H5Style].toString == "<style></style><style></style>");
+}}
 
 DH5Style[] H5Styles(string[string][] styles...) { return H5Styles(styles); }
 DH5Style[] H5Styles(string[string][] styles) { 
@@ -26,5 +29,6 @@ DH5Style[] H5Styles(string[string][] styles) {
 	return results;
 }
 unittest {
-	/// TODO
-}
+  version(uim_html) {
+		/// TODO
+}}

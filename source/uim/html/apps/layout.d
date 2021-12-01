@@ -1,9 +1,10 @@
 ﻿module uim.html.apps.layout;
+
 @safe:
 import uim.html;
 
 /// Page layout
-  @safe class DH5AppLayout : DH5AppObj {
+class DH5AppLayout : DH5AppController {
 	this() { super(); 
 	_lang = "en"; }
 	this(DH5App anApp) { this().app(anApp); }

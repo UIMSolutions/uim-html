@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.optgroup;
+
 @safe:
 import uim.html;
 
-@safe class DH5Optgroup : DH5Obj {
+class DH5Optgroup : DH5Obj {
 	mixin(H5This!"optgroup");
 
 //	O option(this O)() {
@@ -12,5 +13,6 @@ import uim.html;
 mixin(H5Short!"Optgroup");
 
 unittest {
-	assert(Assert(H5Optgroup,"<optgroup></optgroup>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Optgroup,"<optgroup></optgroup>"));
+}}

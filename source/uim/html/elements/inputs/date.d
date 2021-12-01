@@ -1,13 +1,15 @@
 ﻿module uim.html.elements.inputs.date;
+
 @safe:
 import uim.html;
 
-@safe class DH5InputDate : DH5Input {
+class DH5InputDate : DH5Input {
 	mixin(H5This!("Input", null, `["type":"date"]`, true)); 
 }
 mixin(H5Short!"InputDate");
 
 unittest {
-	assert(Assert(new DH5InputDate, `<input type="date">`));
-}
+  version(uim_html) {
+    assert(Assert(new DH5InputDate, `<input type="date">`));
+}}
 

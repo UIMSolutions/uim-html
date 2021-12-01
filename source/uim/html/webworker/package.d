@@ -1,4 +1,5 @@
 module uim.html.webworker;
+
 @safe:
 import uim.html;
 

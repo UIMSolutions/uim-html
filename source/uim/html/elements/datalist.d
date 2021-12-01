@@ -1,8 +1,9 @@
 ﻿module uim.html.elements.datalist;
+
 @safe:
 import uim.html;
 
-@safe class DH5Datalist : DH5Obj {
+class DH5Datalist : DH5Obj {
 	mixin(H5This!"datalist");
 
 	mixin(MyContent!("option", "H5Option"));
@@ -10,5 +11,6 @@ import uim.html;
 mixin(H5Short!"Datalist");
 
 unittest {
-	assert(Assert(H5Datalist,"<datalist></datalist>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Datalist,"<datalist></datalist>"));
+}}

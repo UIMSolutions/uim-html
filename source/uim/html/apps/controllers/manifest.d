@@ -1,8 +1,9 @@
-module uim.html.apps.manifest;
+module uim.html.apps.controllers.manifest;
+
 @safe:
 import uim.html;
 
-  @safe class DH5AppManifest : DH5AppObj {
+class DH5AppManifest : DH5AppController {
 	this() { super(); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
@@ -261,5 +262,6 @@ auto H5AppManifest(string aName) { return new DH5AppManifest(aName); }
 auto H5AppManifest(DH5App anApp, string aName) { return new DH5AppManifest(anApp, aName); }
 
 unittest {
-	assert(H5AppManifest);
-}
+  version(uim_html) {
+    assert(H5AppManifest);
+}}

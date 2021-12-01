@@ -1,12 +1,14 @@
 ﻿module uim.html.elements.dt;
+
 @safe:
 import uim.html;
 
-@safe class DH5Dt : DH5Obj {
+class DH5Dt : DH5Obj {
 	mixin(H5This!"dt");
 }
 mixin(H5Short!"Dt");
 
 unittest {
-	assert(Assert(H5Dt,"<dt></dt>"));
-}
+  version(uim_html) {
+    assert(Assert(H5Dt,"<dt></dt>"));
+}}

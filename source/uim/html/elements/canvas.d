@@ -7,7 +7,7 @@ import uim.html;
 
 alias STRINGAA = string[string];
 
-@safe class DH5Canvas : DH5Obj {
+class DH5Canvas : DH5Obj {
 	string pre = "context.";
 	mixin(H5This!"canvas");
 
