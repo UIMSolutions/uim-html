@@ -320,3 +320,8 @@ auto Fas(string name, string[] classes = null) {return H5I(classes~["fas", "fa-"
 auto jsReturn(DH5Obj obj) {
   return "return `%s`;".format(obj);
 }
+
+DH5Obj[] toH5(T:DH5Obj)(T[] items) {
+	if (items) return items.map!(a => cast(DH5Obj)a).array;
+	return null;
+} 

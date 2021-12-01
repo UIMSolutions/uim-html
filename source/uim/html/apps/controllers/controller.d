@@ -1,8 +1,9 @@
-module uim.html.apps.obj;
+module uim.html.apps.controllers.controller;
+
 @safe:
 import uim.html;
 
-@safe class DH5AppObj {
+class DH5AppController {
 	this() { 
 		this
     .htmlModes(["*"])
@@ -19,7 +20,11 @@ import uim.html;
 	O sourceFile(this O)(string path) { 	
 		std.file.getTimes(path, _accessTime, _modificationTime);
 		return cast(O)this; }
-
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
+			
 	/**
 	* app 
 	* 
@@ -53,14 +58,16 @@ import uim.html;
 	mixin(OProperty!("DateTime", "created"));
 	O created(this O)(SysTime value) { this.created(cast(DateTime)value); return cast(O)this; }
 	unittest {
-		// TODO
-	}
+		version(uim_html) {
+			// TODO
+			}}
 
 	mixin(OProperty!("DateTime", "changed"));
 	O changed(this O)(SysTime value) { this.changed(cast(DateTime)value); return cast(O)this; }
 	unittest {
-		// TODO
-	}
+		version(uim_html) {
+			// TODO
+			}}
 
 	auto path() { 
 		if (_app) return app.rootPath ~ name;
@@ -71,8 +78,8 @@ import uim.html;
 	auto mimetype() { return _mimetype; }
 	O mimetype(this O)(string newMimetype) { _mimetype = newMimetype; return cast(O)this; }
 	unittest {
-		assert(H5AppObj.mimetype("text/xml").mimetype == "text/xml");
-		assert(H5AppObj.mimetype("text/xml").mimetype("applications/javascript").mimetype == "applications/javascript");
+		assert(H5AppController.mimetype("text/xml").mimetype == "text/xml");
+		assert(H5AppController.mimetype("text/xml").mimetype("applications/javascript").mimetype == "applications/javascript");
 	}
 
 	/// Name of obj
@@ -80,33 +87,38 @@ import uim.html;
 	auto cached() { return _cached; }
 	O cached(this O)(bool newcached) { _cached = newcached; return cast(O)this; }
 	unittest {
-		/// TODO
-	}
+		version(uim_html) {
+			// TODO
+			}}
 
 	/// Page parameters - will be used to communicate between components
 	mixin(XStringAA!"parameters");
 	unittest {
-		assert(H5AppObj.parameters == null);
-		assert(H5AppObj.parameters(["x":"y"]).parameters == ["x":"y"]);
-		assert(H5AppObj.parameters("x", "y").parameters == ["x":"y"]);
+		assert(H5AppController.parameters == null);
+		assert(H5AppController.parameters(["x":"y"]).parameters == ["x":"y"]);
+		assert(H5AppController.parameters("x", "y").parameters == ["x":"y"]);
 	}
 
 	/// Content of obj
 	string _content;
 	string content(string[string] reqParameters) { 
-		debug writeln("parameters in DH5AppObj/content => ", reqParameters); 
+		debug writeln("parameters in DH5AppController/content => ", reqParameters); 
 
 		return _content; }
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
 
 	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
 	O content(this O)(string addContent) { _content ~= addContent; return cast(O)this; }
 	O clearContent(this O)() { _content = null; return cast(O)this; }
 	unittest {
-		assert(H5AppObj.content("test").content == "test");
-		assert(H5AppObj.content("double").content("test").content == "doubletest");
-		assert(H5AppObj.content("double").content("test").clearContent.content == "");
-		assert(H5AppObj.content("double").content("test").clearContent.content("test").content == "test");
+		assert(H5AppController.content("test").content == "test");
+		assert(H5AppController.content("double").content("test").content == "doubletest");
+		assert(H5AppController.content("double").content("test").clearContent.content == "");
+		assert(H5AppController.content("double").content("test").clearContent.content("test").content == "test");
 	}
 
 	/// Response to HTTP request
@@ -135,20 +147,33 @@ import uim.html;
         }}
 	  request(req, res, reqParameters);
   }
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
 
-	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
-    debug writeln("DH5AppObj:request(req, res, reqParameters)");
+	void beforeResponse(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
 		_request = req; _response = res;
 		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
     reqParameters["htmlMode"] = to!string(req.method);
+	}
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
 
-		auto result = toString(reqParameters);
+	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
+    debug writeln("DH5AppController:request(req, res, reqParameters)");
+		beforeResponse(req, res, reqParameters);
 		if ("redirect" in reqParameters) {
       debug writeln("Found redirect to ", reqParameters["redirect"]);
       auto redirect = reqParameters["redirect"]; 
       reqParameters.remove("redirect");
       res.redirect(redirect);
-    } else res.writeBody(result, _mimetype); 
+    } 
+
+		auto result = toString(reqParameters);
+		res.writeBody(result, _mimetype); 
 	}
 	unittest {
 		version(UIm_html) {
@@ -159,7 +184,7 @@ import uim.html;
 	/// Export to string
 	override string toString() { string[string] pm; return toString(pm); }
 	string toString(STRINGAA reqParameters) {
-		debug writeln("parameters in DH5AppObj/toString => ", reqParameters); 
+		debug writeln("parameters in DH5AppController/toString => ", reqParameters); 
 		
 		debug writeln("Is cached?");
 		if (cached) {
@@ -172,17 +197,18 @@ import uim.html;
 		return this.content(reqParameters); 
 	}
 	unittest {
-		assert(H5AppObj.content("test").toString == "test");
-		assert(H5AppObj.content("double").content("test").toString == "doubletest");
-		assert(H5AppObj.content("double").content("test").clearContent.toString == "");
-		assert(H5AppObj.content("double").content("test").clearContent.content("test").toString == "test");
+		assert(H5AppController.content("test").toString == "test");
+		assert(H5AppController.content("double").content("test").toString == "doubletest");
+		assert(H5AppController.content("double").content("test").clearContent.toString == "");
+		assert(H5AppController.content("double").content("test").clearContent.content("test").toString == "test");
 	}
 }
-auto H5AppObj() { return new DH5AppObj(); }
-auto H5AppObj(DH5App anApp) { return new DH5AppObj(anApp); }
-auto H5AppObj(string aName) { return new DH5AppObj(aName); }
-auto H5AppObj(DH5App anApp, string aName) { return new DH5AppObj(anApp, aName); }
+auto H5AppController() { return new DH5AppController(); }
+auto H5AppController(DH5App anApp) { return new DH5AppController(anApp); }
+auto H5AppController(string aName) { return new DH5AppController(aName); }
+auto H5AppController(DH5App anApp, string aName) { return new DH5AppController(anApp, aName); }
 
 unittest {
-	/// TODO
-}
+	version(uim_html) {
+		// TODO
+		}}

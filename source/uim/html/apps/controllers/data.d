@@ -1,9 +1,9 @@
-module uim.html.apps.data;
+module uim.html.apps.controllers.data;
 
 @safe:
 import uim.html;
 
-class DH5AppData : DH5AppObj {
+class DH5AppData : DH5AppController {
 	this() { super(); _name = "data"; this.mimetype("text/json"); }
 	this(DH5App anApp) { this().app(anApp); }
 	this(string aName) { this().name(aName); }
@@ -18,6 +18,10 @@ class DH5AppData : DH5AppObj {
   override string toString(STRINGAA reqParameters) {
     return toJson(reqParameters).toString;
   }
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
 
   Json toJson(STRINGAA reqParameters) {
     auto result = Json.emptyObject;
@@ -46,6 +50,10 @@ class DH5AppData : DH5AppObj {
 
     return result;
   }
+	unittest {
+		version(uim_html) {
+			// TODO
+			}}
 }
 auto H5AppData() { return new DH5AppData(); }
 auto H5AppData(DH5App anApp) { return new DH5AppData(anApp); }

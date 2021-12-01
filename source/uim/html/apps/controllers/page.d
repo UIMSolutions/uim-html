@@ -1,8 +1,8 @@
-module uim.html.apps.page;
+module uim.html.apps.controllers.page;
 @safe:
 import uim.html;
 
-@safe class DH5AppPage : DH5AppObj {
+@safe class DH5AppPage : DH5AppController {
 	this() { super(); 
 	clearMetas;
 	clearLinks;
@@ -134,7 +134,7 @@ import uim.html;
     }
   }
 
-  DH5Obj toH5(STRINGAA reqParameters) {
+  DH5Obj[] toH5(STRINGAA reqParameters) {
     return null;
   }
 	
@@ -151,7 +151,7 @@ import uim.html;
 		if (lt) return this.layout.toString(this, reqParameters);
 
 		debug writeln("Has no layout");
-    if (auto h5 = toH5(reqParameters)) return h5.toString;
+    if (auto h5 = toH5(reqParameters)) return h5.map!(a => a.toString).join;
 		return this.content(reqParameters); // No layout, only content
 	}	
 }

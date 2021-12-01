@@ -1,8 +1,9 @@
-module uim.html.apps.js;
+module uim.html.apps.controllers.js;
+
 @safe:
 import uim.html;
 
-@safe class DH5AppJavascript : DH5AppObj {
+class DH5AppJavascript : DH5AppController {
 	this() { super(); this.mimetype("application/javascript"); }
 	this(DH5App anApp) { this().app(anApp).mimetype("application/javascript"); }
 	this(string aName) { this().name(aName).mimetype("application/javascript"); }

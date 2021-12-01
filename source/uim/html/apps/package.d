@@ -3,6 +3,7 @@ module uim.html.apps;
 import vibe.d;
 
 public import uim.html.apps.app;
+public import uim.html.apps.appconfig;
 public import uim.html.apps.data;
 public import uim.html.apps.image;
 // public import uim.html.apps.helpers;
