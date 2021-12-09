@@ -8,13 +8,13 @@ public import uim.html.apps.app;
 
 // Packages
 public import uim.html.apps.controllers;
+public import uim.html.apps.layouts;
 public import uim.html.apps.models;
 public import uim.html.apps.views;
 
 // Modules
 public import uim.html.apps.appconfig;
 public import uim.html.apps.authpage;
-public import uim.html.apps.layout;
 
 alias LIBNAME = string;
 alias LIBVERSION = string;

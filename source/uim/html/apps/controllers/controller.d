@@ -8,14 +8,20 @@ class DH5AppController {
 		this
     .htmlModes(["*"])
 		.created(DateTime(2017, 1, 1, 1, 1, 1))
-		.changed(DateTime(2017, 1, 1, 1, 1, 1)); }
-	this(DH5App anApp) { this().app(anApp); }
-	this(string aName) { this().name(aName); }
-	this(DH5App anApp, string aName) { this(anApp).name(aName); }
+		.changed(DateTime(2017, 1, 1, 1, 1, 1))
+		.view(H5NullView); }
+
+	this(string myName) { 
+		this().name(myName);
+	}
+
+	this(DH5AppView myView) { 
+		this().view(myView);
+	}
 
 	SysTime _accessTime, _modificationTime;
 		
-	bool opEquals(string txt) { return toString == txt; }
+	// bool opEquals(string txt) { return toString == txt; }
 
 	O sourceFile(this O)(string path) { 	
 		std.file.getTimes(path, _accessTime, _modificationTime);
@@ -35,21 +41,22 @@ class DH5AppController {
 	* Adding this obj to another app will changes this property to the new app 
 	**/
 	mixin(OProperty!("DH5App", "app"));
-	mixin(OProperty!("DH5View", "view"));
+	mixin(OProperty!("DH5AppView", "view"));
+	mixin(OProperty!("DH5AppController", "controller")); // Cascading controllers
+	mixin(OProperty!("DH5AppControllerComponent[]", "components")); // Cascading controllers
 
 	unittest {
 		version(uim_html) {
-			assert(H5AppPage(H5App("test")).app.name == "test");
-			assert(H5AppPage(H5App("test")).app(H5App("test2")).app.name == "test2");
-			}}
-
+/* 			assert(H5AppController(H5App("test")).app.name == "test");
+			assert(H5AppController(H5App("test")).app(H5App("test2")).app.name == "test2");
+ */			}}
 
 	// name - name of controller
 	mixin(OProperty!("string", "name"));
 	unittest {
 		version(uim_html) {
-			assert(H5AppPage("test").name == "test");
-			assert(H5AppPage.name("test").name == "test");
+			assert(H5AppController("test").name == "test");
+			assert(H5AppController.name("test").name == "test");
 			}}
 
 	mixin(OProperty!("string[]", "htmlModes"));
@@ -67,6 +74,7 @@ class DH5AppController {
 		version(uim_html) {
 			// TODO
 			}}
+
 
 	auto path() { 
 		if (_app) return app.rootPath ~ name;
@@ -98,28 +106,6 @@ class DH5AppController {
 		assert(H5AppController.parameters("x", "y").parameters == ["x":"y"]);
 	}
 
-	/// Content of obj
-	string _content;
-	string content(string[string] reqParameters) { 
-		debug writeln("parameters in DH5AppController/content => ", reqParameters); 
-
-		return _content; }
-	unittest {
-		version(uim_html) {
-			// TODO
-			}}
-
-	O content(this O)(DH5Obj[] addContent) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
-	O content(this O)(DH5Obj[] addContent...) { foreach(c; addContent) _content ~= c.toString; return cast(O)this; }
-	O content(this O)(string addContent) { _content ~= addContent; return cast(O)this; }
-	O clearContent(this O)() { _content = null; return cast(O)this; }
-	unittest {
-		assert(H5AppController.content("test").content == "test");
-		assert(H5AppController.content("double").content("test").content == "doubletest");
-		assert(H5AppController.content("double").content("test").clearContent.content == "");
-		assert(H5AppController.content("double").content("test").clearContent.content("test").content == "test");
-	}
-
 	/// Response to HTTP request
 	HTTPServerRequest _request;
 	HTTPServerResponse _response;
@@ -148,22 +134,26 @@ class DH5AppController {
   }
 	unittest {
 		version(uim_html) {
-			// TODO
-			}}
+			/// TODO
+	}}
 
-	void beforeResponse(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
-		_request = req; _response = res;
-		foreach(k, v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
-    reqParameters["htmlMode"] = to!string(req.method);
-	}
+	protected string _responseResult;
+	void beforeResponse(STRINGAA options = null) {
+		debugMethodCall(moduleName!DH5AppController~":DH5AppController::beforeResponse");
+		foreach(k, v; this.parameters) if (k !in options) options[k] = v;
+    options["htmlMode"] = to!string(_request.method);
+
+		if ("redirect" in options) return; 
+ }
 	unittest {
 		version(uim_html) {
-			// TODO
-			}}
+			/// TODO
+	}}
 
 	void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
-    debug writeln("DH5AppController:request(req, res, reqParameters)");
-		beforeResponse(req, res, reqParameters);
+		debugMethodCall(moduleName!DH5AppController~":DH5AppController::request(req, res, reqParameters)");
+		_request = req; _response = res;
+		beforeResponse(reqParameters);
 
 		if ("redirect" in reqParameters) {
       debug writeln("Found redirect to ", reqParameters["redirect"]);
@@ -172,16 +162,17 @@ class DH5AppController {
       res.redirect(redirect);
     } 
 
-		if (view) res.writeBody(view.render, _mimetype); 
-		else res.writeBody(toString(reqParameters), _mimetype); 
-	}
+    debug writeln("view = '"~view.name~"'");
+		debug writeln("_responseResult = '"~_responseResult~"'");
+		debug writeln("_mimetype = '"~_mimetype~"'");
+		res.writeBody(_responseResult, _mimetype); }
 	unittest {
 		version(uim_html) {
-		/// TODO
-		}}
+			/// TODO
+	}}
 
-	@depraceted
-	string _toString;
+	//deprecated("Will be removed in 2022")
+/* 	string _toString;
 	/// Export to string
 	override string toString() { string[string] pm; return toString(pm); }
 	string toString(STRINGAA reqParameters) {
@@ -202,14 +193,14 @@ class DH5AppController {
 		assert(H5AppController.content("double").content("test").toString == "doubletest");
 		assert(H5AppController.content("double").content("test").clearContent.toString == "");
 		assert(H5AppController.content("double").content("test").clearContent.content("test").toString == "test");
-	}
+	} */
 }
 auto H5AppController() { return new DH5AppController(); }
-auto H5AppController(DH5App anApp) { return new DH5AppController(anApp); }
-auto H5AppController(string aName) { return new DH5AppController(aName); }
-auto H5AppController(DH5App anApp, string aName) { return new DH5AppController(anApp, aName); }
+auto H5AppController(string myName) { return new DH5AppController(myName); }
+auto H5AppController(DH5AppView myView) { return new DH5AppController(myView); }
 
 unittest {
 	version(uim_html) {
-		// TODO Add Test
-		}}
+		assert(H5AppController.view.name == "H5NullView"); // Controller has default view
+		assert(H5AppController.view(H5AppView).view.name == "H5AppView"); // Controller has new view
+}}

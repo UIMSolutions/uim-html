@@ -232,7 +232,9 @@ class DH5AppManifest : DH5AppController {
 		assert(H5AppManifest.themeColor("red").themeColor == "red");
 	}
 
-  override string toString() {
+	override void beforeResponse(STRINGAA reqParameters) {
+    super.beforeResponse(reqParameters);
+
 		Json values;
 /* 		if (_backgroundColor) values["background-color"] = _backgroundColor;
 		if (_categories) values["categories"] = _categories.toJson;
@@ -253,7 +255,7 @@ class DH5AppManifest : DH5AppController {
 		if (_startUrl) values["start_url"] = _startUrl;
 		if (_themeColor) values["theme_color"] = _themeColor; */
 
-		return values.toString;
+		_responseResult = values.toString;
 	}
 }
 auto H5AppManifest() { return new DH5AppManifest(); }

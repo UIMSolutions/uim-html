@@ -5,15 +5,28 @@ import uim.html;
 
 class DH5AppPage : DH5AppController {
 	this() { super(); 
-	clearMetas;
-	clearLinks;
-	clearStyles;
-	clearScripts;
-	
-	this.mimetype("text/html"); }
-	this(DH5App anApp) { this().app(anApp); }
-	this(string aName) { this().name(aName); }
-	this(DH5App anApp, string aName) { this(anApp).name(aName); }
+		clearMetas;
+		clearLinks;
+		clearStyles;
+		clearScripts;
+		
+		this.mimetype("text/html"); 
+	}
+
+	this(DH5App anApp) { 
+		this().app(anApp); 
+	}
+
+	this(DH5AppView aView) { 
+		this().view(aView); 
+	}
+
+	this(string aName) { 
+		this().name(aName); 
+	}
+	this(DH5App anApp, string aName) { 
+		this(anApp).name(aName); 
+	}
 
 	mixin(OProperty!("string", "title"));
 	unittest {
@@ -41,13 +54,13 @@ class DH5AppPage : DH5AppController {
 	STRINGAA keywords;
 	
   /// Every page can has his own layout - Otherwise it will use central app layout
-	DH5AppLayout _layout;
-	auto layout() { 
+	protected DH5AppLayout _layout;
+	DH5AppLayout layout() { 
 		if (_layout) return _layout;
 		if (_app) if (_app.layout) return _app.layout;
 		return null;
 	}
-	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout; return cast(O)this; }
+	void layout(DH5AppLayout newlayout) { _layout = newlayout; }
 	unittest {
 		//auto ly = H5AppLayout;
 		//assert(H5AppPage.content("xxx") == "xxx");
@@ -135,33 +148,42 @@ class DH5AppPage : DH5AppController {
     }
   }
 
-  DH5Obj[] toH5(STRINGAA reqParameters) {
-    return null;
-  }
-	
-	/// Export to string
-	override string toString(STRINGAA reqParameters) {
-		debug writeln(moduleName!DH5AppPage~":DH5AppPage::toString");
+	override void beforeResponse(STRINGAA options = null) {
+		debugMethodCall(moduleName!DH5AppPage~":DH5AppPage::beforeResponse");
+    super.beforeResponse(options);
+		debug writeln("-> Back to DH5AppPage::beforeResponse");
+		// if (hasError) { return; }
 
-		debug writeln("Check layout");
-		DH5AppLayout lt;
-		if (app) lt = app.layout;
-		if (this.layout) lt = this.layout;
+		debug writeln("DH5AppPage is rendering view (", view.name, ")");
 
-		// if layout, use layout
-		if (lt) return this.layout.toString(this, reqParameters);
-
-		debug writeln("Has no layout");
-    if (auto h5 = toH5(reqParameters)) return h5.map!(a => a.toString).join;
-		return this.content(reqParameters); // No layout, only content
+		debug writeln(layout 	? "Has layout " : "Has no layout");
+		_responseResult = layout 	? layout.render(this, view, options) 
+															: view.render(options);															
 	}	
+
+  override void request(HTTPServerRequest req, HTTPServerResponse res, STRINGAA reqParameters) {
+		debugMethodCall(moduleName!DH5AppController~":DH5AppController::request(req, res, reqParameters)");
+		super.request(req, res, reqParameters);
+		// beforeResponse(reqParameters);
+
+		if ("redirect" in reqParameters) {
+      debug writeln("Found redirect to ", reqParameters["redirect"]);
+      auto redirect = reqParameters["redirect"]; 
+      reqParameters.remove("redirect");
+      res.redirect(redirect);
+    } 
+
+		res.writeBody(view.render(reqParameters), _mimetype); 
+  }
 }
- auto H5AppPage() { return new DH5AppPage(); }
- auto H5AppPage(string aName) { return new DH5AppPage(aName); }
- auto H5AppPage(DH5App anApp) { return new DH5AppPage(anApp); }
- auto H5AppPage(DH5App anApp, string aName) { return new DH5AppPage(anApp, aName); }
+auto H5AppPage() { return new DH5AppPage(); }
+auto H5AppPage(string aName) { return new DH5AppPage(aName); }
+auto H5AppPage(DH5AppView myView) { return new DH5AppPage(myView); }
+auto H5AppPage(DH5App anApp) { return new DH5AppPage(anApp); }
+auto H5AppPage(DH5App anApp, string aName) { return new DH5AppPage(anApp, aName); }
 
 unittest {
+	version(uim_html) {
     assert(H5AppPage);
     assert(H5AppPage("name").name() == "name");
     assert(H5AppPage("name").name("newname").name() == "newname");
@@ -171,7 +193,10 @@ unittest {
     assert(H5AppPage(app, "name").name == "name");
     // TOD add @safe assert(H5AppPage(app, "name").app == app);
     assert(H5AppPage(app, "name").name("newname").name() == "newname");
-}
+
+		assert(H5AppPage.view.name == "H5NullView"); // H5AppPage has default view
+		assert(H5AppPage.view(H5AppView).view.name == "H5AppView"); // H5AppPage has new view
+}}
 
 	// Get page by names
 	 DH5AppPage pageByName(DH5AppPage[] pages, string name) {

@@ -1,19 +1,19 @@
-﻿module uim.html.apps.layout;
+﻿module uim.html.apps.layouts.layout;
 
 @safe:
 import uim.html;
 
 /// Page layout
-class DH5AppLayout : DH5AppController {
-	this() { super(); 
-	_lang = "en"; }
-	this(DH5App anApp) { this().app(anApp); }
+class DH5AppLayout {
+	this() { _lang = "en"; }
 
 	string[] _headClasses;
 	STRINGAA _headAttributes;
 	string[] _bodyClasses;
 	STRINGAA _bodyAttributes;
 
+	mixin(XStringAA!"parameters");
+	
 	mixin(XString!("preHead"));
 	mixin(XString!("postHead"));
 	mixin(XString!("preContent"));
@@ -62,8 +62,9 @@ class DH5AppLayout : DH5AppController {
 
 	O clearLinks(this O)() { _links = null; return cast(O)this; }
 	unittest {
-		/// TODO
-	}
+		version(uim_html) {
+			/// TODO
+	}}
 
 	DH5Style[] _styles;
 	DH5Style[] styles() { return  _styles; }	
@@ -80,8 +81,9 @@ class DH5AppLayout : DH5AppController {
 
 	O clearStyles(this O)() { _styles = null; return cast(O)this; }
 	unittest {
-		/// TODO
-	}
+		version(uim_html) {
+			/// TODO
+	}}
 
 	DH5Script[] _scripts;
 	DH5Script[] scripts() { return _scripts; }
@@ -96,123 +98,85 @@ class DH5AppLayout : DH5AppController {
 
 	O clearScripts(this O)() { _scripts = null; return cast(O)this; }
 	unittest {
-		// assert(H5AppLayout.)
-	}
+		version(uim_html) {
+			/// TODO
+	}}
 
   mixin(XString!("headPart"));
 	mixin(XString!("bodyPart"));
 
-	/// central layout for page
-	DH5AppLayout _layout;
-	auto layout() { if (_layout) return _layout; return null; }
-	O layout(this O)(DH5AppLayout newlayout) { _layout = newlayout.app(this.app); return cast(O)this; }
-	unittest {
-		/// TODO		
+	// Cascading layouts
+	mixin(OProperty!("DH5AppLayout", "layout"));
+
+	// #region render
+
+	void beforeRender(STRINGAA options = null) {
+		debugMethodCall(moduleName!DH5AppLayout~":DH5AppLayout::beforeRender");
 	}
 
-	string opCall() { return toString(); }
-	string opCall(DH5AppPage page, STRINGAA parameters) { return toString(page, parameters); }
-	string opCall(string content, STRINGAA parameters) { return toString(content, parameters); }
-	
-	override string toString() { return toString("", null); }
-	string toString(DH5AppPage page, STRINGAA reqParameters) {
-		return toString(page, page.content(reqParameters), reqParameters);
+	string render(DH5AppController controller, DH5AppView view, STRINGAA options = null) { 
+		auto renderedView = view.render(options);
+		debug writeln("renderedView ("~view.name~") = '", renderedView, "'");
+
+		return render(controller, renderedView, options);
 	}
 
-	string toString(DH5AppPage page, string content, STRINGAA reqParameters) {
-		if (page) foreach(k,v; page.parameters) if (k !in reqParameters) reqParameters[k] = v;
-		foreach(k,v; this.parameters) if (k !in reqParameters) reqParameters[k] = v;
+	string render(DH5AppController controller, string renderedView, STRINGAA options = null) { 
+		debugMethodCall(moduleName!DH5AppLayout~":DH5AppLayout::render");
+		beforeRender(options);
 
-		if (page) {
-			reqParameters["lang"] = page.lang;
-			reqParameters["title"] = page.title;
+		// 1. page parameters to options
+		if (controller) foreach(k,v; controller.parameters) options[k] = v; 
+		// 2. layout parameters to options
+		foreach(k,v; parameters) if (k !in options) options[k] = v;
+		// 3. app parameters to options
+		DH5App app;
+		if (controller) app = controller.app; 
+		if (app) {
+			options["rootPath"] = app.rootPath;      
+			foreach(k,v; app.parameters) if (k !in options) options[k] = v; }
+
+		DH5Meta[] 	actualMetas;
+		DH5Link[] 	actualLinks;
+		DH5Style[] 	actualStyles;
+		DH5Script[] actualScripts;
+		if (auto page = cast(DH5AppPage)controller) {
+			actualMetas = (app ? app.metas : null)  ~ this.metas ~ (page ? page.metas : null);
+			actualLinks = /* (app ? app.links : null) ~  */this.links ~ (page ? page.links : null);
+			actualStyles = (app ? app.styles : null) ~ this.styles ~ (page ? page.styles : null);
+			actualScripts = (app ? app.scripts : null) ~ this.scripts ~ (page ? page.scripts : null);
 		}
-
-		DH5Meta[] newMetas;
-		if (app) newMetas ~= app.metas;
-		newMetas ~= this.metas;
-		if (page) newMetas ~= page.metas;
-
-		DH5Link[] newLinks;		
-//		if (app) newLinks = app.links;
-		newLinks ~= this.links;
-		if (page) newLinks ~= page.links;
-
-		DH5Style[] newStyles;
-		if (app) newStyles ~= app.styles;
-		newStyles ~= this.styles;
-		if (page) newStyles ~= page.styles;
-
-		DH5Script[] newScripts;
-		if (app) newScripts ~= app.scripts;
-		newScripts ~= this.scripts;
-		if (page) newScripts ~= page.scripts;
-
-		return htmlDocument(page, content, newMetas, newLinks, newStyles, newScripts, reqParameters);
-	}
-
-	string toString(string content, STRINGAA reqParameters) {
-		debug writeln(moduleName!DH5AppLayout~":DH5AppLayout::toString");
-
-		// layout override app, parameters override layout
-		// Layout overrides app
-		foreach(k,v; this.parameters) reqParameters[k] = v;
-
-		DH5Meta[] newMetas;
-		if (app) newMetas = app.metas;
-		newMetas ~= this.metas;
-
-		DH5Link[] newLinks;		
-//		if (app) newLinks = app.links;
-		newLinks ~= this.links;
-
-		DH5Style[] newStyles;
-		if (app) newStyles = app.styles;
-		newStyles ~= this.styles;
-
-		DH5Script[] newScripts;
-		if (app) newScripts ~= app.scripts;
-		newScripts ~= this.scripts;
-
-		return htmlDocument(null, content, newMetas, newLinks, newStyles, newScripts, reqParameters);
-	}
-
-	auto htmlDocument(DH5AppPage page, string content, DH5Meta[] newMetas, DH5Link[] newLinks, DH5Style[] newStyles, DH5Script[] newScripts, STRINGAA reqParameters) {
-		debug writeln(moduleName!DH5AppLayout~":DH5AppLayout::htmlDocument");
-
-		foreach(kv; this.parameters.byKeyValue) if (kv.key !in reqParameters) reqParameters[kv.key] = kv.value;
-		auto finalLang = reqParameters.get("lang", this.lang); // if lang !in parameters use this.lang
-		auto finalTitle = reqParameters.get("title", this.title);  // if title !in parameters use this.title
 
 		// creating HTML page
 		_html = H5Html
-		.attributes("lang", finalLang).attributes("dir", reqParameters.get("dir", "ltr"))
+		.attributes("lang", options.get("lang", "en")).attributes("dir", options.get("dir", "ltr"))
 		// Head part of HTML
 		.head(_headClasses)
 		.head(_headAttributes)
-		.head(finalTitle.length > 0 ? "<title>" ~ finalTitle ~ "</title>":"")
-		.head(newMetas.asString~reqParameters.get("metas", ""))
-		.head(newLinks.asString~reqParameters.get("links", ""))
-		.head("link" in reqParameters ? reqParameters["link"] : "")
-		.head(newStyles.asString~reqParameters.get("styles", ""))
-		.head("style" in reqParameters ? H5Style(reqParameters["style"]).toString : "")
+		.head(options.get("title", null) ? "<title>" ~ options.get("title", null) ~ "</title>":"")
+		.head(actualMetas.asString~options.get("metas", ""))
+		.head(actualLinks.asString~options.get("links", ""))
+		.head("link" in options ? options["link"] : "")
+		.head(actualStyles.asString~options.get("styles", ""))
+		.head("style" in options ? H5Style(options["style"]).toString : "")
 		// Body part of HTML
 		.body_(_bodyClasses)
 		.body_(_bodyAttributes)
-		.body_(this.layout ?  this.layout.toString(content, reqParameters) : content)
-		.body_(newScripts.map!(a => a.toString).array.join(""))
-		.body_("script" in reqParameters ? H5Script(reqParameters["script"]).toString : "");
+		.body_(this.layout ?  this.layout.render(controller, renderedView, options) : renderedView)
+		.body_(actualScripts.map!(a => a.toString).array.join(""))
+		.body_("script" in options ? H5Script(options["script"]).toString : "");
 
 		return _html.toString;
 	}
 	unittest {
 		// writeln(H5AppLayout);
-		assert(H5AppLayout == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
+		// assert(H5AppLayout.render == `<!doctype html><html dir="ltr" lang="en"><head></head><body></body></html>`);
 		//assert(H5AppLayout()("xxx") == `<!doctype html><html dir="ltr" lang="en"><head></head><body>xxx</body></html>`);
 	}
 }
 auto H5AppLayout() { return new DH5AppLayout(); }
 
 unittest {
-
-}
+	version(uim_html) {
+		/// TODO
+}}

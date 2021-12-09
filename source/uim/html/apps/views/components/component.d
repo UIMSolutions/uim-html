@@ -1,29 +1,15 @@
-module uim.html.apps.views.view;
+module uim.html.apps.views.components.component;
 
 @safe:
 import uim.html;
 
-class DH5AppView {
-	this() { this.name = "H5AppView"; }
-  this(DH5AppController aController) { this().controller(aController); }
-	this(string aName) { this().name(aName); }
-	this(DH5AppController aController, string aName) { this(aController).name(aName); }
+class DH5AppViewComponent {
+  this() {}
+  this(DH5AppView aView) { this().view(aView); }
 
-  mixin(OProperty!("DH5AppLayout", "layout"));
+  mixin(OProperty!("DH5AppView", "view"));
 
-  // App of View
-  mixin(OProperty!("DH5AppController", "controller"));
-	unittest {
-		version(uim_html) {
-      //
-			}}
-
-  protected DH5App _app;
-  DH5App app() {
-    if (_app) return _app;
-    return controller ? controller.app : null; }
-
-  // Name of model
+    // Name of model
 	mixin(OProperty!("string", "name"));
 	unittest {
 		version(uim_html) {
@@ -32,7 +18,12 @@ class DH5AppView {
 
 
   // #region Error handling
-    mixin(OProperty!("string", "error"));
+    protected string _error;
+    string error() { return _error; };
+    O error(this O)(string newError) { 
+      _error = newError;
+      if (hasError) debug writeln("[ERROR] ", _error);
+      return cast(O)this; }
 
     bool hasError() { 
       return (_error.length > 0); }
@@ -41,7 +32,7 @@ class DH5AppView {
       return (_error.length == 0); }
     
     unittest {
-      version(uim_apps) {
+      version(uim_html) {
         auto component = H5AppViewComponent;
         assert(!component.hasError); // has no error
         assert(component.noError); // has no error
@@ -54,16 +45,15 @@ class DH5AppView {
         }}
   // #endregion Error handling
 
-  // Default content
-  mixin(OProperty!("DH5Obj[]", "content"));
-
   // #region h5 content
+    // Default h5Content
+    mixin(OProperty!("DH5Obj[]", "defaultH5Content"));
+
     protected DH5Obj[] _h5Content;
     void beforeH5(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::beforeH5"); 
       // init
       _error = null; // Delete last error
-      _h5Content = _content ? _content.dup : null; // Copy default
+      _h5Content = defaultH5Content ? defaultH5Content.dup : null; // Copy default
       return;
     }
     unittest {
@@ -72,7 +62,6 @@ class DH5AppView {
     }}
 
     void afterH5(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::afterH5"); 
       return;
       }
     unittest {
@@ -81,7 +70,6 @@ class DH5AppView {
         }}
 
     DH5Obj[] toH5(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::toH5"); 
       beforeH5(options);
       if (hasError) { debug writeln("[ERROR] ", error); return null; }
 
@@ -95,6 +83,8 @@ class DH5AppView {
   // #endregion h5 content
 
   // #region render
+    // Default content
+    mixin(OProperty!("string", "defaultContent"));
     /**
      * Renders view
      *
@@ -106,8 +96,8 @@ class DH5AppView {
      */
     string _rendered;
     void beforeRender(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::beforeRender"); 
-      _rendered = null;
+      _rendered = defaultContent;
+      return;
     }
     unittest {
       version(uim_html) {
@@ -115,7 +105,6 @@ class DH5AppView {
         }}
 
     void afterRender(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::afterRender"); 
       return; }
     unittest {
       version(uim_html) {
@@ -123,20 +112,17 @@ class DH5AppView {
         }}
 
     string render(STRINGAA options = null) {
-      debugMethodCall(moduleName!DH5AppView~":DH5AppView::render"); 
       // this.dispatchEvent("View.beforeRender", [templateFileName]);
       beforeRender(options);
-      if (hasError) { return null; }
+      if (hasError) { debug writeln("[ERROR] ", error); return null; }
       
-      auto preRender = toH5(options).map!(a => a.toString).join;
-      _rendered ~= layout ? layout.render(controller, preRender) : preRender ;
-      debug writeln("_rendered = '", _rendered, "'"); 
-      if (hasError) { return null; }
+      _rendered ~= toH5(options).map!(a => a.toString).join;
+      if (hasError) { debug writeln("[ERROR] ", error); return null; }
 
       // this.Blocks.set("content", this._render(templateFileName));
       // this.dispatchEvent("View.afterRender", [templateFileName]);
       afterRender(options);
-      if (hasError) { return null; }
+      if (hasError) { debug writeln("[ERROR] ", error); return null; }
 
       return _rendered; }
     unittest {
@@ -146,22 +132,9 @@ class DH5AppView {
   // #endregion render 
 
   // #region convert
-    /* T opCast(T = DH5Obj[])() { return this.toH5(); } */
-    override string toString() { return this.render(); }
-    string toString(STRINGAA options) { return this.render(options); }
+    /* T opCast(T : DH5Obj[])() { return toH5(); } */
+    override string toString() { return render(); }
+    string toString(STRINGAA options) { return render(options); }
   // #endregion convert
 }
-auto H5AppView() { return new DH5AppView(); }
-auto H5AppView(DH5AppController aController) { return new DH5AppView(aController); }
-auto H5AppView(string aName) { return new DH5AppView(aName); }
-auto H5AppView(DH5AppController aController, string aName) { return new DH5AppView(aController, aName); }
-
-unittest {
-  version(uim_html) {
-    assert(H5AppView.name == "H5AppView");
-    assert(H5AppView.name("newView").name == "newView");
-    }}
-
-
-
-
+auto H5AppViewComponent() { return new DH5AppViewComponent; }

@@ -561,19 +561,21 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
 
    mixin(H5Def!"rtc");
     unittest { 
-        assert(Assert(H5.rtc, "<rtc></rtc>"));
-    }
+        version(uim_html) {
+          assert(Assert(H5.rtc, "<rtc></rtc>"));
+    }}
 
     mixin(H5Def!"ruby");
     unittest { 
         version(uim_html) {
-            assert(Assert(H5.ruby, "<ruby></ruby>"));
+            //assert(Assert(H5.ruby, "<ruby></ruby>"));
     }}
 
     mixin(H5Def!"s");
     unittest { 
-        assert(H5.s == "<s></s>");
-    }
+        version(uim_html) {
+            assert(H5.s == "<s></s>");
+    }}
 
     mixin(H5Def!"samp");
     unittest { 

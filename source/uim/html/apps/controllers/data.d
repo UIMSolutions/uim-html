@@ -15,15 +15,7 @@ class DH5AppData : DH5AppController {
   mixin(OProperty!("bool", "sessionRequired"));
   mixin(OProperty!("Json", "session"));
 
-  override string toString(STRINGAA reqParameters) {
-    return toJson(reqParameters).toString;
-  }
-	unittest {
-		version(uim_html) {
-			// TODO
-			}}
-
-  Json toJson(STRINGAA reqParameters) {
+  Json toJson(STRINGAA options = null) {
     auto result = Json.emptyObject;
     result["error"] = 0;
     result["status"] = 201;
@@ -32,7 +24,7 @@ class DH5AppData : DH5AppController {
     if (sessionRequired) {
       string sessionId; 
       if (_request.session && _request.session.isKeySet("sessionId")) sessionId = _request.session.get("sessionId", "");
-      if ("sessionId" in reqParameters) sessionId = reqParameters["sessionId"];
+      sessionId = options.get("sessionId", null);
       if (sessionId.empty) {
         result["error"] = 1;
         result["status"] = 409;
@@ -52,8 +44,14 @@ class DH5AppData : DH5AppController {
   }
 	unittest {
 		version(uim_html) {
-			// TODO
-			}}
+			/// TODO
+	}}
+
+	override void beforeResponse(STRINGAA reqParameters) {
+    super.beforeResponse(reqParameters);
+
+		_responseResult = toJson(reqParameters).toString;
+	}
 }
 auto H5AppData() { return new DH5AppData(); }
 auto H5AppData(DH5App anApp) { return new DH5AppData(anApp); }
