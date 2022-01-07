@@ -3,12 +3,12 @@ module uim.html.helpers;
 @safe:@safe:
 import uim.html;
 
-auto pagesByNames(DH5AppPage[] pages, string[] names...) {
+/* auto pagesByNames(DH5AppPage[] pages, string[] names...) {
   return pagesByNames(pages, names); }
 unittest {
 /* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-*/}
+* /}
 
 // Get pages by names
 auto pagesByNames(DH5AppPage[] pages, string[] names) {
@@ -18,7 +18,7 @@ auto pagesByNames(DH5AppPage[] pages, string[] names) {
 unittest {
 /* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-*/
+* /
 }
 
 auto pagesByNames(DH5AppPage[string] pages, string[] names...) {
@@ -31,7 +31,7 @@ auto pagesByNames(DH5AppPage[string] pages, string[] names) {
 unittest {
 /* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-*/
+* /
 }
 
 // Get page by name
@@ -41,7 +41,7 @@ auto pageByName(DH5AppPage[] pages, string name) {
 unittest {
 /* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-*/
+* /
 }
 // Get page by name
 auto pageByName(DH5AppPage[string] pages, string name) {
@@ -50,40 +50,12 @@ auto pageByName(DH5AppPage[string] pages, string name) {
 unittest {
 /* 		assert(H5App.pages("test", "testcontent").pages.pageByName("test").name == "test");	
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
-*/}
+* /}
 
 /* void redirectCheck(string[string] parameters) {
 	writeln("Has Redirect? ", parameters.get("redirect", ""));
 	if ("redirect" in parameters) redirect(parameters["redirect"]);
 } */
-
-auto readRequestParameters(HTTPServerRequest req, STRINGAA reqParameters) {
-    reqParameters["httpMode"] = (req.fullURL.toString.indexOf("https") == 0 ? "https" : "http");
-		reqParameters["request"] = req.toString;
-		reqParameters["method"] = to!string(req.method);
-		reqParameters["form"] = req.form.toString;
-		reqParameters["peer"] = req.peer;
-		reqParameters["host"] = req.host;
-		reqParameters["path"] = req.path;
-		reqParameters["rootDir"] = req.rootDir;
-		reqParameters["queryString"] = req.queryString;
-		reqParameters["fullURL"] = req.fullURL.toString;
-		reqParameters["json"] = req.json.toString;
-		reqParameters["username"] = req.username;
-		reqParameters["password"] = req.password;
-		reqParameters["contentType"] = req.contentType;
-		reqParameters["contentTypeParameters"] = req.contentTypeParameters;
-    reqParameters["timeCreated"] = to!string(toTimestamp(req.timeCreated));
-    reqParameters["persistent"] = to!string(req.persistent);
-		
-		foreach(key; req.params.byKey) reqParameters[key] = req.params[key];
-		foreach(key; req.headers.byKey) reqParameters[key] = req.headers[key];
-		foreach(key; req.query.byKey) reqParameters[key] = req.query[key];
-		foreach(key; req.form.byKey) reqParameters[key] = req.form[key];
-
-    readSessionId(req, reqParameters);
-		return reqParameters;
-}
 
 string readLoginId(HTTPServerRequest request, STRINGAA parameters) {
   return readKeyValue("loginId", request, parameters);
