@@ -93,3 +93,31 @@ string readKeyValue(string key, HTTPServerRequest request, STRINGAA parameters) 
   parameters[key] = keyvalue;
   return keyvalue;
 }
+
+auto readRequestParameters(HTTPServerRequest req, STRINGAA reqParameters) {
+  reqParameters["httpMode"] = (req.fullURL.toString.indexOf("https") == 0 ? "https" : "http");
+  reqParameters["request"] = req.toString;
+  reqParameters["method"] = to!string(req.method);
+  reqParameters["form"] = req.form.toString;
+  reqParameters["peer"] = req.peer;
+  reqParameters["host"] = req.host;
+  reqParameters["path"] = req.path;
+  reqParameters["rootDir"] = req.rootDir;
+  reqParameters["queryString"] = req.queryString;
+  reqParameters["fullURL"] = req.fullURL.toString;
+  reqParameters["json"] = req.json.toString;
+  reqParameters["username"] = req.username;
+  reqParameters["password"] = req.password;
+  reqParameters["contentType"] = req.contentType;
+  reqParameters["contentTypeParameters"] = req.contentTypeParameters;
+  reqParameters["timeCreated"] = to!string(toTimestamp(req.timeCreated));
+  reqParameters["persistent"] = to!string(req.persistent);
+  
+  foreach(key; req.params.byKey) reqParameters[key] = req.params[key];
+  foreach(key; req.headers.byKey) reqParameters[key] = req.headers[key];
+  foreach(key; req.query.byKey) reqParameters[key] = req.query[key];
+  foreach(key; req.form.byKey) reqParameters[key] = req.form[key];
+
+  readSessionId(req, reqParameters);
+  return reqParameters;
+}

@@ -26,8 +26,9 @@ public import uim.javascript;
 public import uim.html.mixins;
 public import uim.html.h5;
 public import uim.html.obj;
-public import uim.html.apps;
 
+public import uim.html.audio;
+public import uim.html.canvas;
 public import uim.html.core;
 public import uim.html.components;	
 public import uim.html.elements;
