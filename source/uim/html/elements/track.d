@@ -8,31 +8,31 @@ class DH5Track : DH5Obj {
 	
 	mixin(MyAttribute!("isDefault", "default"));
 	unittest {
-		version(uim_html) {
+		version(test_uim_html) {
 			assert(Assert(H5Track.isDefault("true"),`<track default></track>`));
 	}}
 
   mixin(MyAttribute!"label");
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Track.label("aValue"),`<track label="aValue"></track>`));
 	}}
 
   mixin(MyAttribute!"src");
 	unittest {
-		version(uim_html) {
+		version(test_uim_html) {
 			assert(Assert(H5Track.src("aValue"),`<track src="aValue"></track>`));
 	}}
 
     mixin(MyAttribute!"srclang");
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Track.srclang("aValue"),`<track srclang="aValue"></track>`));
 	}}
 }
 mixin(H5Short!"Track");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Track,`<track></track>`));
 }}

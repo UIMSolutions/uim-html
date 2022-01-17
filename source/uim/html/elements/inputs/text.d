@@ -9,6 +9,6 @@ class DH5InputText : DH5Input {
 mixin(H5Short!"InputText"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

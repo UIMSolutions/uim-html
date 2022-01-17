@@ -9,6 +9,6 @@ class DH5Rbc : DH5Obj {
 mixin(H5Short!"Rbc");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Rbc,"<rbc></rbc>"));
 }}

@@ -9,6 +9,6 @@ class DH5Keygen : DH5Obj {
 mixin(H5Short!"Keygen");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Keygen,"<keygen></keygen>"));
 }}

@@ -9,6 +9,6 @@ class DH5Menuitem : DH5Obj {
 mixin(H5Short!"Menuitem");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Menuitem, "<menuitem></menuitem>"));
 }}

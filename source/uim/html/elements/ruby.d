@@ -8,6 +8,6 @@ class DH5Ruby : DH5Obj {
 mixin(H5Short!"Ruby");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Ruby,"<ruby></ruby>"));
 }}

@@ -13,6 +13,6 @@ class DH5InputCOLOR : DH5Input {
 }
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

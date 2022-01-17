@@ -8,37 +8,37 @@ class DH5Source : DH5Obj {
 	
 	mixin(MyAttribute!"sizes");
 	unittest {
-  	version(uim_html) {
+  	version(test_uim_html) {
 		assert(Assert(H5Source.sizes("aValue"),`<source sizes="aValue"></source>`));
 	}}
 
   mixin(MyAttribute!"src");
 	unittest {
-	  version(uim_html) {		
+	  version(test_uim_html) {		
 			assert(Assert(H5Source.src("aValue"),`<source src="aValue"></source>`));
 	}}
 
   mixin(MyAttribute!"srcset");
 	unittest {
-  	version(uim_html) {
+  	version(test_uim_html) {
 			assert(Assert(H5Source.srcset("aValue"),`<source srcset="aValue"></source>`));
 	}}
 
   mixin(MyAttribute!"type");
 	unittest {
-  	version(uim_html) {
+  	version(test_uim_html) {
 			assert(Assert(H5Source.type("aValue"),`<source type="aValue"></source>`));
 	}}
 
   mixin(MyAttribute!"media"); 
 	unittest {
-	  version(uim_html) {		
+	  version(test_uim_html) {		
 			assert(Assert(H5Source.media("aValue"),`<source media="aValue"></source>`));
 	}}
 }
 mixin(H5Short!"Source");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(H5Source == `<source></source>`);
 }}

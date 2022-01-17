@@ -9,6 +9,6 @@ class DH5InputPASSWORD : DH5Input {
 mixin(H5Short!"InputPASSWORD"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

@@ -9,6 +9,6 @@ class DH5InputFile : DH5Input {
 mixin(H5Short!"InputFile"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

@@ -29,12 +29,12 @@ class DH5Ul : DH5Obj {
 		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
 	unittest {
-  	version(uim_html) {
+  	version(test_uim_html) {
 	}}
 }
 mixin(H5Short!"Ul");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Ul, "<ul></ul>"));
 }}

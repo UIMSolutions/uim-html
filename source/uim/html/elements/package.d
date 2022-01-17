@@ -1702,6 +1702,6 @@ class DH5CENTER : DH5Obj {
 mixin(H5Short!"CENTER");
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

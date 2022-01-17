@@ -9,6 +9,6 @@ class DH5Svg : DH5Obj {
 mixin(H5Short!"Svg");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Svg, "<svg></svg>"));
 }}

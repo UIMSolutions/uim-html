@@ -9,6 +9,6 @@ class DH5InputMONTH : DH5Input {
 mixin(H5Short!"InputMONTH"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

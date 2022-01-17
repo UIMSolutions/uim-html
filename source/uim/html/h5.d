@@ -25,79 +25,79 @@ class DH5 {
 */
     mixin(H5Def!"a");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
         assert(Assert(H5.a, "<a></a>"));
     }}
     
     mixin(H5Def!"abbr");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.abbr, "<abbr></abbr>"));
     }}
     
     mixin(H5Def!"address");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.address, "<address></address>"));
     }}
     
     mixin(H5Def!"area");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.area, "<area></area>"));
     }}
     
     mixin(H5Def!"article");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.article, "<article></article>"));
     }}
 
     mixin(H5Def!"aside");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
            assert(Assert(H5.aside, "<aside></aside>"));
     }}
     
     mixin(H5Def!"audio");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.audio, "<audio></audio>"));
     }}
         
     mixin(H5Def!"b");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.b, "<b></b>"));
     }}
     
     mixin(H5Def!"base");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.base, "<base></base>"));
     }}
     
     mixin(H5Def!"bdi");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.bdi, "<bdi></bdi>"));
     }}
     
     mixin(H5Def!"bdo");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.bdo, "<bdo></bdo>"));
     }}
     
     mixin(H5Def!"big");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.big, "<big></big>"));
     }}
     
     mixin(H5Def!"blockquote");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.blockquote, "<blockquote></blockquote>"));
     }}
     
@@ -140,104 +140,104 @@ class DH5 {
     
     mixin(H5Def!"br");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.br, "<br>"));
     }}
     
     mixin(H5Def!"button");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.button, "<button></button>"));
     }}
     
     mixin(H5Def!"canvas");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
 /*	    assert(Assert(H5.canvas("test", [""]), `<canvas id="test"></canvas><script>function drawtest(){var canvas=document.getElementById('test');`~
 		`var context=canvas.getContext('2d');}window.addEventListener("load",drawtest,true);</script>`));
 */    }}
     
     mixin(H5Def!"caption");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.caption, "<caption></caption>"));
     }}
     
     mixin(H5Def!"cite");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.cite, "<cite></cite>"));
     }}
     
     mixin(H5Def!"code");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.code, "<code></code>"));
     }}
     
     mixin(H5Def!"col");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.col, "<col></col>"));
     }}
     
     mixin(H5Def!"colgroup");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.colgroup, "<colgroup></colgroup>"));
     }}
     
     mixin(H5Def!"content");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.content, "<content></content>"));
     }}
     
     mixin(H5Def!"data");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.data, "<data></data>"));
     }}
 
     mixin(H5Def!"datalist");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.datalist, "<datalist></datalist>"));
     }}
 
      mixin(H5Def!"dd");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.dd, "<dd></dd>"));
     }}
 
     mixin(H5Def!"decorator");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.decorator, "<decorator></decorator>"));
     }}
 
     mixin(H5Def!"del");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.del, "<del></del>"));
     }}
 
     mixin(H5Def!"details");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.details, "<details></details>"));
     }}
 
     mixin(H5Def!"dfn");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.dfn, "<dfn></dfn>"));
     }}
 
     mixin(H5Def!"dialog");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(Assert(H5.dialog, "<dialog></dialog>"));
     }}
 
@@ -561,19 +561,19 @@ auto main_(this O)(string id, string[] classes, string[string] attributes, DH5 c
 
    mixin(H5Def!"rtc");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
           assert(Assert(H5.rtc, "<rtc></rtc>"));
     }}
 
     mixin(H5Def!"ruby");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             //assert(Assert(H5.ruby, "<ruby></ruby>"));
     }}
 
     mixin(H5Def!"s");
     unittest { 
-        version(uim_html) {
+        version(test_uim_html) {
             assert(H5.s == "<s></s>");
     }}
 

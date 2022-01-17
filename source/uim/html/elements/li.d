@@ -12,6 +12,6 @@ class DH5Li : DH5Obj {
 mixin(H5Short!"Li");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Li, "<li></li>"));
 }}

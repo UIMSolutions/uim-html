@@ -9,6 +9,6 @@ class DH5InputRANGE : DH5Input {
 mixin(H5Short!"InputRANGE"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

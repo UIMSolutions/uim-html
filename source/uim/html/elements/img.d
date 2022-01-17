@@ -9,7 +9,7 @@ class DH5Img : DH5Obj {
 mixin(H5Short!("Img"));
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Img, "<img>"));
 }}
 
@@ -19,6 +19,6 @@ class DH5Image : DH5Obj {
 mixin(H5Short!("Image"));
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Image, "<img>"));
 }}

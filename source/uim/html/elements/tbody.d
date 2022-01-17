@@ -8,18 +8,18 @@ class DH5Tbody : DH5Obj {
 	
 	mixin(MyContent!("tr", "H5Tr"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Tbody.tr,"<tbody><tr></tr></tbody>"));
 	}}
 
 	mixin(MyContent!("row", "H5Tr"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Tbody.row,"<tbody><tr></tr></tbody>"));
 	}}
 }
 mixin(H5Short!"Tbody");
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(H5Tbody == "<tbody></tbody>");
 }}

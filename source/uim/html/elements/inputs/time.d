@@ -9,6 +9,6 @@ class DH5InputTIME : DH5Input {
 mixin(H5Short!"InputTIME"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

@@ -8,6 +8,6 @@ class DH5InputDATETIME : DH5Input {
 }
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

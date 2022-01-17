@@ -9,6 +9,6 @@ class DH5Legend : DH5Obj {
 mixin(H5Short!"Legend");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Legend,"<legend></legend>"));
 }}

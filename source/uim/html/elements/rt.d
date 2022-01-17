@@ -9,6 +9,6 @@ class DH5Rt : DH5Obj {
 mixin(H5Short!"Rt");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Rt,"<rt></rt>"));
 }}

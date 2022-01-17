@@ -145,6 +145,6 @@ template DTag(string fName, string tName) {
 //
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

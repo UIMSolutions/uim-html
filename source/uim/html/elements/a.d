@@ -9,7 +9,7 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5A,"<a></a>"));
 }}
 
@@ -78,7 +78,7 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5A == "<a></a>");
 }
 */

@@ -9,6 +9,6 @@ class DH5Picture : DH5Obj {
 mixin(H5Short!"Picture");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Picture,"<picture></picture>"));
 }}

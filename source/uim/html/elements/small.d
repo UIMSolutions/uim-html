@@ -9,7 +9,7 @@ class DH5Small : DH5Obj {
 mixin(H5Short!"Small");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Small,"<small></small>"));
 }}
 

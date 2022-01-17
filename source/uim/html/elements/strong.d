@@ -9,6 +9,6 @@ class DH5Strong : DH5Obj {
 mixin(H5Short!"Strong");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Strong,"<strong></strong>"));
 }}

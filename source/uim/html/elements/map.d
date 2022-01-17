@@ -9,6 +9,6 @@ class DH5Map : DH5Obj {
 mixin(H5Short!"Map");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Map,"<map></map>"));
 }}

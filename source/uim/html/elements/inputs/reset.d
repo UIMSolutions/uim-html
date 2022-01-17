@@ -9,6 +9,6 @@ class DH5InputRESET : DH5Input {
 mixin(H5Short!"InputRESET"); 
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

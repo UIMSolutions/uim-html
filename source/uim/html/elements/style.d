@@ -8,7 +8,7 @@ class DH5Style : DH5Obj {
 }
 mixin(H5Short!"Style");
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Style,"<style></style>"));
 }}
 
@@ -18,7 +18,7 @@ string toString(DH5Style[] styles) {
 	return result;
 }
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert([H5Style, H5Style].toString == "<style></style><style></style>");
 }}
 
@@ -29,6 +29,6 @@ DH5Style[] H5Styles(string[string][] styles) {
 	return results;
 }
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
 		/// TODO
 }}

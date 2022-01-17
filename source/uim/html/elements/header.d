@@ -9,6 +9,6 @@ class DH5Header : DH5Obj {
 mixin(H5Short!"Header");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(H5Header == "<header></header>");
 }}

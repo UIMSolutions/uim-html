@@ -75,6 +75,6 @@ enum Methods : string {
 string toString(Methods value) { return cast(string)value; }
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Form,"<form></form>"));
 }}

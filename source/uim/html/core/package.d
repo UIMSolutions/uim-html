@@ -27,6 +27,6 @@ template dTag(string fName, string tName, string overRide = "") {
 }
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

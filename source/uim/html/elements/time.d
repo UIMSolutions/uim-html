@@ -15,6 +15,6 @@ class DH5Time : DH5Obj {
 mixin(H5Short!"Time");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Time, "<time></time>"));
 }}

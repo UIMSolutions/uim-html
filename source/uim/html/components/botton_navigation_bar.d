@@ -10,6 +10,6 @@ class DH5SidebarDropdown : DH5Component {
 }
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO
 		}}

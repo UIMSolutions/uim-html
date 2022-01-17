@@ -8,26 +8,26 @@ class DH5Tr : DH5Obj {
 
 	mixin(MyContent!("th", "H5Th"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Tr.th, "<tr><th></th></tr>"));
 	}}
 
 	mixin(MyContent!("td", "H5Td"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Tr.td, "<tr><td></td></tr>"));
 	}}
 
 	mixin(MyContent!("cell", "H5Td"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Tr.cell, "<tr><td></td></tr>"));
 	}}
 }
 mixin(H5Calls!("H5Tr", "DH5Tr"));
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Tr, "<tr></tr>"));
 		assert(Assert(H5Tr.td, "<tr><td></td></tr>"));
 		assert(Assert(H5Tr.cell, "<tr><td></td></tr>"));

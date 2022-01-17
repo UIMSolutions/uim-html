@@ -10,6 +10,6 @@ mixin(H5Short!"Hr");
 alias Hr = H5Hr;
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Hr,"<hr></hr>"));
 }}

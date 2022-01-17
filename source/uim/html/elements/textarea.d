@@ -16,7 +16,7 @@ class DH5Textarea : DH5Obj {
 	O rows(this O)(uint value) { if (value > 0) this.attributes("rows", to!string(value)); return cast(O)this; }
 	O rows(this O)(string value) { if (value) this.attributes("rows", value); return cast(O)this; }
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Textarea.rows(10), `<textarea rows="10"></textarea>`));
 			assert(Assert(H5Textarea.rows("10"), `<textarea rows="10"></textarea>`));
 	}}
@@ -24,6 +24,6 @@ class DH5Textarea : DH5Obj {
 mixin(H5Short!"Textarea");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Textarea, "<textarea></textarea>"));
 }}

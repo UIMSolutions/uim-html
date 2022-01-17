@@ -9,6 +9,6 @@ class DH5Decorator : DH5Obj {
 mixin(H5Short!"Decorator");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Decorator,"<decorator></decorator>"));
 }}

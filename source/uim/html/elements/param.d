@@ -9,6 +9,6 @@ class DH5Param : DH5Obj {
 mixin(H5Short!"Param");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Param, "<param></param>"));
 }}

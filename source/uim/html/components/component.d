@@ -23,6 +23,6 @@ class DH5Component {
 auto H5Component() { return new DH5Component(); }
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     /// TODO
 }}

@@ -10,6 +10,6 @@ class DH5Dd : DH5Obj {
 mixin(H5Short!"Dd");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Dd,"<dd></dd>"));
 }}

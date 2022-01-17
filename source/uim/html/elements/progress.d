@@ -9,6 +9,6 @@ class DH5Progress : DH5Obj {
 mixin(H5Short!"Progress");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(H5Progress == "<progress></progress>");
 }}

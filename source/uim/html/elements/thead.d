@@ -13,13 +13,13 @@ class DH5Thead : DH5Obj {
 
 	mixin(MyContent!("row", "H5Tr"));
 	unittest {
-	  version(uim_html) {
+	  version(test_uim_html) {
 			assert(Assert(H5Thead.row,"<thead><tr></tr></thead>"));
 	}}
 }
 mixin(H5Short!"Thead");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Thead,"<thead></thead>"));
 }}

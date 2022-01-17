@@ -33,6 +33,6 @@ template classes() {
 enum ShowMode { standard, onlyHTML, onlyJS, onlyCSS }
 
 unittest {
-	version(uim_html) {
+	version(test_uim_html) {
 		// TODO Add Test
 		}}

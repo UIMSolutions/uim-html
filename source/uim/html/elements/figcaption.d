@@ -13,6 +13,6 @@ class DH5Figcaption : DH5Obj {
 mixin(H5Short!"Figcaption");
 
 unittest {
-  version(uim_html) {
+  version(test_uim_html) {
     assert(Assert(H5Figcaption,"<figcaption></figcaption>"));
 }}
