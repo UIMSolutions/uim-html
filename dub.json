@@ -7,17 +7,20 @@
 	"license": "MIT",
 	"dependencies": {
 		"colored": "~>0.0.23",
-		"vibe-d": "~>0.9.4",
-		"uim-core": "~>22.1.1",
-		"uim-oop": "~>22.1.1",
-		"uim-css": "~>22.1.1"
+		"vibe-d": "~>0.9.4"
 	},
 	"importPaths": [
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-css",
 		"../../LIBS/uim-javascript",
 		"../../LIBS/uim-json",
 		"./"
 	],
 	"sourcePaths": [
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-css",
 		"../../LIBS/uim-json",
 		"../../LIBS/uim-javascript",
 		"./"
