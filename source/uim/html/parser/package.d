@@ -3,8 +3,6 @@ module uim.html.parser;
 @safe:
 import uim.html;
 
-@safe:
-
 size_t[] posOfAll(string text, string searchTxt) {
   size_t[] results;
 
@@ -264,7 +262,7 @@ size_t minLevel(DH5Node[] newNodes) {
   return result;
 }
 
-DH5Node parse(string html) {
+/* DH5Node parse(string html) {
   DH5Node rootNode = H5Node(html);
 
   auto level1Items = html.replace("\n", "").split("<")[1 .. $];
@@ -323,7 +321,7 @@ DH5Node parse(string html) {
       auto atts = node.txt.strip.replace("<", "").replace(">", "").split(" ");
 /*       if (atts.length > 1)
         foreach (a; atts[1 .. $])  node.attribute(a);
- */    }
+ * /    }
     else if (node.isEndTag)
       node.tag = node.txt.strip.replace("</", "").replace(">", "");
 
@@ -367,7 +365,7 @@ unittest
   //// writeln(DH5Node(`<thead><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr><tr><th width="1%">Product</th><th>Quantity</th><th>Price</th></tr></thead>`).toH5.toPretty);
 
 }
-
+*/
 auto parse2(string html) {
   auto startComment = "<!--";
   auto endComment = "-->";
