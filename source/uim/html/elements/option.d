@@ -5,6 +5,10 @@ import uim.html;
 
 class DH5Option : DH5Obj {
 	mixin(H5This!"option");
+
+	mixin(MyAttribute!("disabled", "disabled"));
+	mixin(MyAttribute!("selected", "selected"));
+	mixin(MyAttribute!("value", "value"));
 }
 mixin(H5Short!"Option");
 
