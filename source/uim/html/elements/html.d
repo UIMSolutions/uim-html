@@ -11,8 +11,8 @@ import uim.html;
 class DH5Html : DH5Obj {
 	mixin(H5This!"html");
 
-	override public void _init() {
-		super._init;
+	override void initialize() {
+		super.initialize;
 		_head = H5Head;
 		_body_ = H5Body;
 	}

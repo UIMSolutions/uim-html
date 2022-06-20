@@ -5,7 +5,7 @@ import uim.html;
 
 @safe:
 class DH5Obj {
-	 this() { _init; }
+	 this() { initialize; }
 	 this(string content) { this().content(content); }
 	 this(DH5Obj[] content...) { this().content(content); }
 	 this(DH5Obj[] content) { this().content(content); }
@@ -54,7 +54,7 @@ class DH5Obj {
 
 //	this(DH5Obj[] content...) { this().content(content); }
 	
-	 public void _init() {
+	 void initialize() {
 		_css = CSSRules;
 		_classes = null;
 		_attributes = null;
@@ -62,10 +62,10 @@ class DH5Obj {
 		_js = null;
 	}
 	
-	mixin(TProperty!("bool", "single", "false"));
-	mixin(TProperty!("string", "tag"));
-	mixin(TProperty!("string", "id"));
-	mixin(TProperty!("DH5Obj[]", "html"));
+	mixin(OProperty!("bool", "single", "false"));
+	mixin(OProperty!("string", "tag"));
+	mixin(OProperty!("string", "id"));
+	mixin(OProperty!("DH5Obj[]", "html"));
 
 	protected string _js; 
 	@property string js() { return _js; }
@@ -134,6 +134,7 @@ class DH5Obj {
 		else return null;
 	}
 
+	DH5Obj[] content() { return _html; }
 	O content(this O)(string addContent) { _html ~= H5String(addContent); return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent...) { this.content(addContent); return cast(O)this; }
 	O content(this O)(DH5Obj[] addContent) { _html ~= addContent.filter!(a => a !is null).array; return cast(O)this; }
