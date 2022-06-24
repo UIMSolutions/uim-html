@@ -91,6 +91,10 @@ class DH5Obj {
 
 	/// Attributes of HTML element
 	mixin(XStringAA!"attributes");
+	O addAttributes(this O)(STRINGAA newAttributes) {
+		foreach(k, v; newAttributes) { _attributes[k] = v; }
+		return cast(O)this;
+	}
 	unittest {
 		assert(H5Obj.attributes(["a": "b"]).attributes == ["a": "b"]); 
 	}
