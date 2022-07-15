@@ -144,7 +144,8 @@ class DH5Obj {
 	O content(this O)(DH5Obj[] addContent) { _html ~= addContent.filter!(a => a !is null).array; return cast(O)this; }
 	O content(this O)(DH5 addContent) { _html ~= addContent.objs; return cast(O)this; }
 
-	O addContent(this O)(string newContent) { this.addContent(H5String(newContent)); return cast(O)this; }
+	O addContent(this O)(string[] newContent...) { this.addContent(newContent); return cast(O)this; }
+	O addContent(this O)(string[] newContent) { this.addContent(newContent.filter!(c => c.length > 0).map!(c => cast(DH5Obj)H5String(c)).array); return cast(O)this; }
 	O addContent(this O)(DH5Obj[] newContent...) { this.addContent(newContent); return cast(O)this; }
 	O addContent(this O)(DH5Obj[] newContent) { _html ~= newContent.filter!(a => a !is null).array; return cast(O)this; }
 	O addContent(this O)(DH5 newContent) { _html ~= newContent.objs; return cast(O)this; }
