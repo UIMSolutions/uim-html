@@ -161,7 +161,6 @@ class DH5Obj {
 	O opCall(this O)(DCSSRules aRules) { return this.css(aRules);  }
 	O css(this O)(DCSSRule aRule) { _css(aRule); return cast(O)this; }
 	O css(this O)(DCSSRules aRules) { _css(aRules); return cast(O)this; }
-	unittest {}
 
 	O opCall(this O)(string[] someclasses) { add(someclasses); return cast(O)this; }
 	O opCall(this O)(string[string] someAttributes) { add(someAttributes); return cast(O)this; }
@@ -170,9 +169,8 @@ class DH5Obj {
 	O opCall(this O)(DH5Obj[] someContent) { add(someContent); return cast(O)this; }
 	O opCall(this O)(DH5 someContent) { add(someContent.objs); return cast(O)this; }
 	O opCall(this O)(DJS code) { this.js(code); return cast(O)this; }
-	unittest {}
 
-	O add(this O)(string[] someclasses) { _classes.add(someclasses); return cast(O)this; }
+	O add(this O)(string[] someclasses) { _classes = _classes.add(someclasses); return cast(O)this; }
 	O add(this O)(string[string] someAttributes) { _attributes.add(someAttributes); return cast(O)this; }
 	O add(this O)(string someContent) { _html ~= H5String(someContent); return cast(O)this; }
 	O add(this O)(DH5Obj[] someContent...) { foreach(c; someContent) _html ~= c; return cast(O)this; }
