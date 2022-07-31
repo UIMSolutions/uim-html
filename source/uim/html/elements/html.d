@@ -46,18 +46,18 @@ class DH5Html : DH5Obj {
 	alias add = typeof(super).add;  		
 
 	mixin(OProperty!("DH5Head","head"));
-	auto head(this O)(string[] classes) { _head(classes); return cast(O)this;}
-	auto head(this O)(string[string] attributes) { _head(attributes); return cast(O)this;}
+	auto head(this O)(string[] classes) { _head.classes(classes); return cast(O)this;}
+	auto head(this O)(string[string] attributes) { _head.attributes(attributes); return cast(O)this;}
 	//auto head(this O)(string[] classes, string[string] attributes) { _html[0](classes, attributes); return cast(O)this;}
-	auto head(this O)(string addContent) { _head(addContent); return cast(O)this;}
+	auto head(this O)(string addContent) { _head.content(addContent); return cast(O)this;}
 
 	mixin(OProperty!("DH5Body","body_"));
-	auto body_(this O)(string[] classes) { _body_(classes); return cast(O)this;}
-	auto body_(this O)(string[string] attributes) { _body_(attributes); return cast(O)this;}
+	auto body_(this O)(string[] classes) { _body_.classes(classes); return cast(O)this;}
+	auto body_(this O)(string[string] attributes) { _body_.attributes(attributes); return cast(O)this;}
 	auto body_(this O)(string[] classes, string[string] attributes) { _body_(classes, attributes); return cast(O)this;}
-	auto body_(this O)(string addContent) { _body_(addContent); return cast(O)this;}
-	auto body_(this O)(DH5Obj[] addContent...) { _body_(addContent); return cast(O)this;}
-	auto body_(this O)(DH5Obj[] addContent) { _body_(addContent); return cast(O)this;}
+	auto body_(this O)(string addContent) { _body_.content(addContent); return cast(O)this;}
+	auto body_(this O)(DH5Obj[] addContent...) { _body_.content(addContent); return cast(O)this;}
+	auto body_(this O)(DH5Obj[] addContent) { _body_.content(addContent); return cast(O)this;}
 		
 	void opBinary(string op, T...)(T values) { static if ((op == "+") || (op == "~")) Add(values); }
 
