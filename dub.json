@@ -1,13 +1,15 @@
 {
 	"name": "uim-html",
 	"authors": [
-		"UI Manufaktur Team"
+		"UI Manufaktur Team",
+    "Sicherheitsschmiede",
+    "Ozan Nurettin Süel"
 	],
-	"copyright": "Copyright © 2017-2021, UI Manufaktur UG",
+	"copyright": "Copyright © 2017-2022, UI Manufaktur UG",
 	"license": "MIT",
 	"dependencies": {
-		"colored": "~>0.0.23",
-		"vibe-d": "~>0.9.4"
+		"colored": "~>0.0.27",
+		"vibe-d": "~>0.9.5"
 	},
 	"importPaths": [
 		"../../LIBS/uim-core",
