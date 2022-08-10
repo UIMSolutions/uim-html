@@ -114,6 +114,7 @@ template H5This(string tag, string[] classes = null, string attributes = null, b
 
 	this(string someContent) { super(); `~initial~`this.content(someContent); }
 	this(DH5Obj[] someContent...) { super(); `~initial~`this.content(someContent); }
+	this(DH5Obj[] someContent) { super(); `~initial~`this.content(someContent); }
 	this(DH5 someContent) { super(); `~initial~`this.content(someContent); }
 
 	this(string id, string someContent) { super(); `~initial~`this.id(id).content(someContent); }

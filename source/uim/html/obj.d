@@ -7,9 +7,9 @@ import uim.html;
 class DH5Obj {
   this() { initialize; }
 
-  this(string aContent, string[] content...)    { this().content(aContent~content); }
-  this(string[] content)    { this().content(content); }
-
+  this(string aContent)    { this().content(aContent); }
+  this(string[] newClasses)    { this().classes(newClasses); }
+  this(string[string] attributes)    { this().attributes(attributes); }
   this(DH5Obj aContent, DH5Obj[] content...) { this().content(aContent~content); }
   this(DH5Obj[] content)    { this().content(content); }
   this(DH5 content)         { this().content(content); }
