@@ -7,26 +7,28 @@ import uim.html;
 class DH5Obj {
   this() { initialize; }
 
-  this(string newContent)    { this().content(newContent); }
-  this(string[] newClasses)    { this().classes(newClasses); }
-  this(string[string] newAttributes)    { this().attributes(newAttributes); }
-  this(DH5Obj[] newContent...) { this().content(newContent); }
-  this(DH5Obj[] newContent)    { this().content(newContent); }
-  this(DH5 newContent)         { this().content(newContent); }
+  this(string newContent)      { this().addContent(newContent); }
+  this(string[] newClasses)    { this().addClasses(newClasses); }
+  this(STRINGAA newAttributes) { this().addAttributes(newAttributes); }
+  this(DH5Obj[] newContent...) { this().addContent(newContent); }
+  this(DH5Obj[] newContent)    { this().addContent(newContent); }
+  this(DH5 newContent)         { this().addContent(newContent); }
 
-  this(string newId, DH5Obj[] newContent...) { this().id(newId).content(newContent); }
-  this(string newId, DH5Obj[] newContent)    { this().id(newId).content(newContent); }
-  this(string newId, DH5 newContent)         { this().id(newId).content(newContent); }
+  this(string newId, DH5Obj[] newContent...) { this(newContent).id(newId); }
+  this(string newId, DH5Obj[] newContent)    { this(newContent).id(newId); }
+  this(string newId, DH5 newContent)         { this(newContent).id(newId); }
 
-  this(string newId, string[] newClasses, string newContent)    { this().id(newId).classes(newClasses).content(newContent); }
-  this(string newId, string[] newClasses, DH5Obj[] newContent...) { this().id(newId).classes(newClasses).content(newContent); }
-  this(string newId, string[] newClasses, DH5Obj[] newContent)    { this().id(newId).classes(newClasses).content(newContent); }
-  this(string newId, string[] newClasses, DH5 newContent)         { this().id(newId).classes(newClasses).content(newContent); }
+  this(string newId, string[] newClasses)    { this(newClasses).id(newId); }
+  this(string newId, string[] newClasses, string newContent)      { this(newId, newClasses).addContent(newContent); }
+  this(string newId, string[] newClasses, DH5Obj[] newContent...) { this(newId, newClasses).addContent(newContent); }
+  this(string newId, string[] newClasses, DH5Obj[] newContent)    { this(newId, newClasses).addContent(newContent); }
+  this(string newId, string[] newClasses, DH5 newContent)         { this(newId, newClasses).addContent(newContent); }
 	
-  this(string newId, STRINGAA newAttributes, string newContent)    { this().id(newId).attributes(newAttributes).content(newContent); }
-  this(string newId, STRINGAA newAttributes, DH5Obj[] newContent...) { this().id(newId).attributes(newAttributes).content(newContent); }
-  this(string newId, STRINGAA newAttributes, DH5Obj[] newContent)    { this().id(newId).attributes(newAttributes).content(newContent); }
-  this(string newId, STRINGAA newAttributes, DH5 newContent)         { this().id(newId).attributes(newAttributes).content(newContent); }
+  this(string newId, STRINGAA newAttributes) { this(newAttributes).id(newId); }
+  this(string newId, STRINGAA newAttributes, string newContent)      { this(newId, newAttributes).addContent(newContent); }
+  this(string newId, STRINGAA newAttributes, DH5Obj[] newContent...) { this(newId, newAttributes).addContent(newContent); }
+  this(string newId, STRINGAA newAttributes, DH5Obj[] newContent)    { this(newId, newAttributes).addContent(newContent); }
+  this(string newId, STRINGAA newAttributes, DH5 newContent)         { this(newId, newAttributes).addContent(newContent); }
 	
   this(string newId, string[] newClasses, STRINGAA newAttributes, string newContent)    { this().id(newId).classes(newClasses).attributes(newAttributes).content(newContent); }
   this(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { this().id(newId).classes(newClasses).attributes(newAttributes).content(newContent); }
@@ -417,40 +419,40 @@ auto H5Obj(DH5Obj[] newContent)    { return H5Obj.addContent(newContent); }
 auto H5Obj(DH5 newContent) 				 { return H5Obj.addContent(newContent); }
 
 auto H5Obj(string newId, string[] newClasses) { return new DH5Obj(newId, newClasses); }
-auto H5Obj(string newId, string[] newClasses, string newContent)      { return H5Obj(newId, newClasses).content(newContent); }
-auto H5Obj(string newId, string[] newClasses, DH5Obj[] newContent...) { return H5Obj(newId, newClasses).content(newContent); }
-auto H5Obj(string newId, string[] newClasses, DH5Obj[] newContent)    { return H5Obj(newId, newClasses).content(newContent); }
-auto H5Obj(string newId, string[] newClasses, DH5 newContent) 			  { return H5Obj(newId, newClasses).content(newContent); }
+auto H5Obj(string newId, string[] newClasses, string newContent)      { return H5Obj(newId, newClasses).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, DH5Obj[] newContent...) { return H5Obj(newId, newClasses).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, DH5Obj[] newContent)    { return H5Obj(newId, newClasses).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, DH5 newContent) 			  { return H5Obj(newId, newClasses).addContent(newContent); }
 
 auto H5Obj(string newId, STRINGAA newAttributes) { return new DH5Obj(newId, attributes); }
-auto H5Obj(string newId, STRINGAA newAttributes, string newContent)      { return H5Obj(newId, newattributes).content(newContent); }
-auto H5Obj(string newId, STRINGAA newAttributes, DH5Obj[] newContent...) { return H5Obj(newId, newattributes).content(newContent); }
-auto H5Obj(string newId, STRINGAA newAttributes, DH5Obj[] newContent)    { return H5Obj(newId, newattributes).content(newContent); }
-auto H5Obj(string newId, STRINGAA newAttributes, DH5 newContent)         { return H5Obj(newId, newattributes).content(newContent); }
+auto H5Obj(string newId, STRINGAA newAttributes, string newContent)      { return H5Obj(newId, newattributes).addContent(newContent); }
+auto H5Obj(string newId, STRINGAA newAttributes, DH5Obj[] newContent...) { return H5Obj(newId, newattributes).addContent(newContent); }
+auto H5Obj(string newId, STRINGAA newAttributes, DH5Obj[] newContent)    { return H5Obj(newId, newattributes).addContent(newContent); }
+auto H5Obj(string newId, STRINGAA newAttributes, DH5 newContent)         { return H5Obj(newId, newattributes).addContent(newContent); }
 
-auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, string aContent, string newContent...) { return new DH5Obj(id, classes, attributes, aContent~content); }
-auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, string newContent)    { return new DH5Obj(id, classes, attributes, content); }
-auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { return new DH5Obj(id, classes, attributes, content); }
-auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { return new DH5Obj(id, classes, attributes, content); }
-auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5 newContent) { return new DH5Obj(id, classes, attributes, content); }
+auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes) { return new DH5Obj(id, classes, attributes); }
+auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, string newContent)      { return H5Obj(newId, newClasses, attributes).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { return H5Obj(newId, newClasses, attributes).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { return H5Obj(newId, newClasses, attributes).addContent(newContent); }
+auto H5Obj(string newId, string[] newClasses, STRINGAA newAttributes, DH5 newContent) 				{ return H5Obj(newId, newClasses, attributes).addContent(newContent); }
 
-auto H5Obj(string[] newClasses, string aContent, string newContent...) { return new DH5Obj(classes, aContent~content); }
-auto H5Obj(string[] newClasses, string newContent)    { return new DH5Obj(classes, content); }
-auto H5Obj(string[] newClasses, DH5Obj[] newContent...) { return new DH5Obj(classes, content); }
-auto H5Obj(string[] newClasses, DH5Obj[] newContent)    { return new DH5Obj(classes, content); }
-auto H5Obj(string[] newClasses, DH5 newContent) { return new DH5Obj(classes, content); }
+auto H5Obj(string[] newClasses) { return new DH5Obj(classes); }
+auto H5Obj(string[] newClasses, string newContent)      { return H5Obj(newClasses).addContent(newContent); }
+auto H5Obj(string[] newClasses, DH5Obj[] newContent...) { return H5Obj(newClasses).addContent(newContent); }
+auto H5Obj(string[] newClasses, DH5Obj[] newContent)    { return H5Obj(newClasses).addContent(newContent); }
+auto H5Obj(string[] newClasses, DH5 newContent) 				{ return H5Obj(newClasses).addContent(newContent); }
 
-auto H5Obj(string[] newClasses, STRINGAA attributes, string aContent, string newContent...) { return new DH5Obj(classes, attributes, aContent~content); }
-auto H5Obj(string[] newClasses, STRINGAA attributes, string newContent)    { return new DH5Obj(classes, attributes, content); }
-auto H5Obj(string[] newClasses, STRINGAA attributes, DH5Obj[] newContent...) { return new DH5Obj(classes, attributes, content); }
-auto H5Obj(string[] newClasses, STRINGAA attributes, DH5Obj[] newContent)    { return new DH5Obj(classes, attributes, content); }
-auto H5Obj(string[] newClasses, STRINGAA attributes, DH5 newContent) { return new DH5Obj(classes, attributes, content); }
+auto H5Obj(string[] newClasses, STRINGAA newAttributes) { return new DH5Obj(classes, attributes); }
+auto H5Obj(string[] newClasses, STRINGAA newAttributes, string newContent)      { return H5Obj(newClasses, newAttributes).addContent(newContent); }
+auto H5Obj(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { return H5Obj(newClasses, newAttributes).addContent(newContent); }
+auto H5Obj(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { return H5Obj(newClasses, newAttributes).addContent(newContent); }
+auto H5Obj(string[] newClasses, STRINGAA newAttributes, DH5 newContent) 			  { return H5Obj(newClasses, newAttributes).addContent(newContent); }
 
-auto H5Obj(STRINGAA attributes, string aContent, string newContent...) { return new DH5Obj(attributes, aContent~content); }
-auto H5Obj(STRINGAA attributes, string newContent)    { return new DH5Obj(attributes, content); }
-auto H5Obj(STRINGAA attributes, DH5Obj[] newContent...) { return new DH5Obj(attributes, content); }
-auto H5Obj(STRINGAA attributes, DH5Obj[] newContent)    { return new DH5Obj(attributes, content); }
-auto H5Obj(STRINGAA attributes, DH5 newContent) { return new DH5Obj(attributes, content); }
+auto H5Obj(STRINGAA newAttributes) { return new DH5Obj(newAttributes); }
+auto H5Obj(STRINGAA newAttributes, string newContent)      { return H5Obj(attributes).addContent(newContent); }
+auto H5Obj(STRINGAA newAttributes, DH5Obj[] newContent...) { return H5Obj(attributes).addContent(newContent); }
+auto H5Obj(STRINGAA newAttributes, DH5Obj[] newContent)    { return H5Obj(attributes).addContent(newContent); }
+auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return H5Obj(attributes).addContent(newContent); }
 
 unittest {
 	auto h5 = H5Obj;
