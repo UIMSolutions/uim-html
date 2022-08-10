@@ -10,5 +10,5 @@ mixin(H5Short!"Map");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Map,"<map></map>"));
+    assert(H5Map,"<map></map>"));
 }}

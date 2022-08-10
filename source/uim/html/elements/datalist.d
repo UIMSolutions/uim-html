@@ -12,5 +12,5 @@ mixin(H5Short!"Datalist");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Datalist,"<datalist></datalist>"));
+    assert(H5Datalist,"<datalist></datalist>"));
 }}

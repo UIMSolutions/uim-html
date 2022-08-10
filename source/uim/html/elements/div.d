@@ -10,6 +10,6 @@ mixin(H5Short!"Div");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Div,"<div></div>"));
-  	assert(Assert(H5Div("content"),`<div>content</div>`));
+    assert(H5Div,"<div></div>"));
+  	assert(H5Div("content"),`<div>content</div>`));
 }}

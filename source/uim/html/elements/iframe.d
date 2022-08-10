@@ -10,5 +10,5 @@ mixin(H5Short!"Iframe");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Iframe, "<iframe></iframe>"));
+    assert(H5Iframe, "<iframe></iframe>"));
 }}

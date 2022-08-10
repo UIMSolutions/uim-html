@@ -14,6 +14,6 @@ mixin(H5Short!"Nav");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Nav,"<nav></nav>"));
+    assert(H5Nav,"<nav></nav>"));
 }}
  

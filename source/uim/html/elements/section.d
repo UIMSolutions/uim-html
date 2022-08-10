@@ -10,5 +10,5 @@ mixin(H5Short!"Section");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Section,"<section></section>"));
+    assert(H5Section,"<section></section>"));
 }}

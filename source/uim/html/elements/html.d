@@ -71,6 +71,6 @@ mixin(H5Short!"Html");
 
 unittest {
 	writeln(H5Html);
-	assert(Assert(H5Html,"<!doctype html><html><head></head><body></body></html>"));
-	assert(Assert(H5Html(["lang":"en"]),"<!doctype html><html lang=\"en\"><head></head><body></body></html>"));
+	assert(H5Html,"<!doctype html><html><head></head><body></body></html>"));
+	assert(H5Html(["lang":"en"]),"<!doctype html><html lang=\"en\"><head></head><body></body></html>"));
 }

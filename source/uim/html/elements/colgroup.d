@@ -10,5 +10,5 @@ mixin(H5Short!"Colgroup");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Colgroup,"<colgroup></colgroup>"));
+    assert(H5Colgroup,"<colgroup></colgroup>"));
     }}

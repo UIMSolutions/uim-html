@@ -10,6 +10,6 @@ mixin(H5Short!"Cite");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Cite,"<cite></cite>"));
+    assert(H5Cite,"<cite></cite>"));
     }}
 

@@ -10,5 +10,5 @@ mixin(H5Short!"Shadow");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Shadow, "<shadow></shadow>"));
+    assert(H5Shadow, "<shadow></shadow>"));
 }}

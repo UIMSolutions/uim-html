@@ -10,5 +10,5 @@ mixin(H5Short!"Dfn");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Dfn,"<dfn></dfn>"));
+    assert(H5Dfn,"<dfn></dfn>"));
 }}

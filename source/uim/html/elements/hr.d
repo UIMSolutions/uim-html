@@ -11,5 +11,5 @@ alias Hr = H5Hr;
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Hr,"<hr></hr>"));
+    assert(H5Hr,"<hr></hr>"));
 }}

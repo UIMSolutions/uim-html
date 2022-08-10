@@ -10,6 +10,6 @@ mixin(H5Short!"InputDate");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(new DH5InputDate, `<input type="date">`));
+    assert(new DH5InputDate, `<input type="date">`));
 }}
 

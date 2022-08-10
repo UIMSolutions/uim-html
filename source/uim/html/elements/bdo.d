@@ -10,5 +10,5 @@ mixin(H5Short!"Bdo");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Bdo,"<bdo></bdo>"));
+    assert(H5Bdo,"<bdo></bdo>"));
     }}

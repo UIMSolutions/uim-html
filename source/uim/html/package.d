@@ -184,14 +184,14 @@ auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class
 /*
 unittest {
   version(test_uim_html) {
-    assert(Assert(HTML!"div","<div />");
-	assert(Assert(HTML!("input", true),"<input>");
-	assert(Assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
-	assert(Assert(HTML!"div"(["aClass", "aClass"]),"<div class=\"aClass\" />");
-	assert(Assert(HTML!"div"(["aClass", "bClass"]),"<div class=\"aClass bClass\" />");
-	assert(Assert(HTML!("input", true)(["aClass"]),"<input class=\"aClass\">");
-	assert(Assert(HTML!"div"("someContent"),"<div>someContent</div>");
-	assert(Assert(HTML!"div"(["aClass"], "someContent"),"<div class=\"aClass\">someContent</div>");
+    assert(HTML!"div","<div />");
+	assert(HTML!("input", true),"<input>");
+	assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
+	assert(HTML!"div"(["aClass", "aClass"]),"<div class=\"aClass\" />");
+	assert(HTML!"div"(["aClass", "bClass"]),"<div class=\"aClass bClass\" />");
+	assert(HTML!("input", true)(["aClass"]),"<input class=\"aClass\">");
+	assert(HTML!"div"("someContent"),"<div>someContent</div>");
+	assert(HTML!"div"(["aClass"], "someContent"),"<div class=\"aClass\">someContent</div>");
 }*/
 
 bool Assert(DH5Obj h5, string txt) { 

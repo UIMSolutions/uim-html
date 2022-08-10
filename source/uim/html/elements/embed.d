@@ -10,5 +10,5 @@ mixin(H5Short!"Embed");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Embed,"<embed></embed>"));
+    assert(H5Embed,"<embed></embed>"));
 }}

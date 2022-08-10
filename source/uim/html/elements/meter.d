@@ -10,5 +10,5 @@ mixin(H5Short!"Meter");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Meter, "<meter></meter>"));
+    assert(H5Meter, "<meter></meter>"));
 }}

@@ -9,7 +9,7 @@ class DH5Style : DH5Obj {
 mixin(H5Short!"Style");
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Style,"<style></style>"));
+    assert(H5Style,"<style></style>"));
 }}
 
 string toString(DH5Style[] styles) {

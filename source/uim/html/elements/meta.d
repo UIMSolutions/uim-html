@@ -11,7 +11,7 @@ mixin(H5Short!("Meta"));
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Meta, "<meta>"));
+    assert(H5Meta, "<meta>"));
 }}
 
 string toString(DH5Meta[] metas) {

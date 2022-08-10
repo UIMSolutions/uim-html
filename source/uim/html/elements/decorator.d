@@ -10,5 +10,5 @@ mixin(H5Short!"Decorator");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Decorator,"<decorator></decorator>"));
+    assert(H5Decorator,"<decorator></decorator>"));
 }}

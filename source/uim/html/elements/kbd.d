@@ -10,5 +10,5 @@ mixin(H5Short!"Kbd");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Kbd, "<kbd></kbd>"));
+    assert(H5Kbd, "<kbd></kbd>"));
 }}

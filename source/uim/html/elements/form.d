@@ -76,5 +76,5 @@ string toString(Methods value) { return cast(string)value; }
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Form,"<form></form>"));
+    assert(H5Form,"<form></form>"));
 }}

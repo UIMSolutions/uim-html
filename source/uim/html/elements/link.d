@@ -32,5 +32,5 @@ mixin(H5Short!("Link"));
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Link,"<link>"));
+    assert(H5Link,"<link>"));
 }}

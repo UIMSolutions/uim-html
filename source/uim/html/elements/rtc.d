@@ -10,5 +10,5 @@ mixin(H5Short!"Rtc");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Rtc, "<rtc></rtc>"));
+    assert(H5Rtc, "<rtc></rtc>"));
 }}

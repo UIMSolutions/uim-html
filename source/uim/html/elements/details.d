@@ -10,5 +10,5 @@ mixin(H5Short!"Details");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Details,"<details></details>"));
+    assert(H5Details,"<details></details>"));
 }}

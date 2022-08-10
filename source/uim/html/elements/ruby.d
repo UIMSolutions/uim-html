@@ -9,5 +9,5 @@ mixin(H5Short!"Ruby");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Ruby,"<ruby></ruby>"));
+    assert(H5Ruby,"<ruby></ruby>"));
 }}

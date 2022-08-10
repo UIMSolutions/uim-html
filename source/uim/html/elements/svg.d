@@ -10,5 +10,5 @@ mixin(H5Short!"Svg");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Svg, "<svg></svg>"));
+    assert(H5Svg, "<svg></svg>"));
 }}

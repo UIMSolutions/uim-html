@@ -10,5 +10,5 @@ mixin(H5Short!"Menu");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Menu,"<menu></menu>"));
+    assert(H5Menu,"<menu></menu>"));
 }}

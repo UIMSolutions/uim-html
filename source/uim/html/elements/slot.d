@@ -10,6 +10,6 @@ mixin(H5Short!"Slot");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Slot, "<slot></slot>"));
+    assert(H5Slot, "<slot></slot>"));
 }
  */

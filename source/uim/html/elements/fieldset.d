@@ -10,5 +10,5 @@ mixin(H5Short!"Fieldset");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Fieldset,"<fieldset></fieldset>"));
+    assert(H5Fieldset,"<fieldset></fieldset>"));
 }}

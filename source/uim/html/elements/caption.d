@@ -10,5 +10,5 @@ mixin(H5Short!"Caption");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Caption,"<caption></caption>"));
+    assert(H5Caption,"<caption></caption>"));
     }}

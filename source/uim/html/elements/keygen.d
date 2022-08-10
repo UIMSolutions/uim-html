@@ -10,5 +10,5 @@ mixin(H5Short!"Keygen");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Keygen,"<keygen></keygen>"));
+    assert(H5Keygen,"<keygen></keygen>"));
 }}

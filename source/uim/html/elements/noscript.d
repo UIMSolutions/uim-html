@@ -10,5 +10,5 @@ mixin(H5Short!"Noscript");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Noscript,"<noscript></noscript>"));
+    assert(H5Noscript,"<noscript></noscript>"));
 }}

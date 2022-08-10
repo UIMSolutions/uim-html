@@ -3,15 +3,21 @@
 @safe:
 import uim.html;
 
-/**
- * Mithilfe des Elements blockquote können Zitate z.B. von Fremdautoren in einem anders formatierten Absatz hervorgehoben werden. 
- */
+// Wrapper for the blockquote tag - indicates that the enclosed text is an extended quotation
 class DH5Blockquote : DH5Obj {
 	mixin(H5This!"blockquote");
+
+  // Cite = A URL that designates a source document or message for the information quoted. 
+  // This attribute is intended to point to information explaining the context or the reference for the quote.
+  mixin(MyAttribute("cite"));
+  unittest {
+    assert(H5Blockquote.cite("/server/somewhere").cite == "/server/somewhere");
+    assert(H5Blockquote.cite("/server/somewhere") == `<blockquote cite="/server/somewhere"></blockquote>`);
+  }
 }
 mixin(H5Short!"Blockquote");
 
 unittest {
-  version(test_uim_html) {
-    assert(Assert(H5Blockquote,"<blockquote></blockquote>"));
-}}
+  assert(H5Blockquote);
+  assert(H5Blockquote == "<blockquote></blockquote>");
+}

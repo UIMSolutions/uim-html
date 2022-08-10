@@ -10,5 +10,5 @@ mixin(H5Short!"Rbc");
 
 unittest {
   version(test_uim_html) {
-    assert(Assert(H5Rbc,"<rbc></rbc>"));
+    assert(H5Rbc,"<rbc></rbc>"));
 }}
