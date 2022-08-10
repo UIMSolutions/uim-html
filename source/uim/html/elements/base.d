@@ -15,7 +15,7 @@ class DH5Base : DH5Obj {
 
   mixin(MyAttribute!("target")); // _blank, _parent, _self o. _top - Specifies the default target for all hyperlinks and forms in the page
   unittest{
-    assert(H5Base.target("_blank").target == "_blank); 
+    assert(H5Base.target("_blank").target == "_blank"); 
   }
 }
 mixin(H5Short!"Base");

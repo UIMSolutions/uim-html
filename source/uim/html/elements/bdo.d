@@ -3,12 +3,12 @@
 @safe:
 import uim.html;
 
+// Wrapper for the bdo tag - overrides the current directionality of text, so that the text within is rendered in a different direction.
 class DH5Bdo : DH5Obj {
 	mixin(H5This!"bdo");
 }
 mixin(H5Short!"Bdo");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Bdo,"<bdo></bdo>"));
-    }}
+  assert(H5Bdo == "<bdo></bdo>");
+}
