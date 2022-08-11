@@ -23,6 +23,6 @@ public:
 }
 mixin(H5Short!"Head");
 
-unittest {	
-	testH5Obj(H5Head, "head");
-}
+version(test_uim_html) { unittest {	
+	// testH5Obj(H5Head, "head");
+}}

@@ -8,7 +8,6 @@ class DH5InputTEL: DH5Input {
 }
 mixin(H5Short!"InputTEL"); 
 
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO Add Test
 		}}

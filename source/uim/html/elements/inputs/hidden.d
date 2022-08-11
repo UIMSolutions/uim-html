@@ -8,7 +8,6 @@ class DH5InputHidden : DH5Input {
 }
 mixin(H5Short!"InputHidden"); 
 
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO Add Test
 		}}

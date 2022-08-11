@@ -49,9 +49,9 @@ type 	media_type 	Specifies the media type of the target URL
 }
 mixin(H5Short!"Area");
 
-unittest {
-	testH5Obj(H5Area, "area");
-}
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Area, "area");
+}}
 
 /**
  *  <img src="planets.gif" width="145" height="126" alt="Planets"

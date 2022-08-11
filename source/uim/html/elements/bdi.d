@@ -9,7 +9,7 @@ class DH5Bdi : DH5Obj {
 }
 mixin(H5Short!"Bdi");
 
-unittest {
-	testH5Obj(H5Bdi, "bdi");
-}
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Bdi, "bdi");
+}}
 

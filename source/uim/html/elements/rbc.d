@@ -8,6 +8,6 @@ class DH5Rbc : DH5Obj {
 }
 mixin(H5Short!"Rbc");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Rbc == "<rbc></rbc>");
 }

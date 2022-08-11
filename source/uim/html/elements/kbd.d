@@ -8,6 +8,6 @@ class DH5Kbd : DH5Obj {
 }
 mixin(H5Short!"Kbd");
 
-unittest {
-  testH5Obj(H5Kbd, "kbd");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Kbd, "kbd");
+}}

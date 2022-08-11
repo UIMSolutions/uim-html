@@ -10,6 +10,6 @@ class DH5Br : DH5Obj {
 mixin(H5Short!("Br"));
 alias Br = H5Br; // Shortcut of shortcut
 
-unittest {
+version(test_uim_html) { unittest {
   assert(H5Br,"<br>");
-}
+}}

@@ -9,6 +9,6 @@ class DH5Q : DH5Obj {
 }
 mixin(H5Short!"Q");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Q == "<q></q>");
 }

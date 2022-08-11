@@ -9,6 +9,6 @@ class DH5Mark : DH5Obj {
 }
 mixin(H5Short!"Mark");
 
-unittest {
-  testH5Obj(H5Mark, "mark");
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Mark, "mark");
 }

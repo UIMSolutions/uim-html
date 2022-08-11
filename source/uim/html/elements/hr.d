@@ -9,6 +9,6 @@ class DH5Hr : DH5Obj {
 mixin(H5Short!"Hr");
 alias Hr = H5Hr;
 
-unittest {
-  testH5Obj(H5Hr, "hr");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Hr, "hr");
+}}

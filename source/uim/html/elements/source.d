@@ -14,8 +14,7 @@ class DH5Source : DH5Obj {
 }
 mixin(H5Short!"Source");
 
-unittest {
-	testH5Obj(H5Source, "source");
-	mixin(TestH5DoubleAttributes!("H5Source", "source", 
-    ["sizes", "src", "srcset", "type", "media"]));
-}
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Source, "source");
+	// mixin(TestH5DoubleAttributes!("H5Source", "source", ["sizes", "src", "srcset", "type", "media"]));
+}}

@@ -7,19 +7,19 @@ class DH5Label : DH5Obj {
 	mixin(H5This!"label");
 
 	mixin(MyAttribute!("forId", "for"));
-	unittest {
+	version(test_uim_html) { unittest {
 		assert(H5Label.forId("anID") == `<label for="anID"></label>`);
 		assert(H5Label.forId("anID").content("text") == `<label for="anID">text</label>`);
 	}
 	
 	mixin(MyAttribute!("form"));
-	unittest {
+	version(test_uim_html) { unittest {
 		assert(H5Label.form("aForm") == `<label form="aForm"></label>`);
 		assert(H5Label.form("aForm").content("text") == `<label form="aForm">text</label>`);
 	}
 }
 mixin(H5Short!"Label");
 
-unittest {
-  testH5Obj(H5Label, `label`);
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Label, `label`);
+}}

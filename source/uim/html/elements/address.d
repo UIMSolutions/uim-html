@@ -9,9 +9,9 @@ class DH5Address : DH5Obj {
 }
 mixin(H5Short!"Address");
 
-unittest {
-	testH5Obj(H5Address, "address");
-}
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Address, "address");
+}}
 
 /**
 <address>

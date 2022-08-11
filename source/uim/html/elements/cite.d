@@ -9,8 +9,8 @@ class DH5Cite : DH5Obj {
 }
 mixin(H5Short!"Cite");
 
-unittest {
+version(test_uim_html) { unittest {
   assert(H5Cite);
   assert(H5Cite == "<cite></cite>");
-}
+}}
 

@@ -8,6 +8,6 @@ class DH5Em: DH5Obj {
 }
 mixin(H5Short!"Em");
 
-unittest {
-  testH5Obj(H5Em, "em");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Em, "em");
+}}

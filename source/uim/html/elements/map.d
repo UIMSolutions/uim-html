@@ -8,6 +8,6 @@ class DH5Map : DH5Obj {
 }
 mixin(H5Short!"Map");
 
-unittest {
-    testH5Obj(H5Map, "map");
+version(test_uim_html) { unittest {
+    // testH5Obj(H5Map, "map");
 }

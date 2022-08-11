@@ -8,6 +8,6 @@ class DH5InputEmail : DH5Input {
 }
 mixin(H5Short!"InputEmail");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5InputEmail == `<input type="email">`);
-}
+}}

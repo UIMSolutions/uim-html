@@ -8,6 +8,6 @@ class DH5Dfn : DH5Obj {
 }
 mixin(H5Short!"Dfn");
 
-unittest {
-  testH5Obj(H5Dfn, "dfn");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Dfn, "dfn");
+}}

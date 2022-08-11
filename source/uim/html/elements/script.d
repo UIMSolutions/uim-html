@@ -8,7 +8,7 @@ class DH5Script : DH5Obj {
 }
 mixin(H5Short!"Script");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Script,"<script></script>");
 }
 
@@ -16,7 +16,7 @@ string toString(DH5Script[] scripts) {
 	string result;
 	foreach(script; scripts) result ~= script.toString;
 	return result; }
-unittest {
+version(test_uim_html) { unittest {
     assert([H5Script, H5Script].toString == "<script></script><script></script>");
 }
 
@@ -26,7 +26,6 @@ DH5Script[] H5Scripts(string[string][] scripts) {
 	foreach(script; scripts) results ~= H5Script(script);
 	return results;
 }
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO
 }}

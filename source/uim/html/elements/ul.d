@@ -7,7 +7,7 @@ class DH5Ul : DH5Obj {
 	mixin(H5This!"ul");
 
 	mixin(MyContent!("li", "H5Li"));
-	unittest {
+	version(test_uim_html) { unittest {
 		assert(H5Ul.li, "<ul><li></li></ul>");
 		assert(H5Ul(`<li></li>`), "<ul><li></li></ul>");
 		assert(H5Ul(H5Li), "<ul><li></li></ul>");
@@ -15,24 +15,24 @@ class DH5Ul : DH5Obj {
 	}
 
 	mixin(MyContent!("item", "H5Li"));
-	unittest {
+	version(test_uim_html) { unittest {
 		assert(H5Ul.item == "<ul><li></li></ul>");
 		assert(H5Ul.item.item, "<ul><li></li><li></li></ul>");
 		assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`);
 	}
 
 	mixin(MyContent!("link", "this.item", "H5Li"));
-	unittest {
+	version(test_uim_html) { unittest {
 	}
 
 	O link(this O)(string id, string[] linkClasses, string src, string title) {
 		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
-	unittest {
+	version(test_uim_html) { unittest {
 	}
 }
 mixin(H5Short!"Ul");
 
-unittest {
+version(test_uim_html) { unittest {
   assert(H5Ul, "<ul></ul>");
 }

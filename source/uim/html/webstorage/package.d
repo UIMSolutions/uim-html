@@ -10,21 +10,21 @@ public import uim.html.webstorage.session;
 string h5LocalStorageSetItem(string name, string data) {
   return "localStorage.setItem(%s, %s);".format(name, data);
 }
-unittest {
+version(test_uim_html) { unittest {
   assert(h5LocalStorageSetItem("'test'", "values")  == "localStorage.setItem('test', values);");
 }
 
 string h5LocalStorageGetItem(string target, string name) {
   return "%s=localStorage.getItem(%s);".format(target, name);
 }
-unittest {
+version(test_uim_html) { unittest {
   assert(h5LocalStorageGetItem("var test", "'test'")  == "var test=localStorage.getItem('test');");
 }
 
 string h5LocalStorageRemoveItem(string name) {
   return "localStorage.removeItem(%s);".format(name);
 }
-unittest {
+version(test_uim_html) { unittest {
   assert(h5LocalStorageGetItem("var test", "'test'")  == "var test=localStorage.getItem('test');");
 }
 

@@ -8,7 +8,7 @@ class DH5InputDate : DH5Input {
 }
 mixin(H5Short!"InputDate");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5InputDate == `<input type="date">`);
-}
+}}
 

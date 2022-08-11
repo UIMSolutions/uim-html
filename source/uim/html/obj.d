@@ -408,7 +408,7 @@ class DH5Obj {
 		}
 		return result;
 	}
-	unittest {
+	version(test_uim_html) { unittest {
 		/*
 		writeln(H5Obj.tag("div").toPretty);
 		writeln("---------");
@@ -461,7 +461,7 @@ auto H5Obj(STRINGAA newAttributes, DH5Obj[] newContent...) { return new DH5Obj(n
 auto H5Obj(STRINGAA newAttributes, DH5Obj[] newContent)    { return new DH5Obj(newAttributes, newContent); }
 auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return new DH5Obj(newAttributes, newContent); }
 
-unittest {
+version(test_uim_html) { unittest {
 	auto h5 = H5Obj;
 	writeln("Hi Buddy");
 	assert(h5.id("newID").id == "newID");

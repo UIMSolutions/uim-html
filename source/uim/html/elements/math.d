@@ -8,6 +8,6 @@ class DH5Math : DH5Obj {
 }
 mixin(H5Short!"Math");
 
-unittest {
-    testH5Obj(H5Math, "math");
+version(test_uim_html) { unittest {
+    // testH5Obj(H5Math, "math");
 }

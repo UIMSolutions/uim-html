@@ -18,8 +18,8 @@ enum option_modes : string {
 	Disabled = "disabled"
 }
 
-unittest {
-  testH5Obj(H5Option, "option");
-	mixin(TestH5DoubleAttributes!("H5Option", "option", ["disabled", "selected", "value"]));
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Option, "option");
+	// mixin(TestH5DoubleAttributes!("H5Option", "option", ["disabled", "selected", "value"]));
 }
 

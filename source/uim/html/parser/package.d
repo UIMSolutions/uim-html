@@ -39,7 +39,7 @@ size_t[] posOfAll(string text, string searchTxt, size_t startPos, size_t endPos)
 
   return results;
 }
-unittest {
+version(test_uim_html) { unittest {
   writeln("x x x x".posOfAll(" ", 2, 6));
   assert("x x x x".posOfAll(" ", 2, 6) == [3, 5]);
 }

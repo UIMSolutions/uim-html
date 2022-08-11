@@ -10,6 +10,6 @@ class DH5Article : DH5Obj {
 }
 mixin(H5Short!"Article");
 
-unittest {
-	testH5Obj(H5Article, "article");
-}
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Article, "article");
+}}

@@ -9,6 +9,6 @@ class DH5Template : DH5Obj {
 }
 mixin(H5Short!"Template");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Template == "<template></template>");
 }

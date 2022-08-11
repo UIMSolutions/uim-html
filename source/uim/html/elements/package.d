@@ -1665,7 +1665,7 @@ enum DraggableModes : string {
 	AutoDraggable = "auto" 	// Uses the default behavior of the browser
 }
 
-unittest {
+version(test_uim_html) { unittest {
 //	HTML.HEAD(
 //		CSS
 //		("h1", ["color":"red"])
@@ -1695,7 +1695,6 @@ class DH5CENTER : DH5Obj {
 }
 mixin(H5Short!"CENTER");
 
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO Add Test
 		}}

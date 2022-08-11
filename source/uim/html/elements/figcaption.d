@@ -9,6 +9,6 @@ class DH5Figcaption : DH5Obj {
 }
 mixin(H5Short!"Figcaption");
 
-unittest {
-  testH5Obj(H5Figcaption, "figcaption");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Figcaption, "figcaption");
+}}

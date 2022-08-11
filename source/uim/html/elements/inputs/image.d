@@ -8,7 +8,6 @@ class DH5InputIMAGE : DH5Input {
 }
 mixin(H5Short!"InputIMAGE"); 
 
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO Add Test
 		}}

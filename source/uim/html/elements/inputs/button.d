@@ -8,6 +8,6 @@ class DH5InputButton : DH5Input {
 }
 mixin(H5Short!"InputButton");
 
-unittest {
-	// testH5Obj(H5InputButton, "")		
-}
+version(test_uim_html) { unittest {
+	// // testH5Obj(H5InputButton, "")		
+}}

@@ -8,6 +8,6 @@ class DH5Th : DH5Obj {
 }
 mixin(H5Calls!("H5Th", "DH5Th"));
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Th == "<th></th>");
 }

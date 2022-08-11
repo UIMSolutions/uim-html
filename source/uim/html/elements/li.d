@@ -9,6 +9,6 @@ class DH5Li : DH5Obj {
 }
 mixin(H5Short!"Li");
 
-unittest {
-  testH5Obj(H5Li, "li");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Li, "li");
+}}

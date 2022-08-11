@@ -8,6 +8,6 @@ class DH5Rtc : DH5Obj {
 }
 mixin(H5Short!"Rtc");
 
-unittest {
+version(test_uim_html) { unittest {
     assert(H5Rtc == "<rtc></rtc>");
 }

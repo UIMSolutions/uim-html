@@ -8,6 +8,6 @@ class DH5Dt : DH5Obj {
 }
 mixin(H5Short!"Dt");
 
-unittest {
-  testH5Obj(H5Dt, "dt");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Dt, "dt");
+}}

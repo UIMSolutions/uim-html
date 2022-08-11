@@ -10,6 +10,6 @@ class DH5Aside : DH5Obj {
 }
 mixin(H5Short!"Aside");
 
-unittest {
-  testH5Obj(H5Aside, "aside");
-}
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Aside, "aside");
+}}

@@ -10,14 +10,14 @@ class DH5Blockquote : DH5Obj {
   // Cite = A URL that designates a source document or message for the information quoted. 
   // This attribute is intended to point to information explaining the context or the reference for the quote.
   mixin(MyAttribute!("cite"));
-  unittest {
+  version(test_uim_html) { unittest {
     assert(H5Blockquote.cite("/server/somewhere").cite == "/server/somewhere");
     assert(H5Blockquote.cite("/server/somewhere") == `<blockquote cite="/server/somewhere"></blockquote>`);
-  }
+  }}
 }
 mixin(H5Short!"Blockquote");
 
-unittest {
+version(test_uim_html) { unittest {
   writeln(__MODULE__);
-  testH5Obj(H5Blockquote, "blockquote");
-}
+  // testH5Obj(H5Blockquote, "blockquote");
+}}

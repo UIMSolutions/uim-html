@@ -7,7 +7,6 @@ class DH5InputDATETIME : DH5Input {
 	mixin(H5This!("Input", null, `["type":"datetime"]`, false)); 
 }
 
-unittest {
-	version(test_uim_html) {
+version(test_uim_html) { unittest {
 		// TODO Add Test
 		}}

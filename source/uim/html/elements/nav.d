@@ -10,7 +10,7 @@ class DH5Nav : DH5Obj {
 }
 mixin(H5Short!"Nav");
 
-unittest {
-  testH5Obj(H5Nav, "nav");
+version(test_uim_html) { unittest {
+  // testH5Obj(H5Nav, "nav");
 }
  

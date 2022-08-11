@@ -185,7 +185,7 @@ auto HTML(string tag)(string content) { return "<"~tag~">"~content~"</"~tag~">";
 auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class=\""~classes.unique.join(" ")~"\">"~content~"</"~tag~">"; }
 
 /*
-unittest {
+version(test_uim_html) { unittest {
     assert(HTML!"div","<div />");
 	assert(HTML!("input", true),"<input>");
 	assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
@@ -222,19 +222,19 @@ string doubleTag(string tag, string[string] attributes = null, string content = 
 @safe: 
 string doubleTag(string tag, string content) {
   return startTag(tag) ~ content ~ endTag(tag); }
-unittest {
+version(test_uim_html) { unittest {
   // TODO Test for doubleTag
 }
 
 string startTag(string tag, string[string] attributes = null) {
 	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">"; }
-unittest {
+version(test_uim_html) { unittest {
   // TODO Test for startTag
 }
 
 string endTag(string tag) {
 	return "</" ~ tag ~ ">"; }
-unittest {
+version(test_uim_html) { unittest {
   // TODO Test for endtag
 }
 
@@ -309,7 +309,7 @@ string asString(T:DH5Obj)(T[] objs) {
 	foreach(obj; objs) result ~= obj.toString;
 	return result;
 }
-unittest {
+version(test_uim_html) { unittest {
     assert([H5Meta, H5Meta].toString == "<meta><meta>");
 }
 

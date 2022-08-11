@@ -8,6 +8,6 @@ class DH5Span : DH5Obj {
 }
 mixin(H5Short!"Span");
 
-unittest {	
+version(test_uim_html) { unittest {	
 	assert(H5Span == "<span></span>");
 }

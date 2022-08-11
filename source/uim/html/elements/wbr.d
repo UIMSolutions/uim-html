@@ -8,6 +8,6 @@ class DH5Wbr : DH5Obj {
 }
 mixin(H5Short!"Wbr");
 
-unittest {
-	testH5Obj(H5Wbr, "wbr");
+version(test_uim_html) { unittest {
+	// testH5Obj(H5Wbr, "wbr");
 }
