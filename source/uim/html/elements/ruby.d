@@ -8,5 +8,5 @@ class DH5Ruby : DH5Obj {
 mixin(H5Short!"Ruby");
 
 unittest {
-    assert(H5Ruby,"<ruby></ruby>");
+    testH5Obj(H5Ruby, "ruby");
 }

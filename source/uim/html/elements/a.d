@@ -77,6 +77,6 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 unittest {
-    assert(H5A == "<a></a>");
+  testH5Obj(H5A, "a");
 }
 */

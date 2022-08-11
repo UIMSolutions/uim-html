@@ -21,5 +21,5 @@ class DH5Base : DH5Obj {
 mixin(H5Short!"Base");
 
 unittest {
-  assert(H5Base == "<base></base>");
+  testH5Obj(H5Base, "base");
 }

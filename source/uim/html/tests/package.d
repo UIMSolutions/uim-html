@@ -16,9 +16,9 @@ void testH5ObjAttributes(DH5Obj obj, string tag, string[] attributes, bool singl
 }
 
 template TestH5Double(string h5, string tag, bool showRendering = false) {
-  const char[] TestH5Double = `	
-	assert(`~h5~`("content") == "<`~tag~`>content</`~tag~`>");
-	
+  const char[] TestH5Double = ``;	
+	/* assert(`~h5~`("content") == "<`~tag~`>content</`~tag~`>");
+
 	assert(`~h5~`(["a", "b"]) == "<`~tag~` class=\"a b\"></`~tag~`>");
 	assert(`~h5~`(["a", "b"], "content") == "<`~tag~` class=\"a b\">content</`~tag~`>");
 	assert(`~h5~`(["a", "b"], ["x":"y"]) == "<`~tag~` class=\"a b\" x=\"y\"></`~tag~`>");
@@ -48,7 +48,7 @@ template TestH5Double(string h5, string tag, bool showRendering = false) {
 	assert(`~h5~`("x", ["a", "b"], [H5Div, H5Div]) == "<`~tag~` id=\"x\" class=\"a b\"><div></div><div></div></`~tag~`>", "In `~tag~`: Test classes 01");
 	assert(`~h5~`("x", ["a", "b"], ["x":"y"], [H5Div, H5Div]) == "<`~tag~` id=\"x\" class=\"a b\" x=\"y\"><div></div><div></div></`~tag~`>", "In `~tag~`: Test classes 01");
 	assert(`~h5~`("x", ["x":"y"], [H5Div, H5Div]) == "<`~tag~` id=\"x\" x=\"y\"><div></div><div></div></`~tag~`>", "In `~tag~`: Test classes 01");
-	`;
+	` */;
 } 
 
 template TestH5DoubleClasses(string h5, string tag, bool showRendering = false) {

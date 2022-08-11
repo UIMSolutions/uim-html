@@ -10,5 +10,5 @@ class DH5Bdo : DH5Obj {
 mixin(H5Short!"Bdo");
 
 unittest {
-  assert(H5Bdo == "<bdo></bdo>");
+  testH5Obj(H5Bdo, "bdo");
 }

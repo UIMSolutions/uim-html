@@ -8,7 +8,7 @@ class DH5Style : DH5Obj {
 }
 mixin(H5Short!"Style");
 unittest {
-    assert(H5Style == "<style></style>");
+    testH5Obj(H5Style, "style");
 }
 
 string toString(DH5Style[] styles) {

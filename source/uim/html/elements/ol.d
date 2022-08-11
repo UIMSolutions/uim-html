@@ -13,5 +13,5 @@ class DH5Ol : DH5Obj {
 }
 mixin(H5Short!"Ol");
 unittest {
-    assert(H5Ol == "<ol></ol>");
+  testH5Obj(H5Ol, "ol");
 }

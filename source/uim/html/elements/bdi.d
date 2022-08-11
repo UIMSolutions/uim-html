@@ -10,6 +10,6 @@ class DH5Bdi : DH5Obj {
 mixin(H5Short!"Bdi");
 
 unittest {
-	assert(H5Bdi == "<bdi></bdi>");
+	testH5Obj(H5Bdi, "bdi");
 }
 

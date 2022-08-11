@@ -463,6 +463,7 @@ auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return new DH5Obj(newA
 
 unittest {
 	auto h5 = H5Obj;
+	writeln("Hi Buddy");
 	assert(h5.id("newID").id == "newID");
 
 	h5 = H5Obj("content");

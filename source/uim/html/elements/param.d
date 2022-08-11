@@ -9,5 +9,5 @@ class DH5Param : DH5Obj {
 mixin(H5Short!"Param");
 
 unittest {
-    assert(H5Param == "<param></param>");
+    testH5Obj(H5Param, "param");
 }

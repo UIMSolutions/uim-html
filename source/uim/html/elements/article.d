@@ -11,6 +11,5 @@ class DH5Article : DH5Obj {
 mixin(H5Short!"Article");
 
 unittest {
-	assert(H5Article);
-	assert(H5Article == "<article></article>");
+	testH5Obj(H5Article, "article");
 }

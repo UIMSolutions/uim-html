@@ -10,5 +10,6 @@ class DH5Ins : DH5Obj {
 mixin(H5Short!"Ins");
 
 unittest {
+    writeln(__MODULE__);
     testH5Obj(H5Ins, "ins");
 }

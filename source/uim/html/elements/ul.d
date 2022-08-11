@@ -29,8 +29,7 @@ class DH5Ul : DH5Obj {
 		this.item(id, linkClasses, ["src":src], title); return cast(O)this;
 	}
 	unittest {
-  	version(test_uim_html) {
-	}}
+	}
 }
 mixin(H5Short!"Ul");
 
