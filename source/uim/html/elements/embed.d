@@ -9,5 +9,5 @@ class DH5Embed : DH5Obj {
 mixin(H5Short!"Embed");
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Embed, "embed");
+  testH5Obj(H5Embed, "embed");
 }}

@@ -9,11 +9,11 @@ class DH5Col : DH5Obj {
 
   mixin(MyAttribute!("span"));
   version(test_uim_html) { unittest {
-    assert(H5Col.span("1") == `<col span="1"></col>`);
+    // assert(H5Col.span("1") == `<col span="1"></col>`);
   }}
 }
 mixin(H5Short!"Col");
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Col, "col");
+  testH5Obj(H5Col, "col");
 }}

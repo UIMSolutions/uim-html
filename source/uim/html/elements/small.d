@@ -10,6 +10,6 @@ class DH5Small : DH5Obj {
 mixin(H5Short!"Small");
 
 version(test_uim_html) { unittest {
-    // testH5Obj(H5Small, "small");
+    testH5Obj(H5Small, "small");
 }}
 

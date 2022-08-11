@@ -23,5 +23,5 @@ class DH5Component {
 auto H5Component() { return new DH5Component(); }
 
 version(test_uim_html) { unittest {
-  assert(H5Component);
+  // assert(H5Component);
 }}

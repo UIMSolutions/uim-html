@@ -10,5 +10,5 @@ mixin(H5Short!"Hr");
 alias Hr = H5Hr;
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Hr, "hr");
+  testH5Obj(H5Hr, "hr");
 }}

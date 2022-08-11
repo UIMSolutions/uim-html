@@ -10,7 +10,7 @@ class DH5Address : DH5Obj {
 mixin(H5Short!"Address");
 
 version(test_uim_html) { unittest {
-	// testH5Obj(H5Address, "address");
+	testH5Obj(H5Address, "address");
 }}
 
 /**
