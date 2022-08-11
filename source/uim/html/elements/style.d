@@ -9,7 +9,7 @@ class DH5Style : DH5Obj {
 mixin(H5Short!"Style");
 unittest {
     assert(H5Style == "<style></style>");
-}}
+}
 
 string toString(DH5Style[] styles) {
 	string result;
@@ -18,7 +18,7 @@ string toString(DH5Style[] styles) {
 }
 unittest {
     assert([H5Style, H5Style].toString == "<style></style><style></style>");
-}}
+}
 
 DH5Style[] H5Styles(string[string][] styles...) { return H5Styles(styles); }
 DH5Style[] H5Styles(string[string][] styles) { 
@@ -28,4 +28,4 @@ DH5Style[] H5Styles(string[string][] styles) {
 }
 unittest {
 		/// TODO
-}}
+}

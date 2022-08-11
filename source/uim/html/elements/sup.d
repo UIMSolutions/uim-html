@@ -3,11 +3,12 @@
 @safe:
 import uim.html;
 
+// Wrapper for <sup> - specifies inline text which is to be displayed as superscript for solely typographical reasons. 
 class DH5Sup : DH5Obj {
 	mixin(H5This!"sup");
 }
 mixin(H5Short!"Sup");
 
 unittest {
-    assert(H5Sup, "<sup></sup>"));
-}}
+    assert(H5Sup == "<sup></sup>");
+}

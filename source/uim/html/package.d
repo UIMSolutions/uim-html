@@ -311,7 +311,7 @@ string asString(T:DH5Obj)(T[] objs) {
 }
 unittest {
     assert([H5Meta, H5Meta].toString == "<meta><meta>");
-}}
+}
 
 auto FA(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]);}
 auto FAR(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]);}

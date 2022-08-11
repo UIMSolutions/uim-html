@@ -8,17 +8,17 @@ class DH5Ul : DH5Obj {
 
 	mixin(MyContent!("li", "H5Li"));
 	unittest {
-		assert(H5Ul.li, "<ul><li></li></ul>"));
-		assert(H5Ul(`<li></li>`), "<ul><li></li></ul>"));
-		assert(H5Ul(H5Li), "<ul><li></li></ul>"));
-		assert(H5Ul(H5.li), "<ul><li></li></ul>"));
+		assert(H5Ul.li, "<ul><li></li></ul>");
+		assert(H5Ul(`<li></li>`), "<ul><li></li></ul>");
+		assert(H5Ul(H5Li), "<ul><li></li></ul>");
+		assert(H5Ul(H5.li), "<ul><li></li></ul>");
 	}
 
 	mixin(MyContent!("item", "H5Li"));
 	unittest {
-		assert(H5Ul.item == "<ul><li></li></ul>"));
-		assert(H5Ul.item.item, "<ul><li></li><li></li></ul>"));
-		assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`));
+		assert(H5Ul.item == "<ul><li></li></ul>");
+		assert(H5Ul.item.item, "<ul><li></li><li></li></ul>");
+		assert(H5Ul.item(["test"]), `<ul><li class="test"></li></ul>`);
 	}
 
 	mixin(MyContent!("link", "this.item", "H5Li"));
@@ -35,5 +35,5 @@ class DH5Ul : DH5Obj {
 mixin(H5Short!"Ul");
 
 unittest {
-    assert(H5Ul, "<ul></ul>"));
-}}
+  assert(H5Ul, "<ul></ul>");
+}

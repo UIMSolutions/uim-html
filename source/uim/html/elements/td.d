@@ -9,5 +9,5 @@ class DH5Td : DH5Obj {
 mixin(H5Short!"Td");
 
 unittest {
-    assert(H5Td, "<td></td>"));
-}}
+  assert(H5Td == "<td></td>");
+}

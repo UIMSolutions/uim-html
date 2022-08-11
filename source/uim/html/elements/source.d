@@ -27,17 +27,17 @@ class DH5Source : DH5Obj {
   mixin(MyAttribute!"type");
 	unittest {
   	version(test_uim_html) {
-			assert(H5Source.type("aValue"),`<source type="aValue"></source>`));
+			assert(H5Source.type("aValue") ==`<source type="aValue"></source>`);
 	}}
 
   mixin(MyAttribute!"media"); 
 	unittest {
 	  version(test_uim_html) {		
-			assert(H5Source.media("aValue"),`<source media="aValue"></source>`));
+			assert(H5Source.media("aValue") ==`<source media="aValue"></source>`);
 	}}
 }
 mixin(H5Short!"Source");
 
 unittest {
     assert(H5Source == `<source></source>`);
-}}
+}

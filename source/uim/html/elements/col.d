@@ -7,7 +7,7 @@ import uim.html;
 class DH5Col : DH5Obj {
 	mixin(H5This!"col");
 
-  mixin(myAttribute!("span"));
+  mixin(MyAttribute!("span"));
   unittest {
     assert(H5Col.spane("1") == `<col span="1"></col>`);
   }
@@ -15,6 +15,5 @@ class DH5Col : DH5Obj {
 mixin(H5Short!"Col");
 
 unittest {
-  assert(H5Col);
-  assert(H5Col == "<col></col>");
+  testH5Obj(H5Col, "col");
 }
