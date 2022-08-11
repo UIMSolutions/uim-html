@@ -9,7 +9,7 @@ class DH5Col : DH5Obj {
 
   mixin(MyAttribute!("span"));
   unittest {
-    assert(H5Col.spane("1") == `<col span="1"></col>`);
+    assert(H5Col.span("1") == `<col span="1"></col>`);
   }
 }
 mixin(H5Short!"Col");

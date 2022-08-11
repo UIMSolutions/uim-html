@@ -10,5 +10,5 @@ class DH5Legend : DH5Obj {
 mixin(H5Short!"Legend");
 
 unittest {
-  testH5Obj(H5Legend == "legend");
+  testH5Obj(H5Legend, "legend");
 }

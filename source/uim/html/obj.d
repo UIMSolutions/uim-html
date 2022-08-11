@@ -70,7 +70,7 @@ class DH5Obj {
 
 	/// classes of HTML element
 	protected string[] _classes;
-	auto classes() { return _classes.sort.array; }
+	auto classes() { return uniq(_classes.sort.array).array; }
 	// Set classes
 	O classes(this O)(string[] values...) { this.classes(values); return cast(O)this; }
 	O classes(this O)(string[] values) { _classes = uniq( // no doubles
@@ -257,7 +257,7 @@ class DH5Obj {
 	//translate 	Specifies whether the content of an element should be translated or not
 	
 	 bool isBoolAttribute(string name) {
-		if (name in [
+		/* if (name in [
 				"async":true, 
 				"autocomplete":true, 
 				"autofocus":true, 
@@ -294,7 +294,7 @@ class DH5Obj {
 				"selected":true,
 				"sortable":true,
 				"spellcheck":true,
-				"translate":true]) return true; 
+				"translate":true]) return true;  */
 		return false;
 	}
 
@@ -312,7 +312,7 @@ class DH5Obj {
 					break;
 				default: 
 					if (isBoolAttribute(key)) items~=key;
-					else items~=key~`="`~_attributes[key]~`"`;
+					else items~=key.toLower~`="`~_attributes[key]~`"`;
 					break;
 			}
 		}
@@ -464,17 +464,6 @@ auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return new DH5Obj(newA
 unittest {
 	auto h5 = H5Obj;
 	assert(h5.id("newID").id == "newID");
-
-	// Test classes
-  assert(H5Obj(["a", "b"]).classes == ["a", "b"]); 
-  assert(H5Obj()(["a", "b"]).classes == ["a", "b"]); 
-  assert(H5Obj()(["a", "b"])(["c", "d"]).classes == ["a", "b", "c", "d"]); 
-  assert(H5Obj.classes(["a", "b"]).classes == ["a", "b"]); 
-  assert(H5Obj.classes(["b", "a"]).classes == ["a", "b"]); 
-  assert(H5Obj.classes("a", "b").classes == ["a", "b"]); 
-  assert(H5Obj.classes("b", "a").classes == ["a", "b"]); 
-
-	assert(H5Obj.attributes(["a": "b"]).attributes == ["a": "b"]); 
 
 	h5 = H5Obj("content");
 	assert(H5Obj.id == null);

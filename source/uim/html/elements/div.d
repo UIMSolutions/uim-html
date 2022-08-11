@@ -10,6 +10,7 @@ mixin(H5Short!"Div");
 
 unittest {
   testH5Obj(H5Div, "div");
-  	
-	assert(H5Div("content"),`<div>content</div>`);
+  
+	mixin(TestH5Double!("H5Div", "div", true));	
+	mixin(TestH5DoubleClasses!("H5Div", "div", true));	
 }

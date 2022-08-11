@@ -9,5 +9,5 @@ class DH5Wbr : DH5Obj {
 mixin(H5Short!"Wbr");
 
 unittest {
-	mixin(H5Test!("H5Wbr", "wbr"));
+	testH5Obj(H5Wbr, "wbr");
 }

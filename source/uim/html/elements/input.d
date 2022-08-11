@@ -51,4 +51,9 @@ class DH5Input : DH5Obj {
 mixin(H5Short!("Input"));
 
 unittest {
+	mixin(TestH5SingleAttributes!("H5Input", "input", 
+    [	"accept", "autoComplete",
+			"autofocus", "capture", "checked", "disabled", "form", "formAction", "formEnctype", "formMethod", "formNoValidate", "formTarget",
+			"height", "list", "maxLength", "min", "minLength", "multiple", "pattern", "placeHolder", "readOnly", "required",
+			"selectionDirection", "selectionEnd", "selectionStart", "size", "src", "step", "value", "width"]));
 }

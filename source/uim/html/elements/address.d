@@ -3,19 +3,14 @@
 @safe:
 import uim.html;
 
-/**
- * DH5Address, H5Address defines the contact information for the author/owner of a document or an article.
- * - inside the <body> element, it represents contact information for the document.
- * - inside an <article> element, it represents contact information for that article.
- * Hint: <address> element usually will be rendered in italic. Most browsers are adding a line break before and after the address element.
- */
+// Wrapper for <address> - indicates that the enclosed HTML provides contact information for a person or people, or for an organization.
 class DH5Address : DH5Obj {
 	mixin(H5This!"address");
 }
 mixin(H5Short!"Address");
 
 unittest {
-	mixin(H5Test!("H5Address", "address"));
+	testH5Obj(H5Address, "address");
 }
 
 /**

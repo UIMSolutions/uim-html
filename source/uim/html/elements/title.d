@@ -9,5 +9,6 @@ class DH5Title : DH5Obj {
 mixin(H5Short!"Title");
 
 unittest {
-    assert(H5Title == "<title></title>");
+  testH5Obj(H5Title, "title");
+  mixin(TestH5DoubleClasses!("H5Title", "title"));
 }

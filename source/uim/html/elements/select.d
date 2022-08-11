@@ -16,7 +16,7 @@ class DH5Select : DH5Obj {
 mixin(H5Short!"Select");
 
 unittest {
-	mixin(H5Test!("H5Select", "select"));
+	testH5Obj(H5Select, "select");
 	
 	assert(H5Select.option(["value":"aValue"]) == `<select><option value="aValue"></option></select>`);
 	assert(H5Select.option(["value":"aValue"], "someContent") == `<select><option value="aValue">someContent</option></select>`);

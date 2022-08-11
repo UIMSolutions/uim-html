@@ -10,20 +10,15 @@ class DH5Audio : DH5Obj {
 	mixin(H5This!"Audio");
 
 	mixin(MyAttribute!"autoplay");
-    unittest {
-        assert(H5Obj.autoplay("true").autoplay == "true");
-        writeln(H5Obj.autoplay("true"));
-    }
-
-    mixin(MyAttribute!"buffered");
-    mixin(MyAttribute!"controls");
-	mixin(MyAttribute!"loop");
-    mixin(MyAttribute!"mozCurrentSampleOffset");
-    mixin(MyAttribute!"muted");
-    mixin(MyAttribute!"played");
-    mixin(MyAttribute!"preload");
-    mixin(MyAttribute!"src");
-    mixin(MyAttribute!"volume");
+  mixin(MyAttribute!"buffered");
+  mixin(MyAttribute!"controls");
+  mixin(MyAttribute!"loop");
+  mixin(MyAttribute!"mozCurrentSampleOffset"); // ? 
+  mixin(MyAttribute!"muted");
+  mixin(MyAttribute!"played");
+  mixin(MyAttribute!"preload");
+  mixin(MyAttribute!"src");
+  mixin(MyAttribute!"volume");
 
 	mixin(MyContent!("source", "H5Source"));
 	mixin(MyContent!("track", "H5Track"));
@@ -34,7 +29,12 @@ unittest {
 	assert(H5Audio == "<audio></audio>");
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"])("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
+
+  testH5Obj(H5Option, "option");
+	mixin(TestH5DoubleAttributes!("H5Audio", "audio", 
+    ["autoplay", "buffered", "controls", "loop", "muted", "played", "preload", "src", "volume"]));
 }
+
 
 /**
  *  <audio controls>
