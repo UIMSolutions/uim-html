@@ -1,14 +1,26 @@
 {
-	"name": "uim-html",
 	"authors": [
 		"UI Manufaktur Team",
-    "Sicherheitsschmiede",
-    "Ozan Nurettin Süel"
+		"Sicherheitsschmiede",
+		"Ozan Nurettin Süel"
+	],
+	"configurations": [
+		{
+			"name": "default",
+			"targetType": "library"
+		},
+		{
+			"name": "test",
+			"targetType": "library",
+			"versions": [
+				"test_uim_html"
+			]
+		}
 	],
 	"copyright": "Copyright © 2017-2022, UI Manufaktur UG",
-	"license": "MIT",
 	"dependencies": {
 		"colored": "~>0.0.27",
+		"silly": "~>1.1.1",
 		"vibe-d": "~>0.9.5"
 	},
 	"importPaths": [
@@ -19,6 +31,8 @@
 		"../../LIBS/uim-json",
 		"./"
 	],
+	"license": "MIT",
+	"name": "uim-html",
 	"sourcePaths": [
 		"../../LIBS/uim-core",
 		"../../LIBS/uim-oop",
@@ -27,14 +41,5 @@
 		"../../LIBS/uim-javascript",
 		"./"
 	],
-	"targetType": "library",
-	"configurations": [
-		{
-			"name": "default"
-		},
-		{
-			"name": "test",
-			"versions": ["test_uim_html"]
-		}
-	]
+	"targetType": "library"
 }
