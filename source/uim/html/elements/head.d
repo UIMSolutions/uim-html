@@ -24,5 +24,5 @@ public:
 mixin(H5Short!"Head");
 
 unittest {	
-	assert(H5Head, "<head></head>"));
+	testH5Obj(H5Head, "head");
 }

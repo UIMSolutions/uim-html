@@ -11,6 +11,5 @@ class DH5Datalist : DH5Obj {
 mixin(H5Short!"Datalist");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Datalist,"<datalist></datalist>"));
-}}
+  testH5Obj(H5Datalist, "datalist");
+}

@@ -9,6 +9,5 @@ class DH5Section : DH5Obj {
 mixin(H5Short!"Section");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Section,"<section></section>"));
-}}
+    assert(H5Section == "<section></section>");
+}

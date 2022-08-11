@@ -9,6 +9,5 @@ class DH5Sub : DH5Obj {
 mixin(H5Short!"Sub");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Sub, "<sub></sub>"));
-}}
+    assert(H5Sub == "<sub></sub>");
+}

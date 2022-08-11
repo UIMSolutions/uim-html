@@ -9,6 +9,5 @@ class DH5Colgroup : DH5Obj {
 mixin(H5Short!"Colgroup");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Colgroup,"<colgroup></colgroup>"));
-    }}
+  testH5Obj(H5Colgroup, "colgroup");
+}

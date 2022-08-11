@@ -9,9 +9,8 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5A,"<a></a>");
-}}
+	testH5Obj(H5A, "a");
+}
 
 /**
  * DH5A, H5A, H5.A defines a hyperlink to link from one page to another.
@@ -78,7 +77,6 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 unittest {
-  version(test_uim_html) {
     assert(H5A == "<a></a>");
 }
 */

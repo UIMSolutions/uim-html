@@ -20,6 +20,5 @@ class DH5Thead : DH5Obj {
 mixin(H5Short!"Thead");
 
 unittest {
-  version(test_uim_html) {
     assert(H5Thead,"<thead></thead>"));
 }}

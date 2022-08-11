@@ -3,16 +3,12 @@
 @safe:
 import uim.html;
 
-/**
- * Grafiken werden oft von einem Untertitel ergänzt. 
- * Das HTML5-Element figure dient nun als semantisches Elternelement für eine zum Seiteninhalt gehörende Abbildung und das Element figcaption, das den Untertitel umschließt. 
- */
+// Wrapper for the figure tag - represents self-contained content, potentially with an optional caption, which is specified using the <figcaption> element.
 class DH5Figure : DH5Obj {
 	mixin(H5This!"figure");
 }
 mixin(H5Short!"Figure");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Figure, "<figure></figure>"));
-}}
+  testH5Obj(H5Figure, "figure");
+}

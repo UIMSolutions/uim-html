@@ -3,17 +3,14 @@
 @safe:
 import uim.html;
 
-/**
- * Nav
- * Das nav-Element umschließt Navigationsleisten und Menüs, wobei es neben einer unsortierten Liste mit den Verweisen auch eine Überschrift oder ähnliches enthalten kann. 
- */
+// Wrapper for <nav>
+// DH5Nav/H5Nav represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents.
 class DH5Nav : DH5Obj {
 	mixin(H5This!("nav"));
 }
 mixin(H5Short!"Nav");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Nav,"<nav></nav>"));
-}}
+  testH5Obj(H5Nav, "nav");
+}
  

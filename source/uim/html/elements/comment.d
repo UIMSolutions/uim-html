@@ -16,6 +16,5 @@ class DH5Comment : DH5Obj {
 mixin(H5Short!"Comment");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Comment,"<comment></comment>"));
-}}
+  testH5Obj(H5Comment, "comment");
+}

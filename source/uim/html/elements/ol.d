@@ -8,11 +8,10 @@ class DH5Ol : DH5Obj {
 
 	mixin(MyContent!("item", "H5Li"));
 	unittest {
-		assert(H5Ol.item,"<ol><li></li></ol>"));
+		assert(H5Ol.item == "<ol><li></li></ol>");
 	}
 }
 mixin(H5Short!"Ol");
 unittest {
-  version(test_uim_html) {
-    assert(H5Ol,"<ol></ol>"));
-}}
+    assert(H5Ol == "<ol></ol>");
+}

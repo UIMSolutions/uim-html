@@ -9,6 +9,5 @@ class DH5Dialog : DH5Obj {
 mixin(H5Short!"Dialog");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Dialog == "<dialog></dialog>");
-}}
+  testH5Obj(H5Dialog, "dialog");
+}

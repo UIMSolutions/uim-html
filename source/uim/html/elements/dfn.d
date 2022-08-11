@@ -9,6 +9,5 @@ class DH5Dfn : DH5Obj {
 mixin(H5Short!"Dfn");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Dfn,"<dfn></dfn>"));
-}}
+  testH5Obj(H5Dfn, "dfn");
+}

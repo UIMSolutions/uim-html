@@ -33,6 +33,5 @@ class DH5Track : DH5Obj {
 mixin(H5Short!"Track");
 
 unittest {
-  version(test_uim_html) {
     assert(H5Track,`<track></track>`));
 }}

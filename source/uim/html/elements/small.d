@@ -3,13 +3,13 @@
 @safe:
 import uim.html;
 
+// Wrapper for <small> - represents side-comments and small print, like copyright and legal text, independent of its styled presentation.
 class DH5Small : DH5Obj {
 	mixin(H5This!"small");
 }
 mixin(H5Short!"Small");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Small,"<small></small>"));
-}}
+    testH5Obj(H5Small, "small");
+}
 

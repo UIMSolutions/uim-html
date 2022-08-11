@@ -46,6 +46,9 @@ public import uim.html.video;
 public import uim.html.webstorage;
 public import uim.html.webworker;
 
+// Tests
+public import uim.html.tests;
+
 string cssStorePath = "";
 string h5Doctype = "<!doctype html>";
 
@@ -183,7 +186,6 @@ auto HTML(string tag)(string[] classes, string content) { return "<"~tag~" class
 
 /*
 unittest {
-  version(test_uim_html) {
     assert(HTML!"div","<div />");
 	assert(HTML!("input", true),"<input>");
 	assert(HTML!"div"(["aClass"]),"<div class=\"aClass\" />");
@@ -308,7 +310,6 @@ string asString(T:DH5Obj)(T[] objs) {
 	return result;
 }
 unittest {
-  version(test_uim_html) {
     assert([H5Meta, H5Meta].toString == "<meta><meta>");
 }}
 

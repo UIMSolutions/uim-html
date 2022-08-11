@@ -9,6 +9,5 @@ class DH5Fieldset : DH5Obj {
 mixin(H5Short!"Fieldset");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Fieldset,"<fieldset></fieldset>"));
-}}
+  testH5Obj(H5Fieldset, "fieldset");
+}

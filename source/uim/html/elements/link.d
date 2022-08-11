@@ -31,6 +31,5 @@ class DH5Link : DH5Obj {
 mixin(H5Short!("Link"));
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Link,"<link>"));
-}}
+  assert(H5Link =="<link>");
+}

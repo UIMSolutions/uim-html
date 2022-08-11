@@ -19,7 +19,6 @@ enum option_modes : string {
 }
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Option == "<option></option>");
-}}
+  testH5Obj(H5Option, "option");
+}
 

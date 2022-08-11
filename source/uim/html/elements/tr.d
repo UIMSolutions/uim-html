@@ -27,7 +27,6 @@ class DH5Tr : DH5Obj {
 mixin(H5Calls!("H5Tr", "DH5Tr"));
 
 unittest {
-  version(test_uim_html) {
     assert(H5Tr, "<tr></tr>"));
 		assert(H5Tr.td, "<tr><td></td></tr>"));
 		assert(H5Tr.cell, "<tr><td></td></tr>"));

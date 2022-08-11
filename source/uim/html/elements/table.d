@@ -50,6 +50,5 @@ class DH5Table : DH5Obj {
 }
 mixin(H5Short!"Table");
 unittest {
-  version(test_uim_html) {
     assert(H5Table == "<table></table>");
 }}

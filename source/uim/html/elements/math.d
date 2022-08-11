@@ -9,6 +9,5 @@ class DH5Math : DH5Obj {
 mixin(H5Short!"Math");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Math,"<math></math>"));
-}}
+    assert(H5Math == "<math></math>");
+}

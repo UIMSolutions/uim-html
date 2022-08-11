@@ -24,6 +24,5 @@ class DH5Textarea : DH5Obj {
 mixin(H5Short!"Textarea");
 
 unittest {
-  version(test_uim_html) {
     assert(H5Textarea, "<textarea></textarea>"));
 }}

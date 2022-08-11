@@ -9,6 +9,5 @@ class DH5Details: DH5Obj {
 mixin(H5Short!"Details");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Details,"<details></details>"));
-}}
+  testH5Obj(H5Details, "details");
+}

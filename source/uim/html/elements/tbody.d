@@ -20,6 +20,5 @@ class DH5Tbody : DH5Obj {
 }
 mixin(H5Short!"Tbody");
 unittest {
-  version(test_uim_html) {
     assert(H5Tbody == "<tbody></tbody>");
 }}

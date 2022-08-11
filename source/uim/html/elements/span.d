@@ -9,5 +9,5 @@ class DH5Span : DH5Obj {
 mixin(H5Short!"Span");
 
 unittest {	
-	assert(H5Span, "<span></span>"));
+	assert(H5Span == "<span></span>"));
 }

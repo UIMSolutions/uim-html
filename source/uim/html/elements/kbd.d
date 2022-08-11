@@ -9,6 +9,5 @@ class DH5Kbd : DH5Obj {
 mixin(H5Short!"Kbd");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Kbd, "<kbd></kbd>"));
-}}
+  testH5Obj(H5Kbd, "kbd");
+}

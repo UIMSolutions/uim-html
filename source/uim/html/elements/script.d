@@ -9,7 +9,6 @@ class DH5Script : DH5Obj {
 mixin(H5Short!"Script");
 
 unittest {
-  version(test_uim_html) {
     assert(H5Script,"<script></script>"));
 }}
 
@@ -18,7 +17,6 @@ string toString(DH5Script[] scripts) {
 	foreach(script; scripts) result ~= script.toString;
 	return result; }
 unittest {
-  version(test_uim_html) {
     assert([H5Script, H5Script].toString == "<script></script><script></script>");
 }}
 

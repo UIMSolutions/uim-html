@@ -3,12 +3,12 @@
 @safe:
 import uim.html;
 
+// Wrapper for <main> - represents the dominant content of the <body> of a document.
 class DH5Main : DH5Obj {
 	mixin(H5This!("main"));
 }
 mixin(H5Short!"Main");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Main, "<main></main>"));
-}}
+    assert(H5Main, "<main></main>");
+}

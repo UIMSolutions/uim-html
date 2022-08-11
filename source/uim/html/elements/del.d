@@ -9,6 +9,5 @@ class DH5Del : DH5Obj {
 mixin(H5Short!"Del");
 
 unittest {
-  version(test_uim_html) {
-    assert(H5Del,"<del></del>"));
-}}
+  testH5Obj(H5Del, "del");
+}

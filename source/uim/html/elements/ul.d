@@ -35,6 +35,5 @@ class DH5Ul : DH5Obj {
 mixin(H5Short!"Ul");
 
 unittest {
-  version(test_uim_html) {
     assert(H5Ul, "<ul></ul>"));
 }}
