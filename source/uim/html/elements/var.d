@@ -10,4 +10,4 @@ mixin(H5Short!"Var");
 
 version(test_uim_html) { unittest {
     assert(H5Var,"<var></var>");
-}
+}}

@@ -11,4 +11,4 @@ mixin(H5Short!"Template");
 
 version(test_uim_html) { unittest {
     assert(H5Template == "<template></template>");
-}
+}}

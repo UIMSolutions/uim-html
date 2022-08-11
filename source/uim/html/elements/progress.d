@@ -10,4 +10,4 @@ mixin(H5Short!"Progress");
 
 version(test_uim_html) { unittest {
     assert(H5Progress == "<progress></progress>");
-}
+}}

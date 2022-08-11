@@ -11,7 +11,7 @@ mixin(H5Short!("Meta"));
 
 version(test_uim_html) { unittest {
   assert(H5Meta == "<meta>");
-}
+}}
 
 string toString(DH5Meta[] metas) {
 	string result;
@@ -19,7 +19,7 @@ string toString(DH5Meta[] metas) {
 	return result; }
 version(test_uim_html) { unittest {
     assert([H5Meta, H5Meta].toString == "<meta><meta>");
-}
+}}
 
 DH5Meta[] H5Metas(string[string][] metas...) { return H5Metas(metas); }
 DH5Meta[] H5Metas(string[string][] metas) { 
@@ -28,4 +28,4 @@ DH5Meta[] H5Metas(string[string][] metas) {
 	return results; }
 version(test_uim_html) { unittest {
 	/// TODO
-}
+}}

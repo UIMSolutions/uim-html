@@ -7,12 +7,12 @@ class DH5Input : DH5Obj {
 	mixin(H5This!("input", null, null, true));
 	version(test_uim_html) { unittest {
 		assert(H5Input == "<input>");
-	}
+	}}
 
 	mixin(MyAttribute!("type"))	;
 	version(test_uim_html) { unittest {
 		assert(H5Input.type("text") == `<input type="text">`);
-	}
+	}}
 
 	mixin(MyAttribute!("accept"));
 	mixin(MyAttribute!("autoComplete"));

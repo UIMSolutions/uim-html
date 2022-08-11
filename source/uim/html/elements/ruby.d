@@ -9,4 +9,4 @@ mixin(H5Short!"Ruby");
 
 version(test_uim_html) { unittest {
     // testH5Obj(H5Ruby, "ruby");
-}
+}}

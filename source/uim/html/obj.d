@@ -416,7 +416,7 @@ class DH5Obj {
 		writeln("---------");
 		writeln(H5Obj.tag("div")(H5Obj.tag("div")(H5Obj.tag("div"))).toPretty);
 		*/
-	}
+	}}
 }
 auto H5Obj() { return new DH5Obj(); }
 
@@ -473,7 +473,7 @@ version(test_uim_html) { unittest {
 	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
-}
+}}
 
 string toPretty(DH5Obj[] objs, int intendSpace = 0, int step = 2) {
 	return objs.map!(a => a ? a.toPretty : "").join;

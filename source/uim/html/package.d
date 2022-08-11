@@ -224,19 +224,19 @@ string doubleTag(string tag, string content) {
   return startTag(tag) ~ content ~ endTag(tag); }
 version(test_uim_html) { unittest {
   // TODO Test for doubleTag
-}
+}}
 
 string startTag(string tag, string[string] attributes = null) {
 	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">"; }
 version(test_uim_html) { unittest {
   // TODO Test for startTag
-}
+}}
 
 string endTag(string tag) {
 	return "</" ~ tag ~ ">"; }
 version(test_uim_html) { unittest {
   // TODO Test for endtag
-}
+}}
 
 string attributesToHTML(string[string] attributes) {
 	string result = "";
@@ -282,8 +282,7 @@ string escapeToHTML(string test)
 	return result;
 }
 
-unittest
-{
+version(test_uim_html) { unittest {
 	assert(startTag("div") == "<div>");
 	assert(startTag("div", ["class": "active"]) == `<div class="active">`);
 
@@ -302,7 +301,7 @@ unittest
 
 	assert(escapeToHTML("Me&You") == "Me&amp;You");
 	assert(escapeToHTML(`<Me&You&"MySelf">`) == "&lt;Me&amp;You&amp;&quot;MySelf&quot;&gt;");
-}
+}}
 
 string asString(T:DH5Obj)(T[] objs) {
 	string result;
@@ -311,7 +310,7 @@ string asString(T:DH5Obj)(T[] objs) {
 }
 version(test_uim_html) { unittest {
     assert([H5Meta, H5Meta].toString == "<meta><meta>");
-}
+}}
 
 auto FA(string name, string[] classes = null) {return H5I(classes~["fa", "fa-"~name]);}
 auto FAR(string name, string[] classes = null) {return H5I(classes~["far", "fa-"~name]);}

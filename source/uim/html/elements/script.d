@@ -10,7 +10,7 @@ mixin(H5Short!"Script");
 
 version(test_uim_html) { unittest {
     assert(H5Script,"<script></script>");
-}
+}}
 
 string toString(DH5Script[] scripts) {
 	string result;
@@ -18,7 +18,7 @@ string toString(DH5Script[] scripts) {
 	return result; }
 version(test_uim_html) { unittest {
     assert([H5Script, H5Script].toString == "<script></script><script></script>");
-}
+}}
 
 DH5Script[] H5Scripts(string[string][] scripts...) { return H5Scripts(scripts); }
 DH5Script[] H5Scripts(string[string][] scripts) { 

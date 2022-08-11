@@ -11,5 +11,5 @@ mixin(H5Short!"Small");
 
 version(test_uim_html) { unittest {
     // testH5Obj(H5Small, "small");
-}
+}}
 

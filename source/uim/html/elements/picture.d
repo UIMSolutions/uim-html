@@ -10,4 +10,4 @@ mixin(H5Short!"Picture");
 
 version(test_uim_html) { unittest {
     // testH5Obj(H5Picture, "picture");
-}
+}}

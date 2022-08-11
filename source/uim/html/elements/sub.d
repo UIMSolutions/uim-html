@@ -10,4 +10,4 @@ mixin(H5Short!"Sub");
 
 version(test_uim_html) { unittest {
     assert(H5Sub == "<sub></sub>");
-}
+}}

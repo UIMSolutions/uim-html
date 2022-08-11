@@ -1688,7 +1688,7 @@ version(test_uim_html) { unittest {
 //			(VAR("x", "1"))
 //			(IF("x>0", "x = 0"))
 //			).toString;
-}
+}}
 
 class DH5CENTER : DH5Obj {
 	mixin(H5This!("CENTER"));

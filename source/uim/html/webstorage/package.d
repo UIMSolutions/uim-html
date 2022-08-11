@@ -6,27 +6,26 @@ import uim.html;
 public import uim.html.webstorage.local;
 public import uim.html.webstorage.session;
 
-
 string h5LocalStorageSetItem(string name, string data) {
   return "localStorage.setItem(%s, %s);".format(name, data);
 }
 version(test_uim_html) { unittest {
   assert(h5LocalStorageSetItem("'test'", "values")  == "localStorage.setItem('test', values);");
-}
+}}
 
 string h5LocalStorageGetItem(string target, string name) {
   return "%s=localStorage.getItem(%s);".format(target, name);
 }
 version(test_uim_html) { unittest {
   assert(h5LocalStorageGetItem("var test", "'test'")  == "var test=localStorage.getItem('test');");
-}
+}}
 
 string h5LocalStorageRemoveItem(string name) {
   return "localStorage.removeItem(%s);".format(name);
 }
 version(test_uim_html) { unittest {
   assert(h5LocalStorageGetItem("var test", "'test'")  == "var test=localStorage.getItem('test');");
-}
+}}
 
 /*
 HTML web storage provides two objects for storing data on the client:

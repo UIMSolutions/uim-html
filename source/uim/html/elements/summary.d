@@ -10,4 +10,4 @@ mixin(H5Short!"Summary");
 
 version(test_uim_html) { unittest {
     assert(H5Summary == "<summary></summary>");
-}
+}}

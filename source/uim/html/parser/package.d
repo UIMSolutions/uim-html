@@ -42,7 +42,7 @@ size_t[] posOfAll(string text, string searchTxt, size_t startPos, size_t endPos)
 version(test_uim_html) { unittest {
   writeln("x x x x".posOfAll(" ", 2, 6));
   assert("x x x x".posOfAll(" ", 2, 6) == [3, 5]);
-}
+}}
 
 string fillWith(string txt, string addTxt, size_t startPos, size_t endPos) {
   string result = txt;
@@ -503,8 +503,7 @@ auto parse2(string html) {
   return rootNode;
 }
 
-unittest
-{
+version(test_uim_html) { unittest {
   /*   // writeln(`<tag a d>`);
   // writeln(parse2(`<tag a d>`));
   // writeln(`<tag a="b" d="c">`);
@@ -517,7 +516,7 @@ unittest
   
  // auto f = File("h5.txt", "w"); // open for writing
  // f.write(nodeToH5(nodes.nodes,0));
-}
+}}
 
 void writelnNodes(DH5Node[] nodes) {
   foreach (node; nodes) {

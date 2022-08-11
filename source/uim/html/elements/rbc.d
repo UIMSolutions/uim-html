@@ -10,4 +10,4 @@ mixin(H5Short!"Rbc");
 
 version(test_uim_html) { unittest {
     assert(H5Rbc == "<rbc></rbc>");
-}
+}}
