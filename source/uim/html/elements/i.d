@@ -10,5 +10,5 @@ class DH5I : DH5Obj {
 mixin(H5Short!"I");
 
 version(test_uim_html) { unittest {
-  // assert(H5I == "<i></i>");
+  testH5Obj(H5I, "i");
 }}     

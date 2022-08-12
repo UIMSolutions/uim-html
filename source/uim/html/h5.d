@@ -29,27 +29,27 @@ class DH5 {
     }}
     
     mixin(H5Def!"abbr");
-version(test_uim_html) { unittest {
+    version(test_uim_html) { unittest {
         // assert(H5.abbr == "<abbr></abbr>");
     }}
     
     mixin(H5Def!"address");
-version(test_uim_html) { unittest {
+    version(test_uim_html) { unittest {
         // assert(H5.address == "<address></address>");
     }}
     
     mixin(H5Def!"area");
-version(test_uim_html) { unittest {
+    version(test_uim_html) { unittest {
         // assert(H5.area == "<area></area>");
     }}
     
     mixin(H5Def!"article");
-version(test_uim_html) { unittest {
+    version(test_uim_html) { unittest {
         // assert(H5.article == "<article></article>");
     }}
 
     mixin(H5Def!"aside");
-version(test_uim_html) { unittest {
+    version(test_uim_html) { unittest {
         // assert(H5.aside == "<aside></aside>");
     }}
     
@@ -76,11 +76,6 @@ version(test_uim_html) { unittest {
     mixin(H5Def!"bdo");
 version(test_uim_html) { unittest {
         // assert(H5.bdo == "<bdo></bdo>");
-    }}
-    
-    mixin(H5Def!"big");
-version(test_uim_html) { unittest {
-        // assert(H5.big == "<big></big>");
     }}
     
     mixin(H5Def!"blockquote");
@@ -184,11 +179,6 @@ version(test_uim_html) { unittest {
      mixin(H5Def!"dd");
 version(test_uim_html) { unittest {
         // assert(H5.dd == "<dd></dd>");
-    }}
-
-    mixin(H5Def!"decorator");
-version(test_uim_html) { unittest {
-        // assert(H5.decorator == "<decorator></decorator>");
     }}
 
     mixin(H5Def!"del");
