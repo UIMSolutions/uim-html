@@ -462,16 +462,15 @@ auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return new DH5Obj(newA
 
 version(test_uim_html) { unittest {
 	auto h5 = H5Obj;
-	writeln("Hi Buddy");
-	// assert(h5.id("newID").id == "newID");
+	assert(h5.id("newID").id == "newID");
 
 	h5 = H5Obj("content");
-	// assert(H5Obj.id == null);
-	// assert(H5Obj(["classA", "classB"]).id == null);
-	// assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);
-	// assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
-	// assert(H5Obj(["a":"x", "b":"y"]).id == null);
-	// assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
+	assert(H5Obj.id == null);
+	assert(H5Obj(["classA", "classB"]).id == null);
+	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);
+	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
+	assert(H5Obj(["a":"x", "b":"y"]).id == null);
+	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
 }}
 
 string toPretty(DH5Obj[] objs, int intendSpace = 0, int step = 2) {
