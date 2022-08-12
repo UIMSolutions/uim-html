@@ -11,7 +11,6 @@ auto "~left~"(DH5Obj[] content...) { return new "~r~"(content); }
 auto "~left~"(DH5Obj[] content) { return new "~r~"(content); }
 auto "~left~"(DH5 content) { return new "~r~"(content); }
 
-auto "~left~"(string id, string content) { return new "~r~"(id, content); }
 auto "~left~"(string id, DH5Obj[] content...) { return new "~r~"(id, content); }
 auto "~left~"(string id, DH5Obj[] content) { return new "~r~"(id, content); }
 auto "~left~"(string id, DH5 content) { return new "~r~"(id, content); }
@@ -112,51 +111,51 @@ template H5This(string tag, string[] classes = null, string attributes = null, b
 	const char[] H5This = `
 	this() { super(); `~initial~` }
 
-	this(string someContent) { super(); `~initial~`this.content(someContent); }
-	this(DH5Obj[] someContent...) { super(); `~initial~`this.content(someContent); }
-	this(DH5Obj[] someContent) { super(); `~initial~`this.content(someContent); }
-	this(DH5 someContent) { super(); `~initial~`this.content(someContent); }
+	this(string someContent) 			{ this().addContent(someContent); }
+	this(DH5Obj[] someContent...) { this().addContent(someContent); }
+	this(DH5Obj[] someContent) 		{ this().addContent(someContent); }
+	this(DH5 someContent) 				{ this().addContent(someContent); }
 
-	this(string id, string someContent) { super(); `~initial~`this.id(id).content(someContent); }
-	this(string id, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).content(someContent); }
-	this(string id, DH5Obj[] someContent) { super(); `~initial~`this.id(id).content(someContent); }
-	this(string id, DH5 someContent) { super(); `~initial~`this.id(id).content(someContent); }
+	this(string[] someClasses) { this().addClasses(someClasses); }
+	this(string[] someClasses, string someContent)      { this(someClasses).addContent(someContent); }
+	this(string[] someClasses, DH5Obj[] someContent...) { this(someClasses).addContent(someContent); }
+	this(string[] someClasses, DH5Obj[] someContent)    { this(someClasses).addContent(someContent); }
+	this(string[] someClasses, DH5 someContent)         { this(someClasses).addContent(someContent); }
 
-	this(string id, string[] someClasses) { super(); `~initial~`this.id(id).classes(someClasses); }
-	this(string id, string[] someClasses, string someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
-	this(string id, string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
-	this(string id, string[] someClasses, DH5Obj[] someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
-	this(string id, string[] someClasses, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).content(someContent); }
+ 	this(string[string] someAttributes) { this().addAttributes(someAttributes); }
+	this(string[string] someAttributes, string someContent)      { this(someAttributes).addContent(someContent); }
+	this(string[string] someAttributes, DH5Obj[] someContent...) { this(someAttributes).addContent(someContent); }
+	this(string[string] someAttributes, DH5Obj[] someContent)    { this(someAttributes).addContent(someContent); }
+	this(string[string] someAttributes, DH5 someContent)         { this(someAttributes).addContent(someContent); }
 
-	this(string id, string[string] someAttributes)  { super(); `~initial~`this.id(id).attributes(someAttributes); }
-	this(string id, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
-	this(string id, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
-	this(string id, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
-	this(string id, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).attributes(someAttributes).content(someContent); }
+	this(string[] someClasses, string[string] someAttributes) { this(someClasses).addAttributes(someAttributes); }
+	this(string[] someClasses, string[string] someAttributes, string someContent)      { this(someClasses, someAttributes).addContent(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { this(someClasses, someAttributes).addContent(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent)    { this(someClasses, someAttributes).addContent(someContent); }
+	this(string[] someClasses, string[string] someAttributes, DH5 someContent)         { this(someClasses, someAttributes).addContent(someContent); }
 
-	this(string id, string[] someClasses, string[string] someAttributes)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes); }
-	this(string id, string[] someClasses, string[string] someAttributes, string someContent)  { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string id, string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.id(id).classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string id, string someContent) 		 { this().id(id).addContent(someContent); }
+	this(string id, DH5Obj[] someContent...) { this().id(id).addContent(someContent); }
+	this(string id, DH5Obj[] someContent)    { this().id(id).addContent(someContent); }
+	this(string id, DH5 someContent)         { this().id(id).addContent(someContent); }
 
-	this(string[] someClasses) { super(); `~initial~`this.classes(someClasses); }
-	this(string[] someClasses, string someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
-	this(string[] someClasses, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).content(someContent); }
-	this(string[] someClasses, DH5Obj[] someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
-	this(string[] someClasses, DH5 someContent) { super(); `~initial~`this.classes(someClasses).content(someContent); }
+	this(string id, string[] someClasses) { this(someClasses).id(id); }
+	this(string id, string[] someClasses, string someContent)      { this(id, someClasses).addContent(someContent); }
+	this(string id, string[] someClasses, DH5Obj[] someContent...) { this(id, someClasses).addContent(someContent); }
+	this(string id, string[] someClasses, DH5Obj[] someContent)    { this(id, someClasses).addContent(someContent); }
+	this(string id, string[] someClasses, DH5 someContent)         { this(id, someClasses).addContent(someContent); }
 
- 	this(string[string] someAttributes) { super();`~initial~`this.attributes(someAttributes); }
-	this(string[string] someAttributes, string someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
-	this(string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
-	this(string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
-	this(string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.attributes(someAttributes).content(someContent); }
+	this(string id, string[string] someAttributes)  { this(someAttributes).id(id); }
+	this(string id, string[string] someAttributes, string someContent)      { this(id, someAttributes).addContent(someContent); }
+	this(string id, string[string] someAttributes, DH5Obj[] someContent...) { this(id, someAttributes).addContent(someContent); }
+	this(string id, string[string] someAttributes, DH5Obj[] someContent)    { this(id, someAttributes).addContent(someContent); }
+	this(string id, string[string] someAttributes, DH5 someContent)         { this(id, someAttributes).addContent(someContent); }
 
-	this(string[] someClasses, string[string] someAttributes) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes); }
-	this(string[] someClasses, string[string] someAttributes, string someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string[] someClasses, string[string] someAttributes, DH5Obj[] someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
-	this(string[] someClasses, string[string] someAttributes, DH5 someContent) { super(); `~initial~`this.classes(someClasses).attributes(someAttributes).content(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes) { this(someClasses, someAttributes).id(id); }
+	this(string id, string[] someClasses, string[string] someAttributes, string someContent)      { this(id, someClasses, someAttributes).addContent(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent...) { this(id, someClasses, someAttributes).addContent(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5Obj[] someContent)    { this(id, someClasses, someAttributes).addContent(someContent); }
+	this(string id, string[] someClasses, string[string] someAttributes, DH5 someContent)         { this(id, someClasses, someAttributes).addContent(someContent); }
 	`;
 }
 
