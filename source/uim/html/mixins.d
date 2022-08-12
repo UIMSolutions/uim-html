@@ -276,7 +276,7 @@ O "~name~"(this O)(string[] classes, string[string] attributes, DH5 content) { "
 }
 
 template MyContent(string name, string className) {	
-	const char[] MyContent = h5Content(name, "this.content", className); }
+	const char[] MyContent = h5Content(name, "this.addContent", className); }
 template MyContent(string name, string middle, string className) {	
 	const char[] MyContent = h5Content(name, middle, className); }
 

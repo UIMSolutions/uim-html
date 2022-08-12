@@ -7,17 +7,12 @@ class DH5Thead : DH5Obj {
 	mixin(H5This!"thead");
 
 	mixin(MyContent!("tr", "H5Tr"));
-	version(test_uim_html) { unittest {
-		// assert(H5Thead.tr == "<thead><tr></tr></thead>");
-	}}
-
 	mixin(MyContent!("row", "H5Tr"));
-	version(test_uim_html) { unittest {
-			// assert(H5Thead.row == "<thead><tr></tr></thead>");
-	}}
 }
 mixin(H5Short!"Thead");
 
 version(test_uim_html) { unittest {
-    // assert(H5Thead == "<thead></thead>");
+  testH5Obj(H5Thead, "thead");
+	assert(H5Thead.tr == "<thead><tr></tr></thead>");
+	assert(H5Thead.row == "<thead><tr></tr></thead>");
 }}
