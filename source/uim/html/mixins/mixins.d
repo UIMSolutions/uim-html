@@ -1,4 +1,4 @@
-﻿module uim.html.mixins;
+﻿module uim.html.mixins.mixins;
 
 @safe:
 import uim.html;
