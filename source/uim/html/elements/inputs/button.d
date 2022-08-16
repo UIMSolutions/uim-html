@@ -9,5 +9,5 @@ class DH5InputButton : DH5Input {
 mixin(H5Short!"InputButton");
 
 version(test_uim_html) { unittest {
-	writeln(H5InputButton);		
+	assert(H5InputButton);		
 }}
