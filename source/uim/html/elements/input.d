@@ -51,7 +51,7 @@ class DH5Input : DH5Obj {
 mixin(H5Short!("Input"));
 
 version(test_uim_html) { unittest {
-	mixin(TestH5SingleAttributes!("H5Input", "input", 
+	mixin(// testH5SingleAttributes!("H5Input", "input", 
     [	"accept", "autoComplete",
 			"autofocus", "capture", "checked", "disabled", "form", "formAction", "formEnctype", "formMethod", "formNoValidate", "formTarget",
 			"height", "list", "maxLength", "min", "minLength", "multiple", "pattern", "placeHolder", "readOnly", "required",

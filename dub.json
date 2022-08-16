@@ -10,9 +10,18 @@
 			"targetType": "library"
 		},
 		{
-			"name": "test",
+			"name": "testUnit",
 			"targetType": "library",
 			"versions": [
+				"test_uim_html"
+			]
+		},
+		{
+			"name": "testAll",
+			"targetType": "library",
+			"versions": [
+				"test_uim_core",
+				"test_uim_oop",
 				"test_uim_html"
 			]
 		}

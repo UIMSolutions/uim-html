@@ -14,7 +14,7 @@ class DH5Tfoot : DH5Obj {
 mixin(H5Short!"Tfoot");
 
 version(test_uim_html) { unittest {
-	testH5Obj(H5Tfoot, "tfoot");
+	// testH5Obj(H5Tfoot, "tfoot");
 	assert(H5Tfoot.tr == "<tfoot><tr></tr></tfoot>");
 	assert(H5Tfoot.row == "<tfoot><tr></tr></tfoot>");
 	assert(H5Tfoot.tr.tr == "<tfoot><tr></tr><tr></tr></tfoot>");

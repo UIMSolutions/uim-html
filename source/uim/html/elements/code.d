@@ -10,5 +10,5 @@ class DH5Code : DH5Obj {
 mixin(H5Short!"Code");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5Code, "code");
+  // testH5Obj(H5Code, "code");
 }}

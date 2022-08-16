@@ -8,7 +8,7 @@ class DH5Style : DH5Obj {
 }
 mixin(H5Short!"Style");
 version(test_uim_html) { unittest {
-    testH5Obj(H5Style, "style");
+    // testH5Obj(H5Style, "style");
 }}
 
 string toString(DH5Style[] styles) {

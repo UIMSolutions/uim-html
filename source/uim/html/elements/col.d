@@ -15,5 +15,5 @@ class DH5Col : DH5Obj {
 mixin(H5Short!"Col");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5Col, "col");
+  // testH5Obj(H5Col, "col");
 }}

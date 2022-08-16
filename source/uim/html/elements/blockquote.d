@@ -18,5 +18,5 @@ class DH5Blockquote : DH5Obj {
 mixin(H5Short!"Blockquote");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5Blockquote, "blockquote");
+  // testH5Obj(H5Blockquote, "blockquote");
 }}

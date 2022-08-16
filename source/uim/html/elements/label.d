@@ -21,5 +21,5 @@ class DH5Label : DH5Obj {
 mixin(H5Short!"Label");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5Label, `label`);
+  // testH5Obj(H5Label, `label`);
 }}

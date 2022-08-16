@@ -9,6 +9,6 @@ class DH5Title : DH5Obj {
 mixin(H5Short!"Title");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5Title, "title");
-  // mixin(TestH5DoubleClasses!("H5Title", "title"));
+  // testH5Obj(H5Title, "title");
+  // mixin(// testH5DoubleClasses!("H5Title", "title"));
 }}
