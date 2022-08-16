@@ -13,53 +13,47 @@ Note: The usemap attribute in the <img> tag is associated with the <map> element
 class DH5Area : DH5Obj {
 	mixin(H5This!"area");
 
-	/**
-	 * Attribute 	Value 	Description
-alt 	text 	Specifies an alternate text for the area. Required if the href attribute is present
-coords 	coordinates 	Specifies the coordinates of the area
-download 	filename 	Specifies that the target will be downloaded when a user clicks on the hyperlink
-href 	URL 	Specifies the hyperlink target for the area
-hreflang 	language_code 	Specifies the language of the target URL
-media 	media query 	Specifies what media/device the target URL is optimized for
-nohref 	value 	Not supported in HTML5.
-Specifies that an area has no associated link
-rel 	alternate
-author
-bookmark
-help
-license
-next
-nofollow
-noreferrer
-prefetch
-prev
-search
-tag 	Specifies the relationship between the current document and the target URL
-shape 	default
-rect
-circle
-poly 	Specifies the shape of the area
-target 	_blank
-_parent
-_self
-_top
-framename 	Specifies where to open the target URL
-type 	media_type 	Specifies the media type of the target URL
-*/
+	// Attribute alt - A text string alternative to display on browsers that do not display images.
+	mixin(MyAttribute!"alt");
+
+	// Attribute coords - The coords attribute details the coordinates of the shape attribute in size, shape, and placement of an <area>.
+	mixin(MyAttribute!"coords");
+
+	// Attribute download - causes the browser to treat the linked URL as a download
+	mixin(MyAttribute!"download");
+
+	// Attribute href - The URL that the hyperlink points to
+	mixin(MyAttribute!"href");
+
+	// Attribute hreflang - Hints at the human language of the linked URL
+	mixin(MyAttribute!"hreflang");
+
+	// Attribute ping - A space-separated list of URLs. 
+	// When the link is followed, the browser will send POST requests with the body PING to the URLs. Typically for tracking.
+	mixin(MyAttribute!"ping");
+
+	// Attribute reffererpolicy - How much of the referrer to send when following the link.
+	// Valid values: no-referrer, no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+	mixin(MyAttribute!"referrerpolicy");
+
+	// Attribute rel - The relationship of the linked URL as space-separated link types.
+	mixin(MyAttribute!"rel");
+
+	// Attribute shape - The shape of the associated hot spot.
+	mixin(MyAttribute!"shape");
+
+	// Attribute target - Where to display the linked URL, as the name for a browsing context (a tab, window, or <iframe>)
+	// Valid values: _self, _blank, _parent, _top 
+	mixin(MyAttribute!"target");
 }
 mixin(H5Short!"Area");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5Area, "area");
+	mixin(TestH5DoubleAttributes!("H5Area", "area", [
+		"alt", "coords", "download", "href", "hreflang", "ping", "referrerpolicy", "rel", "shape", "target"
+	]));
 }}
 
-/**
- *  <img src="planets.gif" width="145" height="126" alt="Planets"
-usemap="#planetmap">
 
-<map name="planetmap">
-  <area shape="rect" coords="0,0,82,126" href="sun.htm" alt="Sun">
-  <area shape="circle" coords="90,58,3" href="mercur.htm" alt="Mercury">
-  <area shape="circle" coords="124,58,8" href="venus.htm" alt="Venus">
-</map> */
 
