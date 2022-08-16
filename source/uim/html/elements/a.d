@@ -9,7 +9,7 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 version(test_uim_html) { unittest {
-	testH5Obj(H5A, "a");
+	// testH5Obj(H5A, "a");
 }}
 
 /**
@@ -77,6 +77,6 @@ class DH5A : DH5Obj {
 mixin(H5Short!"A");
 
 version(test_uim_html) { unittest {
-  testH5Obj(H5A, "a");
+  // testH5Obj(H5A, "a");
 }}
 */
