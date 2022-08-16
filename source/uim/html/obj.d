@@ -7,10 +7,28 @@ class DH5Obj {
   this() { initialize; }
 
   this(string newContent)      { this().addContent(newContent); }
-  this(STRINGAA newAttributes) { this().addAttributes(newAttributes); }
+	
   this(DH5Obj[] newContent...) { this().addContent(newContent); }
   this(DH5Obj[] newContent)    { this().addContent(newContent); }
   this(DH5 newContent)         { this().addContent(newContent); }
+
+  this(string[] newClasses){ this().addClasses(newClasses); }
+  this(string[] newClasses, string newContent)      { this(newClasses).addContent(newContent); }
+  this(string[] newClasses, DH5Obj[] newContent...) { this(newClasses, newContent); }
+  this(string[] newClasses, DH5Obj[] newContent)    { this(newClasses).addContent(newContent); }
+  this(string[] newClasses, DH5 newContent)         { this(newClasses).addContent(newContent); }
+	
+	this(STRINGAA newAttributes) { this().addAttributes(newAttributes); }
+	this(STRINGAA newAttributes, string newContent)    	 { this(newAttributes).addContent(newContent); }
+  this(STRINGAA newAttributes, DH5Obj[] newContent...) { this(newAttributes).addContent(newContent); }
+  this(STRINGAA newAttributes, DH5Obj[] newContent)    { this(newAttributes).addContent(newContent); }
+  this(STRINGAA newAttributes, DH5 newContent)         { this(newAttributes).addContent(newContent); }
+	
+  this(string[] newClasses, STRINGAA newAttributes) { this(newClasses).addAttributes(newAttributes); }
+  this(string[] newClasses, STRINGAA newAttributes, string newContent)      { this(newClasses, newAttributes).addContent(newContent); }
+  this(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { this(newClasses, newAttributes).addContent(newContent); }
+  this(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { this(newClasses, newAttributes).addContent(newContent); }
+  this(string[] newClasses, STRINGAA newAttributes, DH5 newContent)         { this(newClasses, newAttributes).addContent(newContent); }
 
   this(string newId, DH5Obj[] newContent...) { this(newContent).id(newId); }
   this(string newId, DH5Obj[] newContent)    { this(newContent).id(newId); }
@@ -33,22 +51,7 @@ class DH5Obj {
   this(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { this(newId, newClasses, newAttributes).addContent(newContent); }
   this(string newId, string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { this(newId, newClasses, newAttributes).addContent(newContent); }
   this(string newId, string[] newClasses, STRINGAA newAttributes, DH5 newContent)         { this(newId, newClasses, newAttributes).addContent(newContent); }
-	
-  this(string[] newClasses, string newContent)      { this(newClasses).addContent(newContent); }
-  this(string[] newClasses, DH5Obj[] newContent...) { this(newClasses, newContent); }
-  this(string[] newClasses, DH5Obj[] newContent)    { this(newClasses).addContent(newContent); }
-  this(string[] newClasses, DH5 newContent)         { this(newClasses).addContent(newContent); }
-	
-  this(string[] newClasses, STRINGAA newAttributes, string newContent)      { this(newClasses, newAttributes).addContent(newContent); }
-  this(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent...) { this(newClasses, newAttributes, newContent); }
-  this(string[] newClasses, STRINGAA newAttributes, DH5Obj[] newContent)    { this(newClasses, newAttributes).addContent(newContent); }
-  this(string[] newClasses, STRINGAA newAttributes, DH5 newContent)         { this(newClasses, newAttributes).addContent(newContent); }
-	
-  this(STRINGAA newAttributes, string newContent)    	 { this(newAttributes).addContent(newContent); }
-  this(STRINGAA newAttributes, DH5Obj[] newContent...) { this(newAttributes).addContent(newContent); }
-  this(STRINGAA newAttributes, DH5Obj[] newContent)    { this(newAttributes).addContent(newContent); }
-  this(STRINGAA newAttributes, DH5 newContent)         { this(newAttributes).addContent(newContent); }
-	
+		
 	void initialize() {
 		_css = CSSRules;
 		_classes = null;

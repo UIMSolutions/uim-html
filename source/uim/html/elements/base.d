@@ -10,12 +10,12 @@ class DH5Base : DH5Obj {
   // href = URL - Specifies the base URL for all relative URLs in the page
   mixin(MyAttribute!("href"));   
   version(test_uim_html) { unittest {
-    // assert(H5Base.href("server/folder").href == "server/folder"); 
+    assert(H5Base.href("server/folder").href == "server/folder"); 
   }}
 
   mixin(MyAttribute!("target")); // _blank, _parent, _self o. _top - Specifies the default target for all hyperlinks and forms in the page
   version(test_uim_html) { unittest {
-    // assert(H5Base.target("_blank").target == "_blank"); 
+    assert(H5Base.target("_blank").target == "_blank"); 
   }}
 }
 mixin(H5Short!"Base");

@@ -70,6 +70,6 @@ class DH5Html : DH5Obj {
 mixin(H5Short!"Html");
 
 version(test_uim_html) { unittest {
-	// assert(H5Html == "<!doctype html><html><head></head><body></body></html>");
-	// assert(H5Html(["lang":"en"]) == "<!doctype html><html lang=\"en\"><head></head><body></body></html>");
+	assert(H5Html == "<!doctype html><html><head></head><body></body></html>");
+	assert(H5Html(["lang":"en"]) == "<!doctype html><html lang=\"en\"><head></head><body></body></html>");
 }}

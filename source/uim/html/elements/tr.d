@@ -8,7 +8,7 @@ class DH5Tr : DH5Obj {
 
 	mixin(MyContent!("th", "H5Th"));
 	version(test_uim_html) { unittest {
-			// assert(H5Tr.th, "<tr><th></th></tr>");
+			assert(H5Tr.th, "<tr><th></th></tr>");
 	}}
 
 	mixin(MyContent!("td", "H5Td"));

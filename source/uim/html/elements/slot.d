@@ -9,6 +9,6 @@ class DH5Slot : DH5Obj {
 mixin(H5Short!"Slot");
 
 version(test_uim_html) { unittest {
-    // assert(H5Slot, "<slot></slot>"));
+    assert(H5Slot, "<slot></slot>"));
 }
  */

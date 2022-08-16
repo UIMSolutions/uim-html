@@ -9,7 +9,7 @@ class DH5Script : DH5Obj {
 mixin(H5Short!"Script");
 
 version(test_uim_html) { unittest {
-    // assert(H5Script,"<script></script>");
+    assert(H5Script,"<script></script>");
 }}
 
 string toString(DH5Script[] scripts) {

@@ -11,8 +11,8 @@ class DH5Blockquote : DH5Obj {
   // This attribute is intended to point to information explaining the context or the reference for the quote.
   mixin(MyAttribute!("cite"));
   version(test_uim_html) { unittest {
-    // assert(H5Blockquote.cite("/server/somewhere").cite == "/server/somewhere");
-    // assert(H5Blockquote.cite("/server/somewhere") == `<blockquote cite="/server/somewhere"></blockquote>`);
+    assert(H5Blockquote.cite("/server/somewhere").cite == "/server/somewhere");
+    assert(H5Blockquote.cite("/server/somewhere") == `<blockquote cite="/server/somewhere"></blockquote>`);
   }}
 }
 mixin(H5Short!"Blockquote");

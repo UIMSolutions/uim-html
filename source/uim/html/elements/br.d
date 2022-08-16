@@ -11,5 +11,5 @@ mixin(H5Short!("Br"));
 alias Br = H5Br; // Shortcut of shortcut
 
 version(test_uim_html) { unittest {
-  // assert(H5Br,"<br>");
+  assert(H5Br,"<br>");
 }}

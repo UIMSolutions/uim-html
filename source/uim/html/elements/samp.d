@@ -9,5 +9,5 @@ class DH5Samp : DH5Obj {
 mixin(H5Short!"Samp");
 
 version(test_uim_html) { unittest {
-    // assert(H5Samp,"<samp></samp>");
+    assert(H5Samp,"<samp></samp>");
 }}

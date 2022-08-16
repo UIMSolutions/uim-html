@@ -42,11 +42,11 @@ template H5Test(string className, string tag) {
 //// assert(`~className~`(["a":"b", "c":"d"], H5DIV("a"), H5DIV("b")) == "<`~tag~` a=\"b\" c=\"d\"><div id=\"a\"></div><div id=\"b\"></div></`~tag~`>");
 //
 //auto h5 = `~className~`;
-//// assert(h5.id("newID") == "<`~tag~` id=\"newID\"></`~tag~`>");
-//// assert(h5.id("newID").classes(["classA", "classB"]) == "<`~tag~` id=\"newID\" class=\"classA classB\"></`~tag~`>");
-//// assert(h5.id("newID").classes("classA", "classB") == "<`~tag~` id=\"newID\" class=\"classA classB\"></`~tag~`>");
-//// assert(h5.id("newID").classes("classA", "classB").attributes(["a":"b"]) == "<`~tag~` id=\"newID\" class=\"classA classB\" a=\"b\"></`~tag~`>");
-//// assert(h5.id("newID").classes("classA", "classB").attributes(["a":"b"]).content("content") == "<`~tag~` id=\"newID\" class=\"classA classB\" a=\"b\">content</`~tag~`>");
+//assert(H5.id("newID") == "<`~tag~` id=\"newID\"></`~tag~`>");
+//assert(H5.id("newID").classes(["classA", "classB"]) == "<`~tag~` id=\"newID\" class=\"classA classB\"></`~tag~`>");
+//assert(H5.id("newID").classes("classA", "classB") == "<`~tag~` id=\"newID\" class=\"classA classB\"></`~tag~`>");
+//assert(H5.id("newID").classes("classA", "classB").attributes(["a":"b"]) == "<`~tag~` id=\"newID\" class=\"classA classB\" a=\"b\"></`~tag~`>");
+//assert(H5.id("newID").classes("classA", "classB").attributes(["a":"b"]).content("content") == "<`~tag~` id=\"newID\" class=\"classA classB\" a=\"b\">content</`~tag~`>");
 //
 //// assert(cast(D`~className~`)`~className~`);
 //// assert(cast(D`~className~`)`~className~`.id("newID"));

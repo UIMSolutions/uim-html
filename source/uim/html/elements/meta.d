@@ -10,7 +10,7 @@ class DH5Meta : DH5Obj {
 mixin(H5Short!("Meta"));
 
 version(test_uim_html) { unittest {
-  // assert(H5Meta == "<meta>");
+  assert(H5Meta == "<meta>");
 }}
 
 string toString(DH5Meta[] metas) {
