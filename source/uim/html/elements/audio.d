@@ -9,16 +9,31 @@ import uim.html;
 class DH5Audio : DH5Obj {
 	mixin(H5This!"Audio");
 
+  // Attribute autoplay - if specified, the audio will automatically begin playback as soon as it can do so, without waiting for the entire audio file to finish downloading.
 	mixin(MyAttribute!"autoplay");
-  mixin(MyAttribute!"buffered");
+  
+  // Attribute controls - If this attribute is present, the browser will offer controls to allow the user to control audio playback, including volume, seeking, and pause/resume playback.
   mixin(MyAttribute!"controls");
+
+  // Attribute crossorigin - This enumerated attribute indicates whether to use CORS to fetch the related audio file.
+  // Valid values: anonymous use-credentials
+  mixin(MyAttribute!"crossorigin");
+
+  // Attribute disableremoteplayback - A Boolean attribute used to disable the capability of remote playback in devices that are attached using wired (HDMI, DVI, etc.) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, etc).
+  mixin(MyAttribute!"disableremoteplayback");
+
+  // Attribute loop - if specified, the audio player will automatically seek back to the start upon reaching the end of the audio.
   mixin(MyAttribute!"loop");
-  mixin(MyAttribute!"mozCurrentSampleOffset"); // ? 
+
+  // Attribute muted - indicates whether the audio will be initially silenced.
   mixin(MyAttribute!"muted");
-  mixin(MyAttribute!"played");
+
+  // Attribute preload - This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience.
+  // Valid values: none, metadata, autoss 
   mixin(MyAttribute!"preload");
-  mixin(MyAttribute!"src");
-  mixin(MyAttribute!"volume");
+
+  // Attribute preload - The URL of the audio to embed. 
+  mixin(MyAttribute!"src"); 
 
 	mixin(MyContent!("source", "H5Source"));
 	mixin(MyContent!("track", "H5Track"));
@@ -30,15 +45,7 @@ version(test_uim_html) { unittest {
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"])("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
 
-  testH5Obj(H5Option, "option");
-	// mixin(testH5DoubleAttributes!("H5Audio", "audio", ["autoplay", "buffered", "controls", "loop", "muted", "played", "preload", "src", "volume"]));
+	mixin(testH5DoubleAttributes!("H5Audio", "audio", [
+    "autoplay", "buffered", "controls", "crossorigin", "disableremoteplayback", "loop", "muted", "preload", "src"]));
 }}
 
-
-/**
- *  <audio controls>
-  <source src="horse.ogg" type="audio/ogg">
-  <source src="horse.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
-</audio> 
-*/	
