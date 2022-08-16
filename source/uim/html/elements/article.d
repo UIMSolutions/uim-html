@@ -3,7 +3,7 @@
 @safe:
 import uim.html;
 
-// represents a self-contained composition in a document, page, application, or site, 
+// Wrapper for <article> - represents a self-contained composition in a document, page, application, or site, 
 // which is intended to be independently distributable or reusable (e.g., in syndication)
 class DH5Article : DH5Obj {
 	mixin(H5This!"article");
