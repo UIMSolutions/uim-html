@@ -45,7 +45,7 @@ version(test_uim_html) { unittest {
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"]) == `<audio><source src="horse.ogg" type="audio/ogg"></source></audio>`); 
 	assert(H5Audio.source(["src":"horse.ogg", "type":"audio/ogg"])("Your browser does not support the audio tag.") == `<audio><source src="horse.ogg" type="audio/ogg"></source>Your browser does not support the audio tag.</audio>`); 
 
-	mixin(testH5DoubleAttributes!("H5Audio", "audio", [
+	mixin(TestH5DoubleAttributes!("H5Audio", "audio", [
     "autoplay", "buffered", "controls", "crossorigin", "disableremoteplayback", "loop", "muted", "preload", "src"]));
 }}
 

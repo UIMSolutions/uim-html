@@ -309,11 +309,11 @@ class DH5Obj {
 					_attributes.remove(key);
 					break;
 				case "class": 
-					this.classes(_attributes[key].split(" ")); 
+					this.addClasses(_attributes[key].split(" ")); 
 					_attributes.remove(key);
 					break;
 				default: 
-					if (isBoolAttribute(key)) items~=key;
+					if (isBoolAttribute(key) || key == _attributes[key]) items~=key;
 					else items~=key.toLower~`="`~_attributes[key]~`"`;
 					break;
 			}
