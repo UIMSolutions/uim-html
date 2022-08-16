@@ -461,16 +461,19 @@ auto H5Obj(STRINGAA newAttributes, DH5Obj[] newContent)    { return new DH5Obj(n
 auto H5Obj(STRINGAA newAttributes, DH5 newContent) 				 { return new DH5Obj(newAttributes, newContent); }
 
 version(test_uim_html) { unittest {
-	auto h5 = H5Obj;
-	assert(h5.id("newID").id == "newID");
+	assert(H5Obj);
+	assert(H5Obj.tag("testTag").tag == "testTag");
+	assert(H5Obj.id("testId").id == "testId");
+	assert(H5Obj(["classA", "classB"]).classes == ["classA", "classB"]);
 
+	/* 
 	h5 = H5Obj("content");
 	assert(H5Obj.id == null);
 	assert(H5Obj(["classA", "classB"]).id == null);
 	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"]).id == null);
 	assert(H5Obj(["classA", "classB"], ["a":"x", "b":"y"], "content1").id == null);
 	assert(H5Obj(["a":"x", "b":"y"]).id == null);
-	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null);
+	assert(H5Obj(["a":"x", "b":"y"], "content1").id == null); */
 }}
 
 string toPretty(DH5Obj[] objs, int intendSpace = 0, int step = 2) {

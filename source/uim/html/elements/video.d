@@ -27,5 +27,5 @@ mixin(H5Short!"Video");
 
 version(test_uim_html) { unittest {
 	// testH5Obj(H5Video, "video");
-	mixin(// testH5DoubleAttributes!("H5Video", "video", [	"autoplay", "buffered", "controls", "crossorigin", "height", "loop", "muted", "played", "preload", "poster", "src", "width", "playsinline"]));
+	// mixin(// testH5DoubleAttributes!("H5Video", "video", [	"autoplay", "buffered", "controls", "crossorigin", "height", "loop", "muted", "played", "preload", "poster", "src", "width", "playsinline"]));
 }}

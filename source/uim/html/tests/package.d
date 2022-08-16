@@ -98,15 +98,15 @@ template TestH5DoubleClasses(string h5, string tag, bool showRendering = false) 
 	`;
 } 
 
-template // testH5DoubleAttributes(string h5, string tag, string[] attributes, bool showRendering = false) {
-  const char[] // testH5DoubleAttributes = 
+template TestH5DoubleAttributes(string h5, string tag, string[] attributes, bool showRendering = false) {
+  const char[] TestH5DoubleAttributes = 
     (showRendering ? attributes.map!(a => `writeln(`~h5~`.`~a~`("aValue"));`).join : "")~
     attributes.map!(a => `// assert(`~h5~`.`~a~`("aValue").`~a~` == "aValue", "Tag `~tag~`: No setting attribute `~a~`");`).join~
     attributes.map!(a => `// assert(`~h5~`.`~a~`("aValue") == "<`~tag~` `~a.toLower~`=\"aValue\"></`~tag~`>", "Tag `~tag~`: Wrong rendering with attribute `~a~`");`).join;
 }
 
-template // testH5SingleAttributes(string h5, string tag, string[] attributes, bool showRendering = false) {
-  const char[] // testH5SingleAttributes = 
+template TestH5SingleAttributes(string h5, string tag, string[] attributes, bool showRendering = false) {
+  const char[] TestH5SingleAttributes = 
     (showRendering ? attributes.map!(a => `writeln(`~h5~`.`~a~`("aValue"));`).join : "")~
     attributes.map!(a => `// assert(`~h5~`.`~a~`("aValue").`~a~` == "aValue", "Tag `~tag~`: No setting attribute `~a~`");`).join~
     attributes.map!(a => `// assert(`~h5~`.`~a~`("aValue") == "<`~tag~` `~a.toLower~`=\"aValue\">", "Tag `~tag~`: Wrong rendering with attribute `~a~`");`).join;
