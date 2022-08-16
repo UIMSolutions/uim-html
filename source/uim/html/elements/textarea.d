@@ -23,5 +23,5 @@ class DH5Textarea : DH5Obj {
 mixin(H5Short!"Textarea");
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Textarea, "textarea");
+  testH5Obj(H5Textarea, "textarea");
 }}

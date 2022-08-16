@@ -9,5 +9,5 @@ class DH5Rtc : DH5Obj {
 mixin(H5Short!"Rtc");
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Rtc, "rtc");
+  testH5Obj(H5Rtc, "rtc");
 }}

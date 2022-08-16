@@ -21,5 +21,5 @@ class DH5Base : DH5Obj {
 mixin(H5Short!"Base");
 
 version(test_uim_html) { unittest {
-  // testH5Obj(H5Base, "base");
+  testH5Obj(H5Base, "base");
 }}

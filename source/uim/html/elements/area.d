@@ -50,7 +50,7 @@ type 	media_type 	Specifies the media type of the target URL
 mixin(H5Short!"Area");
 
 version(test_uim_html) { unittest {
-	// testH5Obj(H5Area, "area");
+	testH5Obj(H5Area, "area");
 }}
 
 /**
