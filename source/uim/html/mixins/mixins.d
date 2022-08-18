@@ -104,8 +104,8 @@ auto h5Methods(const char[] left, const char[] right) {
 template H5This(string tag, string[] classes = null, string attributes = null, bool single = false) {
 	const char[] strTag = (tag.length > 0) ? `this.tag("`~tag.toLower~`");` : "";
 	const char[] strSingle = (single) ? "this.single(true);" : "";
-	const char[] strClasses = (classes) ? "this.classes(["~classes.map!(a => `"`~a~`"`).join(",")~"]);" : "";
-	const char[] strAttributes = (attributes) ? "this.attributes("~attributes~");" : "";
+	const char[] strClasses = (classes) ? "this.addClasses(["~classes.map!(a => `"`~a~`"`).join(",")~"]);" : "";
+	const char[] strAttributes = (attributes) ? "this.addAttributes("~attributes~");" : "";
 	const char[] initial = strTag~strSingle~strClasses~strAttributes;
 
 	const char[] H5This = `
