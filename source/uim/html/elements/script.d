@@ -5,11 +5,15 @@ import uim.html;
 
 class DH5Script : DH5Obj {
 	mixin(H5This!"script");
+
+	override string renderJS(STRINGAA bindings = null) {
+		return null;
+	}
 }
 mixin(H5Short!"Script");
 
 version(test_uim_html) { unittest {
-    assert(H5Script,"<script></script>");
+  assert(H5Script == "<script></script>");
 }}
 
 string toString(DH5Script[] scripts) {

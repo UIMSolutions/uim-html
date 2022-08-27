@@ -343,11 +343,11 @@ class DH5Obj {
     return H5Obj;
   }	
 
-	string renderCSS() {
+	string renderCSS(STRINGAA bindings = null) {
 		if (auto result = _css.toString) return doubleTag("style", result);
 		return null;
 	}
-	 string renderHTML() {
+	 string renderHTML(STRINGAA bindings = null) {
 		string first;
 		string attsHTML = attsToHTML;
 		// firstTag
@@ -367,16 +367,19 @@ class DH5Obj {
 
 		return first~_html.toString~endTag(_tag);
 	}
-	 string renderJS() {
+	string renderJS(STRINGAA bindings = null) {
 		if (_js.length > 0) return doubleTag("script", this.js);
 		return null;
 	}
 
-	override string render(STRINGAA bindings) {
+	override string render(STRINGAA bindings = null) {
 		string result;
 		result ~= renderCSS;
 		result ~= renderHTML;
 		result ~= renderJS;
+
+		bindings.keys.each(k => result.replace("{{"~key~"}}", bindings[key]));
+
 		return result;
   }
 
