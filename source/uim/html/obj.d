@@ -14,12 +14,12 @@ class DH5Obj {
 
   this(string[] newClasses){ this().addClasses(newClasses); }
   this(string[] newClasses, string newContent)      { this(newClasses).addContent(newContent); }
-  this(string[] newClasses, DH5Obj[] newContent...) { this(newClasses, newContent); }
+  this(string[] newClasses, DH5Obj[] newContent...) { this(newClasses).addContent(newContent); }
   this(string[] newClasses, DH5Obj[] newContent)    { this(newClasses).addContent(newContent); }
   this(string[] newClasses, DH5 newContent)         { this(newClasses).addContent(newContent); }
 	
-	this(STRINGAA newAttributes) { this().addAttributes(newAttributes); }
-	this(STRINGAA newAttributes, string newContent)    	 { this(newAttributes).addContent(newContent); }
+  this(STRINGAA newAttributes) { this().addAttributes(newAttributes); }
+  this(STRINGAA newAttributes, string newContent)    	 { this(newAttributes).addContent(newContent); }
   this(STRINGAA newAttributes, DH5Obj[] newContent...) { this(newAttributes).addContent(newContent); }
   this(STRINGAA newAttributes, DH5Obj[] newContent)    { this(newAttributes).addContent(newContent); }
   this(STRINGAA newAttributes, DH5 newContent)         { this(newAttributes).addContent(newContent); }
