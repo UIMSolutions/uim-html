@@ -1,9 +1,5 @@
 ﻿module uim.html.core.html;
 
-import std.stdio;
-import std.string;
-import std.array;
-
 @safe:
 import uim.html;
 
@@ -11,9 +7,10 @@ alias STRINGAA = string[string];
 
 template sTag(string fName) {
 	const char[] sTag = "	
-	 DHTML "~fName~"(STRINGAA values) { return addSTag("~fName~", values); }
+	  DHTML "~fName~"(STRINGAA values) { return addSTag("~fName~", values); }
 ";
 }
+
 template dTag(string fName) {
 	const char[] dTag = "	
 	 DHTML "~fName~"(T)(T[] content...) { return addDTag("~fName~", contents); }
@@ -146,4 +143,4 @@ template DTag(string fName, string tName) {
 
 version(test_uim_html) { unittest {
 		// TODO Add Test
-		}}
+}}

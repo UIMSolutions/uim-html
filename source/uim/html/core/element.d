@@ -9,8 +9,8 @@ template classes() {
 		if ("class" in attributes) return attributes["class"].split(" ").unique; 
 		return null;
 	}
-	 @property O classes(this O)(string newClass) { return this.classes(newClass.split(" ").unique);  }
-	 @property O classes(this O)(string[] someClasses) {
+  @property O classes(this O)(string newClass) { return this.classes(newClass.split(" ").unique);  }
+  @property O classes(this O)(string[] someClasses) {
 		if (classes) _attributes["class"] = (classes ~ someClasses).unique.join(" "); 
 		else _attributes["class"] = someClasses.unique.join(" "); 
 		return cast(O)this; 
@@ -34,4 +34,4 @@ enum ShowMode { standard, onlyHTML, onlyJS, onlyCSS }
 
 version(test_uim_html) { unittest {
 		// TODO Add Test
-		}}
+}}

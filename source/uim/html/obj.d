@@ -70,8 +70,9 @@ class DH5Obj {
 	O js(this O)(string[] codes...) { foreach(c; codes) _js ~= c; return cast(O)this; }
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
-	/// classes of HTML element
-	protected string[] _classes;
+	// classes - wrapper for class attribute
+  // The class attribute is used to set one or more classnames for an element. 
+  protected string[] _classes;
 	auto classes() { return uniq(_classes.sort.array).array; }
 	// Set classes
 	O classes(this O)(string[] values...) { this.classes(values); return cast(O)this; }
