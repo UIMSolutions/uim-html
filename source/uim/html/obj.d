@@ -373,13 +373,13 @@ class DH5Obj {
 		return null;
 	}
 
-	override string render(STRINGAA bindings = null) {
+	string render(STRINGAA bindings = null) {
 		string result;
 		result ~= renderCSS;
 		result ~= renderHTML;
 		result ~= renderJS;
 
-		bindings.keys.each(k => result.replace("{{"~key~"}}", bindings[key]));
+		bindings.keys.each!(key => result = result.replace("{{"~key~"}}", bindings[key]));
 
 		return result;
   }
