@@ -50,6 +50,8 @@ mixin(H5Short!"Area");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5Area, "area");
+	assert(H5Area == `<area></area>`);
+  
 	mixin(TestH5DoubleAttributes!("H5Area", "area", [
 		"alt", "coords", "download", "href", "hreflang", "ping", "referrerpolicy", "rel", "shape", "target"
 	]));

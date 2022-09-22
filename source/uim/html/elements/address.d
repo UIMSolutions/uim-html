@@ -11,5 +11,7 @@ mixin(H5Short!"Address");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5Address, "address");
+
+  assert(H5Address = `<address></address>`);
 }}
 

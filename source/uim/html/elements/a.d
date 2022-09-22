@@ -45,6 +45,8 @@ mixin(H5Short!"A");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5A, "a");
+  assert(H5A == `<a></a>`);
+  
 	mixin(TestH5DoubleAttributes!("H5A", "a", [
 		"download", "href", "hreflang", "ping", "referrerpolicy", "rel", "target", "type"
 	]));
