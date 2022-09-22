@@ -1,11 +1,9 @@
-﻿module uim.html.elements.audio;
+module uim.html.elements.audio;
 
 @safe:
 import uim.html;
 
-/*
- * The <audio> tag defines sound, such as music or other audio streams.
- */
+// The <audio> tag defines sound, such as music or other audio streams.
 class DH5Audio : DH5Obj {
 	mixin(H5This!"Audio");
 
