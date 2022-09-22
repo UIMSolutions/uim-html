@@ -23,6 +23,7 @@ public import uim.css;
 public import uim.javascript;
 
 // own modules
+public import uim.html.enums;
 public import uim.html.mixins;
 public import uim.html.h5;
 public import uim.html.obj;

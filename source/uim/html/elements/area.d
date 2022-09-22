@@ -42,16 +42,15 @@ class DH5Area : DH5Obj {
 	// Attribute shape - The shape of the associated hot spot.
 	mixin(MyAttribute!"shape");
 
-	// Attribute target - Where to display the linked URL, as the name for a browsing context (a tab, window, or <iframe>)
-	// Valid values: _self, _blank, _parent, _top 
-	mixin(MyAttribute!"target");
+	// Attribute target - Where to display the linked URL, as the name for a browsing context (a tab, window, or <iframe>) 
+	mixin(MyAttribute!"target"); // Valid values: _self, _blank, _parent, _top
 }
 mixin(H5Short!"Area");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5Area, "area");
 	assert(H5Area == `<area></area>`);
-  
+
 	mixin(TestH5DoubleAttributes!("H5Area", "area", [
 		"alt", "coords", "download", "href", "hreflang", "ping", "referrerpolicy", "rel", "shape", "target"
 	]));
