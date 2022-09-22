@@ -12,4 +12,5 @@ mixin(H5Short!"Article");
 
 version(test_uim_html) { unittest {
 	testH5Obj(H5Article, "article");
+  assert(H5Article == `<article></article>`);
 }}

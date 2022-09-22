@@ -27,8 +27,7 @@ class DH5Audio : DH5Obj {
   mixin(MyAttribute!"muted");
 
   // Attribute preload - This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience.
-  // Valid values: none, metadata, autoss 
-  mixin(MyAttribute!"preload");
+  mixin(MyAttribute!"preload"); // Valid values: none, metadata, auto
 
   // Attribute preload - The URL of the audio to embed. 
   mixin(MyAttribute!"src"); 
