@@ -16,11 +16,13 @@ public import std.uuid;
 public import vibe.d;
 
 // uim libraries
-public import uim.core;
-public import uim.oop;
-public import uim.css;
+public {
+import uim.core;
+ import uim.oop;
+ import uim.css;
 // public import uim.json;
-public import uim.javascript;
+ import uim.javascript;
+}
 
 // own modules
 public import uim.html.enums;
