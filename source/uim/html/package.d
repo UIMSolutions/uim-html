@@ -1,17 +1,6 @@
 ﻿module uim.html;
 
-@safe:
-public import core.vararg;
-public import std.algorithm;
-public import std.array;
-public import std.conv;
-public import std.file;
-public import std.range;
-public import std.stdio;
-public import std.string;
-public import std.traits;
-public import std.uuid;
-
+mixin(ImportPhobos!());
 
 public import vibe.d;
 
@@ -20,32 +9,34 @@ public import uim.core;
 public import uim.oop;
 public import uim.css;
 // public import uim.json;
-public import uim.javascript;
+public import langs.javascript;
 
-// own modules
-public import uim.html.enums;
-public import uim.html.mixins;
-public import uim.html.h5;
-public import uim.html.obj;
 
-public import uim.html.audio;
-public import uim.html.canvas;
-public import uim.html.core;
-public import uim.html.components;	
-public import uim.html.elements;
-public import uim.html.elements.inputs;
-public import uim.html.extras;
-public import uim.html.helpers;
-public import uim.html.parser;
-public import uim.html.snippets;
-// API
-public import uim.html.audio;
-public import uim.html.canvas;
-public import uim.html.dragdrop;
-public import uim.html.geolocation;
-public import uim.html.video;
-public import uim.html.webstorage;
-public import uim.html.webworker;
+public { // uim-html modules and packages
+	import uim.html.enums;
+	import uim.html.mixins;
+	import uim.html.h5;
+	import uim.html.obj;
+
+	import uim.html.audio;
+	import uim.html.canvas;
+	import uim.html.core;
+	import uim.html.components;	
+	import uim.html.elements;
+	import uim.html.elements.inputs;
+	import uim.html.extras;
+	import uim.html.helpers;
+	import uim.html.parser;
+	import uim.html.snippets;
+	// API
+	import uim.html.audio;
+	import uim.html.canvas;
+	import uim.html.dragdrop;
+	import uim.html.geolocation;
+	import uim.html.video;
+	import uim.html.webstorage;
+	import uim.html.webworker;
+}
 
 // Tests
 public import uim.html.tests;
