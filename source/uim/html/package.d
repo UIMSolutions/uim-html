@@ -41,6 +41,7 @@ public { // uim-html modules and packages
 // Tests
 public import uim.html.tests;
 
+@safe:
 string cssStorePath = "";
 string h5Doctype = "<!doctype html>";
 
