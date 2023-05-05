@@ -5,11 +5,13 @@ mixin(ImportPhobos!());
 public import vibe.d;
 
 // uim libraries
-public import uim.core;
-public import uim.oop;
-public import uim.css;
+public {
+import uim.core;
+ import uim.oop;
+ import uim.css;
 // public import uim.json;
-public import langs.javascript;
+	import langs.javascript;
+}
 
 
 public { // uim-html modules and packages
