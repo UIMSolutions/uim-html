@@ -11,21 +11,20 @@ version(test_uim_html) { unittest {
     testH5Obj(H5Style, "style");
 }}
 
-string toString(DH5Style[] styles) {
-	string result;
-	foreach(style; styles) result ~= style.toString;
-	return result;
+string toString(DH5Style[] someStyles) {
+	return someStyles.map!(s => s.toString).join;
 }
 version(test_uim_html) { unittest {
     // assert([H5Style, H5Style].toString == "<style></style><style></style>");
 }}
 
-DH5Style[] H5Styles(string[string][] styles...) { return H5Styles(styles); }
-DH5Style[] H5Styles(string[string][] styles) { 
-	DH5Style[] results;
-	foreach(style; styles) results ~= H5Style(style);
-	return results;
+DH5Style[] H5Styles(string[string][] someStyles...) { 
+	return H5Styles(someStyles.dup); 
+}
+
+DH5Style[] H5Styles(string[string][] someStyles) { 
+	return someStyles.map!(s => H5Style(s)).array;
 }
 version(test_uim_html) { unittest {
-		/// TODO
+	/// TODO
 }}

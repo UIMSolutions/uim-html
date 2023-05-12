@@ -21,7 +21,7 @@ version(test_uim_html) { unittest {
     // assert([H5Meta, H5Meta].toString == "<meta><meta>");
 }}
 
-DH5Meta[] H5Metas(string[string][] metas...) { return H5Metas(metas); }
+DH5Meta[] H5Metas(string[string][] metas...) { return H5Metas(metas.dup); }
 DH5Meta[] H5Metas(string[string][] metas) { 
 	DH5Meta[] results;
 	foreach(meta; metas) results ~= H5Meta(meta);

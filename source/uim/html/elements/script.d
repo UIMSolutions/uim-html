@@ -17,18 +17,18 @@ version(test_uim_html) { unittest {
 }}
 
 string toString(DH5Script[] scripts) {
-	string result;
-	foreach(script; scripts) result ~= script.toString;
-	return result; }
+	return scripts.map!(s => s.toString).join;
+}
 version(test_uim_html) { unittest {
     // assert([H5Script, H5Script].toString == "<script></script><script></script>");
 }}
 
-DH5Script[] H5Scripts(string[string][] scripts...) { return H5Scripts(scripts); }
+DH5Script[] H5Scripts(string[string][] scripts...) { 
+	return H5Scripts(scripts.dup); 
+}
+
 DH5Script[] H5Scripts(string[string][] scripts) { 
-	DH5Script[] results;
-	foreach(script; scripts) results ~= H5Script(script);
-	return results;
+	return scripts.map!(s => H5Script(s)).array;
 }
 version(test_uim_html) { unittest {
 		// TODO
