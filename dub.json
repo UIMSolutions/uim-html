@@ -19,16 +19,14 @@
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-javascript",
-				"../../LIBS/uim-json",
+				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"sourcePaths": [
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-json",
-				"../../LIBS/uim-javascript",
+				"../../LANGS/lang-javascript",
 				"./"
 			]					
 		},
@@ -71,16 +69,14 @@
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-javascript",
-				"../../LIBS/uim-json",
+				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"sourcePaths": [
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-json",
-				"../../LIBS/uim-javascript",
+				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"versions": [
@@ -98,24 +94,20 @@
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-javascript",
-				"../../LIBS/uim-json",
+				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"sourcePaths": [
 				"../../LIBS/uim-core",
 				"../../LIBS/uim-oop",
 				"../../LIBS/uim-css",
-				"../../LIBS/uim-json",
-				"../../LIBS/uim-javascript",
+				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"versions": [
 				"test_uim_core",
 				"test_uim_oop",
 				"test_uim_css",
-				"test_uim_javascript",
-				"test_uim_jsonss",
 				"test_uim_html"
 			]
 		}
