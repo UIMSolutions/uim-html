@@ -23,11 +23,11 @@ version(test_uim_html) { unittest {
     // assert([H5Script, H5Script].toString == "<script></script><script></script>");
 }}
 
-DH5Script[] H5Scripts(string[string][] scripts...) { 
+DH5Script[] H5Scripts(STRINGAA[] scripts...) { 
 	return H5Scripts(scripts.dup); 
 }
 
-DH5Script[] H5Scripts(string[string][] scripts) { 
+DH5Script[] H5Scripts(STRINGAA[] scripts) { 
 	return scripts.map!(s => H5Script(s)).array;
 }
 version(test_uim_html) { unittest {

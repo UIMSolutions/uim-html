@@ -52,7 +52,7 @@ version(test_uim_html) { unittest {
   assert(H5App.pages("test", "testcontent").pages("test2", "testcontent").pages.pageByName("test").name == "test");	
 * /}
 
-/* void redirectCheck(string[string] parameters) {
+/* void redirectCheck(STRINGAA parameters) {
 	writeln("Has Redirect? ", parameters.get("redirect", ""));
 	if ("redirect" in parameters) redirect(parameters["redirect"]);
 } */

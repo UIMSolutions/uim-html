@@ -16,7 +16,9 @@ template classes() {
 		return cast(O)this; 
 	}
 	
-	 bool hasClasses(string[] someClasses) { foreach(c; someClasses) if (!hasClass(c)) return false; return true; }
+	 bool hasClasses(string[] someClasses) { foreach(c; someClasses) if (!hasClass(c)) { 
+      return false; 
+    } return true; }
 	 bool hasClass(string className) { return classes.has(className); }
 	
 	 O addClasses(this O)(string[] someClasses) { this.classes(someClasses); return cast(O)this; }

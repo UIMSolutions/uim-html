@@ -5,7 +5,7 @@ import std.conv;
 import std.string;@safe:
 import uim.html;
 
-alias STRINGAA = string[string];
+alias STRINGAA = STRINGAA;
 
 class DH5Canvas : DH5Obj {
 	string pre = "context.";

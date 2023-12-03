@@ -3,7 +3,7 @@
 @safe:
 import uim.html;
 
-alias STRINGAA = string[string];
+alias STRINGAA = STRINGAA;
 
 template sTag(string fName) {
 	const char[] sTag = "	

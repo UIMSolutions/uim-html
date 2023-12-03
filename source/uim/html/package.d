@@ -192,11 +192,11 @@ version(test_uim_html) { unittest {
 }*/
 
 bool Assert(DH5Obj h5, string txt) { 
-  if (h5 && h5 == txt) return true;
+  if (h5 && h5 == txt) { return true; }
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false;  }
 bool Assert(DH5 h5, string txt) { 
-	if (h5 && h5.toString == txt) return true;
+	if (h5 && h5.toString == txt) { return true; }
 	// debug // writeln("Wrong? -> "~h5.toString); 
 	return false; }
 
@@ -204,11 +204,11 @@ string toString(DH5Obj[] elements) {
 	return elements.map!(a => a ? a.toString : "").join;
 }
 
-string singleTag(string tag, string[string] attributes = null) {
+string singleTag(string tag, STRINGAA attributes = null) {
 	return startTag(tag, attributes);
 }
 
-string doubleTag(string tag, string[string] attributes = null, string content = null) {
+string doubleTag(string tag, STRINGAA attributes = null, string content = null) {
 	if (content.length > 0)
 		return startTag(tag, attributes) ~ content ~ endTag(tag);
 	return startTag(tag, attributes) ~ endTag(tag);
@@ -221,7 +221,7 @@ version(test_uim_html) { unittest {
   // TODO Test for doubleTag
 }}
 
-string startTag(string tag, string[string] attributes = null) {
+string startTag(string tag, STRINGAA attributes = null) {
 	return "<" ~ tag ~ attributesToHTML(attributes) ~ ">"; }
 version(test_uim_html) { unittest {
   // TODO Test for startTag
@@ -233,7 +233,7 @@ version(test_uim_html) { unittest {
   // TODO Test for endtag
 }}
 
-string attributesToHTML(string[string] attributes) {
+string attributesToHTML(STRINGAA attributes) {
 	string result = "";
 	auto keys = attributes.byKey().array.sort!("a < b");
 	foreach (k; keys)

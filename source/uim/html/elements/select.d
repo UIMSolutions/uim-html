@@ -7,7 +7,7 @@ class DH5Select : DH5Obj {
 	mixin(H5This!"select");
 
 	mixin(TProperty!("string", "selected"));
-	mixin(TProperty!("string[string]", "options"));
+	mixin(TProperty!("STRINGAA", "options"));
 	mixin(TProperty!("bool", "sorted"));
 
 	mixin(MyContent!("option", "H5Option"));

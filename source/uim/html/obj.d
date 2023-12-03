@@ -293,7 +293,7 @@ class DH5Obj {
 				"selected":true,
 				"sortable":true,
 				"spellcheck":true,
-				"translate":true]) return true;  */
+				"translate":true]) { return true; }  */
 		return false;
 	}
 

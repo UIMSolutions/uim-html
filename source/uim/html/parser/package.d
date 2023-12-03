@@ -72,7 +72,7 @@ class DH5Node
 
   string _id;
   string[] _classes;
-  string[string] _attributes;
+  STRINGAA _attributes;
 
   this() {
   }
@@ -118,7 +118,7 @@ class DH5Node
   }
 
   @property auto attributes() { return _attributes; }
-  @property void attributes(string[string] newAttributes) {
+  @property void attributes(STRINGAA newAttributes) {
     _attributes = newAttributes;
     if ("id" in _attributes) {
       id = _attributes ["id"]; _attributes.remove("id");
@@ -458,7 +458,7 @@ auto parse2(string html) {
       }
 
       string[] parameters;
-      string[string] attributes;
+      STRINGAA attributes;
       if (tagSpaces) {  
         writeln("T:", htmlBase[ltIndicators[index]+1..tagSpaces[0]]);
         for(size_t spaceI = 0; spaceI < tagSpaces.length-1; spaceI += 2) {
