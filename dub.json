@@ -38,7 +38,7 @@
 				"vibe-d": "~>0.9.5",
         "uim-core": {
 					"repository": "git+https://github.com/UI-Manufaktur/uim-core.git",
-					"version": "a5bc7477f2817b36273dd49eaa4b6025188803ad"
+					"version": "081dc8e556f44fcd06108a7467cc30e9ccae00aa"
 				},
         "uim-oop": {
 					"repository": "git+https://github.com/UI-Manufaktur/uim-oop.git",
