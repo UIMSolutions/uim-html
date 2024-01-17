@@ -12,51 +12,18 @@
 			"name": "default",
 			"targetType": "library",
 			"dependencies": {
-				"colored": "~>0.0.27",
-				"vibe-d": "~>0.9.5"
+				"colored": "~>0.0.31",
+				"vibe-d": "~>0.9.7",
+				"uim": "~>24.1.1"
 			},
 			"importPaths": [
-				"../../LIBS/uim-core",
-				"../../LIBS/uim-oop",
-				"../../LIBS/uim-css",
 				"../../LANGS/lang-javascript",
 				"./"
 			],
 			"sourcePaths": [
-				"../../LIBS/uim-core",
-				"../../LIBS/uim-oop",
-				"../../LIBS/uim-css",
 				"../../LANGS/lang-javascript",
 				"./"
 			]					
-		},
-		{
-			"name": "github",
-			"targetType": "library",
-			"dependencies": {
-				"colored": "~>0.0.27",
-				"vibe-d": "~>0.9.5",
-        "uim-core": {
-					"repository": "git+https://github.com/UI-Manufaktur/uim-core.git",
-					"version": "081dc8e556f44fcd06108a7467cc30e9ccae00aa"
-				},
-        "uim-oop": {
-					"repository": "git+https://github.com/UI-Manufaktur/uim-oop.git",
-					"version": "10fbdef6fbb17fa5a5c1886a7a2a16ece74fce10"
-				},
-        "uim-css": {
-					"repository": "git+https://github.com/UI-Manufaktur/uim-css.git",
-					"version": "522add28dff01a18841749e4077f3dc5d60f4098"
-				},
-        "uim-javascript": {
-					"repository": "git+https://github.com/UI-Manufaktur/uim-javascript.git",
-					"version": "209ec82a799c075735257dc5503c82b21b1b0636"
-				},
-        "uim-json": {
-					"repository": "git+https://github.com/UI-Manufaktur/uim-json.git",
-					"version": "4f876bce9aa78115759bc3f408f8ff97c887995f"
-				}
-			}
 		},
 		{
 			"name": "testUnit",

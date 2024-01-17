@@ -3,8 +3,6 @@
 @safe:
 import uim.html;
 
-alias STRINGAA = STRINGAA;
-
 template sTag(string fName) {
 	const char[] sTag = "	
 	  DHTML "~fName~"(STRINGAA values) { return addSTag("~fName~", values); }

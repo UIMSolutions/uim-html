@@ -2,11 +2,11 @@
 
 import std.stdio;
 import std.conv;
-import std.string;@safe:
+import std.string;
+
 import uim.html;
 
-alias STRINGAA = STRINGAA;
-
+@safe:
 class DH5Canvas : DH5Obj {
 	string pre = "context.";
 	mixin(H5This!"canvas");

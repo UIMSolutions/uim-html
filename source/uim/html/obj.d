@@ -67,7 +67,8 @@ class DH5Obj {
 
 	protected string _js; 
 	@property string js() { return _js; }
-	O js(this O)(string[] codes...) { foreach(c; codes) _js ~= c; return cast(O)this; }
+	O js(this O)(string[] codes...) { 
+		codes.each!(code => _js ~= c).array; return cast(O)this; }
 	O js(this O)(DJS[] codes...) { foreach(c; codes) _js ~= c.toString; return cast(O)this; }
 
 	// classes - wrapper for class attribute
