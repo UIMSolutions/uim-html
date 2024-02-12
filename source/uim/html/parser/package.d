@@ -48,7 +48,7 @@ string fillWith(string txt, string addTxt, size_t startPos, size_t endPos) {
   string result = txt;
 
   for (size_t i = startPos; (i < endPos) && (i < result.length); i++) {
-    result = result[0 .. i] ~ addTxt ~ result[i + addTxt.length .. $];
+    result = result[0 .. i] ~ addTxt ~ result[i + addTxt.length .. ];
   }
 
   return result;
@@ -256,7 +256,7 @@ size_t minLevel(DH5Node[] newNodes) {
   if (newNodes.length == 1)
     return result;
 
-  foreach (node; newNodes[1 .. $])
+  foreach (node; newNodes[1 .. ])
     if (node.level < result)
       result = node.level;
   return result;
@@ -265,7 +265,7 @@ size_t minLevel(DH5Node[] newNodes) {
 /* DH5Node parse(string html) {
   DH5Node rootNode = H5Node(html);
 
-  auto level1Items = html.replace("\n", "").split("<")[1 .. $];
+  auto level1Items = html.replace("\n", "").split("<")[1 .. ];
   foreach (ref item; level1Items)
     item = "<" ~ item;
 
@@ -320,7 +320,7 @@ size_t minLevel(DH5Node[] newNodes) {
       // if ()
       auto atts = node.txt.strip.replace("<", "").replace(">", "").split(" ");
 /*       if (atts.length > 1)
-        foreach (a; atts[1 .. $])  node.attribute(a);
+        foreach (a; atts[1 .. ])  node.attribute(a);
  * /    }
     else if (node.isEndTag)
       node.tag = node.txt.strip.replace("</", "").replace(">", "");
@@ -386,7 +386,7 @@ auto parse2(string html) {
     auto startCPos = htmlBase.indexOf(startComment, commentPos);
     if (htmlBase.indexOf(endComment, startCPos+startComment.length) > -1) {
       auto endCPos = htmlBase.indexOf(endComment, startCPos+startComment.length);
-      htmlBase = htmlBase[0..startCPos]~htmlBase[endCPos+endComment.length..$];
+      htmlBase = htmlBase[0..startCPos]~htmlBase[endCPos+endComment.length..];
     }
     else {
       htmlBase = htmlBase[0..startCPos];
@@ -464,7 +464,7 @@ auto parse2(string html) {
         for(size_t spaceI = 0; spaceI < tagSpaces.length-1; spaceI += 2) {
           parameters ~= htmlBase[tagSpaces[spaceI] .. tagSpaces[spaceI+1]].strip;
         }
-        parameters ~= htmlBase[tagSpaces[$-1]..gtIndicators[index]].strip;
+        parameters ~= htmlBase[tagSpaces[-1]..gtIndicators[index]].strip;
         writeln(parameters);
 
         foreach(para; parameters) {
@@ -473,7 +473,7 @@ auto parse2(string html) {
           }
           else {
             auto pos = para.indexOf("=");
-            attributes[para[0..pos]] = para[pos+2..$-1];
+            attributes[para[0..pos]] = para[pos+2..-1];
           }
         }
         writeln(attributes);

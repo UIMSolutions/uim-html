@@ -311,8 +311,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </ul>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Blouse</a></h3>
-                    <div class="price">$16.00
-                        <span>$20.00</span>
+                    <div class="price">16.00
+                        <span>20.00</span>
                     </div>
                     <a class="add-to-cart" href="">+ Add To Cart</a>
                 </div>
@@ -342,8 +342,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </ul>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
+                    <div class="price">5.00
+                        <span>10.00</span>
                     </div>
                     <a class="add-to-cart" href="">+ Add To Cart</a>
                 </div>
@@ -373,8 +373,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </ul>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
+                    <div class="price">5.00
+                        <span>10.00</span>
                     </div>
                     <a class="add-to-cart" href="">+ Add To Cart</a>
                 </div>
@@ -404,8 +404,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </ul>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
+                    <div class="price">5.00
+                        <span>10.00</span>
                     </div>
                     <a class="add-to-cart" href="">+ Add To Cart</a>
                 </div>
@@ -435,7 +435,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
+                    <span class="price">599.99</span>
                 </div>
             </div>
         </div>
@@ -455,7 +455,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
-                    <span class="price">$699.99</span>
+                    <span class="price">699.99</span>
                 </div>
             </div>
         </div>
@@ -475,7 +475,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
+                    <span class="price">599.99</span>
                 </div>
             </div>
         </div>
@@ -495,7 +495,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
+                    <span class="price">599.99</span>
                 </div>
             </div>
         </div>
@@ -522,8 +522,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Blazer</a></h3>
                     <div class="price">
-                        $63.50
-                        <span>$75.00</span>
+                        63.50
+                        <span>75.00</span>
                     </div>
                     <ul class="rating">
                         <li class="fa fa-star"></li>
@@ -550,7 +550,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Designer Top</a></h3>
                     <div class="price">
-                        $43.50
+                        43.50
                     </div>
                     <ul class="rating">
                         <li class="fa fa-star"></li>
@@ -578,8 +578,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Blazer</a></h3>
                     <div class="price">
-                        $63.50
-                        <span>$75.00</span>
+                        63.50
+                        <span>75.00</span>
                     </div>
                     <ul class="rating">
                         <li class="fa fa-star"></li>
@@ -607,8 +607,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Blazer</a></h3>
                     <div class="price">
-                        $63.50
-                        <span>$75.00</span>
+                        63.50
+                        <span>75.00</span>
                     </div>
                     <ul class="rating">
                         <li class="fa fa-star"></li>
@@ -645,8 +645,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Black Top</a></h3>
                     <div class="price">
-                        $14.40
-                        <span>$16.00</span>
+                        14.40
+                        <span>16.00</span>
                     </div>
                     <a class="add-to-cart" href="">ADD TO CART</a>
                 </div>
@@ -669,8 +669,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Blue Shirt</a></h3>
                     <div class="price">
-                        $17.60
-                        <span>$20.00</span>
+                        17.60
+                        <span>20.00</span>
                     </div>
                     <a class="add-to-cart" href="">ADD TO CART</a>
                 </div>
@@ -694,8 +694,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Black Top</a></h3>
                     <div class="price">
-                        $14.40
-                        <span>$16.00</span>
+                        14.40
+                        <span>16.00</span>
                     </div>
                     <a class="add-to-cart" href="">ADD TO CART</a>
                 </div>
@@ -719,8 +719,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Black Top</a></h3>
                     <div class="price">
-                        $14.40
-                        <span>$16.00</span>
+                        14.40
+                        <span>16.00</span>
                     </div>
                     <a class="add-to-cart" href="">ADD TO CART</a>
                 </div>
@@ -749,7 +749,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Sweat Shirt</a></h3>
-                    <div class="price">$11.00 - $15.00</div>
+                    <div class="price">11.00 - 15.00</div>
                 </div>
             </div>
         </div>
@@ -769,7 +769,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Shirt</a></h3>
-                    <div class="price">$10.00 - $12.00</div>
+                    <div class="price">10.00 - 12.00</div>
                 </div>
             </div>
         </div>
@@ -789,7 +789,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Sweat Shirt</a></h3>
-                    <div class="price">$11.00 - $15.00</div>
+                    <div class="price">11.00 - 15.00</div>
                 </div>
             </div>
         </div>
@@ -809,7 +809,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Sweat Shirt</a></h3>
-                    <div class="price">$11.00 - $15.00</div>
+                    <div class="price">11.00 - 15.00</div>
                 </div>
             </div>
         </div>
@@ -829,8 +829,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                    <div class="price">$11.00
-                        <span>$14.00</span>
+                    <div class="price">11.00
+                        <span>14.00</span>
                     </div>
                 </div>
                 <ul class="social">
@@ -849,8 +849,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Women's Red Top</a></h3>
-                    <div class="price">$8.00
-                        <span>$12.00</span>
+                    <div class="price">8.00
+                        <span>12.00</span>
                     </div>
                 </div>
                 <ul class="social">
@@ -869,8 +869,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                    <div class="price">$11.00
-                        <span>$14.00</span>
+                    <div class="price">11.00
+                        <span>14.00</span>
                     </div>
                 </div>
                 <ul class="social">
@@ -889,8 +889,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                    <div class="price">$11.00
-                        <span>$14.00</span>
+                    <div class="price">11.00
+                        <span>14.00</span>
                     </div>
                 </div>
                 <ul class="social">
@@ -930,8 +930,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                     </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
+                    <div class="price">15.00
+                        <span>20.00</span>
                     </div>
                 </div>
             </div>
@@ -958,7 +958,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                     </ul>
-                    <div class="price">$15.00</div>
+                    <div class="price">15.00</div>
                 </div>
             </div>
         </div>
@@ -985,8 +985,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                     </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
+                    <div class="price">15.00
+                        <span>20.00</span>
                     </div>
                 </div>
             </div>
@@ -1014,8 +1014,8 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                     </ul> 
-                    <div class="price">$15.00
-                        <span>$20.00</span>
+                    <div class="price">15.00
+                        <span>20.00</span>
                     </div>
                 </div>
             </div>
@@ -1124,7 +1124,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                     </ul>
                     <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
+                    <div class="price"> 12.60 - 40.53</div>
                     <a class="add-to-cart" href="">VIEW PRODUCTS</a>
                 </div>
             </div>
@@ -1147,7 +1147,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star disable"></li>
                     </ul>
                     <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                    <div class="price"> $10.20 </div>
+                    <div class="price"> 10.20 </div>
                     <a class="add-to-cart" href="">READ MORE</a>
                 </div>
             </div>
@@ -1170,7 +1170,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                     </ul>
                     <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
+                    <div class="price"> 12.60 - 40.53</div>
                     <a class="add-to-cart" href="">VIEW PRODUCTS</a>
                 </div>
             </div>
@@ -1193,7 +1193,7 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
                         <li class="fa fa-star"></li>
                     </ul>
                     <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
+                    <div class="price"> 12.60 - 40.53</div>
                     <a class="add-to-cart" href="">VIEW PRODUCTS</a>
                 </div>
             </div>

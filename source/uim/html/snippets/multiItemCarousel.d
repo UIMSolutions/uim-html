@@ -167,13 +167,13 @@ auto html = `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap
 </div>`;
 
 auto js = `
-$(document).ready(function () {
+(document).ready(function () {
     var itemsMainDiv = ('.MultiCarousel');
     var itemsDiv = ('.MultiCarousel-inner');
     var itemWidth = "";
 
-    $('.leftLst, .rightLst').click(function () {
-        var condition = $(this).hasclass("leftLst");
+    ('.leftLst, .rightLst').click(function () {
+        var condition = (this).hasclass("leftLst");
         if (condition)
             click(0, this);
         else
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
 
 
-    $(window).resize(function () {
+    (window).resize(function () {
         ResCarouselSize();
     });
 
@@ -197,14 +197,14 @@ $(document).ready(function () {
         var id = 0;
         var btnParentSb = '';
         var itemsSplit = '';
-        var sampwidth = $(itemsMainDiv).width();
-        var bodyWidth = $('body').width();
-        $(itemsDiv).each(function () {
+        var sampwidth = (itemsMainDiv).width();
+        var bodyWidth = ('body').width();
+        (itemsDiv).each(function () {
             id = id + 1;
-            var itemNumbers = $(this).find(itemclass).length;
-            btnParentSb = $(this).parent().attr(dataItems);
+            var itemNumbers = (this).find(itemclass).length;
+            btnParentSb = (this).parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
-            $(this).parent().attr("id", "MultiCarousel" + id);
+            (this).parent().attr("id", "MultiCarousel" + id);
 
 
             if (bodyWidth >= 1200) {
@@ -223,13 +223,13 @@ $(document).ready(function () {
                 incno = itemsSplit[0];
                 itemWidth = sampwidth / incno;
             }
-            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-            $(this).find(itemclass).each(function () {
-                $(this).outerWidth(itemWidth);
+            (this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+            (this).find(itemclass).each(function () {
+                (this).outerWidth(itemWidth);
             });
 
-            $(".leftLst").addclass("over");
-            $(".rightLst").removeclass("over");
+            (".leftLst").addclass("over");
+            (".rightLst").removeclass("over");
 
         });
     }
@@ -240,35 +240,35 @@ $(document).ready(function () {
         var leftBtn = ('.leftLst');
         var rightBtn = ('.rightLst');
         var translateXval = '';
-        var divStyle = $(el + ' ' + itemsDiv).css('transform');
+        var divStyle = (el + ' ' + itemsDiv).css('transform');
         var values = divStyle.match(/-?[\d\.]+/g);
         var xds = Math.abs(values[4]);
         if (e == 0) {
             translateXval = parseInt(xds) - parseInt(itemWidth * s);
-            $(el + ' ' + rightBtn).removeclass("over");
+            (el + ' ' + rightBtn).removeclass("over");
 
             if (translateXval <= itemWidth / 2) {
                 translateXval = 0;
-                $(el + ' ' + leftBtn).addclass("over");
+                (el + ' ' + leftBtn).addclass("over");
             }
         }
         else if (e == 1) {
-            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+            var itemsCondition = (el).find(itemsDiv).width() - (el).width();
             translateXval = parseInt(xds) + parseInt(itemWidth * s);
-            $(el + ' ' + leftBtn).removeclass("over");
+            (el + ' ' + leftBtn).removeclass("over");
 
             if (translateXval >= itemsCondition - itemWidth / 2) {
                 translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).addclass("over");
+                (el + ' ' + rightBtn).addclass("over");
             }
         }
-        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        (el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
     }
 
     //It is used to get some elements from btn
     function click(ell, ee) {
-        var Parent = "#" + $(ee).parent().attr("id");
-        var slide = $(Parent).attr("data-slide");
+        var Parent = "#" + (ee).parent().attr("id");
+        var slide = (Parent).attr("data-slide");
         ResCarousel(ell, Parent, slide);
     }
 

@@ -134,8 +134,8 @@ class clientOrPartnersLogoSlider : DH5Component {
    
 <h2><a href="http://www.webcoderskull.com" target="_blank">http://www.webcoderskull.com</a></h2>
 </div>`)
-.js(`$(document).ready(function(){
-    $('.customer-logos').slick({
+.js(`(document).ready(function(){
+    ('.customer-logos').slick({
         slidesToShow: 6,
         slidesToScroll: 1,
         autoplay: true,

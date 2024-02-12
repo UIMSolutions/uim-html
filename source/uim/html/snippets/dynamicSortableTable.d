@@ -66,63 +66,63 @@ class dynamicSortableTable : DH5Component {
 	</div>
 	<a id="add_row" class="btn btn-primary float-right">Add Row</a>
 </div>`)
-.js(`$(document).ready(function() {
-    $("#add_row").on("click", function() {
+.js(`(document).ready(function() {
+    ("#add_row").on("click", function() {
         // Dynamic Rows Code
         
         // Get max row id and set new id
         var newid = 0;
-        $.each($("#tab_logic tr"), function() {
-            if (parseInt($(this).data("id")) > newid) {
-                newid = parseInt($(this).data("id"));
+        .each(("#tab_logic tr"), function() {
+            if (parseInt((this).data("id")) > newid) {
+                newid = parseInt((this).data("id"));
             }
         });
         newid++;
         
-        var tr = $("<tr></tr>", {
+        var tr = ("<tr></tr>", {
             id: "addr"+newid,
             "data-id": newid
         });
         
         // loop through each td and create new elements with name of newid
-        $.each($("#tab_logic tbody tr:nth(0) td"), function() {
+        .each(("#tab_logic tbody tr:nth(0) td"), function() {
             var td;
-            var cur_td = $(this);
+            var cur_td = (this);
             
             var children = cur_td.children();
             
             // add new td and element if it has a nane
-            if ($(this).data("name") !== undefined) {
-                td = $("<td></td>", {
-                    "data-name": $(cur_td).data("name")
+            if ((this).data("name") !== undefined) {
+                td = ("<td></td>", {
+                    "data-name": (cur_td).data("name")
                 });
                 
-                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                c.attr("name", $(cur_td).data("name") + newid);
-                c.appendTo($(td));
-                td.appendTo($(tr));
+                var c = (cur_td).find((children[0]).prop('tagName')).clone().val("");
+                c.attr("name", (cur_td).data("name") + newid);
+                c.appendTo((td));
+                td.appendTo((tr));
             } else {
-                td = $("<td></td>", {
-                    'text': $('#tab_logic tr').length
-                }).appendTo($(tr));
+                td = ("<td></td>", {
+                    'text': ('#tab_logic tr').length
+                }).appendTo((tr));
             }
         });
         
         // add delete button and td
         /*
-        $("<td></td>").append(
-            $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
+        ("<td></td>").append(
+            ("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
                 .click(function() {
-                    $(this).closest("tr").remove();
+                    (this).closest("tr").remove();
                 })
-        ).appendTo($(tr));
+        ).appendTo((tr));
         * /
         
         // add the new row
-        $(tr).appendTo($('#tab_logic'));
+        (tr).appendTo(('#tab_logic'));
         
-        $(tr).find("td button.row-remove").on("click", function() {
-             $(this).closest("tr").remove();
+        (tr).find("td button.row-remove").on("click", function() {
+             (this).closest("tr").remove();
         });
 });
 
@@ -131,25 +131,25 @@ class dynamicSortableTable : DH5Component {
 
     // Sortable Code
     var fixHelperModified = function(e, tr) {
-        var $originals = tr.children();
-        var $helper = tr.clone();
+        var originals = tr.children();
+        var helper = tr.clone();
     
-        $helper.children().each(function(index) {
-            $(this).width($originals.eq(index).width())
+        helper.children().each(function(index) {
+            (this).width(originals.eq(index).width())
         });
         
-        return $helper;
+        return helper;
     };
   
-    $(".table-sortable tbody").sortable({
+    (".table-sortable tbody").sortable({
         helper: fixHelperModified      
     }).disableSelection();
 
-    $(".table-sortable thead").disableSelection();
+    (".table-sortable thead").disableSelection();
 
 
 
-    $("#add_row").trigger("click");
+    ("#add_row").trigger("click");
 });`);*/
   }
 }

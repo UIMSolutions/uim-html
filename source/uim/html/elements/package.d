@@ -569,16 +569,16 @@ class DH5 {
  Hide inherited properties
 
  Property	Type	Description	Defined By
- $attributeOrder	array	The preferred order of attributes in a tag.	
- $dataAttributes	array	List of tag attributes that should be specially handled when their values are of array type.	
- $voidElements	array	List of void elements (element name => 1)	
+ attributeOrder	array	The preferred order of attributes in a tag.	
+ dataAttributes	array	List of tag attributes that should be specially handled when their values are of array type.	
+ voidElements	array	List of void elements (element name => 1)	
  */ 
 // Public Methods
 
 // Generates a hyperlink tag.	
 //string a(string text, string url = null, STRINGAA options = null) {
 //	if (!url) {
-//		// $options['href'] = Url::to($url);
+//		// options['href'] = Url::to(url);
 //	}
 //	return dtag("a", text, options);
 //}
@@ -670,43 +670,43 @@ class DH5 {
  activeListInput()	Generates a list of input fields.	
  booleanInput()	Generates a boolean input.	
  Property Details
- $attributeOrder public static property
+ attributeOrder public static property
  The preferred order of attributes in a tag. This mainly affects the order of the attributes that are rendered by renderTagAttributes().
- public static array $attributeOrder = ['type', 'id', 'class', 'name', 'value', 'href', 'src', 'action', 'method', 'selected', 'checked', 'readonly', 'disabled', 'multiple', 'size', 'maxlength', 'width', 'height', 'rows', 'cols', 'alt', 'title', 'rel', 'media']
- $dataAttributes public static property (available since version 2.0.3)
+ public static array attributeOrder = ['type', 'id', 'class', 'name', 'value', 'href', 'src', 'action', 'method', 'selected', 'checked', 'readonly', 'disabled', 'multiple', 'size', 'maxlength', 'width', 'height', 'rows', 'cols', 'alt', 'title', 'rel', 'media']
+ dataAttributes public static property (available since version 2.0.3)
  List of tag attributes that should be specially handled when their values are of array type. In particular, if the value of the data attribute is ['name' => 'xyz', 'age' => 13], two attributes will be generated instead of one: data-name="xyz" data-age="13".
- public static array $dataAttributes = ['data', 'data-ng', 'ng']
- $voidElements public static property
+ public static array dataAttributes = ['data', 'data-ng', 'ng']
+ voidElements public static property
  List of void elements (element name => 1)
 
  See also http://www.w3.org/TR/html-markup/syntax.html#void-element.
- public static array $voidElements = ['area' => 1, 'base' => 1, 'br' => 1, 'col' => 1, 'command' => 1, 'embed' => 1, 'hr' => 1, 'img' => 1, 'input' => 1, 'keygen' => 1, 'link' => 1, 'meta' => 1, 'param' => 1, 'source' => 1, 'track' => 1, 'wbr' => 1]
+ public static array voidElements = ['area' => 1, 'base' => 1, 'br' => 1, 'col' => 1, 'command' => 1, 'embed' => 1, 'hr' => 1, 'img' => 1, 'input' => 1, 'keygen' => 1, 'link' => 1, 'meta' => 1, 'param' => 1, 'source' => 1, 'track' => 1, 'wbr' => 1]
  Method Details
  a() public static method
  Generates a hyperlink tag.
 
  See also yii\helpers\Url::to().
- public static string a ( $text, $url = null, $options = [] )
- $text	string	
+ public static string a ( text, url = null, options = [] )
+ text	string	
  Link body. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is coming from end users, you should consider encode() it to prevent XSS attacks.
- $url	array|string|null	
+ url	array|string|null	
  The URL for the hyperlink tag. This parameter will be processed by yii\helpers\Url::to() and will be used for the "href" attribute of the tag. If this parameter is null, the "href" attribute will not be generated.
  If you want to use an absolute url you can call yii\helpers\Url::to() yourself, before passing the URL to this method, like this:
- Html::a('link text', Url::to($url, true))
- $options	array	
+ Html::a('link text', Url::to(url, true))
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated hyperlink
  activeBooleanInput() protected static method (available since version 2.0.9)
  Generates a boolean input This method is mainly called by activeCheckbox() and activeRadio().
- protected static string activeBooleanInput ( $type, $model, $attribute, $options = [] )
- $type	string	
+ protected static string activeBooleanInput ( type, model, attribute, options = [] )
+ type	string	
  The input type. This can be either radio or checkbox.
- $model	yii\base\Model	
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. See booleanInput() for details about accepted attributes.
  return	string	
  The generated input element
@@ -714,12 +714,12 @@ class DH5 {
  Generates a checkbox tag together with a label for the given model attribute.
 
  This method will generate the "checked" tag attribute according to the model attribute value.
- public static string activeCheckbox ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string activeCheckbox ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. See booleanInput() for details about accepted attributes.
  return	string	
  The generated checkbox tag
@@ -727,23 +727,23 @@ class DH5 {
  Generates a list of checkboxes.
 
  A checkbox list allows multiple selection, like listBox(). As a result, the corresponding submitted value is an array. The selection of the checkbox list is taken from the value of the model attribute.
- public static string activeCheckboxList ( $model, $attribute, $items, $options = [] )
- $model	yii\base\Model	
+ public static string activeCheckboxList ( model, attribute, items, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $items	array	
+ items	array	
  The data item used to generate the checkboxes. The array keys are the checkbox values, and the array values are the corresponding labels. Note that the labels will NOT be HTML-encoded, while the values will.
- $options	array	
+ options	array	
  Options (name => config) for the checkbox list container tag. The following options are specially handled:
  tag: string|false, the tag name of the container element. False to render checkbox without container. See also tag().
  unselect: string, the value that should be submitted when none of the checkboxes is selected. You may set this option to be null to prevent default value submission. If this option is not set, an empty string will be submitted.
  encode: boolean, whether to HTML-encode the checkbox labels. Defaults to true. This option is ignored if item option is set.
  separator: string, the HTML code that separates items.
  itemOptions: array, the options for generating the checkbox tag using checkbox().
- item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in $items. The signature of this callback must be:
- function ($index, $label, $name, $checked, $value)
- where $index is the zero-based index of the checkbox in the whole list; $label is the label for the checkbox; and $name, $value and $checked represent the name, value and the checked status of the checkbox input.
+ item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in items. The signature of this callback must be:
+ function (index, label, name, checked, value)
+ where index is the zero-based index of the checkbox in the whole list; label is the label for the checkbox; and name, value and checked represent the name, value and the checked status of the checkbox input.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated checkbox list
@@ -751,15 +751,15 @@ class DH5 {
  Generates a drop-down list for the given model attribute.
 
  The selection of the drop-down list is taken from the value of the model attribute.
- public static string activeDropDownList ( $model, $attribute, $items, $options = [] )
- $model	yii\base\Model	
+ public static string activeDropDownList ( model, attribute, items, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $items	array	
+ items	array	
  The option data items. The array keys are option values, and the array values are the corresponding option labels. The array can also be nested (i.e. some array values are arrays too). For each sub-array, an option group will be generated whose label is the key associated with the sub-array. If you have a list of data models, you may convert them into the format described above using yii\helpers\ArrayHelper::map().
  Note, the values and labels will be automatically HTML-encoded by this method, and the blank spaces in the labels will also be HTML-encoded.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
  ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
@@ -768,7 +768,7 @@ class DH5 {
  'value1' => ['disabled' => true],
  'value2' => ['label' => 'value 2'],
  ];
- groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in $items.
+ groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in items.
  encodeSpaces: bool, whether to encode spaces in option prompt and option value with &nbsp; character. Defaults to false.
  encode: bool, whether to encode option prompt and option value characters. Defaults to true. This option is available since 2.0.3.
  The rest of the options will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
@@ -777,26 +777,26 @@ class DH5 {
  activeFileInput() public static method
  Generates a file input tag for the given model attribute.
 
- This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in $options.
- public static string activeFileInput ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in options.
+ public static string activeFileInput ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated input tag
  activeHiddenInput() public static method
  Generates a hidden input tag for the given model attribute.
 
- This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in $options.
- public static string activeHiddenInput ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in options.
+ public static string activeHiddenInput ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated input tag
@@ -804,12 +804,12 @@ class DH5 {
  Generates a hint tag for the given model attribute.
 
  The hint text is the hint associated with the attribute, obtained via yii\base\Model::getAttributeHint(). If no hint content can be obtained, method will return an empty string.
- public static string activeHint ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string activeHint ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. The following options are specially handled:
  hint: this specifies the hint to be displayed. Note that this will NOT be encoded. If this is not set, yii\base\Model::getAttributeHint() will be called to get the hint for display (without encoding).
  See renderTagAttributes() for details on how attributes are being rendered.
@@ -818,15 +818,15 @@ class DH5 {
  activeInput() public static method
  Generates an input tag for the given model attribute.
 
- This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in $options.
- public static string activeInput ( $type, $model, $attribute, $options = [] )
- $type	string	
+ This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in options.
+ public static string activeInput ( type, model, attribute, options = [] )
+ type	string	
  The input type (e.g. 'text', 'password')
- $model	yii\base\Model	
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated input tag
@@ -834,12 +834,12 @@ class DH5 {
  Generates a label tag for the given model attribute.
 
  The label text is the label associated with the attribute, obtained via yii\base\Model::getAttributeLabel().
- public static string activeLabel ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string activeLabel ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. The following options are specially handled:
  label: this specifies the label to be displayed. Note that this will NOT be encoded. If this is not set, yii\base\Model::getAttributeLabel() will be called to get the label for display (after encoding).
  See renderTagAttributes() for details on how attributes are being rendered.
@@ -849,15 +849,15 @@ class DH5 {
  Generates a list box.
 
  The selection of the list box is taken from the value of the model attribute.
- public static string activeListBox ( $model, $attribute, $items, $options = [] )
- $model	yii\base\Model	
+ public static string activeListBox ( model, attribute, items, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $items	array	
+ items	array	
  The option data items. The array keys are option values, and the array values are the corresponding option labels. The array can also be nested (i.e. some array values are arrays too). For each sub-array, an option group will be generated whose label is the key associated with the sub-array. If you have a list of data models, you may convert them into the format described above using yii\helpers\ArrayHelper::map().
  Note, the values and labels will be automatically HTML-encoded by this method, and the blank spaces in the labels will also be HTML-encoded.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
  ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
@@ -866,7 +866,7 @@ class DH5 {
  'value1' => ['disabled' => true],
  'value2' => ['label' => 'value 2'],
  ];
- groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in $items.
+ groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in items.
  unselect: string, the value that will be submitted when no option is selected. When this attribute is set, a hidden field will be generated so that if no option is selected in multiple mode, we can still obtain the posted unselect value.
  encodeSpaces: bool, whether to encode spaces in option prompt and option value with &nbsp; character. Defaults to false.
  encode: bool, whether to encode option prompt and option value characters. Defaults to true. This option is available since 2.0.3.
@@ -877,43 +877,43 @@ class DH5 {
  Generates a list of input fields.
 
  This method is mainly called by activeListBox(), activeRadioList() and activeCheckboxList().
- protected static string activeListInput ( $type, $model, $attribute, $items, $options = [] )
- $type	string	
+ protected static string activeListInput ( type, model, attribute, items, options = [] )
+ type	string	
  The input type. This can be 'listBox', 'radioList', or 'checkBoxList'.
- $model	yii\base\Model	
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $items	array	
+ items	array	
  The data item used to generate the input fields. The array keys are the input values, and the array values are the corresponding labels. Note that the labels will NOT be HTML-encoded, while the values will.
- $options	array	
- Options (name => config) for the input list. The supported special options depend on the input type specified by $type.
+ options	array	
+ Options (name => config) for the input list. The supported special options depend on the input type specified by type.
  return	string	
  The generated input list
  activePasswordInput() public static method
  Generates a password input tag for the given model attribute.
 
- This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in $options.
- public static string activePasswordInput ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in options.
+ public static string activePasswordInput ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered. The following special options are recognized:
- maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::$max. This option is available since version 2.0.6.
+ maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::max. This option is available since version 2.0.6.
  return	string	
  The generated input tag
  activeRadio() public static method
  Generates a radio button tag together with a label for the given model attribute.
 
  This method will generate the "checked" tag attribute according to the model attribute value.
- public static string activeRadio ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string activeRadio ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. See booleanInput() for details about accepted attributes.
  return	string	
  The generated radio button tag
@@ -921,52 +921,52 @@ class DH5 {
  Generates a list of radio buttons.
 
  A radio button list is like a checkbox list, except that it only allows single selection. The selection of the radio buttons is taken from the value of the model attribute.
- public static string activeRadioList ( $model, $attribute, $items, $options = [] )
- $model	yii\base\Model	
+ public static string activeRadioList ( model, attribute, items, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $items	array	
+ items	array	
  The data item used to generate the radio buttons. The array keys are the radio values, and the array values are the corresponding labels. Note that the labels will NOT be HTML-encoded, while the values will.
- $options	array	
+ options	array	
  Options (name => config) for the radio button list container tag. The following options are specially handled:
  tag: string|false, the tag name of the container element. False to render radio button without container. See also tag().
  unselect: string, the value that should be submitted when none of the radio buttons is selected. You may set this option to be null to prevent default value submission. If this option is not set, an empty string will be submitted.
  encode: boolean, whether to HTML-encode the checkbox labels. Defaults to true. This option is ignored if item option is set.
  separator: string, the HTML code that separates items.
  itemOptions: array, the options for generating the radio button tag using radio().
- item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in $items. The signature of this callback must be:
- function ($index, $label, $name, $checked, $value)
- where $index is the zero-based index of the radio button in the whole list; $label is the label for the radio button; and $name, $value and $checked represent the name, value and the checked status of the radio button input.
+ item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in items. The signature of this callback must be:
+ function (index, label, name, checked, value)
+ where index is the zero-based index of the radio button in the whole list; label is the label for the radio button; and name, value and checked represent the name, value and the checked status of the radio button input.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated radio button list
  activeTextInput() public static method
  Generates a text input tag for the given model attribute.
 
- This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in $options.
- public static string activeTextInput ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ This method will generate the "name" and "value" tag attributes automatically for the model attribute unless they are explicitly specified in options.
+ public static string activeTextInput ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered. The following special options are recognized:
- maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::$max. This is available since version 2.0.3.
+ maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::max. This is available since version 2.0.3.
  return	string	
  The generated input tag
  activeTextarea() public static method
  Generates a textarea tag for the given model attribute.
 
  The model attribute value will be used as the content in the textarea.
- public static string activeTextarea ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string activeTextarea ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). See renderTagAttributes() for details on how attributes are being rendered. The following special options are recognized:
- maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::$max. This option is available since version 2.0.6.
+ maxlength: integer|boolean, when maxlength is set true and the model attribute is validated by a string validator, the maxlength option will take the value of yii\validators\StringValidator::max. This option is available since version 2.0.6.
  return	string	
  The generated textarea tag
  addCssclass() public static method
@@ -974,44 +974,44 @@ class DH5 {
 
  If the CSS class is already in the options, it will not be added again. If class specification at given options is an array, and some class placed there with the named (string) key, overriding of such key will have no effect. For example:
 
- $options = ['class' => ['persistent' => 'initial']];
- Html::addCssclass($options, ['persistent' => 'override']);
- var_dump($options['class']); // outputs: array('persistent' => 'initial');
- public static void addCssclass ( &$options, $class )
- $options	array	
+ options = ['class' => ['persistent' => 'initial']];
+ Html::addCssclass(options, ['persistent' => 'override']);
+ var_dump(options['class']); // outputs: array('persistent' => 'initial');
+ public static void addCssclass ( &options, class )
+ options	array	
  The options to be modified.
- $class	string|array	
+ class	string|array	
  The CSS class(es) to be added
  addCssStyle() public static method
  Adds the specified CSS style to the HTML options.
 
- If the options already contain a style element, the new style will be merged with the existing one. If a CSS property exists in both the new and the old styles, the old one may be overwritten if $overwrite is true.
+ If the options already contain a style element, the new style will be merged with the existing one. If a CSS property exists in both the new and the old styles, the old one may be overwritten if overwrite is true.
 
  For example,
 
- Html::addCssStyle($options, 'width: 100px; height: 200px');
+ Html::addCssStyle(options, 'width: 100px; height: 200px');
  See also:
 
  removeCssStyle()
  cssStyleFromArray()
  cssStyleToArray()
- public static void addCssStyle ( &$options, $style, $overwrite = true )
- $options	array	
+ public static void addCssStyle ( &options, style, overwrite = true )
+ options	array	
  The HTML options to be modified.
- $style	string|array	
+ style	string|array	
  The new style string (e.g. 'width: 100px; height: 200px') or array (e.g. ['width' => '100px', 'height' => '200px']).
- $overwrite	boolean	
+ overwrite	boolean	
  Whether to overwrite existing CSS properties if the new style contain them too.
  beginForm() public static method
  Generates a form start tag.
 
  See also endForm().
- public static string beginForm ( $action = '', $method = 'post', $options = [] )
- $action	array|string	
+ public static string beginForm ( action = '', method = 'post', options = [] )
+ action	array|string	
  The form action URL. This parameter will be processed by yii\helpers\Url::to().
- $method	string	
- The form submission method, such as "post", "get", "put", "delete" (case-insensitive). Since most browsers only support "post" and "get", if other methods are given, they will be simulated using "post", and a hidden input will be added which contains the actual method type. See yii\web\Request::$methodParam for more details.
- $options	array	
+ method	string	
+ The form submission method, such as "post", "get", "put", "delete" (case-insensitive). Since most browsers only support "post" and "get", if other methods are given, they will be simulated using "post", and a hidden input will be added which contains the actual method type. See yii\web\Request::methodParam for more details.
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  Special options:
  csrf: whether to generate the CSRF hidden input. Defaults to true.
@@ -1024,23 +1024,23 @@ class DH5 {
 
  endTag()
  tag()
- public static string beginTag ( $name, $options = [] )
- $name	string|boolean|null	
- The tag name. If $name is null or false, the corresponding content will be rendered without any tag.
- $options	array	
+ public static string beginTag ( name, options = [] )
+ name	string|boolean|null	
+ The tag name. If name is null or false, the corresponding content will be rendered without any tag.
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated start tag
  booleanInput() protected static method (available since version 2.0.9)
  Generates a boolean input.
- protected static string booleanInput ( $type, $name, $checked = false, $options = [] )
- $type	string	
+ protected static string booleanInput ( type, name, checked = false, options = [] )
+ type	string	
  The input type. This can be either radio or checkbox.
- $name	string	
+ name	string	
  The name attribute.
- $checked	boolean	
+ checked	boolean	
  Whether the checkbox should be checked.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  uncheck: string, the value associated with the uncheck state of the checkbox. When this attribute is present, a hidden input will be generated so that if the checkbox is not checked and is submitted, the value of this attribute will still be submitted to the server via the hidden input.
  label: string, a label displayed next to the checkbox. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is is coming from end users, you should encode() it to prevent XSS attacks. When this option is specified, the checkbox will be enclosed by a label tag.
@@ -1050,30 +1050,30 @@ class DH5 {
  The generated checkbox tag
  button() public static method
  Generates a button tag.
- public static string button ( $content = 'Button', $options = [] )
- $content	string	
+ public static string button ( content = 'Button', options = [] )
+ content	string	
  The content enclosed within the button tag. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is is coming from end users, you should consider encode() it to prevent XSS attacks.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated button tag
  buttonInput() public static method
  Generates an input button.
- public static string buttonInput ( $label = 'Button', $options = [] )
- $label	string	
+ public static string buttonInput ( label = 'Button', options = [] )
+ label	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated button tag
  checkbox() public static method
  Generates a checkbox input.
- public static string checkbox ( $name, $checked = false, $options = [] )
- $name	string	
+ public static string checkbox ( name, checked = false, options = [] )
+ name	string	
  The name attribute.
- $checked	boolean	
+ checked	boolean	
  Whether the checkbox should be checked.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. See booleanInput() for details about accepted attributes.
  return	string	
  The generated checkbox tag
@@ -1081,30 +1081,30 @@ class DH5 {
  Generates a list of checkboxes.
 
  A checkbox list allows multiple selection, like listBox(). As a result, the corresponding submitted value is an array.
- public static string checkboxList ( $name, $selection = null, $items = [], $options = [] )
- $name	string	
+ public static string checkboxList ( name, selection = null, items = [], options = [] )
+ name	string	
  The name attribute of each checkbox.
- $selection	string|array|null	
+ selection	string|array|null	
  The selected value(s). String for single or array for multiple selection(s).
- $items	array	
+ items	array	
  The data item used to generate the checkboxes. The array keys are the checkbox values, while the array values are the corresponding labels.
- $options	array	
+ options	array	
  Options (name => config) for the checkbox list container tag. The following options are specially handled:
  tag: string|false, the tag name of the container element. False to render checkbox without container. See also tag().
  unselect: string, the value that should be submitted when none of the checkboxes is selected. By setting this option, a hidden input will be generated.
  encode: boolean, whether to HTML-encode the checkbox labels. Defaults to true. This option is ignored if item option is set.
  separator: string, the HTML code that separates items.
  itemOptions: array, the options for generating the checkbox tag using checkbox().
- item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in $items. The signature of this callback must be:
- function ($index, $label, $name, $checked, $value)
- where $index is the zero-based index of the checkbox in the whole list; $label is the label for the checkbox; and $name, $value and $checked represent the name, value and the checked status of the checkbox input, respectively.
+ item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in items. The signature of this callback must be:
+ function (index, label, name, checked, value)
+ where index is the zero-based index of the checkbox in the whole list; label is the label for the checkbox; and name, value and checked represent the name, value and the checked status of the checkbox input, respectively.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated checkbox list
  csrfMetaTags() public static method
  Generates the meta tags containing CSRF token information.
 
- See also yii\web\Request::$enableCsrfValidation.
+ See also yii\web\Request::enableCsrfValidation.
  public static string csrfMetaTags ( )
  return	string	
  The generated meta tags
@@ -1112,10 +1112,10 @@ class DH5 {
  Generates a link tag that refers to an external CSS file.
 
  See also yii\helpers\Url::to().
- public static string cssFile ( $url, $options = [] )
- $url	array|string	
+ public static string cssFile ( url, options = [] )
+ url	array|string	
  The URL of the external CSS file. This parameter will be processed by yii\helpers\Url::to().
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  condition: specifies the conditional comments for IE, e.g., lt IE 9. When this is specified, the generated link tag will be enclosed within the conditional comments. This is mainly useful for supporting old versions of IE browsers.
  noscript: if set to true, link tag will be wrapped into <noscript> tags.
@@ -1129,8 +1129,8 @@ class DH5 {
 
  print_r(Html::cssStyleFromArray(['width' => '100px', 'height' => '200px']));
  // will display: 'width: 100px; height: 200px;'
- public static string cssStyleFromArray ( array $style )
- $style	array	
+ public static string cssStyleFromArray ( array style )
+ style	array	
  The CSS style array. The array keys are the CSS property names, and the array values are the corresponding CSS property values.
  return	string	
  The CSS style string. If the CSS style is empty, a null will be returned.
@@ -1143,8 +1143,8 @@ class DH5 {
 
  print_r(Html::cssStyleToArray('width: 100px; height: 200px;'));
  // will display: ['width' => '100px', 'height' => '200px']
- public static array cssStyleToArray ( $style )
- $style	string	
+ public static array cssStyleToArray ( style )
+ style	string	
  The CSS style string
  return	array	
  The array representation of the CSS style
@@ -1157,22 +1157,22 @@ class DH5 {
 
  encode()
  http://www.php.net/manual/en/function.htmlspecialchars-decode.php
- public static string decode ( $content )
- $content	string	
+ public static string decode ( content )
+ content	string	
  The content to be decoded
  return	string	
  The decoded content
  dropDownList() public static method
  Generates a drop-down list.
- public static string dropDownList ( $name, $selection = null, $items = [], $options = [] )
- $name	string	
+ public static string dropDownList ( name, selection = null, items = [], options = [] )
+ name	string	
  The input name
- $selection	string|array|null	
+ selection	string|array|null	
  The selected value(s). String for single or array for multiple selection(s).
- $items	array	
+ items	array	
  The option data items. The array keys are option values, and the array values are the corresponding option labels. The array can also be nested (i.e. some array values are arrays too). For each sub-array, an option group will be generated whose label is the key associated with the sub-array. If you have a list of data models, you may convert them into the format described above using yii\helpers\ArrayHelper::map().
  Note, the values and labels will be automatically HTML-encoded by this method, and the blank spaces in the labels will also be HTML-encoded.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
  ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
@@ -1181,7 +1181,7 @@ class DH5 {
  'value1' => ['disabled' => true],
  'value2' => ['label' => 'value 2'],
  ];
- groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in $items.
+ groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in items.
  encodeSpaces: bool, whether to encode spaces in option prompt and option value with &nbsp; character. Defaults to false.
  encode: bool, whether to encode option prompt and option value characters. Defaults to true. This option is available since 2.0.3.
  The rest of the options will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
@@ -1196,11 +1196,11 @@ class DH5 {
 
  decode()
  http://www.php.net/manual/en/function.htmlspecialchars.php
- public static string encode ( $content, $doubleEncode = true )
- $content	string	
+ public static string encode ( content, doubleEncode = true )
+ content	string	
  The content to be encoded
- $doubleEncode	boolean	
- Whether to encode HTML entities in $content. If false, HTML entities in $content will not be further encoded.
+ doubleEncode	boolean	
+ Whether to encode HTML entities in content. If false, HTML entities in content will not be further encoded.
  return	string	
  The encoded content
  endForm() public static method
@@ -1217,21 +1217,21 @@ class DH5 {
 
  beginTag()
  tag()
- public static string endTag ( $name )
- $name	string|boolean|null	
- The tag name. If $name is null or false, the corresponding content will be rendered without any tag.
+ public static string endTag ( name )
+ name	string|boolean|null	
+ The tag name. If name is null or false, the corresponding content will be rendered without any tag.
  return	string	
  The generated end tag
  error() public static method
  Generates a tag that contains the first validation error of the specified model attribute.
 
  Note that even if there is no validation error, this method will still return an empty error tag.
- public static string error ( $model, $attribute, $options = [] )
- $model	yii\base\Model	
+ public static string error ( model, attribute, options = [] )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for the format about attribute expression.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered.
  The following options are specially handled:
  tag: this specifies the tag name. If not set, "div" will be used. See also tag().
@@ -1243,10 +1243,10 @@ class DH5 {
  Generates a summary of the validation errors.
 
  If there is no validation error, an empty error summary markup will still be generated, but it will be hidden.
- public static string errorSummary ( $models, $options = [] )
- $models	yii\base\Model|yii\base\Model[]	
+ public static string errorSummary ( models, options = [] )
+ models	yii\base\Model|yii\base\Model[]	
  The model(s) whose validation errors are to be displayed.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  header: string, the header HTML for the error summary. If not set, a default prompt string will be used.
  footer: string, the footer HTML for the error summary. Defaults to empty string.
@@ -1257,21 +1257,21 @@ class DH5 {
  The generated error summary
  escapeJsRegularExpression() public static method (available since version 2.0.6)
  Escapes regular expression to use in JavaScript
- public static string escapeJsRegularExpression ( $regexp )
- $regexp	string	
+ public static string escapeJsRegularExpression ( regexp )
+ regexp	string	
  The regular expression to be escaped.
  return	string	
  The escaped result.
  fileInput() public static method
  Generates a file input field.
 
- To use a file input field, you should set the enclosing form's "enctype" attribute to be "multipart/form-data". After the form is submitted, the uploaded file information can be obtained via $_FILES[$name] (see PHP documentation).
- public static string fileInput ( $name, $value = null, $options = [] )
- $name	string	
+ To use a file input field, you should set the enclosing form's "enctype" attribute to be "multipart/form-data". After the form is submitted, the uploaded file information can be obtained via _FILES[name] (see PHP documentation).
+ public static string fileInput ( name, value = null, options = [] )
+ name	string	
  The name attribute.
- $value	string	
+ value	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated file input tag
@@ -1283,9 +1283,9 @@ class DH5 {
  [0]content is used in tabular data input to represent the "content" attribute for the first model in tabular input;
  dates[0] represents the first array element of the "dates" attribute;
  [0]dates[0] represents the first array element of the "dates" attribute for the first model in tabular input.
- If $attribute has neither prefix nor suffix, it will be returned back without change.
- public static string getAttributeName ( $attribute )
- $attribute	string	
+ If attribute has neither prefix nor suffix, it will be returned back without change.
+ public static string getAttributeName ( attribute )
+ attribute	string	
  The attribute name or expression
  return	string	
  The attribute name without prefix and suffix.
@@ -1294,13 +1294,13 @@ class DH5 {
  getAttributeValue() public static method
  Returns the value of the specified attribute name or expression.
 
- For an attribute expression like [0]dates[0], this method will return the value of $model->dates[0]. See getAttributeName() for more details about attribute expression.
+ For an attribute expression like [0]dates[0], this method will return the value of model->dates[0]. See getAttributeName() for more details about attribute expression.
 
  If an attribute value is an instance of yii\db\ActiveRecordInterface or an array of such instances, the primary value(s) of the AR instance(s) will be returned instead.
- public static string|array getAttributeValue ( $model, $attribute )
- $model	yii\base\Model	
+ public static string|array getAttributeValue ( model, attribute )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression
  return	string|array	
  The corresponding attribute value
@@ -1310,10 +1310,10 @@ class DH5 {
  Generates an appropriate input ID for the specified attribute name or expression.
 
  This method converts the result getInputName() into a valid input ID. For example, if getInputName() returns Post[content], this method will return post-content.
- public static string getInputId ( $model, $attribute )
- $model	yii\base\Model	
+ public static string getInputId ( model, attribute )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression. See getAttributeName() for explanation of attribute expression.
  return	string	
  The generated input ID
@@ -1325,10 +1325,10 @@ class DH5 {
  This method generates a name that can be used as the input name to collect user input for the specified attribute. The name is generated according to the form name of the model and the given attribute name. For example, if the form name of the Post model is Post, then the input name generated for the content attribute would be Post[content].
 
  See getAttributeName() for explanation of attribute expression.
- public static string getInputName ( $model, $attribute )
- $model	yii\base\Model	
+ public static string getInputName ( model, attribute )
+ model	yii\base\Model	
  The model object
- $attribute	string	
+ attribute	string	
  The attribute name or expression
  return	string	
  The generated input name
@@ -1336,34 +1336,34 @@ class DH5 {
  if the attribute name contains non-word characters.
  hiddenInput() public static method
  Generates a hidden input field.
- public static string hiddenInput ( $name, $value = null, $options = [] )
- $name	string	
+ public static string hiddenInput ( name, value = null, options = [] )
+ name	string	
  The name attribute.
- $value	string	
+ value	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated hidden input tag
  img() public static method
  Generates an image tag.
- public static string img ( $src, $options = [] )
- $src	array|string	
+ public static string img ( src, options = [] )
+ src	array|string	
  The image URL. This parameter will be processed by yii\helpers\Url::to().
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated image tag
  input() public static method
  Generates an input type of the given type.
- public static string input ( $type, $name = null, $value = null, $options = [] )
- $type	string	
+ public static string input ( type, name = null, value = null, options = [] )
+ type	string	
  The type attribute.
- $name	string	
+ name	string	
  The name attribute. If it is null, the name attribute will not be generated.
- $value	string	
+ value	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated input tag
@@ -1371,10 +1371,10 @@ class DH5 {
  Generates a script tag that refers to an external JavaScript file.
 
  See also yii\helpers\Url::to().
- public static string jsFile ( $url, $options = [] )
- $url	string	
+ public static string jsFile ( url, options = [] )
+ url	string	
  The URL of the external JavaScript file. This parameter will be processed by yii\helpers\Url::to().
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following option is specially handled:
  condition: specifies the conditional comments for IE, e.g., lt IE 9. When this is specified, the generated script tag will be enclosed within the conditional comments. This is mainly useful for supporting old versions of IE browsers.
  The rest of the options will be rendered as the attributes of the resulting script tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
@@ -1382,26 +1382,26 @@ class DH5 {
  The generated script tag
  label() public static method
  Generates a label tag.
- public static string label ( $content, $for = null, $options = [] )
- $content	string	
+ public static string label ( content, for = null, options = [] )
+ content	string	
  Label text. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is is coming from end users, you should encode() it to prevent XSS attacks.
- $for	string	
+ for	string	
  The ID of the HTML element that this label is associated with. If this is null, the "for" attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated label tag
  listBox() public static method
  Generates a list box.
- public static string listBox ( $name, $selection = null, $items = [], $options = [] )
- $name	string	
+ public static string listBox ( name, selection = null, items = [], options = [] )
+ name	string	
  The input name
- $selection	string|array|null	
+ selection	string|array|null	
  The selected value(s). String for single or array for multiple selection(s).
- $items	array	
+ items	array	
  The option data items. The array keys are option values, and the array values are the corresponding option labels. The array can also be nested (i.e. some array values are arrays too). For each sub-array, an option group will be generated whose label is the key associated with the sub-array. If you have a list of data models, you may convert them into the format described above using yii\helpers\ArrayHelper::map().
  Note, the values and labels will be automatically HTML-encoded by this method, and the blank spaces in the labels will also be HTML-encoded.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. The following options are specially handled:
  prompt: string, a prompt text to be displayed as the first option. Since version 2.0.11 you can use an array to override the value and to set other tag attributes:
  ['text' => 'Please select', 'options' => ['value' => 'none', 'class' => 'prompt', 'label' => 'Select']],
@@ -1410,7 +1410,7 @@ class DH5 {
  'value1' => ['disabled' => true],
  'value2' => ['label' => 'value 2'],
  ];
- groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in $items.
+ groups: array, the attributes for the optgroup tags. The structure of this is similar to that of 'options', except that the array keys represent the optgroup labels specified in items.
  unselect: string, the value that will be submitted when no option is selected. When this attribute is set, a hidden field will be generated so that if no option is selected in multiple mode, we can still obtain the posted unselect value.
  encodeSpaces: bool, whether to encode spaces in option prompt and option value with &nbsp; character. Defaults to false.
  encode: bool, whether to encode option prompt and option value characters. Defaults to true. This option is available since 2.0.3.
@@ -1419,49 +1419,49 @@ class DH5 {
  The generated list box tag
  mailto() public static method
  Generates a mailto hyperlink.
- public static string mailto ( $text, $email = null, $options = [] )
- $text	string	
+ public static string mailto ( text, email = null, options = [] )
+ text	string	
  Link body. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is coming from end users, you should consider encode() it to prevent XSS attacks.
- $email	string	
+ email	string	
  Email address. If this is null, the first parameter (link body) will be treated as the email address and used.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated mailto link
  ol() public static method
  Generates an ordered list.
- public static string ol ( $items, $options = [] )
- $items	array|Traversable	
- The items for generating the list. Each item generates a single list item. Note that items will be automatically HTML encoded if $options['encode'] is not set or true.
- $options	array	
+ public static string ol ( items, options = [] )
+ items	array|Traversable	
+ The items for generating the list. Each item generates a single list item. Note that items will be automatically HTML encoded if options['encode'] is not set or true.
+ options	array	
  Options (name => config) for the radio button list. The following options are supported:
  encode: boolean, whether to HTML-encode the items. Defaults to true. This option is ignored if the item option is specified.
  itemOptions: array, the HTML attributes for the li tags. This option is ignored if the item option is specified.
  item: callable, a callback that is used to generate each individual list item. The signature of this callback must be:
- function ($item, $index)
- where $index is the array key corresponding to $item in $items. The callback should return the whole list item tag.
+ function (item, index)
+ where index is the array key corresponding to item in items. The callback should return the whole list item tag.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
- The generated ordered list. An empty string is returned if $items is empty.
+ The generated ordered list. An empty string is returned if items is empty.
  passwordInput() public static method
  Generates a password input field.
- public static string passwordInput ( $name, $value = null, $options = [] )
- $name	string	
+ public static string passwordInput ( name, value = null, options = [] )
+ name	string	
  The name attribute.
- $value	string	
+ value	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated password input tag
  radio() public static method
  Generates a radio button input.
- public static string radio ( $name, $checked = false, $options = [] )
- $name	string	
+ public static string radio ( name, checked = false, options = [] )
+ name	string	
  The name attribute.
- $checked	boolean	
+ checked	boolean	
  Whether the radio button should be checked.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. See booleanInput() for details about accepted attributes.
  return	string	
  The generated radio button tag
@@ -1469,55 +1469,55 @@ class DH5 {
  Generates a list of radio buttons.
 
  A radio button list is like a checkbox list, except that it only allows single selection.
- public static string radioList ( $name, $selection = null, $items = [], $options = [] )
- $name	string	
+ public static string radioList ( name, selection = null, items = [], options = [] )
+ name	string	
  The name attribute of each radio button.
- $selection	string|array|null	
+ selection	string|array|null	
  The selected value(s). String for single or array for multiple selection(s).
- $items	array	
+ items	array	
  The data item used to generate the radio buttons. The array keys are the radio button values, while the array values are the corresponding labels.
- $options	array	
+ options	array	
  Options (name => config) for the radio button list container tag. The following options are specially handled:
  tag: string|false, the tag name of the container element. False to render radio buttons without container. See also tag().
  unselect: string, the value that should be submitted when none of the radio buttons is selected. By setting this option, a hidden input will be generated.
  encode: boolean, whether to HTML-encode the checkbox labels. Defaults to true. This option is ignored if item option is set.
  separator: string, the HTML code that separates items.
  itemOptions: array, the options for generating the radio button tag using radio().
- item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in $items. The signature of this callback must be:
- function ($index, $label, $name, $checked, $value)
- where $index is the zero-based index of the radio button in the whole list; $label is the label for the radio button; and $name, $value and $checked represent the name, value and the checked status of the radio button input, respectively.
+ item: callable, a callback that can be used to customize the generation of the HTML code corresponding to a single item in items. The signature of this callback must be:
+ function (index, label, name, checked, value)
+ where index is the zero-based index of the radio button in the whole list; label is the label for the radio button; and name, value and checked represent the name, value and the checked status of the radio button input, respectively.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated radio button list
  removeCssclass() public static method
  Removes a CSS class from the specified options.
- public static void removeCssclass ( &$options, $class )
- $options	array	
+ public static void removeCssclass ( &options, class )
+ options	array	
  The options to be modified.
- $class	string|array	
+ class	string|array	
  The CSS class(es) to be removed
  removeCssStyle() public static method
  Removes the specified CSS style from the HTML options.
 
  For example,
 
- Html::removeCssStyle($options, ['width', 'height']);
+ Html::removeCssStyle(options, ['width', 'height']);
  See also addCssStyle().
- public static void removeCssStyle ( &$options, $properties )
- $options	array	
+ public static void removeCssStyle ( &options, properties )
+ options	array	
  The HTML options to be modified.
- $properties	string|array	
+ properties	string|array	
  The CSS properties to be removed. You may use a string if you are removing a single property.
  renderSelectOptions() public static method
  Renders the option tags that can be used by dropDownList() and listBox().
- public static string renderSelectOptions ( $selection, $items, &$tagOptions = [] )
- $selection	string|array|null	
+ public static string renderSelectOptions ( selection, items, &tagOptions = [] )
+ selection	string|array|null	
  The selected value(s). String for single or array for multiple selection(s).
- $items	array	
+ items	array	
  The option data items. The array keys are option values, and the array values are the corresponding option labels. The array can also be nested (i.e. some array values are arrays too). For each sub-array, an option group will be generated whose label is the key associated with the sub-array. If you have a list of data models, you may convert them into the format described above using yii\helpers\ArrayHelper::map().
  Note, the values and labels will be automatically HTML-encoded by this method, and the blank spaces in the labels will also be HTML-encoded.
- $tagOptions	array	
- The $options parameter that is passed to the dropDownList() or listBox() call. This method will take out these elements, if any: "prompt", "options" and "groups". See more details in dropDownList() for the explanation of these elements.
+ tagOptions	array	
+ The options parameter that is passed to the dropDownList() or listBox() call. This method will take out these elements, if any: "prompt", "options" and "groups". See more details in dropDownList() for the explanation of these elements.
  return	string	
  The generated list options
  renderTagAttributes() public static method
@@ -1530,44 +1530,44 @@ class DH5 {
  The values of attributes will be HTML-encoded using encode().
 
  The "data" attribute is specially handled when it is receiving an array value. In this case, the array will be "expanded" and a list data attributes will be rendered. For example, if 'data' => ['id' => 1, 'name' => 'yii'], then this will be rendered: data-id="1" data-name="yii". Additionally 'data' => ['params' => ['id' => 1, 'name' => 'yii'], 'status' => 'ok'] will be rendered as: data-params='{"id":1,"name":"yii"}' data-status="ok".
- public static string renderTagAttributes ( $attributes )
- $attributes	array	
+ public static string renderTagAttributes ( attributes )
+ attributes	array	
  Attributes to be rendered. The attribute values will be HTML-encoded using encode().
  return	string	
  The rendering result. If the attributes are not empty, they will be rendered into a string with a leading white space (so that it can be directly appended to the tag name in a tag. If there is no attribute, an empty string will be returned.
  resetButton() public static method
  Generates a reset button tag.
- public static string resetButton ( $content = 'Reset', $options = [] )
- $content	string	
+ public static string resetButton ( content = 'Reset', options = [] )
+ content	string	
  The content enclosed within the button tag. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is is coming from end users, you should consider encode() it to prevent XSS attacks.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated reset button tag
  resetInput() public static method
  Generates a reset input button.
- public static string resetInput ( $label = 'Reset', $options = [] )
- $label	string	
+ public static string resetInput ( label = 'Reset', options = [] )
+ label	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The attributes of the button tag. The values will be HTML-encoded using encode(). Attributes whose value is null will be ignored and not put in the tag returned. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated button tag
  script() public static method
  Generates a script tag.
- public static string script ( $content, $options = [] )
- $content	string	
+ public static string script ( content, options = [] )
+ content	string	
  The script content
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated script tag
  style() public static method
  Generates a style tag.
- public static string style ( $content, $options = [] )
- $content	string	
+ public static string style ( content, options = [] )
+ content	string	
  The style content
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated style tag
@@ -1575,10 +1575,10 @@ class DH5 {
  Generates a submit button tag.
 
  Be careful when naming form elements such as submit buttons. According to the jQuery documentation there are some reserved names that can cause conflicts, e.g. submit, length, or method.
- public static string submitButton ( $content = 'Submit', $options = [] )
- $content	string	
+ public static string submitButton ( content = 'Submit', options = [] )
+ content	string	
  The content enclosed within the button tag. It will NOT be HTML-encoded. Therefore you can pass in HTML code such as an image tag. If this is is coming from end users, you should consider encode() it to prevent XSS attacks.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated submit button tag
@@ -1586,10 +1586,10 @@ class DH5 {
  Generates a submit input button.
 
  Be careful when naming form elements such as submit buttons. According to the jQuery documentation there are some reserved names that can cause conflicts, e.g. submit, length, or method.
- public static string submitInput ( $label = 'Submit', $options = [] )
- $label	string	
+ public static string submitInput ( label = 'Submit', options = [] )
+ label	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated button tag
@@ -1600,12 +1600,12 @@ class DH5 {
 
  beginTag()
  endTag()
- public static string tag ( $name, $content = '', $options = [] )
- $name	string|boolean|null	
- The tag name. If $name is null or false, the corresponding content will be rendered without any tag.
- $content	string	
+ public static string tag ( name, content = '', options = [] )
+ name	string|boolean|null	
+ The tag name. If name is null or false, the corresponding content will be rendered without any tag.
+ content	string	
  The content to be enclosed between the start and end tags. It will not be HTML-encoded. If this is coming from end users, you should consider encode() it to prevent XSS attacks.
- $options	array	
+ options	array	
  The HTML tag attributes (HTML options) in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered.
  For example when using ['class' => 'my-class', 'target' => '_blank', 'value' => null] it will result in the html attributes rendered like this: class="my-class" target="_blank".
  See renderTagAttributes() for details on how attributes are being rendered.
@@ -1613,43 +1613,43 @@ class DH5 {
  The generated HTML tag
  textInput() public static method
  Generates a text input field.
- public static string textInput ( $name, $value = null, $options = [] )
- $name	string	
+ public static string textInput ( name, value = null, options = [] )
+ name	string	
  The name attribute.
- $value	string	
+ value	string	
  The value attribute. If it is null, the value attribute will not be generated.
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
  The generated text input tag
  textarea() public static method
  Generates a text area input.
- public static string textarea ( $name, $value = '', $options = [] )
- $name	string	
+ public static string textarea ( name, value = '', options = [] )
+ name	string	
  The input name
- $value	string	
+ value	string	
  The input value. Note that it will be encoded using encode().
- $options	array	
+ options	array	
  The tag options in terms of name-value pairs. These will be rendered as the attributes of the resulting tag. The values will be HTML-encoded using encode(). If a value is null, the corresponding attribute will not be rendered. See renderTagAttributes() for details on how attributes are being rendered. The following special options are recognized:
- doubleEncode: whether to double encode HTML entities in $value. If false, HTML entities in $value will not be further encoded. This option is available since version 2.0.11.
+ doubleEncode: whether to double encode HTML entities in value. If false, HTML entities in value will not be further encoded. This option is available since version 2.0.11.
  return	string	
  The generated text area tag
  ul() public static method
  Generates an unordered list.
- public static string ul ( $items, $options = [] )
- $items	array|Traversable	
- The items for generating the list. Each item generates a single list item. Note that items will be automatically HTML encoded if $options['encode'] is not set or true.
- $options	array	
+ public static string ul ( items, options = [] )
+ items	array|Traversable	
+ The items for generating the list. Each item generates a single list item. Note that items will be automatically HTML encoded if options['encode'] is not set or true.
+ options	array	
  Options (name => config) for the radio button list. The following options are supported:
  encode: boolean, whether to HTML-encode the items. Defaults to true. This option is ignored if the item option is specified.
  separator: string, the HTML code that separates items. Defaults to a simple newline ("\n"). This option is available since version 2.0.7.
  itemOptions: array, the HTML attributes for the li tags. This option is ignored if the item option is specified.
  item: callable, a callback that is used to generate each individual list item. The signature of this callback must be:
- function ($item, $index)
- where $index is the array key corresponding to $item in $items. The callback should return the whole list item tag.
+ function (item, index)
+ where index is the array key corresponding to item in items. The callback should return the whole list item tag.
  See renderTagAttributes() for details on how attributes are being rendered.
  return	string	
- The generated unordered list. An empty list tag will be returned if $items is empty.
+ The generated unordered list. An empty list tag will be returned if items is empty.
 
  */
 
